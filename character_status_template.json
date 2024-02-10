@@ -1,0 +1,21 @@
+[
+    {
+        "type": "player",
+        "name": "Totoro",
+        "co_ord_x": 0,
+        "co_ord_y": 0,
+        "state": null,
+        "inventory":[{"name": "apples",
+                    "quantity": 1,
+                    "state": null}],
+        "current_hp":10,
+        "max_hp":10,
+        "current_gold":0,
+        "visited":[{"type": "tile", 
+                    "name": "road",
+                    "state": null}],
+        "turn_counter":0
+
+    }
+
+]

@@ -1,0 +1,11 @@
+[
+    {
+        "type": "tool",
+        "name": "watering can",
+        "state": "empty",
+        "quantity": 1,
+        "co_ord_x": 0,
+        "co_ord_y": 0,
+        "inventory":null
+    }
+]
