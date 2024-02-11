@@ -1,0 +1,570 @@
+
+[
+  {
+    "name": "landlord",
+    "type": "npc",
+    "state": "unhappy",
+    "description": {
+      "long_desc": "the landlord, who is a tall person wearing a black coat and hat, is unhappy",
+      "short_desc": "the unhappy landlord"
+    },
+    "interactions":    
+    [
+      {
+        "name": "pay",
+   
+        "success_desc": "You paid the landlord %rent_amount%, good job!",
+        "fail_desc": "You are still missing some gold to pay the rent to the landlord, you need %rent_amount% gold.",
+        "change_state_to": "happy",
+        "requirement": [
+          {
+            "type": "gold",
+            "name": "gold",
+            "state": "null",
+            "qty": "%rent_amount%",
+            "remove_obj": "Y"
+          }
+
+
+        ],
+        "obtain": null
+      }
+    ]
+
+
+  }, 
+
+
+
+  {
+    "name": "landlord",
+    "type": "npc",
+    "state": "happy",
+    "description": {
+      "long_desc": "the landlord, who is a tall person wearing a black coat and hat, is happy because you have paid the rent",
+      "short_desc": "the happy landlord"
+    },
+    "interactions": null
+
+  }, 
+
+
+
+
+
+  {
+    "name": "Merchant 1",
+    "type": "npc",
+    "state": "null",
+    "description": {
+      "long_desc": "a merchant that sells guns and makes axes (assuming you have the right components)",
+      "short_desc": "a gun and axe merchant"
+    },
+    "interactions": null
+    
+  }, 
+
+
+
+  {
+    "name": "Merchant 2",
+    "type": "npc",
+    "state": "null",
+    "description": {
+      "long_desc": "a merchant that buys animal products in exchange for gold",
+      "short_desc": "an animal products merchant"
+    },
+    "interactions": null
+    
+  }, 
+
+
+
+  {
+    "name": "Merchant 3",
+    "type": "npc",
+    "state": "null",
+    "description": {
+      "long_desc": "a merchant that buys plant products in exchange for gold",
+      "short_desc": "a plant products merchant"
+    },
+    "interactions": null
+    
+  }, 
+
+
+  {
+    "name": "farmhand",
+    "type": "npc",
+    "state": "injured",
+    "description": {
+      "long_desc": "an injured farmhand that requires medical attention from the medkit",
+      "short_desc": "an injured farmhand"
+    },
+    "interactions":    
+    [
+      {
+        "name": "heal",
+   
+        "success_desc": "You have healed the injured farmhand and he offers you a reward",
+        "fail_desc": "You cannot heal the farmhand right now.",
+        "change_state_to": "healthy",
+        "requirement": [
+          {
+            "type": "object",
+            "name": "medkit",
+            "state": "null",
+            "qty": 1,
+            "remove_obj": "N"
+          }
+        ],
+        "obtain":  [{
+          "type": "Gold",
+          "name": "gold",
+          "state": "null",
+          "qty": 8
+        }
+      ]
+      }
+    ]
+  },
+
+
+  {
+    "name": "farmhand",
+    "type": "npc",
+    "state": "healthy",
+    "description": {
+      "long_desc": "a healthy farmhand that no longer requires medical attention from the medkit",
+      "short_desc": "a healthy farmhand"
+    },
+    "interactions": null
+    
+  }, 
+  
+  
+
+
+  
+
+
+
+
+
+
+  {
+    "name": "Penny",
+    "type": "npc",
+    "state": "null",
+    "description": {
+      "long_desc": "A friendly neighbor Penny with a warm smile",
+      "short_desc": "Penny the neighbor"
+    },
+    "interactions":    
+    [
+      {
+        "name": "greet",
+   
+        "success_desc": "You exchange friendly greetings with Penny the neighbor and she advised to harvest wheat and grass in the fields.",
+        "fail_desc": "You cannot greet Penny the neighbor right now.",
+        "change_state_to": null,
+        "requirement": [
+          {
+            "type": "tile",
+            "name": "Penny's House",
+            "state": "null",
+            "qty": null,
+            "remove_obj": "N"
+          }
+        ],
+        "obtain":  null
+      }
+    ]
+  },
+
+
+
+
+  {
+    "name": "Jimmy",
+    "type": "npc",
+    "state": "null",
+    "description": {
+      "long_desc": "A friendly neighbor Jimmy with an inquisitive look",
+      "short_desc": "Jimmy the neighbor"
+    },
+    "interactions":    
+    [
+      {
+        "name": "converse",
+   
+        "success_desc": "You have a curious conversation with the neighbor and find out about harvesting honey.",
+        "fail_desc": "You cannot converse with Jimmy the neighbor right now.",
+        "change_state_to": null,
+        "requirement": [
+          {
+            "type": "tile",
+            "name": "Jimmy's House",
+            "state": "null",
+            "qty": null,
+            "remove_obj": "N"
+          }
+        ],
+        "obtain":  null
+      }
+    ]
+  },
+
+
+
+
+
+  {
+    "name": "Claire",
+    "type": "npc",
+    "state": "null",
+    "description": {
+      "long_desc": "a charming neighbor Claire who needs help",
+      "short_desc": "Claire the neighbor"
+    },
+    "interactions":    
+    [
+      {
+        "name": "help",
+   
+        "success_desc": "You manage to cheer up the grumpy neighbor and Claire provided adivses you unlock the shed.",
+        "fail_desc": "You cannot help Claire the neighbor right now.",
+        "change_state_to": null,
+        "requirement": [
+          {
+            "type": "tile",
+            "name": "Claire's House",
+            "state": "null",
+            "qty": null,
+            "remove_obj": "N"
+          }
+        ],
+        "obtain":  null
+      }
+    ]
+  },
+
+
+
+
+
+
+  {
+    "name": "Thief",
+    "type": "monster",
+    "state": "aggresive",
+    "description": {
+      "long_desc": "A aggressive, lurking thief with a concealed dagger and a sly grin, you should shoot him",
+      "short_desc": "an aggressive, lurking thief"
+    },
+    "interactions":    
+    [
+      {
+        "name": "shoot",
+   
+        "success_desc": "You manage to shoot the thief with your gun.",
+        "fail_desc": "You cannot shoot the thief right now.",
+        "change_state_to": "defeated",
+        "requirement": [
+          {
+            "type": "object",
+            "name": "gun",
+            "state": "null",
+            "qty": 1,
+            "remove_obj": "N"
+          }          
+        ],
+        "obtain":  null
+      }
+    ]
+  },
+
+
+
+
+  {
+    "name": "Thief",
+    "type": "monster",
+    "state": "defeated",
+    "description": {
+      "long_desc": "A defeated, lurking thief with a concealed dagger and a sly grin, he cannot harm you now",
+      "short_desc": "a defeated lurking thief"
+    },
+    "interactions": null
+    
+    
+  },
+
+
+
+  
+  {
+    "name": "Wolf",
+    "type": "monster",
+    "state": "aggresive",
+    "description": {
+      "long_desc": "A wild wolf with sharp claws and a feral growl, you should shoot it",
+      "short_desc": "a wild wolf"
+    },
+    "interactions":    
+    [
+      {
+        "name": "shoot",
+   
+        "success_desc": "You manage to shoot the wolf with your gun.",
+        "fail_desc": "You cannot shoot the wolf right now.",
+        "change_state_to": "defeated",
+        "requirement": [
+          {
+            "type": "object",
+            "name": "gun",
+            "state": "null",
+            "qty": 1,
+            "remove_obj": "N"
+          }          
+        ],
+        "obtain":  null
+      }
+    ]
+  },
+
+
+  {
+    "name": "Wolf",
+    "type": "monster",
+    "state": "defeated",
+    "description": {
+      "long_desc": "A defeated, wild wolf with sharp claws and a feral growl, it cannot harm you now",
+      "short_desc": "a defeated wild wolf"
+    },
+    "interactions": null
+    
+    
+  },
+
+
+
+
+
+  {
+    "name": "chicken",
+    "type": "npc",
+    "state": "wild",
+    "description": {
+      "long_desc": "a wild fluffy chicken roaming around pecking at the ground",
+      "short_desc": "a wild chicken"
+    },
+    "interactions":    
+    [
+      {
+        "name": "catch",
+   
+        "success_desc": "You manage to catch the chicken.",
+        "fail_desc": "You cannot catch the chicken right now.",
+        "change_state_to": "tamed_hungry",
+        "requirement": null,
+        "obtain":  null
+      }
+    ]
+  },
+
+
+
+  {
+    "name": "chicken",
+    "type": "npc",
+    "state": "tamed_hungry",
+    "description": {
+      "long_desc": "a tamed but hungry fluffy chicken that you have caught",
+      "short_desc": "a tamed but hungry chicken"
+    },
+    "interactions":    
+    [
+      {
+        "name": "feed",
+   
+        "success_desc": "You manage to feed the chicken some grass.",
+        "fail_desc": "You cannot feed the chicken right now.",
+        "change_state_to": "tamed_not_hungry",
+        "requirement": [
+          {
+            "type": "object",
+            "name": "grass",
+            "state": "null",
+            "qty": 1,
+            "remove_obj": "Y"
+          }          
+        ],
+        "obtain":  null
+      }
+    ]
+  },
+
+
+  {
+    "name": "chicken",
+    "type": "npc",
+    "state": "tamed_not_hungry",
+    "description": {
+      "long_desc": "a tamed well-fed fluffy chicken that you have caught",
+      "short_desc": "a tamed well-fed chicken"
+    },
+    "interactions":  null
+  },
+
+
+
+
+
+  {
+    "name": "chicken",
+    "type": "npc",
+    "state": "tamed_ready",
+    "description": {
+      "long_desc": "a tamed well-fed fluffy chicken that has laid some eggs",
+      "short_desc": "a chicken that has laid some eggs"
+    },
+    "interactions":    
+    [
+      {
+        "name": "harvest",
+   
+        "success_desc": "You manage to harvest some eggs from the chicken.",
+        "fail_desc": "You cannot harvest the chicken right now.",
+        "change_state_to": "tamed_not_hungry",
+        "requirement": null,
+        "obtain":  [ {
+          "type": "Item",
+          "name": "eggs",
+          "state": "null",
+          "qty": 1
+        }
+      ]
+      }
+    ]
+  },
+
+
+
+
+  {
+    "name": "cow",
+    "type": "npc",
+    "state": "wild",
+    "description": {
+      "long_desc": "a wild but content cow grazing on grass and lowing softly",
+      "short_desc": "a wild cow"
+    },
+    "interactions":    
+    [
+      {
+        "name": "catch",
+   
+        "success_desc": "You manage to catch the cow.",
+        "fail_desc": "You cannot catch the cow right now.",
+        "change_state_to": "tamed_hungry",
+        "requirement": null,
+        "obtain":  null
+      }
+    ]
+  },
+
+
+
+  {
+    "name": "cow",
+    "type": "npc",
+    "state": "tamed_hungry",
+    "description": {
+      "long_desc": "a tamed but hungry fluffy cow that you have caught",
+      "short_desc": "a tamed but hungry cow"
+    },
+    "interactions":    
+    [
+      {
+        "name": "feed",
+   
+        "success_desc": "You manage to feed the cow some grass.",
+        "fail_desc": "You cannot feed the cow right now.",
+        "change_state_to": "tamed_not_hungry",
+        "requirement": [
+          {
+            "type": "object",
+            "name": "grass",
+            "state": "null",
+            "qty": 1,
+            "remove_obj": "Y"
+          }          
+        ],
+        "obtain":  null
+      }
+    ]
+  },
+
+
+  {
+    "name": "cow",
+    "type": "npc",
+    "state": "tamed_not_hungry",
+    "description": {
+      "long_desc": "a tamed well-fed cow that you have caught",
+      "short_desc": "a tamed well-fed cow"
+    },
+    "interactions":  null
+  },
+
+
+
+
+
+  {
+    "name": "cow",
+    "type": "npc",
+    "state": "tamed_ready",
+    "description": {
+      "long_desc": "a tamed well-fed cow that is ready to milk",
+      "short_desc": "a cow that is ready to milk"
+    },
+    "interactions":    
+    [
+      {
+        "name": "milk",
+   
+        "success_desc": "You manage to milk the cow and obtain some milk.",
+        "fail_desc": "You cannot milk the cow right now.",
+        "change_state_to": "tamed_not_hungry",
+        "requirement": [
+          {
+            "type": "object",
+            "name": "milk bucket",
+            "state": "null",
+            "qty": 1,
+            "remove_obj": "N"
+          }          
+        ]
+        
+        
+        ,
+        "obtain":  [ {
+          "type": "Item",
+          "name": "milk",
+          "state": "null",
+          "qty": 1
+        }
+      ]
+      }
+    ]
+  }
+
+
+  
+] 
+
+
+
+
