@@ -1,0 +1,198 @@
+[ 
+    {
+        "tile_id": "00",
+        "name": "blocked", 
+        "state": "null"
+    }, 
+
+    {
+        "tile_id": "01",
+        "name": "town square", 
+        "state": "null"
+    }, 
+    {
+        "tile_id": "02",
+        "name": "road", 
+        "state": "null"
+    }, 
+    {
+        "tile_id": "03",
+        "name": "road by neighbours' houses", 
+        "state": "null"
+    }, 
+    {
+        "tile_id": "04",
+        "name": "front yard", 
+        "state": "null"
+    }, 
+    {
+        "tile_id": "05",
+        "name": "side yard", 
+        "state": "null"
+    }, 
+    {
+        "tile_id": "06",
+        "name": "bee hive", 
+        "state": "null"
+    }, 
+    {
+        "tile_id": "07",
+        "name": "town hall", 
+        "state": "null"
+    }, 
+    {
+        "tile_id": "08",
+        "name": "Penny's house", 
+        "state": "null"
+    }, 
+    {
+        "tile_id": "09",
+        "name": "Claire's house", 
+        "state": "null"
+    }, 
+    {
+        "tile_id": "0A",
+        "name": "Jimmy's house", 
+        "state": "null"
+    }, 
+    {
+        "tile_id": "0B",
+        "name": "garage", 
+        "state": "open"
+    }, 
+    {
+        "tile_id": "0C",
+        "name": "garage", 
+        "state": "closed_unlocked"
+    }, 
+    {
+        "tile_id": "0D",
+        "name": "kitchen", 
+        "state": "open"
+    }, 
+    {
+        "tile_id": "0E",
+        "name": "kitchen", 
+        "state": "closed_ unlocked"
+    }, 
+    {
+        "tile_id": "0F",
+        "name": "kitchen", 
+        "state": "closed_locked"
+    }, 
+    {
+        "tile_id": "10",
+        "name": "bedroom", 
+        "state": "open"
+    }, 
+    {
+        "tile_id": "11",
+        "name": "bedroom", 
+        "state": "closed_ unlocked"
+    }, 
+    {
+        "tile_id": "12",
+        "name": "bedroom", 
+        "state": "closed_locked"
+    }, 
+    {
+        "tile_id": "13",
+        "name": "wheat field", 
+        "state": "growing"
+    }, 
+    {
+        "tile_id": "14",
+        "name": "wheat field", 
+        "state": "ready"
+    }, 
+    {
+        "tile_id": "15",
+        "name": "grass field", 
+        "state": "growing"
+    }, 
+    {
+        "tile_id": "16",
+        "name": "grass field", 
+        "state": "ready"
+    }, 
+    {
+        "tile_id": "17",
+        "name": "tool shed", 
+        "state": "open"
+    }, 
+    {
+        "tile_id": "18",
+        "name": "tool shed", 
+        "state": "closed_ unlocked"
+    }, 
+    {
+        "tile_id": "19",
+        "name": "tool shed", 
+        "state": "closed_locked"
+    }, 
+    {
+        "tile_id": "1A",
+        "name": "chicken coop", 
+        "state": "open"
+    }, 
+    {
+        "tile_id": "1B",
+        "name": "chicken coop", 
+        "state": "closed_ unlocked"
+    }, 
+    {
+        "tile_id": "1C",
+        "name": "chicken coop", 
+        "state": "closed_locked"
+    }, 
+    {
+        "tile_id": "1D",
+        "name": "chicken coop", 
+        "state": "blocked"
+    }, 
+    {
+        "tile_id": "1E",
+        "name": "barn", 
+        "state": "open"
+    }, 
+    {
+        "tile_id": "1F",
+        "name": "barn", 
+        "state": "closed_ unlocked"
+    }, 
+    {
+        "tile_id": "20",
+        "name": "barn", 
+        "state": "closed_locked"
+    }, 
+    {
+        "tile_id": "21",
+        "name": "tool shop", 
+        "state": "open"
+    }, 
+    {
+        "tile_id": "22",
+        "name": "tool shop", 
+        "state": "closed_ unlocked"
+    }, 
+    {
+        "tile_id": "23",
+        "name": "plant products shop", 
+        "state": "open"
+    }, 
+    {
+        "tile_id": "24",
+        "name": "plant products shop", 
+        "state": "closed_ unlocked"
+    }, 
+    {
+        "tile_id": "25",
+        "name": "animal products shop", 
+        "state": "open"
+    }, 
+    {
+        "tile_id": "26",
+        "name": "animal products shop", 
+        "state": "closed_ unlocked"
+    }
+]
