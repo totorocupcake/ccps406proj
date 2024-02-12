@@ -12,7 +12,8 @@ CHARACTER_STATUS_JSON_FILE = "character_status_template.json"
 TILE_ID_MAPPING_JSON_FILE = "tileIDMapping_01.json"
 
 WORLD_MAP_STATUS_CSV_FILE = "world_map_status_00.csv"
-
+WORLD_MAP_STATUS_ROWS = 25
+WORLD_MAP_STATUS_COLUMNS = 14
 
 
 def load_object_status_file():
@@ -303,22 +304,12 @@ def lookup_gold_amt (obj_name, state):
 
 
 def load_world_map_status_csv():
-# world_map_status_csv
-# WORLD_MAP_STATUS_CSV_FILE
-
-    # Open the file in read mode
-    # with open(WORLD_MAP_STATUS_CSV_FILE, 'r') as file:
-    #     # Read all lines at once and store them in a list
-    #     lines = file.readlines()
-
-    # # Print the content of each line
-    # for line in lines:
-    #     print(line.strip())  # strip() is used to remove the newline character at the end of each line
-
+    # loads the world map status CSV file into a 2D array and returns the array
 
     # create 2D array to store world_map_status data:
-    rows = 25
-    cols = 14
+
+    rows = WORLD_MAP_STATUS_ROWS
+    cols = WORLD_MAP_STATUS_COLUMNS
     matrix = []
     for i in range(rows):
         row = []
@@ -326,8 +317,6 @@ def load_world_map_status_csv():
             row.append(" ")
         matrix.append(row)
 
-
-# Open the CSV file in read mode
 
     # read from world_map_status CSV file
     with open(WORLD_MAP_STATUS_CSV_FILE, 'r') as file:
