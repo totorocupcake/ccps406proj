@@ -17,6 +17,7 @@
     "name": "chicken coop",
     "type": "building",
     "state": "blocked",
+    "movable": "N", 
     "description": {
         "long_desc": "The trees in front of you are too thick to travel through. However, they appear young enough that, with the right tools, you might be able to clear a path...",
         "short_desc": "You stand in front of a section of young trees.",
