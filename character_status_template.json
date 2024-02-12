@@ -1,21 +1,138 @@
 [
     {
         "type": "player",
-        "name": "Totoro",
-        "co_ord_x": 0,
-        "co_ord_y": 0,
+        "name": "%player_name%",
+        "co_ord_x": 6,
+        "co_ord_y": 12,
         "state": null,
-        "inventory":[{"name": "apples",
+        "inventory":[{"name": "house key",
                     "quantity": 1,
                     "state": null}],
         "current_hp":10,
         "max_hp":10,
         "current_gold":0,
-        "visited":[{"type": "tile", 
-                    "name": "road",
-                    "state": null}],
+        "visited":null,
         "turn_counter":0
-
+    },
+    {
+        "type": "npc",
+        "name": "landlord",
+        "co_ord_x": 2,
+        "co_ord_y": 15,
+        "state": "unhappy",
+        "inventory":null,
+        "current_hp":10,
+        "max_hp":10,
+        "current_gold":0,
+        "visited":null,
+        "turn_counter":0
+    },
+    {
+        "type": "npc",
+        "name": "Merchant 1",
+        "co_ord_x": 2,
+        "co_ord_y": 13,
+        "state": null,
+        "inventory":null,
+        "current_hp":10,
+        "max_hp":10,
+        "current_gold":0,
+        "visited":null,
+        "turn_counter":0
+    },
+    {
+        "type": "npc",
+        "name": "Merchant 2",
+        "co_ord_x": 1,
+        "co_ord_y": 14,
+        "state": null,
+        "inventory":null,
+        "current_hp":10,
+        "max_hp":10,
+        "current_gold":0,
+        "visited":null,
+        "turn_counter":0
+    },
+    {
+        "type": "npc",
+        "name": "Merchant 3",
+        "co_ord_x": 1,
+        "co_ord_y": 13,
+        "state": null,
+        "inventory":null,
+        "current_hp":10,
+        "max_hp":10,
+        "current_gold":0,
+        "visited":null,
+        "turn_counter":0
+    },
+    {
+        "type": "npc",
+        "name": "farmhand",
+        "co_ord_x": 10,
+        "co_ord_y": 9,
+        "state": "injured",
+        "inventory":null,
+        "current_hp":10,
+        "max_hp":10,
+        "current_gold":0,
+        "visited":null,
+        "turn_counter":0
+    },
+    {
+        "type": "npc",
+        "name": "Penny",
+        "co_ord_x": 10,
+        "co_ord_y": 13,
+        "state": null,
+        "inventory":null,
+        "current_hp":10,
+        "max_hp":10,
+        "current_gold":0,
+        "visited":null,
+        "turn_counter":0
+    },
+    {
+        "type": "npc",
+        "name": "Jimmy",
+        "co_ord_x": 10,
+        "co_ord_y": 15,
+        "state": null,
+        "inventory":null,
+        "current_hp":10,
+        "max_hp":10,
+        "current_gold":0,
+        "visited":null,
+        "turn_counter":0
+    },
+    {
+        "type": "npc",
+        "name": "Claire",
+        "co_ord_x": 11,
+        "co_ord_y": 14,
+        "state": null,
+        "inventory":null,
+        "current_hp":10,
+        "max_hp":10,
+        "current_gold":0,
+        "visited":null,
+        "turn_counter":0
+    },
+    {
+        "type": "monster",
+        "name": "Thief",
+        "co_ord_x": 12,
+        "co_ord_y": 8,
+        "state": "aggressive",
+        "inventory":null,
+        "current_hp":10,
+        "max_hp":10,
+        "current_gold":5,
+        "visited":null,
+        "turn_counter":0
     }
+
+
+
 
 ]
