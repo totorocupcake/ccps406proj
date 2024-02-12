@@ -1,0 +1,872 @@
+[
+  {
+    "name": "town square",
+    "type": "non-building",
+    "state": "null",
+    "movable":"Y",
+    "description": {
+      "long_desc": "You stand amidst a cluster of charming shops with colourful facades arranged around a cobbled square. Residents and vendors engage in friendly banter, exchanging stories amidst the vibrant displays. A well-maintained town hall stands proudly to the south, its facade adorned with a bell tower that chimes the hours.",
+      "short_desc": "You stand in the town square."
+    },
+    "interactions": "null"
+  },
+
+  {
+    "name": "road",
+    "type": "non-building",
+    "state": "null",
+    "movable":"Y",
+    "description": {
+      "long_desc": "You stand on a gravel road leading to a farmhouse. The worn surface stretches into the embrace of rolling fields to the east and west. To the south lies a forest, its thick canopy casting a shadow that seems to swallow the sunlight.",
+      "short_desc": "You stand in the road in front of your farmhouse."
+    },
+    "interactions": "null"
+  },
+
+  {
+    "name": "road by neighbours houses",
+    "type": "non-building",
+    "state": "null",
+    "movable":"Y",
+    "description": {
+      "long_desc": "You stand in a road surrounded by a number of small houses, each a blend of rustic charm and practicality.",
+      "short_desc": "You stand in the road in front of your neighbour's houses."
+    },
+    "interactions": "null"
+  },
+
+  {
+    "name": "mail box",
+    "type": "non-building",
+    "state": "have_letter",
+    "movable":"Y",
+    "description": {
+      "long_desc": "You stand in the front yard of a charming farmhouse, nestled amidst the rolling hills of a rural landscape. The white-painted exterior gleams in the sunlight, adorned with green shutters that complement the rural setting. To your south lies a road that stretches both east and west as far as the eye can see.",
+      "short_desc": "You stand in your front yard."
+    },
+    "interactions": [
+      {
+        "name": "open",
+        "success_desc": "You open the mail box. There is a letter within it, you take the letter.",
+        "fail_desc": "You open the mail box. There is no letter inside.",
+        "change_state_to": "empty",
+        "requirement": "null",
+        "obtain": [
+          {
+            "type": "object",
+            "name": "letter",
+            "state": "null",
+            "qty": 1
+          }
+        ]
+
+      }
+    ]
+  },
+
+  {
+    "name": "mail box",
+    "type": "non-building",
+    "state": "empty",
+    "movable":"Y",
+    "description": {
+      "long_desc": "You stand in the front yard of a charming farmhouse, nestled amidst the rolling hills of a rural landscape. The white-painted exterior gleams in the sunlight, adorned with green shutters that complement the rural setting. To your south lies a road that stretches both east and west as far as the eye can see.",
+      "short_desc": "You stand in your front yard."
+    },
+    "interactions": [
+      {
+        "name": "open",
+        "success_desc": "You open the mail box. There is no letter inside.",
+        "fail_desc": "You open the mail box. There is no letter inside.",
+        "change_state_to": "empty",
+        "requirement": "null",
+        "obtain": "null"
+
+      }
+    ]
+  },
+
+  {
+    "name": "garage",
+    "type": "building",
+    "state": "closed",
+    "movable":"N",
+    "description": {
+      "long_desc": "You stand outside the farmhouse's garage.",
+      "short_desc": "You stand ouside the garage."
+    },
+    "interactions": [
+      {
+        "name": "open",
+        "success_desc": "The door unlocks.",
+        "fail_desc": "You need a key to unlock the door!",
+        "change_state_to": "open",
+        "requirement": [
+          {
+            "type": "object",
+            "name": "garage key",
+            "state": "null",
+            "qty": 1,
+            "remove_obj": "N"
+          }
+        ],
+        "obtain": "null"
+      },
+
+      {
+        "name": "lock",
+        "success_desc": "You cannot lock the door right now, it is closed.",
+        "fail_desc": "You cannot lock the door right now, it is closed.",
+        "change_state_to": "closed",
+        "requirement": "null",
+        "obtain": "null"
+      }
+    ]
+
+  },
+  {
+    "name": "garage",
+    "type": "building",
+    "state": "open",
+    "movable":"Y",
+    "description": {
+      "long_desc": "You stand in the sparsely decorated garage. The air carries a faint scent of motor oil and metal.",
+      "short_desc": "You stand in the garage."
+    },
+    "interactions": [
+      {
+        "name": "open",
+        "success_desc": "The garage is already unlocked and open!",
+        "fail_desc": "The garage is already unlocked and open!",
+        "change_state_to": "open",
+        "requirement": "null",
+        "obtain": "null"
+
+      },
+      {
+        "name": "lock",
+        "success_desc": "The garage is now locked.",
+        "fail_desc": "You need a key to lock the garage.",
+        "change_state_to": "closed",
+        "requirement": [
+          {
+            "type": "object",
+            "name": "garage key",
+            "state": "null",
+            "qty": 1,
+            "remove_obj": "N"
+          }
+        ],
+        "obtain": "null"
+
+      }
+
+    ]
+
+  },
+  {
+    "name": "kitchen",
+    "type": "building",
+    "state": "open",
+    "movable":"Y",
+    "description": {
+      "long_desc": "The kitchen is bathed in warm light with a sparse countertop. A slightly battered dining table stands near a window with faded curtains.",
+      "short_desc": "You stand in the kitchen."
+    },
+    "interactions": [
+      {
+        "name": "open",
+        "success_desc": "The door to the kichen is already open.",
+        "fail_desc": "The door to the kichen is already open.",
+        "change_state_to": "open",
+        "requirement": "null",
+        "obtain": "null"
+      },
+      {
+        "name": "lock",
+        "success_desc": "You lock the door behind you.",
+        "fail_desc": "You need a key to lock the door.",
+        "change_state_to": "closed",
+        "requirement": [
+          {
+            "type": "object",
+            "name": "house key",
+            "state": "null",
+            "qty": 1,
+            "remove_obj": "N"
+          }
+        ],
+        "obtain": [
+          {
+            "type": "tile",
+            "name": "bedroom",
+            "state": "closed",
+            "qty": 0
+
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "kitchen",
+    "type": "building",
+    "state": "closed",
+    "movable":"N",
+    "description": {
+      "long_desc": "You stand outside a grass field, there is a locked house leading to a kitchen next to you.",
+      "short_desc": "You stand outside a grass field with a locked house."
+    },
+    "interactions": [
+      {
+        "name": "open",
+        "success_desc": "You open the door to your house leading inside a kitchen.",
+        "fail_desc": "You need a key to open the house.",
+        "change_state_to": "open",
+        "requirement": [
+          {
+            "type": "object",
+            "name": "house key",
+            "state": "null",
+            "qty": 1,
+            "remove_obj": "N"
+          }
+        ],
+        "obtain": [
+          {
+            "type": "tile",
+            "name": "bedroom",
+            "state": "open",
+            "qty": 0
+
+          }
+        ]
+      },
+      {
+        "name": "lock",
+        "success_desc": "The door to your house is already locked.",
+        "fail_desc": "The door to your house is already locked.",
+        "change_state_to": "closed",
+        "requirement": "null",
+        "obtain": "null"
+      }
+    ]
+  },
+
+  {
+    "name": "water well",
+    "type": "non-building",
+    "state": "null",
+    "movable":"Y",
+    "description": {
+      "long_desc": "You stand in a yard to the side of the farmhouse. Next to you is a rustic water well, its wooden structure showing signs of age.",
+      "short_desc": "You stand next to a water well."
+    },
+    "interactions": "null"
+  },
+
+  {
+    "name": "bedroom",
+    "type": "building",
+    "state": "closed",
+    "movable":"N",
+    "description": {
+      "long_desc": "You stand just outside the back door to the farmhouse.",
+      "short_desc": "You stand just outside the back door to the farmhouse."
+    },
+    "interactions": [
+      {
+        "name": "open",
+        "success_desc": "The door unlocks.",
+        "fail_desc": "You need a key to unlock the door!",
+        "change_state_to": "open",
+        "requirement": [
+          {
+            "type": "object",
+            "name": "house key",
+            "state": "null",
+            "qty": 1,
+            "remove_obj": "N"
+          }
+        ],
+        "obtain": [
+          {
+            "type": "tile",
+            "name": "kitchen",
+            "state": "open",
+            "qty": 0
+
+          }
+        ]
+      },
+      {
+        "name": "lock",
+        "success_desc": "The house is already locked.",
+        "fail_desc": "The house is already locked.",
+        "change_state_to": "closed",
+        "requirement": "null",
+        "obtain": "null"
+      }
+    ]
+  },
+  {
+    "name": "bedroom",
+    "type": "building",
+    "state": "open",
+    "movable":"Y",
+    "description": {
+      "long_desc": "The dimly lit room is adorned with faded floral wallpaper and a worn-out rug. The only furniture in the small space is a creaky bed and desk in mismatched woods.",
+      "short_desc": "You stand in the bedroom."
+    },
+    "interactions": [
+      {
+        "name": "open",
+        "success_desc": "The door is already open.",
+        "fail_desc": "The door is already open.",
+        "change_state_to": "open",
+        "requirement": "null",
+        "obtain": "null"
+      },
+
+      {
+        "name": "lock",
+        "success_desc": "You lock the door to your house.",
+        "fail_desc": "You need a key to lock the house.",
+        "change_state_to": "closed",
+        "requirement": [
+          {
+            "type": "object",
+            "name": "house key",
+            "state": "null",
+            "qty": 1,
+            "remove_obj": "N"
+          }
+
+        ],
+        "obtain": [
+          {
+            "type": "tile",
+            "name": "kitchen",
+            "state": "closed",
+            "qty": 0
+
+          }
+        ]
+      }
+    ]
+  },
+
+
+  {
+    "name": "bee hive",
+    "type": "non-building",
+    "state": "null",
+    "movable":"Y",
+    "description": {
+      "long_desc": "Nestled within the forest clearing is a carefully crafted bee hive. Although the bees appear to be diligently at work, the surroundings offer no sign of beekeeping tools.",
+      "short_desc": "You stand in front of a bee hive filled with honey bees."
+    },
+    "interactions": "null"
+  },
+
+  {
+    "name": "field 1",
+    "type": "non-building",
+    "state": "null",
+    "movable":"Y",
+    "description": {
+      "long_desc": "Stepping into the field, you find yourself surrounded by blades of grass that tower above you. To the west lies a path surrounded by thick forrest. To the north is a number of trees, these ones much smaller than those of the forest that surrounds the property. To the east is another field, this one of wheat. To the south is the back of the farm house's garage.",
+      "short_desc": "You stand in a field of grass."
+    },
+    "interactions": "null"
+
+  },
+
+
+  {
+    "name": "field 2",
+    "type": "non-building",
+    "state": "null",
+    "movable":"Y",
+    "description": {
+      "long_desc": "Before you stretches a vast golden wheat field, swaying gently in the breeze. To the north is a weathered barn, its red exterior faded and peeling beneath the touch of time. To the east is a tool shed with a moss-covered roof that exudes a rustic charm. To the west stretches out another field.",
+      "short_desc": "You stand in a wheat field."
+    },
+    "interactions": "null"
+
+  },
+
+  {
+    "name": "tool shed",
+    "type": "building",
+    "state": "closed",
+    "movable":"N",
+    "description": {
+      "long_desc": "You stand before a weathered tool shed. Its door is painted a peeling green.",
+      "short_desc": "You stand outside the tool shed."
+    },
+    "interactions": [
+      {
+        "name": "open",
+        "success_desc": "The door unlocks.",
+        "fail_desc": "You need a key to unlock the door!",
+        "change_state_to": "open",
+        "requirement": [
+          {
+            "type": "object",
+            "name": "tool shed key",
+            "state": "null",
+            "qty": 1,
+            "remove_obj": "N"
+          }
+        ],
+        "obtain": "null"
+      },
+      {
+        "name": "lock",
+        "success_desc": "The tool shed is already locked.",
+        "fail_desc": "The tool shed is already locked.",
+        "change_state_to": "closed",
+        "requirement": "null",
+        "obtain": "null"
+      }
+    ]
+  },
+
+  {
+    "name": "tool shed",
+    "type": "building",
+    "state": "open",
+    "movable":"Y",
+    "description": {
+      "long_desc": "Inside the shed is dimly lit and musty. It appears the last owner took most of the tools with them, as the shelves and tool racks are barren.",
+      "short_desc": "You stand in the tool shed."
+    },
+    "interactions": [
+      {
+        "name": "open",
+        "success_desc": "The tool shed is already opened.",
+        "fail_desc": "The tool shed is already opened.",
+        "change_state_to": "open",
+        "requirement": "null"
+      },
+      {
+        "name": "lock",
+        "success_desc": "You lock the tool shed behind you.",
+        "fail_desc": "You need a key to lock the tool shed.",
+        "change_state_to": "closed",
+        "requirement": [
+          {
+            "type": "object",
+            "name": "tool shed key",
+            "state": "null",
+            "qty": 1,
+            "remove_obj": "N"
+          }
+        ],
+        "obtain": "null"
+      }
+    ]
+  },
+
+
+  {
+    "name": "trees",
+    "type": "non-building",
+    "state": "blocked",
+    "movable":"N",
+    "description": {
+      "long_desc": "The trees in front of you are too thick to travel through. However, they appear young enough that, with the right tools, you might be able to clear a path...",
+      "short_desc": "You stand in front of a section of young trees."
+    },
+    "interactions": [
+      {
+        "name": "chop",
+        "success_desc": "With each swing, you hear the satisfying thud as the axe bites into the bark of the trees. As the they fall, a chicken coop is revealed. It's a modest structure with a small peaked roof, topped with a weathervane.",
+        "fail_desc": "You need an axe to cut down these trees!",
+        "change_state_to": "unblocked",
+        "requirement": [
+          {
+            "type": "object",
+            "name": "axe",
+            "state": "null",
+            "qty": 1,
+            "remove_obj": "N"
+          }
+        ],
+        "obtain": [
+          {
+            "type": "tile",
+            "name": "chicken coop",
+            "state": "open",
+            "qty": 1
+          }
+        ]
+      }
+    ]
+  },
+
+  {
+    "name": "trees",
+    "type": "non-building",
+    "state": "unblocked",
+    "movable":"Y",
+    "description": {
+      "long_desc": "The trees are chopped before you, in front of you to the north lies a chicken coop.",
+      "short_desc": "You stand in front of a section of chopped trees."
+    },
+    "interactions": "null"
+  },
+
+
+
+  {
+    "name": "chicken coop",
+    "type": "building",
+    "state": "blocked",
+    "movable":"N",
+    "description": {
+      "long_desc": "The trees in front of you are too thick to travel through.",
+      "short_desc": "The trees in front of you are too thick to travel through."
+    },
+    "interactions": "null"
+  },
+
+  {
+    "name": "chicken coop",
+    "type": "building",
+    "state": "closed",
+    "movable":"N",
+    "description": {
+      "long_desc": "You stand outside the chicken coop.",
+      "short_desc": "You stand outside the chicken coop."
+    },
+    "interactions": [
+      {
+        "name": "open",
+        "success_desc": "The door to the chicken coop unlocks.",
+        "fail_desc": "You need a key to unlock that.",
+        "change_state_to": "open",
+        "requirement": [
+          {
+            "type": "object",
+            "name": "chicken coop key",
+            "state": "null",
+            "qty": 1,
+            "remove_obj": "N"
+          }
+        ],
+        "obtain": "null"
+      },
+
+      {
+        "name": "lock",
+        "success_desc": "The door is already locked.",
+        "fail_desc": "The door is already locked.",
+        "change_state_to": "closed",
+        "requirement": "null",
+        "obtain": "null"
+      }
+    ]
+  },
+
+
+  {
+    "name": "chicken coop",
+    "type": "building",
+    "state": "open",
+    "movable":"Y",
+    "description": {
+      "long_desc": "Within the chicken coop the air is permeated with a mixture of earthy straw. Along the walls are rows of empty nesting boxes and roosts.",
+      "short_desc": "You stand inside the chicken coop."
+    },
+    "interactions": [
+      {
+
+        "name": "open",
+
+        "success_desc": "The chicken coop is already unlocked.",
+        "fail_desc": "The chicken coop is already unlocked.",
+        "change_state_to": "open",
+        "requirement": "null",
+        "obtain": "null"
+      },
+      {
+        "name": "lock",
+        "success_desc": "You lock the chicken coop behind you.",
+        "fail_desc": "You need a key to lock the chicken coop.",
+        "change_state_to": "closed",
+        "requirement": [
+          {
+            "type": "object",
+            "name": "chicken coop key",
+            "state": "null",
+            "qty": 1,
+            "remove_obj": "N"
+          }
+        ],
+        "obtain": "null"
+      }
+    ]
+  },
+
+
+  {
+    "name": "barn",
+    "type": "building",
+    "state": "closed",
+    "movable":"N",
+    "description": {
+      "long_desc": "You stand outside the barn, its large, once-white doors firmly shut.",
+      "short_desc": "You stand outside the barn."
+    },
+    "interactions": [
+      {
+        "name": "open",
+        "success_desc": "The door unlocks.",
+        "fail_desc": "You need a key to unlock the door!",
+        "change_state_to": "open",
+        "requirement": [
+          {
+            "type": "object",
+            "name": "barn key",
+            "state": "null",
+            "qty": 1,
+            "remove_obj": "N"
+          }
+        ],
+        "obtain": "null"
+      },
+      {
+        "name": "lock",
+        "success_desc": "The barn is already locked.",
+        "fail_desc": "The barn is already locked.",
+        "change_state_to": "closed",
+        "requirement": "null",
+        "obtain": "null"
+      }
+    ]
+  },
+
+  {
+    "name": "barn",
+    "type": "building",
+    "state": "open",
+    "movable":"Y",
+    "description": {
+      "long_desc": "Inside the barn, the scent of hay and aged wood mingles with the faint echoes of barnyard life. Empty animal pens line the weathered walls, each one bearing traces of past occupants.",
+      "short_desc": "You stand inside the barn."
+    },
+    "interactions": [
+      {
+        "name": "open",
+        "success_desc": "The barn is already open.",
+        "fail_desc": "The barn is already open.",
+        "change_state_to": "open",
+        "requirement": "null",
+        "obtain": "null"
+      },
+
+      {
+        "name": "lock",
+        "success_desc": "You lock the barn behind you.",
+        "fail_desc": "You need a key to unlock the barn.",
+        "change_state_to": "closed",
+        "requirement": [
+          {
+            "type": "object",
+            "name": "barn key",
+            "state": "null",
+            "qty": 1,
+            "remove_obj": "N"
+          }
+        ],
+        "obtain": "null"
+      }
+    ]
+  },
+
+  {
+    "name": "tool shop",
+    "type": "building",
+    "state": "null",
+    "movable":"Y",
+    "description": {
+      "long_desc": "You step into a shop that smells of polished wood and metal. Tools line the walls around you.",
+      "short_desc": "You step into the tool shop."
+    },
+    "interactions": "null"
+
+  },
+
+  {
+    "name": "plant products shop",
+    "type": "building",
+    "state": "null",
+    "movable":"Y",
+    "description": {
+      "long_desc": "You step into a shop that smells of ripe produce. Wooden crates overflow with a colorful assortment of plant products, from vibrant berries to golden wheat.",
+      "short_desc": "You enter the plant products shop."
+    },
+    "interactions": "null"
+  },
+
+  {
+    "name": "animal products shop",
+    "type": "building",
+    "state": "open",
+    "movable":"Y",
+    "description": {
+      "long_desc": "You step into a shop with walls lined with sleves laden with jars of honey, baskets of fresh eggs, and wheels of cheese.",
+      "short_desc": "You enter the animal products shop."
+    },
+    "interactions": "null"
+  },
+
+
+  {
+    "name": "town hall",
+    "type": "building",
+    "state": "null",
+    "movable":"Y",
+    "description": {
+      "long_desc": "Polished wooden floors stretch beneath your feet, leading toward a spacious main hall adorned with rows of sturdy wooden benches. Sunlight streams through tall, arched windows, casting a warm glow on the vintage portraits that line the walls.",
+      "short_desc": "You enter the town hall."
+    },
+    "interactions": "null"
+  },
+
+  {
+    "name": "Pennys house",
+    "type": "non-building",
+    "state": "null",
+    "movable":"Y",
+    "description": {
+      "long_desc": "You stand on the porch of a light blue house. Around you is an asortment of pots containing a variety of colourful plants.",
+      "short_desc": "You stand outside Penny's house."
+    },
+    "interactions": "null"
+  },
+
+  {
+    "name": "Jimmys house",
+    "type": "non-building",
+    "state": "null",
+    "movable":"Y",
+    "description": {
+      "long_desc": "You traverse a long stone path, eventually reaching a house made of dark wood.",
+      "short_desc": "You stand outside Jimmy's house."
+    },
+    "interactions": "null"
+  },
+
+  {
+    "name": "Claires house",
+    "type": "non-building",
+    "state": "null",
+    "movable":"Y",
+    "description": {
+      "long_desc": "You stand on the small porch of a brick house adorned with climbing ivy.",
+      "short_desc": "You stand outside Claire's house."
+    },
+    "interactions": "null"
+  },
+
+
+  {
+    "name": "apple tree",
+    "type": "non-building",
+    "state": "empty",
+    "movable":"Y",
+    "description": {
+      "long_desc": "You see an empty field, it is a perfect location to plant some trees.",
+      "short_desc": "You stand in an empty field."
+    },
+    "interactions": "null"
+
+  },
+
+  {
+    "name": "apple tree",
+    "type": "non-building",
+    "state": "growing_notready",
+    "movable":"Y",
+    "description": {
+      "long_desc": "There is an apple tree sapling growing here.",
+      "short_desc": "There is an apple tree sapling growing here."
+    },
+    "interactions": [
+      {
+        "name": "water",
+        "success_desc": "You successfully watered the apple tree.",
+        "fail_desc": "You need a filled watering can to water the tree.",
+        "change_state_to": "growing_ready",
+        "requirement": [
+          {
+            "type": "object",
+            "name": "watering can",
+            "state": "full",
+            "qty": 1,
+            "remove_obj": "Y"
+          },
+          {
+            "type": "turn",
+            "name": "turn",
+            "state": "null",
+            "qty": 5,
+            "remove_obj": "N"
+
+          }
+        ],
+        "obtain": [
+          {
+            "type": "object",
+            "name": "watering can",
+            "state": "empty",
+            "qty": 1
+          }
+        ]
+      }
+    ]
+  },
+
+  {
+    "name": "apple tree",
+    "type": "non-building",
+    "state": "growing_ready",
+    "movable":"Y",
+    "description": {
+      "long_desc": "There is an apple tree here, its sweet fragrance fills the air.",
+      "short_desc": "The apple tree is ready for harvest here."
+    },
+    "interactions": [
+      {
+        "name": "harvest",
+        "success_desc": "You harvest the apple tree and gain some apples from the tree.",
+        "fail_desc": "You can't harvest the apple tree right now.",
+        "change_state_to": "growing_notready",
+        "requirement": "null",
+        "obtain": [
+          {
+            "type": "object",
+            "name": "apples",
+            "state": "null",
+            "qty": 6
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "grasslands",
+    "type": "non-building",
+    "state": "null",
+    "movable":"Y",
+    "description": {
+      "long_desc": "You see an empty grasslands.",
+      "short_desc": "You see an empty grasslands."
+    },
+    "interactions": "null"
+
+  }
+]
