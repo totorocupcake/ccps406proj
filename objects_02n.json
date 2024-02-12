@@ -1,0 +1,1099 @@
+[
+  {
+    "name": "watering can",
+    "type": "tool",
+    "state": "empty",
+    "gold_amt": 5,
+    "description": {
+      "long_desc": "a metal watering can with rusty handles",
+      "short_desc": "a watering can"
+    },
+    "interactions":  [
+      {
+        "name": "fill",
+
+
+        "success_desc": "You fill the watering can with water from the well.",
+        "fail_desc": "There is no water here to fill the watering can with.",
+        "change_state_to": "full",
+        "requirement": [
+          {
+            "type": "tile",
+            "name": "water well",
+            "state": "null",
+            "qty": null,
+            "remove_obj": "N"
+          }
+        ],
+        "obtain": null
+      }, 
+
+
+      {
+        "name": "take",
+
+        "success_desc": "You take a metal watering can with rusty handles.",
+        "fail_desc": "There is no watering can to take here.",
+        "change_state_to": "delete",
+        "requirement": [
+          {
+            "type": "tile",
+            "name": "water well",
+            "state": "null",
+            "qty": null,
+            "remove_obj": "Y"        }
+        ],
+        "obtain": [ {
+          "type": "Item",
+          "name": "watering can",
+          "state": "empty",
+          "qty": 1
+        }
+      ]
+      }
+    ]
+   
+  },
+
+
+
+  {
+    "name": "watering can",
+    "type": "tool",
+    "state": "full",
+    "gold_amt": 5,
+    "description": {
+      "long_desc": "a metal watering can with rusty handles full of water",
+      "short_desc": "a watering can full of water"
+    },
+    "interactions":  [
+      {
+        "name": "empty",
+
+        "success_desc": "You empty the watering can with water into the well.",
+        "fail_desc": "You cannot empty the watering can now.",
+        "change_state_to": "empty",
+        "requirement": [
+          {
+            "type": "tile",
+            "name": "water well",
+            "state": "null",
+            "qty": null,
+            "remove_obj": "N"
+          }
+        ],
+        "obtain": null
+      }
+    ]
+   
+  },
+
+
+
+
+
+
+
+  {
+    "name": "honey",
+    "type": "farm_prod",
+    "state": "null",
+    "gold_amt": 5,
+    "description": {
+      "long_desc": "a pot of honey that can be sold at the merchant",
+      "short_desc": "a pot of honey"
+    },
+    "interactions":   [
+      {
+        "name": "harvest",
+
+        "success_desc": "You harvest a pot of honey that can be sold at the merchant for gold.",
+        "fail_desc": "You cannot harvest the honey right now.",
+        "change_state_to": "full",
+        "requirement": [
+          {
+            "type": "tile",
+            "name": "bee hive",
+            "state": "null",
+            "qty": null,
+            "remove_obj": "N"
+          },
+          {
+            "type": "object",
+            "name": "bee smoker",
+            "state": "null",
+            "qty": 1,
+            "remove_obj": "N"
+          },
+          {
+            "type": "object",
+            "name": "beekeeping suit",
+            "state": "null",
+            "qty": 1,
+            "remove_obj": "N"
+          }
+        ],
+        "obtain": [ {
+          "type": "Item",
+          "name": "honey",
+          "state": "null",
+          "qty": 1
+        }
+      ]
+      },
+
+      {
+        "name": "sell",
+
+        "success_desc": "You sell a pot of honey to the Merchant for gold.",
+        "fail_desc": "You cannot sell the honey here.",
+        "change_state_to": "delete",
+        "requirement": [
+          {
+            "type": "Character",
+            "name": "merchant 2",
+            "state": "null",
+            "qty": null,
+            "remove_obj": "N"
+          }
+        ],
+        "obtain": [ {
+          "type": "Gold",
+          "name": "gold",
+          "state": "null",
+          "qty": 5
+        }
+      ]
+      }
+    ]
+  },
+
+
+
+
+
+
+
+
+
+  {
+    "name": "branch",
+    "type": "tool",
+    "state": "null",
+    "gold_amt": 5,
+    "description": {
+      "long_desc": "a sturdy looking branch that might make a good ax handle",
+      "short_desc": "a sturdy branch"
+    },
+    "interactions": [
+      {
+        "name": "take",
+
+        "success_desc": "You take a sturdy looking branch that might make a good ax handle.",
+        "fail_desc": "There is no branch to take here.",
+        "change_state_to": "delete",
+        "requirement": [
+          {
+            "type": "tile",
+            "name": "bee hive",
+            "state": "null",
+            "qty": null,
+            "remove_obj": "N"
+          }
+        ],
+        "obtain": [ {
+          "type": "Item",
+          "name": "branch",
+          "state": "null",
+          "qty": 1
+        }
+      ]
+      }
+    ]
+    
+  },
+
+
+
+
+
+  {
+    "name": "scythe",
+    "type": "tool",
+    "state": "null",
+    "gold_amt": 5,
+    "description": {
+      "long_desc": "a scythe with a sharp blade that could be used to harvest wheat or grass",
+      "short_desc": "a sharp scythe"
+    },
+    "interactions": [
+      {
+        "name": "take",
+
+        "success_desc": "You take a scythe with a sharp blade that could be used to harvest wheat or grass.",
+        "fail_desc": "There is no scythe to take here.",
+        "change_state_to": "delete",
+        "requirement": [
+          {
+            "type": "tile",
+            "name": "tool shed",
+            "state": "null",
+            "qty": null,
+            "remove_obj": "N"
+          }
+        ],
+        "obtain": [{
+          "type": "Item",
+          "name": "scythe",
+          "state": "null",
+          "qty": 1
+        }
+      ]
+      }
+    
+    ]
+    
+  },
+
+
+
+
+
+  {
+    "name": "milk bucket",
+    "type": "tool",
+    "state": "null",
+    "gold_amt": 5,
+    "description": {
+      "long_desc": "an empty tin milk bucket that could be used for milking a cow",
+      "short_desc": "an empty milk bucket"
+    },
+    "interactions": [
+      {
+        "name": "take",
+
+        "success_desc": "You take an empty tin milk bucket that could be used for  milking a cow.",
+        "fail_desc": "There is no milk bucket to take here.",
+        "change_state_to": "delete",
+        "requirement": [
+          {
+            "type": "tile",
+            "name": "tool shed",
+            "state": "null",
+            "qty": null,
+            "remove_obj": "N"
+          }
+        ],
+        "obtain": [{
+          "type": "Item",
+          "name": "milk bucket",
+          "state": "null",
+          "qty": 1
+        }
+      ]
+      }
+    ]
+    
+  },
+
+
+
+
+  {
+    "name": "milk bucket",
+    "type": "tool",
+    "state": "full",
+    "gold_amt": 5,
+    "description": {
+      "long_desc": "a full tin bucket of milk",
+      "short_desc": "a full milk bucket"
+    },
+    "interactions": null
+  },
+
+
+
+
+
+
+  {
+    "name": "wheat",
+    "type": "farm_prod",
+    "state": "null",
+    "gold_amt": 10,
+    "description": {
+      "long_desc": "a bushel of wheat that can be sold to the merchant for gold",
+      "short_desc": "a bushel of wheat"
+    },
+    "interactions": [
+      {
+        "name": "harvest",
+        
+        "success_desc": "You harvest a bushel of wheat that can be sold at the merchant for gold.",
+        "fail_desc": "You cannot harvest the wheat right now.",
+        "change_state_to": null,
+        "requirement": [
+          {
+            "type": "tile",
+            "name": "field 2",
+            "state": "null",
+            "qty": null,
+            "remove_obj": "N"
+          },
+          {
+            "type": "object",
+            "name": "scythe",
+            "state": "null",
+            "qty": 1,
+            "remove_obj": "N"
+          }
+        ],
+        "obtain": [{
+          "type": "Item",
+          "name": "wheat",
+          "state": "null",
+          "qty": 1
+        }
+      ]
+      },
+
+
+
+
+
+
+      {
+        "name": "sell",
+        
+        "success_desc": "You sell a bushel of wheat to the Merchant for gold.",
+        "fail_desc": "You cannot sell the wheat here.",
+        "change_state_to": "delete",
+        "requirement": [
+          {
+            "type": "Character",
+            "name": "merchant 3",
+            "state": "null",
+            "qty": null,
+            "remove_obj": "N"
+          }
+        ],
+        "obtain": [{
+          "type": "Gold",
+          "name": "gold",
+          "state": "null",
+          "qty": 10
+        }
+      ]
+      }
+    ]
+    
+  },
+
+
+
+
+
+
+
+  {
+    "name": "grass",
+    "type": "tool",
+    "state": "null",
+    "gold_amt": 2,
+    "description": {
+      "long_desc": "a bale of grass that can be fed to your domesticated animals",
+      "short_desc": "a bale of grass"
+    },
+    "interactions":  [
+      {
+        "name": "harvest",
+        
+        "success_desc": "You harvest a bale of grass that can be fed to your domesticated animals.",
+        "fail_desc": "You cannot harvest the grass right now.",
+        "change_state_to": null,
+        "requirement": [
+          {
+            "type": "tile",
+            "name": "field 1",
+            "state": "null",
+            "qty": null,
+            "remove_obj": "N"
+          },
+          {
+            "type": "object",
+            "name": "scythe",
+            "state": "null",
+            "qty": 1,
+            "remove_obj": "N"
+          }
+        ],
+        "obtain": [{
+          "type": "Item",
+          "name": "grass",
+          "state": "null",
+          "qty": 1
+        }
+      ]
+      }
+    ]
+    
+  },
+
+
+
+
+
+
+  {
+    "name": "medkit",
+    "type": "tool",
+    "state": "null",
+    "gold_amt": 8,
+    "description": {
+      "long_desc": "a medical kit (medkit) that can be used to heal an injured character",
+      "short_desc": "a medical kit (medkit)"
+    },
+    "interactions":  [
+      {
+        "name": "take",
+        
+        "success_desc": "You take a medical kit that can be used to heal an injured character.",
+        "fail_desc": "There is no medkit to take here.",
+        "change_state_to": "delete",
+        "requirement": [
+          {
+            "type": "tile",
+            "name": "Kitchen",
+            "state": "null",
+            "qty": null,
+            "remove_obj": "N"
+          }
+        ],
+        "obtain": [{
+          "type": "Item",
+          "name": "medkit",
+          "state": "null",
+          "qty": 1
+        }
+      ]
+      }
+    ]
+    
+  },
+
+
+
+
+
+
+  {
+    "name": "barn key",
+    "type": "tool",
+    "state": "null",
+    "gold_amt": 2,
+    "description": {
+      "long_desc": "a small key to unlock and lock the barn",
+      "short_desc": "a barn key"
+    },
+    "interactions": [
+      {
+        "name": "take",
+        
+        "success_desc": "You take a small key to unlock and lock the barn.",
+        "fail_desc": "There is no barn key to take here.",
+        "change_state_to": "delete",
+        "requirement": [
+          {
+            "type": "tile",
+            "name": "bedroom",
+            "state": "null",
+            "qty": null,
+            "remove_obj": "N"
+          }
+        ],
+        "obtain": [{
+          "type": "Item",
+          "name": "barn key",
+          "state": "null",
+          "qty": 1
+        }
+      ]
+      }
+    ]
+    
+  },
+
+
+
+
+
+
+  {
+    "name": "shed key",
+    "type": "tool",
+    "state": "null",
+    "gold_amt": 2,
+    "description": {
+      "long_desc": "a small key to unlock and lock the shed",
+      "short_desc": "a shed key"
+    },
+    "interactions": [
+      {
+        "name": "take",
+
+        "success_desc": "You take a small key to unlock and lock the shed.",
+        "fail_desc": "There is no shed key to take here.",
+        "change_state_to": "delete",
+        "requirement": [
+          {
+            "type": "tile",
+            "name": "bedroom",
+            "state": "null",
+            "qty": null,
+            "remove_obj": "N"
+          }
+        ],
+        "obtain": [{
+          "type": "Item",
+          "name": "shed key",
+          "state": "null",
+          "qty": 1
+        }
+      ]
+      }
+    ]
+    
+  },
+
+
+
+
+
+
+
+
+  {
+    "name": "coop key",
+    "type": "tool",
+    "state": "null",
+    "gold_amt": 2,
+    "description": {
+      "long_desc": "a small key to unlock and lock the chicken coop",
+      "short_desc": "a chicken coop key"
+    },
+    "interactions": [
+      {
+        "name": "take",
+
+        "success_desc": "You take a small key to unlock and lock the chicken coop.",
+        "fail_desc": "There is no chicken coop key to take here.",
+        "change_state_to": "delete",
+        "requirement": [
+          {
+            "type": "tile",
+            "name": "bedroom",
+            "state": "null",
+            "qty": null,
+            "remove_obj": "N"
+          }
+        ],
+        "obtain": [{
+          "type": "Item",
+          "name": "coop key",
+          "state": "null",
+          "qty": 1
+        }
+      ]
+      }
+    ]
+    
+  },
+
+
+
+
+
+  {
+    "name": "flint",
+    "type": "tool",
+    "state": "null",
+    "gold_amt": 2,
+    "description": {
+      "long_desc": "a sharp piece of flint that might make a good ax blade",
+      "short_desc": "a sharp piece of flint"
+    },
+    "interactions": [
+      {
+        "name": "take",
+
+        "success_desc": "You take a sharp piece of flint that might make a good ax blade.",
+        "fail_desc": "There is no flint to take here.",
+        "change_state_to": "delete",
+        "requirement": [
+          {
+            "type": "tile",
+            "name": "side yard",
+            "state": "null",
+            "qty": null,
+            "remove_obj": "N"
+          }
+        ],
+        "obtain": [{
+          "type": "Item",
+          "name": "flint",
+          "state": "null",
+          "qty": 1
+        }
+      ]
+      }
+    ]
+    
+  },
+
+
+
+
+
+  {
+    "name": "bee smoker",
+    "type": "tool",
+    "state": "null",
+    "gold_amt": 6,
+    "description": {
+      "long_desc": "a bee smoker that can be used to harvest honey from a honey bee hive",
+      "short_desc": "a bee smoker"
+    },
+    "interactions": [
+      {
+        "name": "take",
+
+        "success_desc": "You take a bee smoker that can be used to harvest honey from a honey bee hive.",
+        "fail_desc": "There is no bee smoker to take here.",
+        "change_state_to": "delete",
+        "requirement": [
+          {
+            "type": "tile",
+            "name": "side yard",
+            "state": "null",
+            "qty": null,
+            "remove_obj": "N"
+          }
+        ],
+        "obtain": [{
+          "type": "Item",
+          "name": "bee smoker",
+          "state": "null",
+          "qty": 1
+        }
+      ]
+      }
+    ]
+    
+  },
+
+
+
+  {
+    "name": "beekeeping suit",
+    "type": "tool",
+    "state": "null",
+    "gold_amt": 6,
+    "description": {
+      "long_desc": "a beekeeping suit that can be used to harvest honey from a honey bee hive",
+      "short_desc": "a beekeeping suit"
+    },
+    "interactions": [
+      {
+        "name": "take",
+
+        "success_desc": "You take a beekeeping suit that can be used to harvest honey from a honey bee hive.",
+        "fail_desc": "There is no beekeeping suit to take here.",
+        "change_state_to": "delete",
+        "requirement": [
+          {
+            "type": "tile",
+            "name": "garage",
+            "state": "null",
+            "qty": null,
+            "remove_obj": "N"
+          }
+        ],
+        "obtain": [{
+          "type": "Item",
+          "name": "beekeeping suit",
+          "state": "null",
+          "qty": 1
+        }
+      ]
+      }
+    ]
+    
+  },
+
+
+
+
+  {
+    "name": "letter",
+    "type": "tool",
+    "state": "null",
+    "gold_amt": 0,
+    "description": {
+      "long_desc": "a letter from your landlord saying that you owe %rent_amount% in gold that is due in %rent_due_days_away% days",
+      "short_desc": "a letter from the landlord"
+    },
+    "interactions": [
+      {
+        "name": "read",
+
+        "success_desc": "You see a letter from your landlord saying that you owe %rent_amount% in gold that is due.",
+        "fail_desc": "You cannot read the letter right now.",
+        "change_state_to": null,
+        "requirement": [          
+          {
+            "type": "tile",
+            "name": "front yard",
+            "state": "null",
+            "qty": null,
+            "remove_obj": "N"
+          }
+        ],
+        "obtain": null
+      },
+      {
+        "name": "take",
+
+        "success_desc": "You take a letter from your landlord.",
+        "fail_desc": "There is no letter to take here.",
+        "change_state_to": "delete",
+        "requirement": [
+          {
+            "type": "tile",
+            "name": "front yard",
+            "state": "null",
+            "qty": null,
+            "remove_obj": "N"
+          }
+        ],
+        "obtain": [{
+          "type": "Item",
+          "name": "letter",
+          "state": "null",
+          "qty": 1
+        }
+      ]
+      }
+    ]
+    
+  },
+
+
+
+  {
+    "name": "apples",
+    "type": "farm_prod",
+    "state": "null",
+    "gold_amt": 5,
+    "description": {
+      "long_desc": "a bunch of apples that can be sold at the merchant for gold or fed to a cow in order to domesticate it",
+      "short_desc": "a bunch of apples"
+    },
+    "interactions":  [
+      {
+        "name": "sell",
+        
+        "success_desc": "You sell a bunch of apples to the Merchant for gold.",
+        "fail_desc": "You cannot sell the apples here.",
+        "change_state_to": "delete",
+        "requirement": [
+          {
+            "type": "Character",
+            "name": "merchant 3",
+            "state": "null",
+            "qty": null,
+            "remove_obj": "N"
+          }
+        ],
+        "obtain": [{
+          "type": "Gold",
+          "name": "gold",
+          "state": "null",
+          "qty": 8
+        }
+      ]
+      }
+    ]
+    
+  },
+
+
+
+
+
+  {
+    "name": "ladder",
+    "type": "tool",
+    "state": "null",
+    "gold_amt": 3,
+    "description": {
+      "long_desc": "a long ladder that could be used for picking apples from the apple tree",
+      "short_desc": "a long ladder"
+    },
+    "interactions": [
+      {
+        "name": "take",
+        
+        "success_desc": "You take a ladder from the garage.",
+        "fail_desc": "There is no ladder to take here.",
+        "change_state_to": "delete",
+        "requirement": [
+          {
+            "type": "tile",
+            "name": "garage",
+            "state": "null",
+            "qty": null,
+            "remove_obj": "N"
+          }
+        ],
+        "obtain": [{
+          "type": "Item",
+          "name": "ladder",
+          "state": "null",
+          "qty": 1
+        }
+      ]
+      }
+    ]
+    
+  },
+
+
+
+
+  {
+    "name": "gun",
+    "type": "tool",
+    "state": "null",
+    "gold_amt": 10,
+    "description": {
+      "long_desc": "a gun that can provide protection against thieves or wild animals",
+      "short_desc": "a gun"
+    },
+    "interactions":  [
+      {
+        "name": "buy",
+
+        "success_desc": "You buy a gun that can provide protection against thieves or wild animals.",
+        "fail_desc": "You cannot buy the gun right now.",
+        "change_state_to": null,
+        "requirement": [
+          {
+            "type": "Character",
+            "name": "merchant 1",
+            "state": "null",
+            "qty": null,
+            "remove_obj": "N"
+          },
+          {
+            "type": "Gold",
+            "name": "gold",
+            "state": "null",
+            "qty": 10,
+            "remove_obj": "Y"
+          } 
+
+        ],
+        "obtain": 
+        [{
+          "type": "Item",
+          "name": "gun",
+          "state": "null",
+          "qty": 1
+        }
+      ]
+
+
+      }
+    ]
+    
+  },
+
+
+
+  {
+    "name": "eggs",
+    "type": "farm_prod",
+    "state": "null",
+    "gold_amt": 6,
+    "description": {
+      "long_desc": "a dozen eggs that can be sold at the merchant for gold",
+      "short_desc": "a dozen eggs"
+    },
+    "interactions":  [
+      {
+        "name": "sell",
+
+        "success_desc": "You sell a dozen eggs to the Merchant for gold.",
+        "fail_desc": "You cannot sell the eggs here.",
+        "change_state_to": "delete",
+        "requirement": [
+          {
+            "type": "Character",
+            "name": "merchant 2",
+            "state": "null",
+            "qty": null,
+            "remove_obj": "N"
+          }
+        ],
+        "obtain": [{
+          "type": "Gold",
+          "name": "gold",
+          "state": "null",
+          "qty": 6
+        }
+      ]
+      }
+    ]
+    
+  },
+
+
+
+  {
+    "name": "apple seeds",
+    "type": "tool",
+    "state": "null",
+    "gold_amt": 2,
+    "description": {
+      "long_desc": "a bag of apple seeds that can be planted in the side yard to grow an apple tree",
+      "short_desc": "a bag of apple seeds"
+    },
+    "interactions":  [
+      {
+        "name": "plant",
+
+        "success_desc": "You plant some apple seeds that might grow into an apple tree.",
+        "fail_desc": "You cannot plant the apple seeds right now.",
+        "change_state_to": "delete",
+        "requirement": [
+          {
+            "type": "tile",
+            "name": "apple tree",
+            "state": "null",
+            "qty": null,
+            "remove_obj": "N"
+          }
+        ],
+        "obtain": [
+          {
+            "type": "tile",
+            "name": "apple tree",
+            "state": "growing_notready",
+            "qty": 1
+          }
+        ]
+      }
+    ]
+    
+  },
+
+
+
+  {
+    "name": "milk",
+    "type": "farm_prod",
+    "state": "null",
+    "gold_amt": 4,
+    "description": {
+      "long_desc": "a bottle of milk that can be sold at the merchant for gold",
+      "short_desc": "a bottle of milk"
+    },
+    "interactions":  [
+      {
+        "name": "sell",
+
+        "success_desc": "You sell a bottle of milk to the Merchant for gold.",
+        "fail_desc": "You cannot sell the milk here.",
+        "change_state_to": "delete",
+        "requirement": [
+          {
+            "type": "Character",
+            "name": "merchant 2",
+            "state": "null",
+            "qty": null,
+            "remove_obj": "N"
+          }
+        ],
+        "obtain": [{
+          "type": "Gold",
+          "name": "gold",
+          "state": "null",
+          "qty": 4
+        }
+      ]
+      }
+    ]
+    
+  }, 
+
+  
+
+
+
+  {
+    "name": "axe",
+    "type": "tool",
+    "state": "null",
+    "gold_amt": 4,
+    "description": {
+      "long_desc": "a sharp axe that could be used for clearing brush",
+      "short_desc": "a sharp axe"
+    },
+    "interactions":  [
+      {
+        "name": "make",
+
+        "success_desc": "You make a sharp axe that could be used for clearing brush.",
+        "fail_desc": "You cannot make the axe right now.",
+        "change_state_to": null,
+        "requirement": [
+          {
+            "type": "Character",
+            "name": "merchant 1",
+            "state": "null",
+            "qty": null,
+            "remove_obj": "N"
+          }, 
+
+          {
+            "type": "object",
+            "name": "flint",
+            "state": "null",
+            "qty": 1,
+            "remove_obj": "Y"
+          }, 
+
+          {
+            "type": "object",
+            "name": "branch",
+            "state": "null",
+            "qty": 1,
+            "remove_obj": "Y"
+          }          
+
+
+        ],
+        "obtain": [{
+          "type": "Item",
+          "name": "axe",
+          "state": "null",
+          "qty": 1
+        }
+      ]
+      }
+    ]
+    }  
+
+
+]
+
