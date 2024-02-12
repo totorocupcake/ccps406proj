@@ -1,4 +1,6 @@
 import json
+import csv
+
 
 CHARACTERS_JSON_FILE = "Characters_02b.json"
 OBJECTS_JSON_FILE = "objects_02m.json"
@@ -8,6 +10,9 @@ OBJECTS_STATUS_JSON_FILE = "object_status_template.json"
 CHARACTER_STATUS_JSON_FILE = "character_status_template.json"
 
 TILE_ID_MAPPING_JSON_FILE = "tileIDMapping_01.json"
+
+WORLD_MAP_STATUS_CSV_FILE = "world_map_status_00.csv"
+
 
 
 def load_object_status_file():
@@ -297,7 +302,56 @@ def lookup_gold_amt (obj_name, state):
 
 
 
+def load_world_map_status_csv():
+# world_map_status_csv
+# WORLD_MAP_STATUS_CSV_FILE
 
+    # Open the file in read mode
+    # with open(WORLD_MAP_STATUS_CSV_FILE, 'r') as file:
+    #     # Read all lines at once and store them in a list
+    #     lines = file.readlines()
+
+    # # Print the content of each line
+    # for line in lines:
+    #     print(line.strip())  # strip() is used to remove the newline character at the end of each line
+
+
+    # create 2D array to store world_map_status data:
+    rows = 25
+    cols = 14
+    matrix = []
+    for i in range(rows):
+        row = []
+        for j in range(cols):
+            row.append(" ")
+        matrix.append(row)
+
+
+# Open the CSV file in read mode
+
+    # read from world_map_status CSV file
+    with open(WORLD_MAP_STATUS_CSV_FILE, 'r') as file:
+        # Create a CSV reader object
+        csv_reader = csv.reader(file)
+        
+        row_num = 0
+        column_num = 0
+
+        # Iterate over each row in the CSV file
+        for row in csv_reader:
+            column_num = 0
+
+            # iterate over each column in the row
+            for elem in row:
+                elem_str = str(elem)
+
+                matrix[row_num][column_num] = elem_str
+
+                column_num = column_num + 1
+
+            row_num = row_num + 1
+
+    return matrix
 
 
 
@@ -484,3 +538,14 @@ if __name__ == "__main__":
     print("state = ", state)
     print("description = ", description)
 
+
+
+
+# ------------------------ Test: load_world_map_status_csv() function
+# 
+    world_map_status_array = load_world_map_status_csv()
+    
+    print()
+    print("world_map_status_array[0][0] = ", world_map_status_array[0][0])
+    print()
+    
