@@ -80,7 +80,7 @@
         "fail_desc": "You open the mail box. There is no letter inside.",
         "change_state_to": "empty",
         "requirement": "null",
-        "obtain": "null"
+        "obtain": null
 
       }
     ]
@@ -110,7 +110,7 @@
             "remove_obj": "N"
           }
         ],
-        "obtain": "null"
+        "obtain": null
       },
 
       {
@@ -119,7 +119,7 @@
         "fail_desc": "You cannot lock the door right now, it is closed.",
         "change_state_to": "closed",
         "requirement": "null",
-        "obtain": "null"
+        "obtain": null
       }
     ]
 
@@ -140,7 +140,7 @@
         "fail_desc": "The garage is already unlocked and open!",
         "change_state_to": "open",
         "requirement": "null",
-        "obtain": "null"
+        "obtain": null
 
       },
       {
@@ -157,7 +157,7 @@
             "remove_obj": "N"
           }
         ],
-        "obtain": "null"
+        "obtain": null
 
       }
 
@@ -180,7 +180,7 @@
         "fail_desc": "The door to the kichen is already open.",
         "change_state_to": "open",
         "requirement": "null",
-        "obtain": "null"
+        "obtain": null
       },
       {
         "name": "lock",
@@ -248,7 +248,7 @@
         "fail_desc": "The door to your house is already locked.",
         "change_state_to": "closed",
         "requirement": "null",
-        "obtain": "null"
+        "obtain": null
       }
     ]
   },
@@ -305,7 +305,7 @@
         "fail_desc": "The house is already locked.",
         "change_state_to": "closed",
         "requirement": "null",
-        "obtain": "null"
+        "obtain": null
       }
     ]
   },
@@ -325,7 +325,7 @@
         "fail_desc": "The door is already open.",
         "change_state_to": "open",
         "requirement": "null",
-        "obtain": "null"
+        "obtain": null
       },
 
       {
@@ -420,7 +420,7 @@
             "remove_obj": "N"
           }
         ],
-        "obtain": "null"
+        "obtain": null
       },
       {
         "name": "lock",
@@ -428,7 +428,7 @@
         "fail_desc": "The tool shed is already locked.",
         "change_state_to": "closed",
         "requirement": "null",
-        "obtain": "null"
+        "obtain": null
       }
     ]
   },
@@ -464,7 +464,7 @@
             "remove_obj": "N"
           }
         ],
-        "obtain": "null"
+        "obtain": null
       }
     ]
   },
@@ -556,7 +556,7 @@
             "remove_obj": "N"
           }
         ],
-        "obtain": "null"
+        "obtain": null
       },
 
       {
@@ -565,7 +565,7 @@
         "fail_desc": "The door is already locked.",
         "change_state_to": "closed",
         "requirement": "null",
-        "obtain": "null"
+        "obtain": null
       }
     ]
   },
@@ -589,7 +589,7 @@
         "fail_desc": "The chicken coop is already unlocked.",
         "change_state_to": "open",
         "requirement": "null",
-        "obtain": "null"
+        "obtain": null
       },
       {
         "name": "lock",
@@ -605,7 +605,7 @@
             "remove_obj": "N"
           }
         ],
-        "obtain": "null"
+        "obtain": null
       }
     ]
   },
@@ -635,7 +635,7 @@
             "remove_obj": "N"
           }
         ],
-        "obtain": "null"
+        "obtain": null
       },
       {
         "name": "lock",
@@ -643,7 +643,7 @@
         "fail_desc": "The barn is already locked.",
         "change_state_to": "closed",
         "requirement": "null",
-        "obtain": "null"
+        "obtain": null
       }
     ]
   },
@@ -664,7 +664,7 @@
         "fail_desc": "The barn is already open.",
         "change_state_to": "open",
         "requirement": "null",
-        "obtain": "null"
+        "obtain": null
       },
 
       {
@@ -681,7 +681,7 @@
             "remove_obj": "N"
           }
         ],
-        "obtain": "null"
+        "obtain": null
       }
     ]
   },
