@@ -3,8 +3,8 @@ import csv
 
 
 CHARACTERS_JSON_FILE = "Characters_02b.json"
-OBJECTS_JSON_FILE = "objects_02m.json"
-TILES_JSON_FILE = "tiles_template.json"
+OBJECTS_JSON_FILE = "objects_02n.json"
+TILES_JSON_FILE = "tiles_01.json"
 
 OBJECTS_STATUS_JSON_FILE = "object_status_template.json"
 CHARACTER_STATUS_JSON_FILE = "character_status_template.json"
@@ -115,7 +115,7 @@ def lookup_desc (long_short , type, name, state):
                 else:
                     return tile["description"]["short_desc"]
 
-            if found_tile == false:
+            if found_tile == False:
                 return None
 
 
@@ -239,15 +239,22 @@ def lookup_interaction_key_only (interaction_key):
                 # print("state:", obj["state"])
                 
                 # iterate through each interaction for the found object:
-                for interac in tile["interactions"]:
 
-                    # if the interaction name matches, print its details...:
-                    if interac["name"] == interaction_array[0]:
+                # print("DEBUG: tile['interactions']", tile["interactions"])
 
-                        found_interac = True
-                        # print("\tinteraction - name: ", interac["name"])
-                        
-                        return interac
+                if tile["interactions"] is not None:
+
+                    for interac in tile["interactions"]:
+
+                        # if the interaction name matches, print its details...:
+                        if interac["name"] == interaction_array[0]:
+
+                            found_interac = True
+                            # print("\tinteraction - name: ", interac["name"])
+                            
+                            return interac
+                else:
+                    return None
 
 
     # 4) else return None
@@ -409,11 +416,12 @@ if __name__ == "__main__":
     print(interaction_array)
 
     print()
-    print()
 
-    print("name = ", interaction_array["name"])
+    if interaction_array is not None:
+        print("name = ", interaction_array["name"])
+    else:
+        print("No interactions found")
 
-    print()
     print()
 
 
@@ -426,11 +434,12 @@ if __name__ == "__main__":
     print(interaction_array)
 
     print()
-    print()
 
-    print("name = ", interaction_array["name"])
+    if interaction_array is not None:
+        print("name = ", interaction_array["name"])
+    else:
+        print("No interactions found")
 
-    print()
     print()
 
     interaction_key = "heal farmhand"
@@ -441,9 +450,12 @@ if __name__ == "__main__":
     print(interaction_array)
 
     print()
-    print()
 
-    print("name = ", interaction_array["name"])
+    if interaction_array is not None:
+        print("name = ", interaction_array["name"])
+    else:
+        print("No interactions found")
+
 
     print()
     print()
