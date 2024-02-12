@@ -2,34 +2,34 @@
   {
     "name": "town square",
     "type": "non-building",
-    "state": null,
+    "state": "null",
     "description": {
       "long_desc": "You stand amidst a cluster of charming shops with colourful facades arranged around a cobbled square. Residents and vendors engage in friendly banter, exchanging stories amidst the vibrant displays. A well-maintained town hall stands proudly to the south, its facade adorned with a bell tower that chimes the hours.",
       "short_desc": "You stand in the town square."
     },
-    "interactions": null
+    "interactions": "null"
   },
 
   {
     "name": "road",
     "type": "non-building",
-    "state": null,
+    "state": "null",
     "description": {
       "long_desc": "You stand on a gravel road leading to a farmhouse. The worn surface stretches into the embrace of rolling fields to the east and west. To the south lies a forest, its thick canopy casting a shadow that seems to swallow the sunlight.",
       "short_desc": "You stand in the road in front of your farmhouse."
     },
-    "interactions": null
+    "interactions": "null"
   },
 
   {
     "name": "road by neighbours houses",
     "type": "non-building",
-    "state": null,
+    "state": "null",
     "description": {
       "long_desc": "You stand in a road surrounded by a number of small houses, each a blend of rustic charm and practicality.",
       "short_desc": "You stand in the road in front of your neighbour's houses."
     },
-    "interactions": null
+    "interactions": "null"
   },
 
   {
@@ -46,12 +46,12 @@
         "success_desc": "You open the mail box. There is a letter within it, you take the letter.",
         "fail_desc": "You open the mail box. There is no letter inside.",
         "change_state_to": "empty",
-        "requirement": null,
+        "requirement": "null",
         "obtain": [
           {
             "type": "object",
             "name": "letter",
-            "state": null,
+            "state": "null",
             "qty": 1
           }
         ]
@@ -74,8 +74,8 @@
         "success_desc": "You open the mail box. There is no letter inside.",
         "fail_desc": "You open the mail box. There is no letter inside.",
         "change_state_to": "empty",
-        "requirement": null,
-        "obtain": null
+        "requirement": "null",
+        "obtain": "null"
 
       }
     ]
@@ -99,12 +99,12 @@
           {
             "type": "object",
             "name": "garage key",
-            "state": null,
+            "state": "null",
             "qty": 1,
             "remove_obj": "N"
           }
         ],
-        "obtain": null
+        "obtain": "null"
       },
 
       {
@@ -112,8 +112,8 @@
         "success_desc": "You cannot lock the door right now, it is closed.",
         "fail_desc": "You cannot lock the door right now, it is closed.",
         "change_state_to": "closed",
-        "requirement": null,
-        "obtain": null
+        "requirement": "null",
+        "obtain": "null"
       }
     ]
 
@@ -132,8 +132,8 @@
         "success_desc": "The garage is already unlocked and open!",
         "fail_desc": "The garage is already unlocked and open!",
         "change_state_to": "open",
-        "requirement": null,
-        "obtain": null
+        "requirement": "null",
+        "obtain": "null"
 
       },
       {
@@ -145,12 +145,12 @@
           {
             "type": "object",
             "name": "garage key",
-            "state": null,
+            "state": "null",
             "qty": 1,
             "remove_obj": "N"
           }
         ],
-        "obtain": null
+        "obtain": "null"
 
       }
 
@@ -171,8 +171,8 @@
         "success_desc": "The door to the kichen is already open.",
         "fail_desc": "The door to the kichen is already open.",
         "change_state_to": "open",
-        "requirement": null,
-        "obtain": null
+        "requirement": "null",
+        "obtain": "null"
       },
       {
         "name": "lock",
@@ -183,7 +183,7 @@
           {
             "type": "object",
             "name": "house key",
-            "state": null,
+            "state": "null",
             "qty": 1,
             "remove_obj": "N"
           }
@@ -218,7 +218,7 @@
           {
             "type": "object",
             "name": "house key",
-            "state": null,
+            "state": "null",
             "qty": 1,
             "remove_obj": "N"
           }
@@ -238,8 +238,8 @@
         "success_desc": "The door to your house is already locked.",
         "fail_desc": "The door to your house is already locked.",
         "change_state_to": "closed",
-        "requirement": null,
-        "obtain": null
+        "requirement": "null",
+        "obtain": "null"
       }
     ]
   },
@@ -247,12 +247,12 @@
   {
     "name": "water well",
     "type": "non-building",
-    "state": null,
+    "state": "null",
     "description": {
       "long_desc": "You stand in a yard to the side of the farmhouse. Next to you is a rustic water well, its wooden structure showing signs of age.",
       "short_desc": "You stand next to a water well."
     },
-    "interactions": null
+    "interactions": "null"
   },
 
   {
@@ -273,7 +273,7 @@
           {
             "type": "object",
             "name": "house key",
-            "state": null,
+            "state": "null",
             "qty": 1,
             "remove_obj": "N"
           }
@@ -293,8 +293,8 @@
         "success_desc": "The house is already locked.",
         "fail_desc": "The house is already locked.",
         "change_state_to": "closed",
-        "requirement": null,
-        "obtain": null
+        "requirement": "null",
+        "obtain": "null"
       }
     ]
   },
@@ -312,8 +312,8 @@
         "success_desc": "The door is already open.",
         "fail_desc": "The door is already open.",
         "change_state_to": "open",
-        "requirement": null,
-        "obtain": null
+        "requirement": "null",
+        "obtain": "null"
       },
 
       {
@@ -325,7 +325,7 @@
           {
             "type": "object",
             "name": "house key",
-            "state": null,
+            "state": "null",
             "qty": 1,
             "remove_obj": "N"
           }
@@ -348,23 +348,23 @@
   {
     "name": "bee hive",
     "type": "non-building",
-    "state": null,
+    "state": "null",
     "description": {
       "long_desc": "Nestled within the forest clearing is a carefully crafted bee hive. Although the bees appear to be diligently at work, the surroundings offer no sign of beekeeping tools.",
       "short_desc": "You stand in front of a bee hive filled with honey bees."
     },
-    "interactions": null
+    "interactions": "null"
   },
 
   {
     "name": "field 1",
     "type": "non-building",
-    "state": null,
+    "state": "null",
     "description": {
       "long_desc": "Stepping into the field, you find yourself surrounded by blades of grass that tower above you. To the west lies a path surrounded by thick forrest. To the north is a number of trees, these ones much smaller than those of the forest that surrounds the property. To the east is another field, this one of wheat. To the south is the back of the farm house's garage.",
       "short_desc": "You stand in a field of grass."
     },
-    "interactions": null
+    "interactions": "null"
 
   },
 
@@ -372,12 +372,12 @@
   {
     "name": "field 2",
     "type": "non-building",
-    "state": null,
+    "state": "null",
     "description": {
       "long_desc": "Before you stretches a vast golden wheat field, swaying gently in the breeze. To the north is a weathered barn, its red exterior faded and peeling beneath the touch of time. To the east is a tool shed with a moss-covered roof that exudes a rustic charm. To the west stretches out another field.",
       "short_desc": "You stand in a wheat field."
     },
-    "interactions": null
+    "interactions": "null"
 
   },
 
@@ -399,20 +399,20 @@
           {
             "type": "object",
             "name": "tool shed key",
-            "state": null,
+            "state": "null",
             "qty": 1,
             "remove_obj": "N"
           }
         ],
-        "obtain": null
+        "obtain": "null"
       },
       {
         "name": "lock",
         "success_desc": "The tool shed is already locked.",
         "fail_desc": "The tool shed is already locked.",
         "change_state_to": "closed",
-        "requirement": null,
-        "obtain": null
+        "requirement": "null",
+        "obtain": "null"
       }
     ]
   },
@@ -431,7 +431,7 @@
         "success_desc": "The tool shed is already opened.",
         "fail_desc": "The tool shed is already opened.",
         "change_state_to": "open",
-        "requirement": null
+        "requirement": "null"
       },
       {
         "name": "lock",
@@ -442,12 +442,12 @@
           {
             "type": "object",
             "name": "tool shed key",
-            "state": null,
+            "state": "null",
             "qty": 1,
             "remove_obj": "N"
           }
         ],
-        "obtain": null
+        "obtain": "null"
       }
     ]
   },
@@ -471,7 +471,7 @@
           {
             "type": "object",
             "name": "axe",
-            "state": null,
+            "state": "null",
             "qty": 1,
             "remove_obj": "N"
           }
@@ -496,7 +496,7 @@
       "long_desc": "The trees are chopped before you, in front of you to the north lies a chicken coop.",
       "short_desc": "You stand in front of a section of chopped trees."
     },
-    "interactions": null
+    "interactions": "null"
   },
 
 
@@ -509,7 +509,7 @@
       "long_desc": "The trees in front of you are too thick to travel through.",
       "short_desc": "The trees in front of you are too thick to travel through."
     },
-    "interactions": null
+    "interactions": "null"
   },
 
   {
@@ -530,12 +530,12 @@
           {
             "type": "object",
             "name": "chicken coop key",
-            "state": null,
+            "state": "null",
             "qty": 1,
             "remove_obj": "N"
           }
         ],
-        "obtain": null
+        "obtain": "null"
       },
 
       {
@@ -543,8 +543,8 @@
         "success_desc": "The door is already locked.",
         "fail_desc": "The door is already locked.",
         "change_state_to": "closed",
-        "requirement": null,
-        "obtain": null
+        "requirement": "null",
+        "obtain": "null"
       }
     ]
   },
@@ -566,8 +566,8 @@
         "success_desc": "The chicken coop is already unlocked.",
         "fail_desc": "The chicken coop is already unlocked.",
         "change_state_to": "open",
-        "requirement": null,
-        "obtain": null
+        "requirement": "null",
+        "obtain": "null"
       },
       {
         "name": "lock",
@@ -578,12 +578,12 @@
           {
             "type": "object",
             "name": "chicken coop key",
-            "state": null,
+            "state": "null",
             "qty": 1,
             "remove_obj": "N"
           }
         ],
-        "obtain": null
+        "obtain": "null"
       }
     ]
   },
@@ -607,20 +607,20 @@
           {
             "type": "object",
             "name": "barn key",
-            "state": null,
+            "state": "null",
             "qty": 1,
             "remove_obj": "N"
           }
         ],
-        "obtain": null
+        "obtain": "null"
       },
       {
         "name": "lock",
         "success_desc": "The barn is already locked.",
         "fail_desc": "The barn is already locked.",
         "change_state_to": "closed",
-        "requirement": null,
-        "obtain": null
+        "requirement": "null",
+        "obtain": "null"
       }
     ]
   },
@@ -639,8 +639,8 @@
         "success_desc": "The barn is already open.",
         "fail_desc": "The barn is already open.",
         "change_state_to": "open",
-        "requirement": null,
-        "obtain": null
+        "requirement": "null",
+        "obtain": "null"
       },
 
       {
@@ -652,12 +652,12 @@
           {
             "type": "object",
             "name": "barn key",
-            "state": null,
+            "state": "null",
             "qty": 1,
             "remove_obj": "N"
           }
         ],
-        "obtain": null
+        "obtain": "null"
       }
     ]
   },
@@ -665,24 +665,24 @@
   {
     "name": "tool shop",
     "type": "building",
-    "state": null,
+    "state": "null",
     "description": {
       "long_desc": "You step into a shop that smells of polished wood and metal. Tools line the walls around you.",
       "short_desc": "You step into the tool shop."
     },
-    "interactions": null
+    "interactions": "null"
 
   },
 
   {
     "name": "plant products shop",
     "type": "building",
-    "state": null,
+    "state": "null",
     "description": {
       "long_desc": "You step into a shop that smells of ripe produce. Wooden crates overflow with a colorful assortment of plant products, from vibrant berries to golden wheat.",
       "short_desc": "You enter the plant products shop."
     },
-    "interactions": null
+    "interactions": "null"
   },
 
   {
@@ -693,52 +693,52 @@
       "long_desc": "You step into a shop with walls lined with sleves laden with jars of honey, baskets of fresh eggs, and wheels of cheese.",
       "short_desc": "You enter the animal products shop."
     },
-    "interactions": null
+    "interactions": "null"
   },
 
 
   {
     "name": "town hall",
     "type": "building",
-    "state": null,
+    "state": "null",
     "description": {
       "long_desc": "Polished wooden floors stretch beneath your feet, leading toward a spacious main hall adorned with rows of sturdy wooden benches. Sunlight streams through tall, arched windows, casting a warm glow on the vintage portraits that line the walls.",
       "short_desc": "You enter the town hall."
     },
-    "interactions": null
+    "interactions": "null"
   },
 
   {
     "name": "Pennys house",
     "type": "non-building",
-    "state": null,
+    "state": "null",
     "description": {
       "long_desc": "You stand on the porch of a light blue house. Around you is an asortment of pots containing a variety of colourful plants.",
       "short_desc": "You stand outside Penny's house."
     },
-    "interactions": null
+    "interactions": "null"
   },
 
   {
     "name": "Jimmys house",
     "type": "non-building",
-    "state": null,
+    "state": "null",
     "description": {
       "long_desc": "You traverse a long stone path, eventually reaching a house made of dark wood.",
       "short_desc": "You stand outside Jimmy's house."
     },
-    "interactions": null
+    "interactions": "null"
   },
 
   {
     "name": "Claires house",
     "type": "non-building",
-    "state": null,
+    "state": "null",
     "description": {
       "long_desc": "You stand on the small porch of a brick house adorned with climbing ivy.",
       "short_desc": "You stand outside Claire's house."
     },
-    "interactions": null
+    "interactions": "null"
   },
 
 
@@ -750,7 +750,7 @@
       "long_desc": "You see an empty field, it is a perfect location to plant some trees.",
       "short_desc": "You stand in an empty field."
     },
-    "interactions": null
+    "interactions": "null"
 
   },
 
@@ -779,7 +779,7 @@
           {
             "type": "turn",
             "name": "turn",
-            "state": null,
+            "state": "null",
             "qty": 5,
             "remove_obj": "N"
 
@@ -811,12 +811,12 @@
         "success_desc": "You harvest the apple tree and gain some apples from the tree.",
         "fail_desc": "You can't harvest the apple tree right now.",
         "change_state_to": "growing_notready",
-        "requirement": null,
+        "requirement": "null",
         "obtain": [
           {
             "type": "object",
             "name": "apples",
-            "state": null,
+            "state": "null",
             "qty": 6
           }
         ]
@@ -826,12 +826,12 @@
   {
     "name": "grasslands",
     "type": "non-building",
-    "state": null,
+    "state": "null",
     "description": {
       "long_desc": "You see an empty grasslands.",
       "short_desc": "You see an empty grasslands."
     },
-    "interactions": null
+    "interactions": "null"
 
   }
 ]
