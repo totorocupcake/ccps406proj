@@ -22,12 +22,12 @@
     }, 
     {
         "tile_id": "04",
-        "name": "front yard", 
+        "name": "mail box", 
         "state": "null"
     }, 
     {
         "tile_id": "05",
-        "name": "side yard", 
+        "name": "water well", 
         "state": "null"
     }, 
     {
@@ -42,17 +42,17 @@
     }, 
     {
         "tile_id": "08",
-        "name": "Penny's house", 
+        "name": "Pennys house", 
         "state": "null"
     }, 
     {
         "tile_id": "09",
-        "name": "Claire's house", 
+        "name": "Claires house", 
         "state": "null"
     }, 
     {
         "tile_id": "0A",
-        "name": "Jimmy's house", 
+        "name": "Jimmys house", 
         "state": "null"
     }, 
     {
@@ -63,7 +63,7 @@
     {
         "tile_id": "0C",
         "name": "garage", 
-        "state": "closed_unlocked"
+        "state": "closed"
     }, 
     {
         "tile_id": "0D",
@@ -73,12 +73,7 @@
     {
         "tile_id": "0E",
         "name": "kitchen", 
-        "state": "closed_ unlocked"
-    }, 
-    {
-        "tile_id": "0F",
-        "name": "kitchen", 
-        "state": "closed_locked"
+        "state": "closed"
     }, 
     {
         "tile_id": "10",
@@ -88,32 +83,17 @@
     {
         "tile_id": "11",
         "name": "bedroom", 
-        "state": "closed_ unlocked"
-    }, 
-    {
-        "tile_id": "12",
-        "name": "bedroom", 
-        "state": "closed_locked"
+        "state": "closed"
     }, 
     {
         "tile_id": "13",
-        "name": "wheat field", 
-        "state": "growing"
-    }, 
-    {
-        "tile_id": "14",
-        "name": "wheat field", 
-        "state": "ready"
+        "name": "field 2", 
+        "state": "null"
     }, 
     {
         "tile_id": "15",
-        "name": "grass field", 
-        "state": "growing"
-    }, 
-    {
-        "tile_id": "16",
-        "name": "grass field", 
-        "state": "ready"
+        "name": "field 1", 
+        "state": "null"
     }, 
     {
         "tile_id": "17",
@@ -123,12 +103,7 @@
     {
         "tile_id": "18",
         "name": "tool shed", 
-        "state": "closed_ unlocked"
-    }, 
-    {
-        "tile_id": "19",
-        "name": "tool shed", 
-        "state": "closed_locked"
+        "state": "closed"
     }, 
     {
         "tile_id": "1A",
@@ -138,15 +113,10 @@
     {
         "tile_id": "1B",
         "name": "chicken coop", 
-        "state": "closed_ unlocked"
+        "state": "closed"
     }, 
     {
         "tile_id": "1C",
-        "name": "chicken coop", 
-        "state": "closed_locked"
-    }, 
-    {
-        "tile_id": "1D",
         "name": "chicken coop", 
         "state": "blocked"
     }, 
@@ -158,41 +128,57 @@
     {
         "tile_id": "1F",
         "name": "barn", 
-        "state": "closed_ unlocked"
-    }, 
-    {
-        "tile_id": "20",
-        "name": "barn", 
-        "state": "closed_locked"
+        "state": "closed"
     }, 
     {
         "tile_id": "21",
         "name": "tool shop", 
-        "state": "open"
-    }, 
-    {
-        "tile_id": "22",
-        "name": "tool shop", 
-        "state": "closed_ unlocked"
+        "state": "null"
     }, 
     {
         "tile_id": "23",
         "name": "plant products shop", 
-        "state": "open"
-    }, 
-    {
-        "tile_id": "24",
-        "name": "plant products shop", 
-        "state": "closed_ unlocked"
+        "state": "null"
     }, 
     {
         "tile_id": "25",
         "name": "animal products shop", 
-        "state": "open"
+        "state": "null"
     }, 
     {
-        "tile_id": "26",
-        "name": "animal products shop", 
-        "state": "closed_ unlocked"
+        "tile_id": "27",
+        "name": "mail box", 
+        "state": "empty"
+    }, 
+    {
+        "tile_id": "0F",
+        "name": "trees", 
+        "state": "blocked"
+    }, 
+    {
+        "tile_id": "12",
+        "name": "trees", 
+        "state": "unblocked"
+    }
+    , 
+    {
+        "tile_id": "14",
+        "name": "apple tree", 
+        "state": "empty"
+    }, 
+    {
+        "tile_id": "16",
+        "name": "apple tree", 
+        "state": "growing_notready"
+    }, 
+    {
+        "tile_id": "19",
+        "name": "apple tree", 
+        "state": "growing_notready"
+    }, 
+    {
+        "tile_id": "1D",
+        "name": "grasslands", 
+        "state": "null"
     }
 ]
