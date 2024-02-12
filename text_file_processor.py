@@ -7,7 +7,7 @@ TILES_JSON_FILE = "tiles_template.json"
 OBJECTS_STATUS_JSON_FILE = "object_status_template.json"
 CHARACTER_STATUS_JSON_FILE = "character_status_template.json"
 
-TILE_ID_MAPPING_JSON_FILE = "tileIDMapping.json"
+TILE_ID_MAPPING_JSON_FILE = "tileIDMapping_01.json"
 
 
 def load_object_status_file():
