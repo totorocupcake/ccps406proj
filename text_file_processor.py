@@ -332,8 +332,8 @@ if __name__ == "__main__":
 
     character_status_data = load_character_status_file()
 
-    print("character_status_data: ")
-    print(character_status_data)
+    print("character_status_data[0]: ")
+    print(character_status_data[0])
 
     print()
     print()
@@ -347,8 +347,8 @@ if __name__ == "__main__":
 
     object_status_data = load_object_status_file()
 
-    print("object_status_data: ")
-    print(object_status_data)
+    print("object_status_data[0]: ")
+    print(object_status_data[0])
 
     print()
     print()
