@@ -4,6 +4,41 @@ CHARACTERS_JSON_FILE = "Characters_02b.json"
 OBJECTS_JSON_FILE = "objects_02m.json"
 TILES_JSON_FILE = "tiles_template.json"
 
+OBJECTS_STATUS_JSON_FILE = "object_status_template.json"
+CHARACTER_STATUS_JSON_FILE = "character_status_template.json"
+
+TILE_ID_MAPPING_JSON_FILE = "tileIDMapping_01.json"
+
+
+def load_object_status_file():
+    # returns a JSON array of object-status data 
+    # from the JSON objects_status file
+    
+    with open(OBJECTS_STATUS_JSON_FILE, 'r') as file:
+        parsed_object_status_data = json.load(file)
+
+    return parsed_object_status_data
+
+
+def load_character_status_file():
+    # returns a JSON array of character-status data 
+    # from the JSON character_status file
+    
+    with open(CHARACTER_STATUS_JSON_FILE, 'r') as file:
+        parsed_character_status_data = json.load(file)
+
+    return parsed_character_status_data
+    
+
+def load_tileIDMapping_file():
+    # returns a JSON array of tile-id-mappings data
+    # from the JSON tileIDMapping file
+    
+    with open(TILE_ID_MAPPING_JSON_FILE, 'r') as file:
+        tile_mapping_id_data = json.load(file)
+
+    return tile_mapping_id_data
+
 
 
 
@@ -229,8 +264,8 @@ def lookup_movable (tile_name,state):
             found_tile = True
             return tile["movable"]
 
-        if found_tile == false:
-            return None
+    if found_tile == False:
+        return None
 
 
 
@@ -266,7 +301,57 @@ def lookup_gold_amt (obj_name, state):
 
 
 
+
+
+
+
+
+
+
+
+
+
+
 if __name__ == "__main__":
+
+
+# ------------------------ Test: load_tileIDMapping_file() function
+
+    tileIDMapping_data = load_tileIDMapping_file()
+
+    print("tileIDMapping_data[0]: ")
+    print(tileIDMapping_data[0])
+
+    print()
+    print()
+
+
+
+
+# ------------------------ Test: load_character_status_file() function
+
+    character_status_data = load_character_status_file()
+
+    print("character_status_data[0]: ")
+    print(character_status_data[0])
+
+    print()
+    print()
+
+
+
+
+
+
+# ------------------------ Test: load_object_status_file() function
+
+    object_status_data = load_object_status_file()
+
+    print("object_status_data[0]: ")
+    print(object_status_data[0])
+
+    print()
+    print()
 
 
 
@@ -323,6 +408,16 @@ if __name__ == "__main__":
 # ------------------------ Test: lookup_movable (tile_name,state) function
 # Tile: 
 
+    name = "chicken coop"
+    state = "blocked"
+    movable = lookup_movable(name, state)
+
+    print("name = ", name)
+    print("state = ", state)
+    print("movable = ", movable)
+    print()
+
+
     name = "Claires house"
     state = "null"
     movable = lookup_movable(name, state)
@@ -333,6 +428,7 @@ if __name__ == "__main__":
     print()
 
 
+ 
 
 # ------------------------ Test: lookup_gold_amt (obj_name, state) function
 # Object: 

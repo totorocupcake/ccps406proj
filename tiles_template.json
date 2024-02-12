@@ -1,0 +1,49 @@
+[
+
+  {
+    "name": "Claires house",
+    "type": "non-building",
+    "state": "null",
+    "movable": "Y", 
+    "description": {
+        "long_desc": "You stand on the small porch of a brick house adorned with climbing ivy. ",
+        "short_desc": "You stand outside Claire's house."
+    }, 
+    "interactions": "null"
+  }, 
+
+
+  {
+    "name": "chicken coop",
+    "type": "building",
+    "state": "blocked",
+    "movable": "N", 
+    "description": {
+        "long_desc": "The trees in front of you are too thick to travel through. However, they appear young enough that, with the right tools, you might be able to clear a path...",
+        "short_desc": "You stand in front of a section of young trees.",
+
+        "blocked_desc": "The trees in front of you are too thick to travel through. However, they appear young enough that, with the right tools, you might be able to clear a path...",
+        "outside_desc": "You stand outside the chicken coop"
+    }, 
+    "interactions": [
+      {
+        "name": "open",
+
+
+      
+          "change_state_to": "open",
+          "success_desc": "The door opens and you enter.",
+          "fail_desc": "You don't meet the requirements.",
+          "requirement": [
+              {
+                  "type": "building",
+                  "name": "chicken coop", 
+                  "state": "closed_unlocked"
+              }
+          ]
+        }
+      ]
+    
+  }
+
+]
