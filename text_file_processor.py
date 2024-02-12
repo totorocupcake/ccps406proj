@@ -264,8 +264,8 @@ def lookup_movable (tile_name,state):
             found_tile = True
             return tile["movable"]
 
-        if found_tile == false:
-            return None
+    if found_tile == False:
+        return None
 
 
 
@@ -408,6 +408,16 @@ if __name__ == "__main__":
 # ------------------------ Test: lookup_movable (tile_name,state) function
 # Tile: 
 
+    name = "chicken coop"
+    state = "blocked"
+    movable = lookup_movable(name, state)
+
+    print("name = ", name)
+    print("state = ", state)
+    print("movable = ", movable)
+    print()
+
+
     name = "Claires house"
     state = "null"
     movable = lookup_movable(name, state)
@@ -418,6 +428,7 @@ if __name__ == "__main__":
     print()
 
 
+ 
 
 # ------------------------ Test: lookup_gold_amt (obj_name, state) function
 # Object: 
