@@ -1085,7 +1085,44 @@
       ]
       }
     ]
-    }  
+    },
+
+
+    {
+      "name": "meat",
+      "type": "farming_prod",
+      "state": "null",
+      "gold_amt": 1,
+      "description": {
+        "long_desc": "a piece of meat",
+        "short_desc": "a piece of meat"
+      },
+      "interactions":  [
+        {
+          "name": "sell",
+  
+          "success_desc": "You sell meat to the merchant here.",
+          "fail_desc": "You cannot sell meat here.",
+          "change_state_to": "delete",
+          "requirement": [
+            {
+              "type": "Character",
+              "name": "merchant 2",
+              "state": "null",
+              "qty": null,
+              "remove_obj": "N"
+            }
+          ],
+          "obtain": [{
+            "type": "Gold",
+            "name": "gold",
+            "state": "null",
+            "qty": 1
+          }
+        ]
+    }]
+  }
+
 
 
 ]

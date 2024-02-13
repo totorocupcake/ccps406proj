@@ -257,7 +257,7 @@
   {
     "name": "Thief",
     "type": "monster",
-    "state": "aggresive",
+    "state": "aggressive",
     "description": {
       "long_desc": "A aggressive, lurking thief with a concealed dagger and a sly grin, you should shoot him",
       "short_desc": "an aggressive, lurking thief"
@@ -306,7 +306,7 @@
   {
     "name": "Wolf",
     "type": "monster",
-    "state": "aggresive",
+    "state": "aggressive",
     "description": {
       "long_desc": "A wild wolf with sharp claws and a feral growl, you should shoot it",
       "short_desc": "a wild wolf"
