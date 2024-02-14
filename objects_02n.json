@@ -305,7 +305,7 @@
           {
             "type": "tile",
             "name": "field 2",
-            "state": "null",
+            "state": "ready CHANGE_STATE_TO not_ready",
             "qty": null,
             "remove_obj": "N"
           },
@@ -384,7 +384,7 @@
           {
             "type": "tile",
             "name": "field 1",
-            "state": "null",
+            "state": "ready CHANGE_STATE_TO not_ready",
             "qty": null,
             "remove_obj": "N"
           },
