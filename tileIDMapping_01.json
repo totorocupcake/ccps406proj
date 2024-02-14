@@ -88,12 +88,12 @@
     {
         "tile_id": "13",
         "name": "field 2", 
-        "state": "null"
+        "state": "ready"
     }, 
     {
         "tile_id": "15",
         "name": "field 1", 
-        "state": "null"
+        "state": "ready"
     }, 
     {
         "tile_id": "17",
@@ -185,5 +185,16 @@
         "tile_id": "20",
         "name": "bee hive", 
         "state": "not_ready"
+    }, 
+    {
+        "tile_id": "22",
+        "name": "field 1", 
+        "state": "not_ready"
+    },
+    {
+        "tile_id": "24",
+        "name": "field 2", 
+        "state": "not_ready"
     }
+
 ]
