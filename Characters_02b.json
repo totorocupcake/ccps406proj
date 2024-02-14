@@ -414,7 +414,25 @@
       "long_desc": "a tamed well-fed fluffy chicken that you have caught",
       "short_desc": "a tamed well-fed chicken"
     },
-    "interactions":  null
+    "interactions":  [
+      {
+        "name": "DEFAULT",
+   
+        "success_desc": "Chicken turns to ready.",
+        "fail_desc": "Chicken turns to ready.",
+        "change_state_to": "tamed_ready",
+        "requirement": [
+          {
+            "type": "turn",
+            "name": "turn",
+            "state": "null",
+            "qty": 5,
+            "remove_obj": "N"
+          }          
+        ],
+        "obtain":  null
+      }
+    ]
   },
 
 
@@ -436,7 +454,7 @@
    
         "success_desc": "You manage to harvest some eggs from the chicken.",
         "fail_desc": "You cannot harvest the chicken right now.",
-        "change_state_to": "tamed_not_hungry",
+        "change_state_to": "tamed_hungry",
         "requirement": null,
         "obtain":  [ {
           "type": "Item",
@@ -563,7 +581,7 @@
    
         "success_desc": "You manage to milk the cow and obtain some milk.",
         "fail_desc": "You cannot milk the cow right now.",
-        "change_state_to": "tamed_not_hungry",
+        "change_state_to": "tamed_hungry",
         "requirement": [
           {
             "type": "object",
