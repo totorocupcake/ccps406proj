@@ -414,7 +414,7 @@
         "requirement": [
           {
             "type": "object",
-            "name": "tool shed key",
+            "name": "farm key",
             "state": "null",
             "qty": 1,
             "remove_obj": "N"
@@ -458,7 +458,7 @@
         "requirement": [
           {
             "type": "object",
-            "name": "tool shed key",
+            "name": "farm key",
             "state": "null",
             "qty": 1,
             "remove_obj": "N"
@@ -550,7 +550,7 @@
         "requirement": [
           {
             "type": "object",
-            "name": "chicken coop key",
+            "name": "farm key",
             "state": "null",
             "qty": 1,
             "remove_obj": "N"
@@ -599,7 +599,7 @@
         "requirement": [
           {
             "type": "object",
-            "name": "chicken coop key",
+            "name": "farm key",
             "state": "null",
             "qty": 1,
             "remove_obj": "N"
@@ -629,7 +629,7 @@
         "requirement": [
           {
             "type": "object",
-            "name": "barn key",
+            "name": "farm key",
             "state": "null",
             "qty": 1,
             "remove_obj": "N"
@@ -675,7 +675,7 @@
         "requirement": [
           {
             "type": "object",
-            "name": "barn key",
+            "name": "farm key",
             "state": "null",
             "qty": 1,
             "remove_obj": "N"
@@ -843,9 +843,16 @@
       {
         "name": "harvest",
         "success_desc": "You harvest the apple tree and gain some apples from the tree.",
-        "fail_desc": "You can't harvest the apple tree right now.",
+        "fail_desc": "You need a ladder and a ripe apple tree to harvest apples.",
         "change_state_to": "growing_notready",
-        "requirement": "null",
+        "requirement": [
+          {
+            "type": "object",
+            "name": "ladder",
+            "state": "null",
+            "qty": 1,
+            "remove_obj": "N"
+          }],
         "obtain": [
           {
             "type": "object",

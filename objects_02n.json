@@ -35,14 +35,7 @@
         "success_desc": "You take a metal watering can with rusty handles.",
         "fail_desc": "There is no watering can to take here.",
         "change_state_to": "delete",
-        "requirement": [
-          {
-            "type": "tile",
-            "name": "water well",
-            "state": "null",
-            "qty": null,
-            "remove_obj": "Y"        }
-        ],
+        "requirement": null,
         "obtain": [ {
           "type": "Item",
           "name": "watering can",
@@ -192,15 +185,7 @@
         "success_desc": "You take a sturdy looking branch that might make a good ax handle.",
         "fail_desc": "There is no branch to take here.",
         "change_state_to": "delete",
-        "requirement": [
-          {
-            "type": "tile",
-            "name": "bee hive",
-            "state": "null",
-            "qty": null,
-            "remove_obj": "N"
-          }
-        ],
+        "requirement": null,
         "obtain": [ {
           "type": "Item",
           "name": "branch",
@@ -233,15 +218,7 @@
         "success_desc": "You take a scythe with a sharp blade that could be used to harvest wheat or grass.",
         "fail_desc": "There is no scythe to take here.",
         "change_state_to": "delete",
-        "requirement": [
-          {
-            "type": "tile",
-            "name": "tool shed",
-            "state": "null",
-            "qty": null,
-            "remove_obj": "N"
-          }
-        ],
+        "requirement": null,
         "obtain": [{
           "type": "Item",
           "name": "scythe",
@@ -272,18 +249,10 @@
       {
         "name": "take",
 
-        "success_desc": "You take an empty tin milk bucket that could be used for  milking a cow.",
+        "success_desc": "You take an empty tin milk bucket that could be used for milking a cow.",
         "fail_desc": "There is no milk bucket to take here.",
         "change_state_to": "delete",
-        "requirement": [
-          {
-            "type": "tile",
-            "name": "tool shed",
-            "state": "null",
-            "qty": null,
-            "remove_obj": "N"
-          }
-        ],
+        "requirement": null,
         "obtain": [{
           "type": "Item",
           "name": "milk bucket",
@@ -460,15 +429,7 @@
         "success_desc": "You take a medical kit that can be used to heal an injured character.",
         "fail_desc": "There is no medkit to take here.",
         "change_state_to": "delete",
-        "requirement": [
-          {
-            "type": "tile",
-            "name": "Kitchen",
-            "state": "null",
-            "qty": null,
-            "remove_obj": "N"
-          }
-        ],
+        "requirement": null,
         "obtain": [{
           "type": "Item",
           "name": "medkit",
@@ -484,122 +445,26 @@
 
 
 
-
-
   {
-    "name": "barn key",
+    "name": "farm key",
     "type": "tool",
     "state": "null",
     "gold_amt": 2,
     "description": {
-      "long_desc": "a small key to unlock and lock the barn",
-      "short_desc": "a barn key"
+      "long_desc": "a small key to unlock and lock the chicken coop, barn and tool shed",
+      "short_desc": "a key for various farm buildings"
     },
     "interactions": [
       {
         "name": "take",
         
-        "success_desc": "You take a small key to unlock and lock the barn.",
-        "fail_desc": "There is no barn key to take here.",
+        "success_desc": "You take a small key to lock and unlock the chicken coop, barn and tool shed.",
+        "fail_desc": "There is no farm key to take here.",
         "change_state_to": "delete",
-        "requirement": [
-          {
-            "type": "tile",
-            "name": "bedroom",
-            "state": "null",
-            "qty": null,
-            "remove_obj": "N"
-          }
-        ],
+        "requirement": null,
         "obtain": [{
           "type": "Item",
-          "name": "barn key",
-          "state": "null",
-          "qty": 1
-        }
-      ]
-      }
-    ]
-    
-  },
-
-
-
-
-
-
-  {
-    "name": "shed key",
-    "type": "tool",
-    "state": "null",
-    "gold_amt": 2,
-    "description": {
-      "long_desc": "a small key to unlock and lock the shed",
-      "short_desc": "a shed key"
-    },
-    "interactions": [
-      {
-        "name": "take",
-
-        "success_desc": "You take a small key to unlock and lock the shed.",
-        "fail_desc": "There is no shed key to take here.",
-        "change_state_to": "delete",
-        "requirement": [
-          {
-            "type": "tile",
-            "name": "bedroom",
-            "state": "null",
-            "qty": null,
-            "remove_obj": "N"
-          }
-        ],
-        "obtain": [{
-          "type": "Item",
-          "name": "shed key",
-          "state": "null",
-          "qty": 1
-        }
-      ]
-      }
-    ]
-    
-  },
-
-
-
-
-
-
-
-
-  {
-    "name": "coop key",
-    "type": "tool",
-    "state": "null",
-    "gold_amt": 2,
-    "description": {
-      "long_desc": "a small key to unlock and lock the chicken coop",
-      "short_desc": "a chicken coop key"
-    },
-    "interactions": [
-      {
-        "name": "take",
-
-        "success_desc": "You take a small key to unlock and lock the chicken coop.",
-        "fail_desc": "There is no chicken coop key to take here.",
-        "change_state_to": "delete",
-        "requirement": [
-          {
-            "type": "tile",
-            "name": "bedroom",
-            "state": "null",
-            "qty": null,
-            "remove_obj": "N"
-          }
-        ],
-        "obtain": [{
-          "type": "Item",
-          "name": "coop key",
+          "name": "farm key",
           "state": "null",
           "qty": 1
         }
@@ -629,15 +494,7 @@
         "success_desc": "You take a sharp piece of flint that might make a good ax blade.",
         "fail_desc": "There is no flint to take here.",
         "change_state_to": "delete",
-        "requirement": [
-          {
-            "type": "tile",
-            "name": "side yard",
-            "state": "null",
-            "qty": null,
-            "remove_obj": "N"
-          }
-        ],
+        "requirement": null,
         "obtain": [{
           "type": "Item",
           "name": "flint",
@@ -670,15 +527,7 @@
         "success_desc": "You take a bee smoker that can be used to harvest honey from a honey bee hive.",
         "fail_desc": "There is no bee smoker to take here.",
         "change_state_to": "delete",
-        "requirement": [
-          {
-            "type": "tile",
-            "name": "side yard",
-            "state": "null",
-            "qty": null,
-            "remove_obj": "N"
-          }
-        ],
+        "requirement": null,
         "obtain": [{
           "type": "Item",
           "name": "bee smoker",
@@ -709,15 +558,7 @@
         "success_desc": "You take a beekeeping suit that can be used to harvest honey from a honey bee hive.",
         "fail_desc": "There is no beekeeping suit to take here.",
         "change_state_to": "delete",
-        "requirement": [
-          {
-            "type": "tile",
-            "name": "garage",
-            "state": "null",
-            "qty": null,
-            "remove_obj": "N"
-          }
-        ],
+        "requirement": null,
         "obtain": [{
           "type": "Item",
           "name": "beekeeping suit",
@@ -749,15 +590,7 @@
         "success_desc": "You see a letter from your landlord saying that you owe %rent_amount% in gold that is due.",
         "fail_desc": "You cannot read the letter right now.",
         "change_state_to": null,
-        "requirement": [          
-          {
-            "type": "tile",
-            "name": "front yard",
-            "state": "null",
-            "qty": null,
-            "remove_obj": "N"
-          }
-        ],
+        "requirement": null,
         "obtain": null
       },
       {
@@ -769,8 +602,8 @@
         "requirement": [
           {
             "type": "tile",
-            "name": "front yard",
-            "state": "null",
+            "name": "mail box",
+            "state": "have_letter CHANGE_STATE_TO empty",
             "qty": null,
             "remove_obj": "N"
           }
@@ -846,15 +679,7 @@
         "success_desc": "You take a ladder from the garage.",
         "fail_desc": "There is no ladder to take here.",
         "change_state_to": "delete",
-        "requirement": [
-          {
-            "type": "tile",
-            "name": "garage",
-            "state": "null",
-            "qty": null,
-            "remove_obj": "N"
-          }
-        ],
+        "requirement": null,
         "obtain": [{
           "type": "Item",
           "name": "ladder",
@@ -974,24 +799,17 @@
 
         "success_desc": "You plant some apple seeds that might grow into an apple tree.",
         "fail_desc": "You cannot plant the apple seeds right now.",
-        "change_state_to": "delete",
+        "change_state_to": null,
         "requirement": [
           {
             "type": "tile",
             "name": "apple tree",
-            "state": "null",
+            "state": "empty CHANGE_STATE_TO growing_notready",
             "qty": null,
             "remove_obj": "N"
           }
         ],
-        "obtain": [
-          {
-            "type": "tile",
-            "name": "apple tree",
-            "state": "growing_notready",
-            "qty": 1
-          }
-        ]
+        "obtain": null
       }
     ]
     
@@ -1092,7 +910,80 @@
       ]
       }
     ]
-    }  
+    },
+
+
+    {
+      "name": "meat",
+      "type": "farming_prod",
+      "state": "null",
+      "gold_amt": 1,
+      "description": {
+        "long_desc": "a piece of meat",
+        "short_desc": "a piece of meat"
+      },
+      "interactions":  [
+        {
+          "name": "sell",
+  
+          "success_desc": "You sell meat to the merchant here.",
+          "fail_desc": "You cannot sell meat here.",
+          "change_state_to": "delete",
+          "requirement": [
+            {
+              "type": "Character",
+              "name": "merchant 2",
+              "state": "null",
+              "qty": null,
+              "remove_obj": "N"
+            }
+          ],
+          "obtain": [{
+            "type": "Gold",
+            "name": "gold",
+            "state": "null",
+            "qty": 1
+          }
+        ]
+    }]
+  },
+  {
+    "name": "house key",
+    "type": "tool",
+    "state": "null",
+    "gold_amt": 2,
+    "description": {
+      "long_desc": "a small key to unlock and lock the house",
+      "short_desc": "a house key"
+    },
+    "interactions": [
+      {
+        "name": "take",
+        
+        "success_desc": "You take a small key to unlock and lock the house.",
+        "fail_desc": "There is no house key to take here.",
+        "change_state_to": "delete",
+        "requirement": [
+          {
+            "type": "tile",
+            "name": "bedroom",
+            "state": "null",
+            "qty": null,
+            "remove_obj": "N"
+          }
+        ],
+        "obtain": [{
+          "type": "Item",
+          "name": "house key",
+          "state": "null",
+          "qty": 1
+        }
+      ]
+      }
+    ]
+    
+  }
+  
 
 
 ]
