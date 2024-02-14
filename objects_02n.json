@@ -102,12 +102,12 @@
 
         "success_desc": "You harvest a pot of honey that can be sold at the merchant for gold.",
         "fail_desc": "You cannot harvest the honey right now.",
-        "change_state_to": "full",
+        "change_state_to": "null",
         "requirement": [
           {
             "type": "tile",
             "name": "bee hive",
-            "state": "null",
+            "state": "ready CHANGE_STATE_TO not_ready",
             "qty": null,
             "remove_obj": "N"
           },
