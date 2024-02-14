@@ -468,7 +468,15 @@
         "success_desc": "You manage to catch the cow.",
         "fail_desc": "You cannot catch the cow right now.",
         "change_state_to": "tamed_hungry",
-        "requirement": null,
+        "requirement": [
+          {
+            "type": "object",
+            "name": "apples",
+            "state": "null",
+            "qty": 1,
+            "remove_obj": "Y"
+          }          
+        ],
         "obtain":  null
       }
     ]
@@ -515,7 +523,25 @@
       "long_desc": "a tamed well-fed cow that you have caught",
       "short_desc": "a tamed well-fed cow"
     },
-    "interactions":  null
+    "interactions":  [
+      {
+        "name": "DEFAULT",
+   
+        "success_desc": "You manage to feed the cow some grass.",
+        "fail_desc": "You cannot feed the cow right now.",
+        "change_state_to": "tamed_ready",
+        "requirement": [
+          {
+            "type": "turn",
+            "name": "turn",
+            "state": "null",
+            "qty": 5,
+            "remove_obj": "N"
+          }          
+        ],
+        "obtain":  null
+      }
+    ]
   },
 
 

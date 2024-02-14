@@ -360,7 +360,7 @@
   {
     "name": "bee hive",
     "type": "non-building",
-    "state": "null",
+    "state": "ready",
     "movable":"Y",
     "description": {
       "long_desc": "Nestled within the forest clearing is a carefully crafted bee hive. Although the bees appear to be diligently at work, the surroundings offer no sign of beekeeping tools.",
@@ -368,6 +368,36 @@
     },
     "interactions": null
   },
+
+  {
+    "name": "bee hive",
+    "type": "non-building",
+    "state": "not_ready",
+    "movable":"Y",
+    "description": {
+      "long_desc": "Nestled within the forest clearing is a carefully crafted bee hive. Although the bees appear to be diligently at work, the surroundings offer no sign of beekeeping tools.",
+      "short_desc": "You stand in front of a bee hive filled with honey bees."
+    },
+    "interactions": [
+      {
+        "name": "DEFAULT",
+        "success_desc": "The door is already open.",
+        "fail_desc": "The door is already open.",
+        "change_state_to": "ready",
+        "requirement": [
+          {
+            "type": "turn",
+            "name": "turn",
+            "state": "null",
+            "qty": 5,
+            "remove_obj": "N"
+          }
+
+        ],
+        "obtain": null
+      }]
+  },
+
 
   {
     "name": "field 1",

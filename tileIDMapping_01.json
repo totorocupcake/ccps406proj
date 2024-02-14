@@ -33,7 +33,7 @@
     {
         "tile_id": "06",
         "name": "bee hive", 
-        "state": "null"
+        "state": "ready"
     }, 
     {
         "tile_id": "07",
@@ -180,5 +180,10 @@
         "tile_id": "1D",
         "name": "grasslands", 
         "state": "null"
+    }, 
+    {
+        "tile_id": "20",
+        "name": "bee hive", 
+        "state": "not_ready"
     }
 ]
