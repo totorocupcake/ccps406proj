@@ -116,11 +116,6 @@
         "state": "closed"
     }, 
     {
-        "tile_id": "1C",
-        "name": "chicken coop", 
-        "state": "blocked"
-    }, 
-    {
         "tile_id": "1E",
         "name": "barn", 
         "state": "open"
@@ -154,11 +149,6 @@
         "tile_id": "0F",
         "name": "trees", 
         "state": "blocked"
-    }, 
-    {
-        "tile_id": "12",
-        "name": "trees", 
-        "state": "unblocked"
     }
     , 
     {

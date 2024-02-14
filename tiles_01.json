@@ -571,7 +571,7 @@
         "name": "chop",
         "success_desc": "With each swing, you hear the satisfying thud as the axe bites into the bark of the trees. As the they fall, a chicken coop is revealed. It's a modest structure with a small peaked roof, topped with a weathervane.",
         "fail_desc": "You need an axe to cut down these trees!",
-        "change_state_to": "unblocked",
+        "change_state_to": "CHANGE_TILE_TO 1B",
         "requirement": [
           {
             "type": "object",
@@ -581,44 +581,10 @@
             "remove_obj": "N"
           }
         ],
-        "obtain": [
-          {
-            "type": "tile",
-            "name": "chicken coop",
-            "state": "open",
-            "qty": 1
-          }
-        ]
+        "obtain": "null"
       }
     ]
   },
-
-  {
-    "name": "trees",
-    "type": "non-building",
-    "state": "unblocked",
-    "movable":"Y",
-    "description": {
-      "long_desc": "The trees are chopped before you, in front of you to the north lies a chicken coop.",
-      "short_desc": "You stand in front of a section of chopped trees."
-    },
-    "interactions": null
-  },
-
-
-
-  {
-    "name": "chicken coop",
-    "type": "building",
-    "state": "blocked",
-    "movable":"N",
-    "description": {
-      "long_desc": "The trees in front of you are too thick to travel through.",
-      "short_desc": "The trees in front of you are too thick to travel through."
-    },
-    "interactions": null
-  },
-
   {
     "name": "chicken coop",
     "type": "building",
