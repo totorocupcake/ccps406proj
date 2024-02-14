@@ -911,7 +911,7 @@
             "type": "object",
             "name": "apples",
             "state": "null",
-            "qty": 6
+            "qty": 1
           }
         ]
       }
