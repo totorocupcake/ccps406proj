@@ -6,8 +6,8 @@ CHARACTERS_JSON_FILE = "Characters_02b.json"
 OBJECTS_JSON_FILE = "objects_02n.json"
 TILES_JSON_FILE = "tiles_01.json"
 
-OBJECTS_STATUS_JSON_FILE = "object_status_template.json"
-CHARACTER_STATUS_JSON_FILE = "character_status_template.json"
+OBJECTS_STATUS_JSON_FILE = "object_status.json"
+CHARACTER_STATUS_JSON_FILE = "character_status.json"
 
 TILE_ID_MAPPING_JSON_FILE = "tileIDMapping_01.json"
 
