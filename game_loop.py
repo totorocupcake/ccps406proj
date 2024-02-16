@@ -1,13 +1,16 @@
 
+player_command = None
 
-def console_output():
-    pass
+while world_state.game_won == 'N' or player_command != "exit":
     
-def command_input():
-    pass
+    def console_output():
+        pass
+        
+    def command_input():
+        pass
 
-def command_processor():
-    pass
+    def command_processor():
+        pass
 
-def state_update():
-    pass
+    def state_update():
+        pass
