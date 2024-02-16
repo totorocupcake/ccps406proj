@@ -15,10 +15,16 @@ if __name__ == "__main__":
     """
     Game initialization
     """
-    game_initialization(object_status, character_status,world_map_status,tile_id_mapping)
-    # This should return arrays of the created instantiated classes
+    world_state = game_initialization.intialize(object_status, character_status,world_map_status,tile_id_mapping)
+    # This should return one object which is an instance of the world_state class.
+    # Within this world_state class, it contains all the tiles/characters and objects within their inventory
+    # which we will manipulate and lookup within game loop.
     
-    
+    """
+    Game Loop
+    """
     #game_loop()
+    
+    
     #exit_game_loop()
     #utility()
