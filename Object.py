@@ -4,7 +4,8 @@ class Object(Entity.Entity):
 
     # CLASS CONSTRUCTOR
     def __init__(self): 
-        # self.name = ""
+        super().__init__()
+       
         self.inventory = []
         self.__general_type = "Object"
 
@@ -15,9 +16,6 @@ class Object(Entity.Entity):
     def get_inventory(self):
         # returns a list of 'object' objects
         return self.inventory
-
-    # def get_name(self):
-    #     return self.name
 
     # Sub-class specific methods:
     def update_qty(self, adjustment): 

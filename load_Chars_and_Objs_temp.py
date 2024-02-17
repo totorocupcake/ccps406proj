@@ -39,7 +39,6 @@ def load_objects_list_from_file():
     obj.update_coords((obj_elem["co_ord_x"], obj_elem["co_ord_y"]))
     
     # need to add gold_amt, look-up from 'objects_02n.json' via 'text_file_processor'
-    # print("gold amt = ", text_file_processor.lookup_gold_amt(obj.get_name(), obj.get_state()))
     obj.set_gold_amt = text_file_processor.lookup_gold_amt(obj.get_name(), obj.get_state())
 
 
@@ -62,6 +61,9 @@ def load_objects_list_from_file():
 
   # return objects list
   return objects
+
+
+
 
 
 
@@ -92,12 +94,6 @@ def load_characters_list_from_file():
     charac.set_type(char_elem["type"])
     charac.set_state(char_elem["state"])
 
-
-    # *********
-    # Need to add all other attributes of the character class
-    #   from character_status_data (JSON data):
-    # *********
-  
     charac.update_coords((char_elem["co_ord_x"] , char_elem["co_ord_y"]))
 
     # update_inventory, if its not empty
@@ -106,7 +102,9 @@ def load_characters_list_from_file():
       for inv_elem in char_elem["inventory"]:
 
         inv_obj = Object.Object()
-        inv_obj.set_name = inv_elem["name"]
+
+        inv_obj.set_name(inv_elem["name"])
+
         inv_obj.update_qty(inv_elem["quantity"])
         inv_obj.set_state(inv_elem["state"])
 
@@ -123,28 +121,31 @@ def load_characters_list_from_file():
       for visit_elem in char_elem["visited"]:
         charac.update_visited((visit_elem["type"], visit_elem["name"], visit_elem["state"]))
 
-  #  {
-  #       "type": "npc",      *
-  #       "name": "landlord", *
-  #       "co_ord_x": 2,      *
-  #       "co_ord_y": 15,     *  
-  #       "state": "unhappy", *
-  #       "inventory":null,   *
-  #       "current_hp":10,    *
-  #       "max_hp":10,        *
-  #       "current_gold":0,   *
-  #       "visited":null,     *
-  #       "turn_counter":[0, "null"] - To-do <----------
-  #   }
-
-    print("DEBUG: turn_counter = ", char_elem["turn_counter"])
-
+    # set/update the turn counter:
+    charac.update_turn_counter( char_elem["turn_counter"][0], char_elem["turn_counter"][1] )
 
     # append the character object to the 'characters' list of objects
     characters.append(charac)
 
   # return characters list
   return characters
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -184,12 +185,6 @@ if __name__ == "__main__":
   print()
 
 
-      #  "quantity": 1,
-      #   "co_ord_x": 8,
-      #   "co_ord_y": 7,
-      #   "inventory":null
-
-
   # iterate through list of 'object' objects, print a few attributes of each
   for obj_elem in objects_list:
     str_obj = obj_elem.get_name() + "," + obj_elem.get_general_type() + "," + \
@@ -226,8 +221,8 @@ if __name__ == "__main__":
   # load a list of character objects
   characs = load_characters_list_from_file()
 
-  print("List of 'character' Objects:")
-  print("---------------------------")
+  print("List of 'character' Objects (with their inventory items, if any):")
+  print("---------------------------------------------------------------")
   print()
 
   # iterate through list of character objects, print a few attributes of each
@@ -243,12 +238,11 @@ if __name__ == "__main__":
       # print("len(inv_list) = ", len(inv_list))
       for inv_item in inv_list:
         
-        # print("inventory item name = ", inv_item.get_name())
+        print("inventory item name = ", inv_item.get_name())
         print("inventory item state = ", inv_item.get_state())
         print("inventory item quantity = ", inv_item.get_quantity())
 
     print()
-    # print(char_elem.get_name(), ",", char_elem.get_general_type(), ",", char_elem.get_type(), ",", char_elem.get_state())
 
   print()
 
