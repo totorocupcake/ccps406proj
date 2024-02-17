@@ -88,5 +88,20 @@ class Character(Turn_Based_Entity.Turn_Based_Entity):
 
 
 
+
+
+
+
+
+
+
+
+
+
+
 if __name__ == "__main__": 
+
+    charac = Character()
+    charac.update_turn_counter(1, "null")
+
     pass
