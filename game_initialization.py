@@ -1,20 +1,13 @@
-class entity:
-    # template for superclass of all other classes
-    
-class turn_count:
-    # template for superclass of tile and characters
-    # turn counting specific capabilities
+import Character
+import Tile
+import Object
+import World_State
 
-class tile:  
-    # template for tile
-    
-class object:
-    # template for objects (items in the game)
-class character:
-    # template for characters (includes npcs, monsters, active player)
-    
-class world_state:
-    # template of world_state
+# not sure if we need these, but we can import anyway:
+import text_file_processor
+import Entity
+import Turn_Based_Entity
+
 
 def initialize(object_status, character_status,world_map_status,tile_id_mapping):
     # Needs to return 1 world state object instance
