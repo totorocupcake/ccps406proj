@@ -1,4 +1,3 @@
-import json
 import text_file_processor
 import game_initialization
 import game_loop
@@ -26,7 +25,7 @@ if __name__ == "__main__":
     """
     Game Loop
     """
-    #game_loop()
+    world_state=game_loop(world_state)
     
     
     #exit_game_loop()
