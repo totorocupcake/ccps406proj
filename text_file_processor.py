@@ -115,8 +115,8 @@ def lookup_desc (long_short , type, name, state):
                 else:
                     return tile["description"]["short_desc"]
 
-            if found_tile == False:
-                return None
+        if found_tile == False:
+            return None
 
 
 
@@ -285,7 +285,7 @@ def lookup_movable (tile_name,state):
 
 
 
-def lookup_gold_amt (obj_name, state):
+def lookup_gold_amt (name, state):
     # Given an object name and state, return the matching gold_amt.
     # Return None if not match
 
