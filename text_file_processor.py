@@ -16,6 +16,24 @@ WORLD_MAP_STATUS_ROWS = 25
 WORLD_MAP_STATUS_COLUMNS = 14
 
 
+
+
+def load_tile_JSON_data_file():
+    # returns a JSON array of tile data 
+    # from the JSON tiles_01 file
+    
+    with open(TILES_JSON_FILE, 'r') as file:
+        parsed_tile_data = json.load(file)
+
+    return parsed_tile_data
+
+
+    pass
+
+
+
+
+
 def load_object_status_file():
     # returns a JSON array of object-status data 
     # from the JSON objects_status file
@@ -26,6 +44,19 @@ def load_object_status_file():
     return parsed_object_status_data
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 def load_character_status_file():
     # returns a JSON array of character-status data 
     # from the JSON character_status file
@@ -34,7 +65,16 @@ def load_character_status_file():
         parsed_character_status_data = json.load(file)
 
     return parsed_character_status_data
-    
+
+
+
+
+
+
+
+
+
+
 
 def load_tileIDMapping_file():
     # returns a JSON array of tile-id-mappings data
@@ -44,6 +84,17 @@ def load_tileIDMapping_file():
         tile_mapping_id_data = json.load(file)
 
     return tile_mapping_id_data
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -121,8 +172,23 @@ def lookup_desc (long_short , type, name, state):
 
 
 
-def lookup_interaction (type, name, state, interaction_key): 
-    pass  # Placeholder indicating that the function's logic will be implemented later
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 def lookup_interaction_key_only (interaction_key):
@@ -263,6 +329,19 @@ def lookup_interaction_key_only (interaction_key):
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 def lookup_movable (tile_name,state):
     # Given a tile name and state, return the matching movable flag.
     # Return None if not match
@@ -279,6 +358,12 @@ def lookup_movable (tile_name,state):
 
     if found_tile == False:
         return None
+
+
+
+
+
+
 
 
 
@@ -307,6 +392,16 @@ def lookup_gold_amt (name, state):
                 
         if found_object == False:
             return None
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -362,7 +457,24 @@ def load_world_map_status_csv():
 
 
 
+
+
+
+
 if __name__ == "__main__":
+
+
+# ------------------------ Test: load_tile_JSON_data_file() function
+
+# load_tile_JSON_data_file
+    tile_data = load_tile_JSON_data_file()
+
+    print()
+    print("tile_data[0]: ")
+    print(tile_data[0])
+
+    print()
+    print()
 
 
 # ------------------------ Test: load_tileIDMapping_file() function
