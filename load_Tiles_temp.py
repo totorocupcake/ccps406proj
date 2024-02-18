@@ -2,13 +2,33 @@ import Object
 import Tile
 import text_file_processor
 
+import load_Chars_and_Objs_temp as load_Chars_and_Objs
+
 WORLD_MAP_NUM_ROWS = text_file_processor.WORLD_MAP_STATUS_ROWS
 WORLD_MAP_NUM_COLUMNS = text_file_processor.WORLD_MAP_STATUS_COLUMNS
 
 
 
+def get_object_list_by_tile_location(x_coord, y_coord):
 
+  obj_list = load_Chars_and_Objs.load_objects_list_from_file()
 
+  found = False
+
+  found_obj_list = []
+
+  for obj_elem in obj_list:
+    obj_x, obj_y = obj_elem.get_coords()
+    if (obj_x == x_coord) and (obj_y == y_coord):
+      found = True
+      found_obj_list.append(obj_elem)
+
+  if found:
+    return found_obj_list
+  else:
+    return None
+
+  
 
 
 def get_tile_by_name_and_state(name, state):
@@ -105,10 +125,10 @@ def load_tile_2D_array_from_file():
   world_map_status_array = text_file_processor.load_world_map_status_csv()
 
   # get the JSON array of tile_id_mappings 
-  tileIDMapping_data = text_file_processor.load_tileIDMapping_file()
+  # tileIDMapping_data = text_file_processor.load_tileIDMapping_file()
 
   # get the JSON array of tiles
-  tile_data = text_file_processor.load_tile_JSON_data_file()
+  # tile_data = text_file_processor.load_tile_JSON_data_file()
 
   num_rows = WORLD_MAP_NUM_ROWS
   num_cols = WORLD_MAP_NUM_COLUMNS
@@ -120,7 +140,16 @@ def load_tile_2D_array_from_file():
     for j in range(num_cols):
       tile_id = world_map_status_array[i][j]
       tl = lookup_tile_Mapping_by_ID(tile_id)
-      
+
+      # update Tile inventory:
+
+      # obj = get_object_by_tile_location(8, 7)
+      obj_list = get_object_list_by_tile_location(i, j)
+
+      # add objects to tile inventory if found:
+      if obj_list is not None:
+        tl.update_inventory("add", obj_list)
+
       inner_array.append(tl)
 
     tile_2D_list.append(inner_array)
@@ -144,8 +173,6 @@ def load_tile_2D_array_from_file():
 
 
 
-# if __name__ == "__main__":
-
 if __name__ == "__main__":
   
 # ------------------------ Test: load_tile_2D_array_from_file() function
@@ -154,7 +181,8 @@ if __name__ == "__main__":
   print()
 
   # print out some sample data:
-  print("Some sample tiles: ")
+  print("Some sample tiles (with inventory if any): ")
+  print("-----------------------------------------")
   print()
 
   print("tile_2D_list[0][0] = ", tile_2D_list[0][0].get_name(), ",", \
@@ -165,12 +193,52 @@ if __name__ == "__main__":
   print("tile_2D_list[3][6] = ", tile_2D_list[3][6].get_name(), ",", \
         tile_2D_list[3][6].get_type(), ",", tile_2D_list[3][6].get_state(), ",", \
           tile_2D_list[3][6].get_movable() )
+  
   print()
-
   print("tile_2D_list[3][11] = ", tile_2D_list[3][11].get_name(), ",", \
         tile_2D_list[3][11].get_type(), ",", tile_2D_list[3][11].get_state(), ",", \
           tile_2D_list[3][11].get_movable() )
+  
   print()
+  print("tile_2D_list[8][7] = ", tile_2D_list[8][7].get_name(), ",", \
+        tile_2D_list[8][7].get_type(), ",", tile_2D_list[8][7].get_state(), ",", \
+          tile_2D_list[8][7].get_movable() )
+  print()
+
+  inv_list = tile_2D_list[8][7].get_inventory()
+
+  if inv_list is not None:
+    for inv_elem in inv_list:
+      print("Item: ", inv_elem.get_name())
+  
+  print()
+
+
+
+
+
+
+# ------------------------ Test: get_object_by_tile_location() function
+
+
+  obj_list = get_object_list_by_tile_location(8, 7)
+
+  # print()
+  # print("obj_list[0] at (8, 7) = ", obj_list[0].get_name())
+
+  # obj_list = get_object_list_by_tile_location(0, 0)
+
+  # print()
+  # if obj_list is not None:
+  #   print("obj at (0, 0) = ", obj_list[0].get_name())
+  # else:
+  #   print("obj at (0, 0) = None")
+  # print()
+      #  "co_ord_x": 8,
+      #   "co_ord_y": 7,
+
+
+# get_object_by_tile_location
 
 
 # ------------------------ Test: lookup_tile_Mapping_by_ID() function

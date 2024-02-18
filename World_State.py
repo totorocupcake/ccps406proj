@@ -17,7 +17,7 @@ class World_State:
     # Private properties (with default starting values)
     self.__turn_number = 1  
     self.__game_won = "N"
-    self.__rent_amount = 20
+    self.__rent_amount = 10
     self.__rent_due_date = 25
     self.__characters = []  # array/list of character objects
 
