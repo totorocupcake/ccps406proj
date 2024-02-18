@@ -1,11 +1,5 @@
 [ 
     {
-        "tile_id": "00",
-        "name": "blocked", 
-        "state": "null"
-    }, 
-
-    {
         "tile_id": "01",
         "name": "town square", 
         "state": "null"
