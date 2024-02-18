@@ -1,9 +1,11 @@
-import charClass
+import Character
+import text_file_processor
+
 
 # constants: (make sure they match values in load_status_data.py)
 
-WORLD_MAP_NUM_ROWS = 22
-WORLD_MAP_NUM_COLUMNS = 14
+WORLD_MAP_NUM_ROWS = text_file_processor.WORLD_MAP_STATUS_ROWS
+WORLD_MAP_NUM_COLUMNS = text_file_processor.WORLD_MAP_STATUS_COLUMNS
 
 
 class World_State:
