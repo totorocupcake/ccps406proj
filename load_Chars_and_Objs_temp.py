@@ -70,6 +70,15 @@ def load_objects_list_from_file():
 
 
 
+
+
+
+
+
+
+
+
+
 def load_characters_list_from_file():
   # returns a list of character objects that have been populated with 
   # data from the character status JSON file via text_file_processor.py
@@ -228,7 +237,7 @@ if __name__ == "__main__":
   # iterate through list of character objects, print a few attributes of each
   for char_elem in characs:
     char_str = char_elem.get_name() + "," + char_elem.get_general_type() + "," + \
-      char_elem.get_type() + "," + char_elem.get_state()
+      char_elem.get_type() + "," + char_elem.get_state() + str(char_elem.get_coords())
     print(char_str)
     print()
 
