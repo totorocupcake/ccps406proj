@@ -5,7 +5,7 @@ class Character(Turn_Based_Entity.Turn_Based_Entity):
     # CLASS CONSTRUCTOR
     def __init__(self): 
         self.inventory = []
-        self.__general_type = "Character"
+        self._general_type = "Character"
 
         self.__current_hp = 0
         self.__max_hp = 0
