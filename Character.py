@@ -39,13 +39,7 @@ class Character(Turn_Based_Entity.Turn_Based_Entity):
         return self.__visited
     
     def get_active_player (self): 
-        return self.__active_player
-    
-    def get_turn_counter (self): 
-        return self.__turn_counter
-    
-    def get_turn_state (self): 
-        return self.__turn_state        
+        return self.__active_player    
 
 
 
@@ -76,6 +70,12 @@ class Character(Turn_Based_Entity.Turn_Based_Entity):
             self.__active_player = 'Y'
         else: 
             self.__active_player = 'N'
+    
+    def turn_count_reached(self):
+        # sets new state based on turn state, then resets the turn counter
+        
+        self.set_state(self.get_turn_state())
+        self.update_turn_counter (0, "")
             
 
     """
@@ -97,6 +97,18 @@ class Character(Turn_Based_Entity.Turn_Based_Entity):
 if __name__ == "__main__": 
 
     charac = Character()
-    charac.update_turn_counter(1, "null")
+    charac.set_name("cow")
+    charac.set_state("tamed_not_hungry")
+    charac.update_turn_counter(1, "tamed_ready")
 
+    print("Name: ", charac.name)
+    print("State: ", charac.get_state())
+    print("Turn count: ", charac.get_turn_count())
+    print("Turn State: ", charac.get_turn_state())
+    
+    charac.decrement_turn_count()
+    print("Name: ", charac.name)
+    print("State: ", charac.get_state())
+    print("Turn count: ", charac.get_turn_count())
+    print("Turn State: ", charac.get_turn_state())
     pass

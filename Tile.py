@@ -80,7 +80,12 @@ class Tile(Turn_Based_Entity.Turn_Based_Entity):
         # update movable flag based on text parser lookup functions (from tile in-game text files)
         self.set_movable(text_file_processor.lookup_movable(self.get_name(),self.get_state()))
 
-
+  def turn_count_reached(self):
+    # updates tile based on new state, then resets turn counter to no turn count
+    self.update_tile_by_state(self.get_turn_state())
+    self.update_turn_counter (0, "")
+    
+    
 
     # *********
     # Need to add all other miscellaneous methods of the 'Tile' class:
@@ -203,4 +208,24 @@ if __name__ == "__main__":
   print("tileIDMapping_data[0]: ")
   print(tileIDMapping_data[0])
 
-  print()  
+  # test turn_count_reached
+  print()
+  tl.update_tile_by_id("24")   
+  tl.update_turn_counter(1,"ready")
+  print("Tile info:")
+  print("tile id = ", tl.get_tile_id())
+  print("name = ", tl.get_name())
+  print("type = ", tl.get_type())
+  print("state = ", tl.get_state())
+  print("coords = ", tl.get_coords())
+  print("turn count = ", tl.get_turn_count())
+  print("turn state = ", tl.get_turn_state())
+  tl.decrement_turn_count()
+  print("Tile info:")
+  print("tile id = ", tl.get_tile_id())
+  print("name = ", tl.get_name())
+  print("type = ", tl.get_type())
+  print("state = ", tl.get_state())
+  print("coords = ", tl.get_coords())
+  print("turn count = ", tl.get_turn_count())
+  print("turn state = ", tl.get_turn_state())
