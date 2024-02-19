@@ -83,6 +83,12 @@ class World_State:
   def get_rent_due_date(self):
     return self.__rent_due_date
   
+  def get_characters(self):
+    return self.__characters
+  
+  def get_tiles(self):
+    return self.__tiles
+  
 
 if __name__ == "__main__":
 
