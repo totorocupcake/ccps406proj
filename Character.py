@@ -60,9 +60,6 @@ class Character(Turn_Based_Entity.Turn_Based_Entity):
     
     def set_current_gold (self, new_current_gold): 
         self.__current_gold = new_current_gold
-    
-
-
 
     def set_visited (self, new_visited): 
         self.__visited = new_visited
@@ -80,19 +77,16 @@ class Character(Turn_Based_Entity.Turn_Based_Entity):
         else: 
             self.__active_player = 'f'
 
+    """
+    Handled in turn_based_entity superclass, commenting out for now
+   
     def set_turn_counter (self): 
         self.__turn_counter = self.__turn_counter + 1
     
     def set_turn_state (self, new_turn_state): 
         self.__turn_state = new_turn_state
 
-
-
-
-
-
-
-
+    """
 
 
 
