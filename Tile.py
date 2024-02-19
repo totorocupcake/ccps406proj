@@ -56,9 +56,7 @@ class Tile(Turn_Based_Entity.Turn_Based_Entity):
         # set new state and name based on tile id mapping file
         self.set_state(tile_elem["state"])
         self.set_name(tile_elem["name"])
-        print(self.get_state())
-        print(self.get_name())
-        
+  
         # update movable flag and type fields based on text parser lookup functions (from tile in-game text files)
         self.set_movable(text_file_processor.lookup_movable(self.get_name(),self.get_state()))
         self.set_type(text_file_processor.lookup_tile_type(self.get_name(),self.get_state()))
