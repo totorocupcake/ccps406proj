@@ -767,7 +767,7 @@
   {
     "name": "animal products shop",
     "type": "building",
-    "state": "open",
+    "state": "null",
     "movable":"Y",
     "description": {
       "long_desc": "You step into a shop with walls lined with sleves laden with jars of honey, baskets of fresh eggs, and wheels of cheese.",
