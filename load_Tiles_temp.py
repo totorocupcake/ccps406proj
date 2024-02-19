@@ -144,7 +144,11 @@ def load_tile_2D_array_from_file():
       # update Tile inventory:
 
       # obj = get_object_by_tile_location(8, 7)
-      obj_list = get_object_list_by_tile_location(i, j)
+      
+      # obj_list = get_object_list_by_tile_location(i, j)
+      obj_list = get_object_list_by_tile_location(j, i)
+
+
 
       # add objects to tile inventory if found:
       if obj_list is not None:
@@ -185,10 +189,10 @@ if __name__ == "__main__":
   print("-----------------------------------------")
   print()
 
-  print("tile_2D_list[0][0] = ", tile_2D_list[0][0].get_name(), ",", \
-        tile_2D_list[0][0].get_type(), ",", tile_2D_list[0][0].get_state(), ",", \
-          tile_2D_list[0][0].get_movable() )
-  print()
+  # print("tile_2D_list[0][0] = ", tile_2D_list[0][0].get_name(), ",", \
+  #       tile_2D_list[0][0].get_type(), ",", tile_2D_list[0][0].get_state(), ",", \
+  #         tile_2D_list[0][0].get_movable() )
+  # print()
 
   print("tile_2D_list[3][6] = ", tile_2D_list[3][6].get_name(), ",", \
         tile_2D_list[3][6].get_type(), ",", tile_2D_list[3][6].get_state(), ",", \
@@ -199,13 +203,18 @@ if __name__ == "__main__":
         tile_2D_list[3][11].get_type(), ",", tile_2D_list[3][11].get_state(), ",", \
           tile_2D_list[3][11].get_movable() )
   
+ 
   print()
-  print("tile_2D_list[8][7] = ", tile_2D_list[8][7].get_name(), ",", \
-        tile_2D_list[8][7].get_type(), ",", tile_2D_list[8][7].get_state(), ",", \
-          tile_2D_list[8][7].get_movable() )
-  print()
+  print("tile_2D_list[0][0] = ", tile_2D_list[0][0].get_name(), ",", \
+        tile_2D_list[0][0].get_type(), ",", tile_2D_list[0][0].get_state(), ",", \
+          tile_2D_list[0][0].get_movable() )
 
-  inv_list = tile_2D_list[8][7].get_inventory()
+  print()
+  print("tile_2D_list[7][8] = ", tile_2D_list[7][8].get_name(), ",", \
+        tile_2D_list[7][8].get_type(), ",", tile_2D_list[7][8].get_state(), ",", \
+          tile_2D_list[7][8].get_movable() )
+
+  inv_list = tile_2D_list[7][8].get_inventory()
 
   if inv_list is not None:
     for inv_elem in inv_list:
@@ -213,7 +222,34 @@ if __name__ == "__main__":
   
   print()
 
+  print("More sample tiles (with inventory if any): ")
+  print("-----------------------------------------")
+  print()
 
+  row_num = 0
+  col_num = 0
+
+  for row in tile_2D_list:
+    col_num = 0
+    for element in row:
+      # grasslands
+      if tile_2D_list[row_num][col_num] is not None:
+        if tile_2D_list[row_num][col_num].get_name() != "grasslands":
+          print(tile_2D_list[row_num][col_num].get_name())
+      else:
+        print("tile_2D_list[", row_num, "][", col_num, "] is None")
+      col_num += 1
+    row_num += 1
+
+
+# # Iterate over each row of the array
+# for row in two_dim_array:
+#     # Iterate over each element in the row
+#     for element in row:
+#         # Print the element followed by a tab (or any other separator)
+#         print(element, end="\t")
+#     # Print a newline to move to the next row
+#     print()
 
 
 

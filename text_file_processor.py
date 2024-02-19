@@ -12,7 +12,8 @@ CHARACTER_STATUS_JSON_FILE = "data_files/character_status.json"
 TILE_ID_MAPPING_JSON_FILE = "data_files/tileIDMapping_01.json"
 
 WORLD_MAP_STATUS_CSV_FILE = "data_files/world_map_status_00.csv"
-WORLD_MAP_STATUS_ROWS = 25
+# WORLD_MAP_STATUS_ROWS = 25
+WORLD_MAP_STATUS_ROWS = 22
 WORLD_MAP_STATUS_COLUMNS = 14
 
 
