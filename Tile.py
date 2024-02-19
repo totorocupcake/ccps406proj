@@ -40,9 +40,9 @@ class Tile(Turn_Based_Entity.Turn_Based_Entity):
   def set_movable(self, flag):
     self.__movable = flag
 
-  def update_tile(self, new_tile_id):
+  def update_tile_by_id(self, new_tile_id):
     # update tile_id to new tile_id. 
-    # other tile's fields (name, type, state) also needs to be synced to new tile_id 
+    # other tile's fields (name, type, state, movable) will be synced to new tile_id provided 
     
     self.__tile_id = new_tile_id
     
@@ -62,7 +62,24 @@ class Tile(Turn_Based_Entity.Turn_Based_Entity):
         self.set_type(text_file_processor.lookup_tile_type(self.get_name(),self.get_state()))
 
     
+  def update_tile_by_state(self, new_state):
+    # update tile to new state and also update tile_id and movable fields to account for new state
+    
+    self.set_state(new_state)
+    
+    # update rest of tile fields to account for new tile_id
+    tileIDMapping_data = text_file_processor.load_tileIDMapping_file()
+
+    for tile_elem in tileIDMapping_data:
+
+    # if match tile name and state within tile id mapping file
+      if tile_elem["name"] == self.name and tile_elem["state"] == self.get_state():
+        # set new tile_id based on tile id mapping file
+        self.__tile_id = tile_elem["tile_id"]
         
+        # update movable flag based on text parser lookup functions (from tile in-game text files)
+        self.set_movable(text_file_processor.lookup_movable(self.get_name(),self.get_state()))
+
 
 
     # *********
