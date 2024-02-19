@@ -176,9 +176,38 @@ def lookup_desc (long_short , type, name, state):
 
 
 
+def lookup_interaction (type, name, state, interaction_key):
+    # Given the name of a noun and its state, and its interaction word (verb) return it's interaction data
+    # Return None if not match
+
+    if type == "Object":
+        with open(OBJECTS_JSON_FILE, 'r') as file:
+            parsed_data = json.load(file)
+    elif type == "Character":
+        with open(CHARACTERS_JSON_FILE, 'r') as file:
+            parsed_data = json.load(file)
+    else:
+        with open(TILES_JSON_FILE, 'r') as file:
+            parsed_data = json.load(file)
+            
+    found_noun= False
+    found_interac = False
+
+    for obj in parsed_data:
+       
+        if (obj["name"] == name) and (obj["state"] == state):
+            found_noun = True
+            
+            for interac in obj["interactions"]:
+                # if the interaction name matches, print its details...:
+                if interac["name"] == interaction_key:
+                    found_interac = True
+                    return interac
+    return None
 
 
 
+    
 
 
 
@@ -661,4 +690,8 @@ if __name__ == "__main__":
     print()
     print("world_map_status_array[0][0] = ", world_map_status_array[0][0])
     print()
-    
+
+# ------------------------ Test: lookup_interaction() function
+# 
+
+print(lookup_interaction("Tiles","kitchen","closed","open"))
