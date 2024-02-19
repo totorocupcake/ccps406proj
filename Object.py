@@ -30,6 +30,8 @@ class Object(Entity.Entity):
     # def get_name(self):
     #     return self.name
 
+    def get_gold_amt(self):
+        return self.__gold_amt
 
 
 if __name__ == "__main__": 
