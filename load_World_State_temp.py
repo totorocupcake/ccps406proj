@@ -70,37 +70,37 @@ if __name__ == "__main__":
 
   # call World_State.get_description_as_str() to return a formatted desc string
 
-  desc_str = ws.get_description_as_str((x_coord, y_coord), "long" )
-  print("desc((", x_coord, ",", y_coord, ")): ")
-  print(desc_str)
-  print()
+  # desc_str = ws.get_description_as_str((x_coord, y_coord), "long" )
+  # print("desc((", x_coord, ",", y_coord, ")): ")
+  # print(desc_str)
+  # print()
 
 
 
-  # call World_State.get_description() to get a list/array of strings:
-  desc_list = ws.get_description((x_coord, y_coord), "short" )
+  # # call World_State.get_description() to get a list/array of strings:
+  # desc_list = ws.get_description((x_coord, y_coord), "short" )
 
 
-  desc_detail = ""
-  desc_count = 0
+  # desc_detail = ""
+  # desc_count = 0
 
-  for desc_elem in desc_list:
-    # print("desc((", x_coord, ",", y_coord, ")) = ", desc_elem)
-    if desc_count == 0:  
-      desc_detail = desc_detail + desc_elem 
-    elif desc_count == 1:
-      desc_detail =  desc_detail + "  You see " + desc_elem
-    elif (desc_count > 1) and (desc_count < (len(desc_list)-1)):
-      desc_detail = desc_detail + ", " + desc_elem
-    else:
-      desc_detail = desc_detail + ", and " + desc_elem + "."
-    desc_count += 1
+  # for desc_elem in desc_list:
+  #   # print("desc((", x_coord, ",", y_coord, ")) = ", desc_elem)
+  #   if desc_count == 0:  
+  #     desc_detail = desc_detail + desc_elem 
+  #   elif desc_count == 1:
+  #     desc_detail =  desc_detail + "  You see " + desc_elem
+  #   elif (desc_count > 1) and (desc_count < (len(desc_list)-1)):
+  #     desc_detail = desc_detail + ", " + desc_elem
+  #   else:
+  #     desc_detail = desc_detail + ", and " + desc_elem + "."
+  #   desc_count += 1
 
-  print()
+  # print()
 
-  print("desc((", x_coord, ",", y_coord, ")) = ", desc_detail)
+  # print("desc((", x_coord, ",", y_coord, ")) = ", desc_detail)
 
-  print()
+  # print()
 
 
 
