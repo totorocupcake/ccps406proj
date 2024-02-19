@@ -71,18 +71,18 @@ class World_State:
     return self.__tiles[x_coord][y_coord]
 
 
-      
+  def get_game_won(self):
+    return self.__game_won
 
-
-
-
-
-
-
-
-
-
-
+  def get_turn_no(self):
+    return self.__turn_number
+  
+  def get_rent_amount(self):
+    return self.__rent_amount
+  
+  def get_rent_due_date(self):
+    return self.__rent_due_date
+  
 
 if __name__ == "__main__":
 
