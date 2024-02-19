@@ -142,13 +142,7 @@ def load_tile_2D_array_from_file():
       tl = lookup_tile_Mapping_by_ID(tile_id)
 
       # update Tile inventory:
-
-      # obj = get_object_by_tile_location(8, 7)
-      
-      # obj_list = get_object_list_by_tile_location(i, j)
-      obj_list = get_object_list_by_tile_location(j, i)
-
-
+      obj_list = get_object_list_by_tile_location(i, j)
 
       # add objects to tile inventory if found:
       if obj_list is not None:
@@ -189,46 +183,38 @@ if __name__ == "__main__":
   print("-----------------------------------------")
   print()
 
-  # print("tile_2D_list[0][0] = ", tile_2D_list[0][0].get_name(), ",", \
-  #       tile_2D_list[0][0].get_type(), ",", tile_2D_list[0][0].get_state(), ",", \
-  #         tile_2D_list[0][0].get_movable() )
-  # print()
+  print("tile_2D_list[8][7] = ", tile_2D_list[8][7].get_name(), ",", \
+        tile_2D_list[8][7].get_type(), ",", tile_2D_list[8][7].get_state(), ",", \
+          tile_2D_list[8][7].get_movable(), ", ", tile_2D_list[8][7].get_tile_id()  )
 
-  print("tile_2D_list[3][6] = ", tile_2D_list[3][6].get_name(), ",", \
-        tile_2D_list[3][6].get_type(), ",", tile_2D_list[3][6].get_state(), ",", \
-          tile_2D_list[3][6].get_movable() )
-  
-  print()
-  print("tile_2D_list[3][11] = ", tile_2D_list[3][11].get_name(), ",", \
-        tile_2D_list[3][11].get_type(), ",", tile_2D_list[3][11].get_state(), ",", \
-          tile_2D_list[3][11].get_movable() )
-  
- 
-  print()
-  print("tile_2D_list[0][0] = ", tile_2D_list[0][0].get_name(), ",", \
-        tile_2D_list[0][0].get_type(), ",", tile_2D_list[0][0].get_state(), ",", \
-          tile_2D_list[0][0].get_movable() )
-
-  print()
-  print("tile_2D_list[7][8] = ", tile_2D_list[7][8].get_name(), ",", \
-        tile_2D_list[7][8].get_type(), ",", tile_2D_list[7][8].get_state(), ",", \
-          tile_2D_list[7][8].get_movable() )
-
-  inv_list = tile_2D_list[7][8].get_inventory()
+  inv_list = tile_2D_list[8][7].get_inventory()
 
   if inv_list is not None:
     for inv_elem in inv_list:
-      print("Item: ", inv_elem.get_name())
+      print("\tItem: ", inv_elem.get_name())
   
  # Test update tile function, should update rest of tile's fields if provide it a new tile id
   tile_2D_list[8][7].update_tile("0C")
   print("tile_2D_list[8][7] = ", tile_2D_list[8][7].get_name(), ",", \
         tile_2D_list[8][7].get_type(), ",", tile_2D_list[8][7].get_state(), ",", \
-          tile_2D_list[8][7].get_movable() )
+          tile_2D_list[8][7].get_movable(), ", ", tile_2D_list[8][7].get_tile_id()  )
+
+  inv_list = tile_2D_list[8][7].get_inventory()
+
+  if inv_list is not None:
+    for inv_elem in inv_list:
+      print("\tItem: ", inv_elem.get_name())
+  else:
+    print("Inventory is None")
+  
+  print()
+  print()
 
   print("More sample tiles (with inventory if any): ")
   print("-----------------------------------------")
   print()
+
+  tile_2D_list = load_tile_2D_array_from_file()
 
   row_num = 0
   col_num = 0
@@ -239,11 +225,38 @@ if __name__ == "__main__":
       # grasslands
       if tile_2D_list[row_num][col_num] is not None:
         if tile_2D_list[row_num][col_num].get_name() != "grasslands":
-          print(tile_2D_list[row_num][col_num].get_name())
+          print("tile_2D_list[", row_num, "][", col_num, "] = ", \
+                tile_2D_list[row_num][col_num].get_name(), ",", \
+                tile_2D_list[row_num][col_num].get_tile_id())
+
+          tl_inv_list = tile_2D_list[row_num][col_num].get_inventory()
+          # if tl_inv_list is not None:
+          if len(tl_inv_list) > 0:
+            for inv_elem in tl_inv_list:
+              print("\titem = ", inv_elem.get_name())
+
       else:
-        print("tile_2D_list[", row_num, "][", col_num, "] is None")
+        print("tile_2D_list[", row_num, "][", col_num, "] is None   ***********")
       col_num += 1
     row_num += 1
+
+print()
+print()
+
+
+
+
+animal_tl = lookup_tile_Mapping_by_ID("25")
+if animal_tl is not None:
+  print("animal_tl name = ", animal_tl.getName())
+else:
+  print("animal_tl is None")
+
+print()
+
+
+
+
 
 
 # # Iterate over each row of the array
@@ -261,7 +274,7 @@ if __name__ == "__main__":
 # ------------------------ Test: get_object_by_tile_location() function
 
 
-  obj_list = get_object_list_by_tile_location(4, 12)
+  # obj_list = get_object_list_by_tile_location(4, 12)
 
   # print()
   # print("obj_list[0] at (8, 7) = ", obj_list[0].get_name())
