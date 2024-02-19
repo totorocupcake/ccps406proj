@@ -237,11 +237,11 @@ if __name__ == "__main__":
   charac.update_coords((1,4))
   ws.spawn_character(charac)
   
-  print("Get Desc long: ",ws.get_description((1,4),"long"))
-  print("Get Desc short: ",ws.get_description((1,4),"short"))
+  # print("Get Desc long: ",ws.get_description((1,4),"long"))
+  # print("Get Desc short: ",ws.get_description((1,4),"short"))
   
-  print("Get Desc as str long: ",ws.get_description_as_str((1,4),"long"))
-  print("Get Desc as str short: ",ws.get_description_as_str((1,4),"short"))
+  # print("Get Desc as str long: ",ws.get_description_as_str((1,4),"long"))
+  # print("Get Desc as str short: ",ws.get_description_as_str((1,4),"short"))
   
   
   #desc = ws.get_description((1, 4), "short")
