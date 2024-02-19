@@ -11,13 +11,13 @@
     }, 
     {
         "tile_id": "03",
-        "name": "road by neighbours' houses", 
+        "name": "road by neighbours houses", 
         "state": "null"
     }, 
     {
         "tile_id": "04",
         "name": "mail box", 
-        "state": "null"
+        "state": "have_letter"
     }, 
     {
         "tile_id": "05",
