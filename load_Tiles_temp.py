@@ -135,10 +135,10 @@ def load_tile_2D_array_from_file():
 
   tile_2D_list = []
 
-  for i in range(num_rows):
+  for i in range(num_cols):
     inner_array = []
-    for j in range(num_cols):
-      tile_id = world_map_status_array[i][j]
+    for j in range(num_rows):
+      tile_id = world_map_status_array[j][i]
       tl = lookup_tile_Mapping_by_ID(tile_id)
 
       # update Tile inventory:
@@ -221,7 +221,7 @@ if __name__ == "__main__":
 # ------------------------ Test: get_object_by_tile_location() function
 
 
-  obj_list = get_object_list_by_tile_location(8, 7)
+  obj_list = get_object_list_by_tile_location(4, 12)
 
   # print()
   # print("obj_list[0] at (8, 7) = ", obj_list[0].get_name())
