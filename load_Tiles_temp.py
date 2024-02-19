@@ -227,7 +227,9 @@ if __name__ == "__main__":
         if tile_2D_list[row_num][col_num].get_name() != "grasslands":
           print("tile_2D_list[", row_num, "][", col_num, "] = ", \
                 tile_2D_list[row_num][col_num].get_name(), ",", \
-                tile_2D_list[row_num][col_num].get_tile_id())
+                tile_2D_list[row_num][col_num].get_tile_id(), ",", \
+                tile_2D_list[row_num][col_num].get_state(), ",", \
+                tile_2D_list[row_num][col_num].get_movable()    )
 
           tl_inv_list = tile_2D_list[row_num][col_num].get_inventory()
           # if tl_inv_list is not None:
@@ -246,13 +248,13 @@ print()
 
 
 
-animal_tl = lookup_tile_Mapping_by_ID("25")
-if animal_tl is not None:
-  print("animal_tl name = ", animal_tl.getName())
-else:
-  print("animal_tl is None")
+# animal_tl = lookup_tile_Mapping_by_ID("25")
+# if animal_tl is not None:
+#   print("animal_tl name = ", animal_tl.getName())
+# else:
+#   print("animal_tl is None")
 
-print()
+# print()
 
 
 
