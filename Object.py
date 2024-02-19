@@ -7,7 +7,7 @@ class Object(Entity.Entity):
         super().__init__()
        
         self.inventory = []
-        self.__general_type = "Object"
+        self._general_type = "Object"
 
         # sub-class specific properties:
         self.__qty = 0

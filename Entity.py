@@ -6,7 +6,7 @@ class Entity:
 
     # properties:
     self.name = ""
-    self.__general_type = ""
+    self._general_type = ""
     self.__type = ""
     self.__state = ""
     self.__co_ord_x = 0
@@ -22,7 +22,7 @@ class Entity:
     return self.name
 
   def get_general_type(self):
-    return self.__general_type
+    return self._general_type
 
   def get_type(self):
     return self.__type
@@ -39,7 +39,7 @@ class Entity:
 
   def get_desc(self, long_short):
     # use __general_type (Object/Character/Tile) for lookup:
-    return text_file_processor.lookup_desc(long_short, self.__general_type, self.name, self.__state)
+    return text_file_processor.lookup_desc(long_short, self._general_type, self.name, self.__state)
 
 
 

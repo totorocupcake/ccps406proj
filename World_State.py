@@ -62,7 +62,7 @@ class World_State:
 
   def update_tile(self, coords, new_tile):
     x_coord, y_coord = coords
-    self.__tiles[y_coord][x_coord].update_tile(new_tile)
+    self.__tiles[x_coord][y_coord] = new_tile
 
 
 
@@ -219,18 +219,41 @@ if __name__ == "__main__":
 
   ws.update_rent_amount(10)
 
+  print("Turn no: ",ws.get_turn_no())
+  print("Game Won: ",ws.get_game_won())
+  print("Rent turn due: ",ws.get_rent_due_date())
+  print("Rent amount: ", ws.get_rent_amount())
+  
+  tl = Tile.Tile()
+  tl.update_tile_by_id("01")
+  ws.update_tile((1,4),tl)
+  print("Tile name: ",ws.get_tiles()[1][4].name)
+  print("Tile state: ",ws.get_tiles()[1][4].get_state())
+  print("Tile general type: ",ws.get_tiles()[1][4].get_general_type())
+  
+  charac= Character.Character()
+  charac.set_name("landlord")
+  charac.set_state("unhappy")
+  charac.update_coords((1,4))
+  ws.spawn_character(charac)
+  
+  print("Get Desc long: ",ws.get_description((1,4),"long"))
+  print("Get Desc short: ",ws.get_description((1,4),"short"))
+  
+  print("Get Desc as str long: ",ws.get_description_as_str((1,4),"long"))
+  print("Get Desc as str short: ",ws.get_description_as_str((1,4),"short"))
+  
+  
+  #desc = ws.get_description((1, 4), "short")
+  #desc = ws.get_description_as_str((1, 4), "short")
   
 
-  # desc = ws.get_description((1, 4), "short")
-  desc = ws.get_description_as_str((1, 4), "short")
-  
-
-  print()
-  if desc is not None:
-    print("desc = ", desc)
-  else:
-    print("desc = None")
-  print()
+  #print()
+  #if desc is not None:
+  #  print("desc = ", desc)
+  #else:
+  #  print("desc = None")
+  #print()
 
 
 
