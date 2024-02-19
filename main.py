@@ -25,7 +25,7 @@ if __name__ == "__main__":
     """
     Game Loop
     """
-    world_state=game_loop(world_state)
+    world_state=game_loop.play_game(world_state)
     
     
     #exit_game_loop()
