@@ -109,63 +109,63 @@ class World_State:
 
 
 
-  # def get_description(self, coords):
-  #   pass
+  def get_description(self, coords):
+    pass
 
-  # we need the long_short parameter to know which description to get:
-  def get_description(self, coords, long_short):
-    x_coord, y_coord = coords
+  # # we need the long_short parameter to know which description to get:
+  # def get_description(self, coords, long_short):
+  #   x_coord, y_coord = coords
 
-    current_tl = self.__tiles[x_coord][y_coord]
+  #   current_tl = self.__tiles[x_coord][y_coord]
 
-    current_char_list = self.get_chars_at_tile(coords)
+  #   current_char_list = self.get_chars_at_tile(coords)
 
-    desc_list = []
+  #   desc_list = []
 
-    if current_tl is not None:
-      tile_desc = current_tl.get_desc(long_short)
+  #   if current_tl is not None:
+  #     tile_desc = current_tl.get_desc(long_short)
 
-      desc_list.append(tile_desc)
+  #     desc_list.append(tile_desc)
 
-      if len(current_char_list) > 0:
-        for char_elem in current_char_list:
-          if char_elem.get_desc(long_short) is not None:
-            desc_list.append(char_elem.get_desc(long_short) )
+  #     if len(current_char_list) > 0:
+  #       for char_elem in current_char_list:
+  #         if char_elem.get_desc(long_short) is not None:
+  #           desc_list.append(char_elem.get_desc(long_short) )
 
-    tile_inv = current_tl.get_inventory()
-    if len(tile_inv) > 0:
-      for inv_elem in tile_inv:
-        if inv_elem.get_desc(long_short) is not None:
-          desc_list.append(inv_elem.get_desc(long_short))
+  #   tile_inv = current_tl.get_inventory()
+  #   if len(tile_inv) > 0:
+  #     for inv_elem in tile_inv:
+  #       if inv_elem.get_desc(long_short) is not None:
+  #         desc_list.append(inv_elem.get_desc(long_short))
 
-    return desc_list
+  #   return desc_list
 
 
 
-  def get_description_as_str(self, coords, long_short):
-    x_coord, y_coord = coords
+  # def get_description_as_str(self, coords, long_short):
+  #   x_coord, y_coord = coords
     
-    desc_list = self.get_description((x_coord, y_coord), long_short)
+  #   desc_list = self.get_description((x_coord, y_coord), long_short)
 
 
-    desc_detail = ""
-    desc_count = 0
+  #   desc_detail = ""
+  #   desc_count = 0
 
-    for desc_elem in desc_list:
-      # print("desc((", x_coord, ",", y_coord, ")) = ", desc_elem)
-      if desc_count == 0:  
-        desc_detail = desc_detail + desc_elem 
-      elif desc_count == 1:
-        desc_detail =  desc_detail + "  You see " + desc_elem
-      elif (desc_count > 1) and (desc_count < (len(desc_list)-1)):
-        desc_detail = desc_detail + ", " + desc_elem
-      else:
-        desc_detail = desc_detail + ", and " + desc_elem 
-      desc_count += 1
+  #   for desc_elem in desc_list:
+  #     # print("desc((", x_coord, ",", y_coord, ")) = ", desc_elem)
+  #     if desc_count == 0:  
+  #       desc_detail = desc_detail + desc_elem 
+  #     elif desc_count == 1:
+  #       desc_detail =  desc_detail + "  You see " + desc_elem
+  #     elif (desc_count > 1) and (desc_count < (len(desc_list)-1)):
+  #       desc_detail = desc_detail + ", " + desc_elem
+  #     else:
+  #       desc_detail = desc_detail + ", and " + desc_elem 
+  #     desc_count += 1
 
-    desc_detail = desc_detail + "."
+  #   desc_detail = desc_detail + "."
 
-    return desc_detail
+  #   return desc_detail
 
 
 
