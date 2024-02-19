@@ -381,14 +381,30 @@ def lookup_movable (tile_name,state):
         parsed_tile_data = json.load(file)
 
     for tile in parsed_tile_data:
-        if (tile["name"] == name) and (tile["state"] == state):
+        if (tile["name"] == tile_name) and (tile["state"] == state):
             found_tile = True
             return tile["movable"]
 
     if found_tile == False:
         return None
+    
 
+def lookup_tile_type (tile_name,state):
+    # Given a tile name and state, return the matching movable flag.
+    # Return None if not match
 
+    found_tile = False
+
+    with open(TILES_JSON_FILE, 'r') as file:
+        parsed_tile_data = json.load(file)
+
+    for tile in parsed_tile_data:
+        if (tile["name"] == tile_name) and (tile["state"] == state):
+            found_tile = True
+            return tile["type"]
+
+    if found_tile == False:
+        return None
 
 
 

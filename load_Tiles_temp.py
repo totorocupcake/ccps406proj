@@ -211,7 +211,11 @@ if __name__ == "__main__":
     for inv_elem in inv_list:
       print("Item: ", inv_elem.get_name())
   
-  print()
+ # Test update tile function, should update rest of tile's fields if provide it a new tile id
+  tile_2D_list[8][7].update_tile("0C")
+  print("tile_2D_list[8][7] = ", tile_2D_list[8][7].get_name(), ",", \
+        tile_2D_list[8][7].get_type(), ",", tile_2D_list[8][7].get_state(), ",", \
+          tile_2D_list[8][7].get_movable() )
 
 
 
