@@ -711,4 +711,4 @@ if __name__ == "__main__":
 # ------------------------ Test: lookup_interaction() function
 # 
 
-print(lookup_interaction("Tiles","kitchen","closed","open"))
+    print(lookup_interaction("Tiles","kitchen","closed","open"))
