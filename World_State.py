@@ -118,7 +118,13 @@ class World_State:
 
 
 
+  def get_active_char(self):
+    # Returns the Character with active player flaf set to Y
+    for char in self.__characters:
+      if char.get_active_player == 'Y':
+        return char
 
+    return None
 
 
 
@@ -216,7 +222,7 @@ class World_State:
   def get_game_won(self):
     return self.__game_won
 
-  def get_turn_no(self):
+  def get_turn_number(self):
     return self.__turn_number
   
   def get_rent_amount(self):

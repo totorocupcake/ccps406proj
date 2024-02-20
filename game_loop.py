@@ -31,7 +31,7 @@ def play_game(world_state):
 def console_output(world_state):
     # Prints to console out the description at active player's location
     
-    print("Turn Number: ",world_state.get_turn_no())
+    print("Turn Number: ",world_state.get_turn_number())
     
     for charac in world_state.get_characters():
         # Find the active player
