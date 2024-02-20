@@ -55,7 +55,7 @@ class Entity:
     self.name = new_name  
 
   def set_general_type(self, new_general_type):
-    self.__general_type = new_general_type
+    self._general_type = new_general_type
 
   def set_type(self, new_type):
     self.__type = new_type
