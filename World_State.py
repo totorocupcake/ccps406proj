@@ -79,6 +79,24 @@ class World_State:
 
 
 
+  def get_npc_chars_at_tile(self, coords):
+  # return a list of npc characters for a given tile, based on its coords
+
+    # get all characters as a list
+    npc_char_list = self.get_chars_at_tile(coords)
+
+    # remove the player character from the list
+    if npc_char_list is not None:
+      for npc_elem in npc_char_list:
+        # remove the 'player' character from the list
+        if npc_elem.get_type() == "player":
+          npc_char_list.remove(npc_elem)
+          break
+
+    return npc_char_list
+    
+
+
 
 
   def get_chars_at_tile(self, coords):
@@ -109,8 +127,62 @@ class World_State:
 
 
 
-  def get_description(self, coords):
-    pass
+  def get_description(self, coords, visited):
+  # returns a list/array of description strings for a given coords and 
+  #   visited set (of tuples of (type, name, state))
+    x_coord, y_coord = coords
+
+    # get the tile at coords
+    current_tl = self.__tiles[x_coord][y_coord]
+
+    # get the current tile's inventory:
+    current_tl_inv_list = []
+    current_tl_inv_list = current_tl.get_inventory()
+
+    # get a list of all npc's for the current coords
+    current_npc_char_list = []
+    current_npc_char_list = self.get_npc_chars_at_tile(coords)
+
+    # intialize the description list of strings:
+    desc_list = []
+
+    # for each tile, character and object, check and see if in visited set
+    #   if no, use "long" desc
+    #   if yes, use "short" desc
+
+    # start with Tile object:
+    tile_tuple = (current_tl.get_general_type(), current_tl.get_name(), current_tl.get_state())
+
+    if tile_tuple in visited:
+      desc_list.append(current_tl.get_desc("short"))
+    else:
+      desc_list.append(current_tl.get_desc("long"))
+
+    # add each character:
+    if current_npc_char_list is not None:
+      for char_elem in current_npc_char_list:
+        char_tuple = (char_elem.get_general_type(), char_elem.get_name(), \
+                      char_elem.get_state() )
+
+        if char_tuple in visited:
+          desc_list.append(char_elem.get_desc("short"))
+        else:
+          desc_list.append(char_elem.get_desc("long"))
+        
+
+    # add each object in the tile's inventory:
+    if current_tl_inv_list is not None:
+      for tl_inv_elem in current_tl_inv_list:
+        inv_tuple = (tl_inv_elem.get_general_type(), tl_inv_elem.get_name(), \
+                      tl_inv_elem.get_state() )
+        if inv_tuple in visited:
+          desc_list.append(tl_inv_elem.get_desc("short"))
+        else:
+          desc_list.append(tl_inv_elem.get_desc("long"))
+
+
+    return desc_list
+
 
   # # we need the long_short parameter to know which description to get:
   # def get_description(self, coords, long_short):
@@ -206,6 +278,23 @@ class World_State:
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 if __name__ == "__main__":
 
   # ------------------------------------------------ test some methods:
@@ -236,6 +325,27 @@ if __name__ == "__main__":
   charac.set_state("unhappy")
   charac.update_coords((1,4))
   ws.spawn_character(charac)
+
+
+
+
+  # # ------------ test World_State.get_description(coords, visited) function:
+
+  # ws = load_World_State(10, 25)
+
+  # empty_visited = set()
+
+  # x_coord = 8
+  # y_coord = 7
+
+  # coord_tuple = (x_coord, y_coord)
+
+  # desc_list = ws.get_description(coord_tuple, empty_visited)
+
+  # print()
+  # print("desc_list[0] = ", desc_list[0])
+  # print()
+
   
   # print("Get Desc long: ",ws.get_description((1,4),"long"))
   # print("Get Desc short: ",ws.get_description((1,4),"short"))
