@@ -984,6 +984,43 @@
     
   }
   
+  ,
+  {
+    "name": "garage key",
+    "type": "tool",
+    "state": "null",
+    "gold_amt": 2,
+    "description": {
+      "long_desc": "a small key to unlock and lock the garage",
+      "short_desc": "a garage key"
+    },
+    "interactions": [
+      {
+        "name": "take",
+        
+        "success_desc": "You take a small key to unlock and lock the garage.",
+        "fail_desc": "There is no garage key to take here.",
+        "change_state_to": "delete",
+        "requirement": [
+          {
+            "type": "tile",
+            "name": "bedroom",
+            "state": "null",
+            "qty": null,
+            "remove_obj": "N"
+          }
+        ],
+        "obtain": [{
+          "type": "Item",
+          "name": "garage key",
+          "state": "null",
+          "qty": 1
+        }
+      ]
+      }
+    ]
+    
+  }
 
 
 ]
