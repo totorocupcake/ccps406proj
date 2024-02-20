@@ -5,10 +5,11 @@ def play_game(world_state):
     # MAIN FUNCTION within this module, that calls all other game_loop methods.
     # Coordinates the flow of game loop phase of our game.
     
+    exit_state=False
     command = "None"
 
     # exit game conditions on the while loop
-    while (world_state.get_game_won() == "N") or (command != "exit"):
+    while (world_state.get_game_won() == "N") and (exit_state==False):
         
         # prints description to console for active_player=Y
         console_output(world_state)
@@ -16,6 +17,10 @@ def play_game(world_state):
         for charac in world_state.get_characters():
             # cycle through each character in game to get their command and process it
             command = command_input(world_state, charac)
+            
+            if command == "exit":
+                exit_state=True
+                break
             
             world_state=state_update(world_state,charac,command)
             
@@ -25,7 +30,7 @@ def play_game(world_state):
 def console_output(world_state):
     # Prints to console out the description at active player's location
     
-    print("Turn Number: ",world_state.get_turn_number())
+    print("Turn Number: ",world_state.get_turn_no())
     
     for charac in world_state.get_characters():
         # Find the active player
