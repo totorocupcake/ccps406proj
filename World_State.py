@@ -18,7 +18,7 @@ class World_State:
 
     # Private properties (with default starting values)
     self.__turn_number = 0  
-    self.__game_won = "N"
+    self.__game_won = 'N'
     self.__rent_amount = 0
     self.__rent_due_date = 0
     self.__characters = []  # array/list of character objects
@@ -118,7 +118,13 @@ class World_State:
 
 
 
+  def get_active_char(self):
+    # Returns the Character with active player flaf set to Y
+    for char in self.__characters:
+      if char.get_active_player() == 'Y':
+        return char
 
+    return None
 
 
 
@@ -216,7 +222,7 @@ class World_State:
   def get_game_won(self):
     return self.__game_won
 
-  def get_turn_no(self):
+  def get_turn_number(self):
     return self.__turn_number
   
   def get_rent_amount(self):
@@ -270,7 +276,7 @@ if __name__ == "__main__":
 
   ws.increment_turn()
 
-  ws.set_game_won("Y")  
+  ws.set_game_won('Y')  
 
   ws.update_rent_turn_due(25)
 
