@@ -16,11 +16,16 @@ def play_game(world_state):
         for charac in world_state.get_characters():
             # cycle through each character in game to get their command and process it
             command = command_input(world_state, charac)
+            
             world_state=state_update(world_state,charac,command)
+            
+        world_state.increment_turn()
 
 
 def console_output(world_state):
     # Prints to console out the description at active player's location
+    
+    print("Turn Number: ",world_state.get_turn_number())
     
     for charac in world_state.get_characters():
         # Find the active player
@@ -46,8 +51,9 @@ def command_input(world_state,charac):
             command = input("Please enter your next action: ")
         else:
             command = charac.get_next_action()
-            
-        command = command.strip()
+        
+        if command:
+            command = command.strip()
         
         # Command processor validates and formats the command
         valid_command,command = command_processor(world_state,charac,command)
@@ -64,7 +70,7 @@ def command_processor(world_state,charac,command):
     # 2. string, command formatted for state update (not sure if this is the only output)
     
     
-    pass
+    return (True, command) #for now, just return True with same command
 
 def state_update(world_state,charac,command):
     # Make the updates to world_state (and any other updates required) to process the command
@@ -72,8 +78,9 @@ def state_update(world_state,charac,command):
     
     common_commands = ["N","S","W","E","inventory","exit"]
     
-    world_state.increment_turn()
-    pass
+    
+    
+    return world_state
 
 def dynamic_variable_processor(world_state,get_desc_string):
     # Given a sentence string (from get_description()) replace any dynamic variables within our text files

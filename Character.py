@@ -78,17 +78,10 @@ class Character(Turn_Based_Entity.Turn_Based_Entity):
         self.update_turn_counter (0, "")
             
 
-    """
-    Handled in turn_based_entity superclass, commenting out for now
-   
-    def set_turn_counter (self): 
-        self.__turn_counter = self.__turn_counter + 1
+    def get_next_action(self):
+        # To be implemented
+        pass
     
-    def set_turn_state (self, new_turn_state): 
-        self.__turn_state = new_turn_state
-
-    """
-
 
 
 
