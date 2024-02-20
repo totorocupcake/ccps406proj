@@ -103,6 +103,13 @@ def load_characters_list_from_file():
     charac.set_type(char_elem["type"])
     charac.set_state(char_elem["state"])
 
+    # if player type is "player", set to active player:
+    if char_elem["type"] == "player":
+      charac.set_active_player(True)
+    else:
+      charac.set_active_player(False)
+
+
     charac.update_coords((char_elem["co_ord_x"] , char_elem["co_ord_y"]))
 
     # update_inventory, if its not empty
@@ -237,7 +244,8 @@ if __name__ == "__main__":
   # iterate through list of character objects, print a few attributes of each
   for char_elem in characs:
     char_str = char_elem.get_name() + "," + char_elem.get_general_type() + "," + \
-      char_elem.get_type() + "," + char_elem.get_state() + str(char_elem.get_coords())
+      char_elem.get_type() + "," + char_elem.get_state() + str(char_elem.get_coords()) + "," +\
+        char_elem.get_active_player()
     print(char_str)
     print()
 
