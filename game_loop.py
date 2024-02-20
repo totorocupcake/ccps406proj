@@ -1,5 +1,6 @@
 import World_State
 import re
+import state_updates
 
 def play_game(world_state):
     # MAIN FUNCTION within this module, that calls all other game_loop methods.
@@ -60,7 +61,7 @@ def command_input(world_state,charac):
             command = charac.get_next_action()
         
         if command:
-            command = command.strip()
+            command = command.strip().lower()
         
         # Command processor validates and formats the command
         valid_command,command = command_processor(world_state,charac,command)
@@ -83,11 +84,9 @@ def state_update(world_state,charac,command):
     # Make the updates to world_state (and any other updates required) to process the command
     # Returns back updated world_state object
     
-    common_commands = ["N","S","W","E","inventory","exit"]
+    return state_updates.basic_commands(world_state,charac,command)
     
-    
-    
-    return world_state
+    #return world_state
 
 def dynamic_variable_processor(world_state,get_desc_string):
     # Given a sentence string (from get_description()) replace any dynamic variables within our text files

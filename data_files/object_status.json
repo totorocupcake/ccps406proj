@@ -31,16 +31,16 @@
         "name": "medkit",
         "state": "null",
         "quantity": 1,
-        "co_ord_x": 8,
+        "co_ord_x": 6,
         "co_ord_y": 11,
         "inventory":null
     },
     {
         "type": "tool",
-        "name": "house key",
+        "name": "garage key",
         "state": "null",
         "quantity": 1,
-        "co_ord_x": 8,
+        "co_ord_x": 6,
         "co_ord_y": 11,
         "inventory":null
     },
@@ -49,7 +49,7 @@
         "name": "farm key",
         "state": "null",
         "quantity": 1,
-        "co_ord_x": 8,
+        "co_ord_x": 6,
         "co_ord_y": 11,
         "inventory":null
     },
