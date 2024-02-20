@@ -19,8 +19,9 @@ class Tile(Turn_Based_Entity.Turn_Based_Entity):
 
     # for tile_id: use string instead of int (can still code it in hex though)
     self.__tile_id = "00"
-    
     self._general_type = "Tile"
+    self._turn_counter = 0
+    self._turn_state = ""
     
 
   # getter methods (tile specific):
