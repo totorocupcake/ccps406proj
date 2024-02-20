@@ -206,7 +206,9 @@ class World_State:
         desc_detail = desc_detail + ", and " + desc_elem 
       desc_count += 1
 
-    desc_detail = desc_detail + "."
+    if desc_count > 1:
+      desc_detail = desc_detail + "."
+
 
     return desc_detail
 
