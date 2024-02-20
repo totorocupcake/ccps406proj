@@ -15,8 +15,8 @@ class Character(Turn_Based_Entity.Turn_Based_Entity):
         # was: self.__visited = []
         self.__visited = set()
         self.__active_player = ""
-        self.__turn_counter = 0
-        self.__turn_state = ""
+        self._turn_counter = 0
+        self._turn_state = ""
 
 
     # GETTER METHODS
