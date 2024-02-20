@@ -7,11 +7,12 @@ def play_game(world_state):
     
     exit_state=False
     command = "None"
-
+    
     # exit game conditions on the while loop
     while (world_state.get_game_won() == "N") and (exit_state==False):
         
         # prints description to console for active_player=Y
+        
         console_output(world_state)
         
         for charac in world_state.get_characters():
@@ -38,8 +39,10 @@ def console_output(world_state):
             current_coord= charac.get_coords()
             break # We found the active player so break out of loop
     
-    print(world_state.get_description(current_coord,charac.get_visited()))
+    output=world_state.get_description(current_coord,charac.get_visited())
+    output = dynamic_variable_processor(world_state,output) # formats dynamic variables in string
     
+    print(output)
 
 def command_input(world_state,charac):
     # Based on the Character passed through and the world_state, generate either a scanf if activeplayer
@@ -93,19 +96,21 @@ def dynamic_variable_processor(world_state,get_desc_string):
     
     pattern = r'%([^%]+)%'
     
-    get_desc_string = re.sub(pattern, lambda match: '%' + dynamic_variable_logic(world_state,match.group(1)) + '%', get_desc_string)
+    get_desc_string = re.sub(pattern, lambda match: dynamic_variable_logic(world_state,match.group(1)), get_desc_string)
+    
+    return get_desc_string
     
 def dynamic_variable_logic(world_state,keyword):
     # Given the keyword string, replace it with a value and return that value back
         
         if keyword == "player_name":
             for charac in world_state.get_characters():
-                if charac.get_active_player =='Y':
+                if charac.get_type == "player":
                     return charac.get_name()
         elif keyword == "rent_amount":
-            return world_state.get_rent_amount()
+            return str(world_state.get_rent_amount())
         elif keyword == "rent_due_days_away":
-            return world_state.get_rent_due_date()
+            return str(world_state.get_rent_due_date())
 
 
     
