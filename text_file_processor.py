@@ -132,7 +132,8 @@ def lookup_desc (long_short , type, name, state):
                     return obj["description"]["short_desc"]
 
         if found_object == False:
-            return None
+            return ""
+            # return None
 
     elif type == "Character":
         
@@ -151,7 +152,8 @@ def lookup_desc (long_short , type, name, state):
                     return char_elem["description"]["short_desc"]
 
         if found_character == False:
-            return None
+            return ""
+            # return None
     else:
 
         found_tile = False
@@ -168,7 +170,8 @@ def lookup_desc (long_short , type, name, state):
                     return tile["description"]["short_desc"]
 
         if found_tile == False:
-            return None
+            return ""
+            # return None
 
 
 
