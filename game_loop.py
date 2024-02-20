@@ -27,7 +27,7 @@ def console_output(world_state):
             current_coord= charac.get_coords()
             break # We found the active player so break out of loop
     
-    print(world_state.get_description(current_coord),charac.get_visited())
+    print(world_state.get_description(current_coord,charac.get_visited()))
     
 
 def command_input(world_state,charac):

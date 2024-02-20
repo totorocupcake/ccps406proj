@@ -30,13 +30,21 @@ def initialize(starting_rent_amount, starting_rent_due_date):
 def initial_game_prompt(world_state):
     # Any initial game prompts, or initial game updates need to be defined here before we enter main game loop
 
-
     # ****************************************************
-    # NOTE: for now, just return the world_state unchanged: 
+    
+    print("Welcome to our game!")
+    
+    player_name=input("Please enter the name of your character: ")
+    player_name = player_name.strip()
+    
+    for charac in world_state.get_characters():
+        # Find the player and update their name
+        if charac.get_type()=="player":
+            charac.set_name(player_name)
+            break
+        
     return world_state
-    pass
-
-
+    
 
 if __name__ == "__main__":
 
