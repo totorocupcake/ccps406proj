@@ -9,7 +9,7 @@ def play_game(world_state):
     command = "None"
     
     # exit game conditions on the while loop
-    while (world_state.get_game_won() == "N") and (exit_state==False):
+    while (world_state.get_game_won() == 'N') and (exit_state==False):
         
         # prints description to console for active_player=Y
         
@@ -33,13 +33,12 @@ def console_output(world_state):
     
     print("Turn Number: ",world_state.get_turn_number())
     
-    for charac in world_state.get_characters():
-        # Find the active player
-        if charac.get_active_player()=='Y':
-            current_coord= charac.get_coords()
-            break # We found the active player so break out of loop
+    #find active char based on active player flag = Y then find their coordinate
+    active_char = world_state.get_active_char()
+    current_coord =  active_char.get_coords()
     
-    output=world_state.get_description(current_coord,charac.get_visited())
+    # get description based on coordinate of active player and parse it for dynamic text variables within string
+    output=world_state.get_description(current_coord,active_char.get_visited())
     output = dynamic_variable_processor(world_state,output) # formats dynamic variables in string
     
     print(output)
