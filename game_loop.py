@@ -81,12 +81,10 @@ def dynamic_variable_processor(world_state,get_desc_string):
     
     pattern = r'%([^%]+)%'
     
-    get_desc_string = re.sub(pattern, lambda match: '%' + dynamic_variable_logic(world_state,match) + '%', get_desc_string)
+    get_desc_string = re.sub(pattern, lambda match: '%' + dynamic_variable_logic(world_state,match.group(1)) + '%', get_desc_string)
     
 def dynamic_variable_logic(world_state,keyword):
     # Given the keyword string, replace it with a value and return that value back
-    
-        keyword = keyword.group(1)  # Extract the matched word
         
         if keyword == "player_name":
             for charac in world_state.get_characters():
