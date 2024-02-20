@@ -2,7 +2,27 @@ def basic_commands(world_state,charac,command):
     basic_commands = ["n","s","w","e","inventory"]
     
     if command=="inventory":
-        print(charac.get_inventory())
+        object_string=""
+        
+        print("Inventory: ",end="")
+        
+        for obj in charac.get_inventory():
+            # loop through each item in character's inventory
+            
+            object_string+=obj.get_name()
+            
+            # append x[quantity] after each item
+            object_string+=" x"
+            object_string+=str(obj.get_quantity())
+            
+            # append comma between items
+            object_string+=", "
+        
+        # remove dangling comma added at end of last item
+        object_string = object_string[:-2]
+        
+        print(object_string) # print inventory
+        
     else:
         x,y = charac.get_coords()
         
@@ -23,4 +43,4 @@ def basic_commands(world_state,charac,command):
         else:
             print("You cannot go there.") 
                
-        return world_state
+    return world_state
