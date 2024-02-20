@@ -80,8 +80,10 @@ if __name__ == "__main__":
   print("desc_list[0] = ", desc_list[0])
   print()
 
-  # this code assembles the desc list into a single string:
-
+  # ------------------------------------------------------
+  # this code assembles the desc list into a single string
+  #    called desc_detail and prints it:
+  # ------------------------------------------------------
   desc_detail = ""
   desc_count = 0
 
@@ -103,26 +105,52 @@ if __name__ == "__main__":
   print(desc_detail)
   print()
 
-  #   desc_detail = ""
-  #   desc_count = 0
-
-  #   for desc_elem in desc_list:
-  #     # print("desc((", x_coord, ",", y_coord, ")) = ", desc_elem)
-  #     if desc_count == 0:  
-  #       desc_detail = desc_detail + desc_elem 
-  #     elif desc_count == 1:
-  #       desc_detail =  desc_detail + "  You see " + desc_elem
-  #     elif (desc_count > 1) and (desc_count < (len(desc_list)-1)):
-  #       desc_detail = desc_detail + ", " + desc_elem
-  #     else:
-  #       desc_detail = desc_detail + ", and " + desc_elem 
-  #     desc_count += 1
-
-  #   desc_detail = desc_detail + "."
-
-  #   return desc_detail
 
 
+# Test 2: non-empty visited set ************************************* :
+  print("Test 2: non-empty visited set: (tool shed and scythe)")
+  print()
 
+  # (type, name, state) or better: (general_type, name, state)
+  tile_tuple = ("Tile", "tool shed", "closed")
+  obj_tuple = ("Object", "scythe", "null")
+
+  non_empty_visited = set()
+  non_empty_visited.add(tile_tuple)
+  non_empty_visited.add(obj_tuple)
+
+  desc_list = []
+
+  desc_list = ws.get_description(coord_tuple, non_empty_visited)
+
+  print("desc_list[0] = ", desc_list[0])
+  print()
+
+
+
+  # ------------------------------------------------------
+  # this code assembles the desc list into a single string
+  #    called desc_detail and prints it:
+  # ------------------------------------------------------
+  desc_detail = ""
+  desc_count = 0
+
+  for desc_elem in desc_list:
+    # print("desc((", x_coord, ",", y_coord, ")) = ", desc_elem)
+    if desc_count == 0:  
+      desc_detail = desc_detail + desc_elem 
+    elif desc_count == 1:
+      desc_detail =  desc_detail + "  You see " + desc_elem
+    elif (desc_count > 1) and (desc_count < (len(desc_list)-1)):
+      desc_detail = desc_detail + ", " + desc_elem
+    else:
+      desc_detail = desc_detail + ", and " + desc_elem 
+    desc_count += 1
+
+  desc_detail = desc_detail + "."
+
+  print("desc_detail: ")
+  print(desc_detail)
+  print()
 
 
