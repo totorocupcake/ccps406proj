@@ -69,6 +69,8 @@ def state_update(world_state,charac,command):
     # Make the updates to world_state (and any other updates required) to process the command
     # Returns back updated world_state object
     
+    common_commands = ["N","S","W","E","inventory","exit"]
+    
     world_state.increment_turn()
     pass
         
