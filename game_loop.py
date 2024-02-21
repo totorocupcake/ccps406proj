@@ -9,24 +9,25 @@ def play_game(world_state):
     exit_state=False
     command = "None"
     
-    # exit game conditions on the while loop
+    # exit game conditions in the while loop
     while (world_state.get_game_won() == 'N') and (exit_state==False):
         
         # prints description to console for active_player=Y
-        
         console_output(world_state)
         
         for charac in world_state.get_characters():
             # cycle through each character in game to get their command and process it
-            command = command_input(world_state, charac)
+            command, command_type = command_input(world_state, charac)
             
             if command == "exit":
+                # exit game condition, so break out of game loop
                 exit_state=True
                 break
             
-            world_state=state_update(world_state,charac,command)
+            # make updates to game based off validated command
+            world_state=state_update(world_state,charac,command,command_type)
             
-        world_state.increment_turn()
+        world_state.increment_turn() # all characters played their turn, next turn time
 
 
 def console_output(world_state):
@@ -55,19 +56,22 @@ def command_input(world_state,charac):
     while valid_command == False:
         # keep prompting for a command until command is valid
         
+        # gets next command either from console or Character's method
         if charac.get_active_player() =='Y':
             command = input("Please enter your next action: ")
         else:
             command = charac.get_next_action()
         
+        # do some command formatting cleansing here
         if command:
             command = command.strip().lower()
         
-        # Command processor validates and formats the command
-        valid_command,command = command_processor(world_state,charac,command)
+        # Command processor checks, validates, formats the command. 
+        # If the command is not valid, will keep getting new command until valid
+        valid_command,command,command_type = command_processor(world_state,charac,command)
 
-    # exitted loop, so return the valid and formatted command for state update
-    return command 
+    # command was validated by command processor, so return formatted command for state update
+    return (command, command_type) 
 
 
 def command_processor(world_state,charac,command):
@@ -76,17 +80,46 @@ def command_processor(world_state,charac,command):
     # Function returns back a tuple containing:
     # 1. boolean, true=command is valid for state update, false=command not valid, need to ask for another command
     # 2. string, command formatted for state update (not sure if this is the only output)
+    # 3. command_type, which tells state_update what type of command it is (basic, normal, advanced)
     
+    basic_commands = {"n","s","e","w","inventory"}
     
-    return (True, command) #for now, just return True with same command
+    replacement_dict = {
+        # use this to replace commands, so that more than one word can be recognized as same command
+        "north":"n",
+        "south":"s",
+        "east":"e",
+        "west":"w"
+    }
+    
+    command = replacement_dict.get(command, command) 
+    
+    # validate the command, check for what kind of command it is, basic, common, advanced
+    if command in basic_commands:
+        # check if command is a basic command, based off basic_commands set
+        return (True, command,"basic") 
+    else:
+        # TO EXPAND this if statement to recognize more commands as valid, default rest to true for now
+        return (True, command,"To expand") 
+    
+     
 
-def state_update(world_state,charac,command):
-    # Make the updates to world_state (and any other updates required) to process the command
+def state_update(world_state,charac,command,command_type):
+    # Make the updates to world_state (and any other updates required) to process the command.
+    # Command type is the type of command determined by command processor which determines what updates needs to be made.
     # Returns back updated world_state object
     
-    return state_updates.basic_commands(world_state,charac,command)
-    
-    #return world_state
+    if command_type == "basic":
+        return state_updates.basic_commands(world_state,charac,command)
+    elif command_type == "normal":
+        # to be done, these are normal interactions based off the JSON interaction array data.
+        pass
+    elif command_type == "advanced":
+        # to be done, these are commands that are more specific and documented to be handled separately
+        pass
+    else:
+        # do nothing, just return original world state as command was not recognized but passed through command processor
+        return world_state
 
 def dynamic_variable_processor(world_state,get_desc_string):
     # Given a sentence string (from get_description()) replace any dynamic variables within our text files
