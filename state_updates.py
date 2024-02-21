@@ -1,5 +1,5 @@
 def basic_commands(world_state,charac,command):
-    basic_commands = ["n","s","w","e","inventory"]
+    # deals with basic commands n,s,e,w,inventory
     
     if command=="inventory":
         object_string=""
@@ -24,6 +24,8 @@ def basic_commands(world_state,charac,command):
         print(object_string) # print inventory
         
     else:
+        # movement related commands handled here
+        
         x,y = charac.get_coords()
         
         if command == "n":
@@ -41,6 +43,8 @@ def basic_commands(world_state,charac,command):
         if x<=max_rows and x>= 0 and y>=0 and y<=max_cols:
             charac.update_coords((x,y))
         else:
-            print("You cannot go there.") 
+            if charac.get_active_player()=='Y':
+                # only print to console if its active player's turn
+                print("You cannot go there.") 
                
     return world_state
