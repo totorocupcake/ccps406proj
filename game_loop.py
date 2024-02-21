@@ -100,9 +100,14 @@ def command_processor(world_state,charac,command):
         return (True, command,"basic") 
     else:
         # TO EXPAND this if statement to recognize more commands as valid, default rest to true for now
-        return (True, command,"To expand") 
-    
-     
+
+        
+        # ****************************************************************
+        # John: changed this to 'basic' for testing of interaction commands:
+        # return (True, command,"To expand") 
+        return (True, command,"basic") 
+        # ****************************************************************
+        
 
 def state_update(world_state,charac,command,command_type):
     # Make the updates to world_state (and any other updates required) to process the command.

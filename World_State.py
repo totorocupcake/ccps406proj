@@ -203,7 +203,7 @@ class World_State:
       elif (desc_count > 1) and (desc_count < (len(desc_list)-1)):
         desc_detail = desc_detail + ", " + desc_elem
       else:
-        desc_detail = desc_detail + "and " + desc_elem 
+        desc_detail = desc_detail + " and " + desc_elem 
       desc_count += 1
 
     if desc_count > 1:
