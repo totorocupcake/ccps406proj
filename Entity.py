@@ -9,8 +9,8 @@ class Entity:
     self._general_type = ""
     self.__type = ""
     self.__state = ""
-    self.__co_ord_x = 0
-    self.__co_ord_y = 0
+    self.co_ord_x = 0
+    self.co_ord_y = 0
     # # self.__inventory = []
     self.inventory = []
      
@@ -31,7 +31,7 @@ class Entity:
     return self.__state
 
   def get_coords(self):
-    return (self.__co_ord_x, self.__co_ord_y)
+    return (self.co_ord_x, self.co_ord_y)
 
   def get_inventory(self):
     # returns a list of 'object' objects
@@ -48,8 +48,8 @@ class Entity:
 
   def update_coords(self, new_coords):
     x_coord, y_coord = new_coords
-    self.__co_ord_x = x_coord
-    self.__co_ord_y = y_coord
+    self.co_ord_x = x_coord
+    self.co_ord_y = y_coord
 
   def set_name(self, new_name):
     self.name = new_name  

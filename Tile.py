@@ -10,6 +10,7 @@ class Tile(Turn_Based_Entity.Turn_Based_Entity):
   
   # class constructor:
   def __init__(self):
+    super().__init__()
     # # properties from Entity:
      # NOTE: must declare the inventory property again, else get weird error
     self.inventory = []

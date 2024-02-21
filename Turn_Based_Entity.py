@@ -4,6 +4,8 @@ import Entity
 class Turn_Based_Entity(Entity.Entity):
   # CLASS CONSTRUCTOR
     def __init__(self): 
+        super().__init__()
+
         self._turn_count = 0
         self._turn_state = ""
 
