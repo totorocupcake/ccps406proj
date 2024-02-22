@@ -76,12 +76,6 @@ class Character(Turn_Based_Entity.Turn_Based_Entity):
         
         self.set_state(self.get_turn_state())
         self.update_turn_counter (0, "")
-            
-
-    def get_next_action(self):
-        # To be implemented
-        pass
-    
 
 
 
