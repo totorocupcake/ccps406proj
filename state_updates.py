@@ -47,7 +47,8 @@ def basic_commands(world_state,charac,command):
         max_rows = len(world_state.get_tiles())-1
         
         if x<=max_rows and x>= 0 and y>=0 and y<=max_cols:
-            charac.update_coords((x,y))
+            # if coord is valid, move character to new coord
+            charac.update_coords((x,y))            
         else:
             # only print to console if its the active player turn
             if charac.get_active_player=='Y':
@@ -59,9 +60,27 @@ def basic_commands(world_state,charac,command):
 
     return world_state
 
-
-
-
+def visited_updates (world_state,charac,x,y):
+    # this function updates the given charac's visited field
+    # based on new location visited at coord x, y
+    
+    # get and update for the new tile visited
+    new_tile_visited = world_state.get_tiles()[x][y]
+    charac.update_visited("Tile",new_tile_visited.name,new_tile_visited.get_state())
+            
+    # add any objects within tile's inventory      
+    new_tile_objs_visited = new_tile_visited.get_inventory()
+    for obj in new_tile_objs_visited:
+        charac.update_visited("Object",obj.name,obj.get_state())
+        
+    # add any characters on the same tile
+    new_chars_visited = world_state.get_chars_at_tile((x,y))
+    for char in new_chars_visited:
+        if char != charac:
+            charac.update_visited("Character",char.name,char.get_state())
+    
+    print(charac.get_visited())
+    return world_state
 
 
 
