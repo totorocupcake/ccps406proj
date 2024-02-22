@@ -31,7 +31,16 @@ class World_State:
   # methods:
 
   def increment_turn(self, amount=1):
-    self.__turn_number += amount    
+    self.__turn_number += amount
+    
+    # turn counting checks for all chars
+    for char in self.__characters:
+        char.decrement_turn_count()
+    
+    # turn counting checks for all tiles    
+    for row in self.__tiles:
+      for tiles in row:
+        tiles.decrement_turn_count()
 
 
   def set_game_won(self, flag):
