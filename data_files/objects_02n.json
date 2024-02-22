@@ -300,7 +300,7 @@
         
         "success_desc": "You harvest a bushel of wheat that can be sold at the merchant for gold.",
         "fail_desc": "You cannot harvest the wheat right now.",
-        "change_state_to": null,
+        "change_state_to": "null",
         "requirement": [
           {
             "type": "tile",
@@ -379,7 +379,7 @@
         
         "success_desc": "You harvest a bale of grass that can be fed to your domesticated animals.",
         "fail_desc": "You cannot harvest the grass right now.",
-        "change_state_to": null,
+        "change_state_to": "null",
         "requirement": [
           {
             "type": "tile",
@@ -589,7 +589,7 @@
 
         "success_desc": "You see a letter from your landlord saying that you owe %rent_amount% in gold that is due.",
         "fail_desc": "You cannot read the letter right now.",
-        "change_state_to": null,
+        "change_state_to": "null",
         "requirement": null,
         "obtain": null
       },
@@ -710,7 +710,7 @@
 
         "success_desc": "You buy a gun that can provide protection against thieves or wild animals.",
         "fail_desc": "You cannot buy the gun right now.",
-        "change_state_to": null,
+        "change_state_to": "null",
         "requirement": [
           {
             "type": "Character",
@@ -799,7 +799,7 @@
 
         "success_desc": "You plant some apple seeds that might grow into an apple tree.",
         "fail_desc": "You cannot plant the apple seeds right now.",
-        "change_state_to": null,
+        "change_state_to": "null",
         "requirement": [
           {
             "type": "tile",
@@ -873,7 +873,7 @@
 
         "success_desc": "You make a sharp axe that could be used for clearing brush.",
         "fail_desc": "You cannot make the axe right now.",
-        "change_state_to": null,
+        "change_state_to": "null",
         "requirement": [
           {
             "type": "Character",

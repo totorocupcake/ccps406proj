@@ -167,7 +167,7 @@
    
         "success_desc": "You exchange friendly greetings with Penny the neighbor and she advised to harvest wheat and grass in the fields.",
         "fail_desc": "You cannot greet Penny the neighbor right now.",
-        "change_state_to": null,
+        "change_state_to": "null",
         "requirement": [
           {
             "type": "tile",
@@ -200,7 +200,7 @@
    
         "success_desc": "You have a curious conversation with the neighbor and find out about harvesting honey.",
         "fail_desc": "You cannot converse with Jimmy the neighbor right now.",
-        "change_state_to": null,
+        "change_state_to": "null",
         "requirement": [
           {
             "type": "tile",
@@ -234,7 +234,7 @@
    
         "success_desc": "You manage to cheer up the grumpy neighbor and Claire provided adivses you unlock the shed.",
         "fail_desc": "You cannot help Claire the neighbor right now.",
-        "change_state_to": null,
+        "change_state_to": "null",
         "requirement": [
           {
             "type": "tile",
