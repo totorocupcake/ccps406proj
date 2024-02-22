@@ -2,6 +2,7 @@ import Character
 import Tile
 import Object
 import text_file_processor
+import random
 
 
 # constants: (make sure they match values in load_status_data.py)
@@ -15,7 +16,9 @@ class World_State:
   # constructor:
 
   def __init__(self):
-
+    
+    random.seed(42) # select seed for reproducible random results for testing
+    
     # Private properties (with default starting values)
     self.__turn_number = 0  
     self.__game_won = 'N'
@@ -31,7 +34,16 @@ class World_State:
   # methods:
 
   def increment_turn(self, amount=1):
-    self.__turn_number += amount    
+    self.__turn_number += amount
+    
+    # turn counting checks for all chars
+    for char in self.__characters:
+        char.decrement_turn_count()
+    
+    # turn counting checks for all tiles    
+    for row in self.__tiles:
+      for tiles in row:
+        tiles.decrement_turn_count()
 
 
   def set_game_won(self, flag):
@@ -239,17 +251,65 @@ class World_State:
   def get_tiles(self):
     return self.__tiles
 
+  def get_next_action (self, charac):
+    
+    ###############################################################################################
+    def graze():
+      # get_next_action sub function to define a generic "Grazing" behavior for wild cow/chicken
+      # should move randomly n,w,e,w if there is grassland available for them
+        
+      available_directions = [] 
+      current_x,current_y = charac.get_coords()
+        
+      max_cols = len(self.get_tiles()[0])-1
+      max_rows = len(self.get_tiles())-1
+        
+      # check if n,s,e,w is available to move to and is a grassland
+      if current_y+1 >= 0 and current_y+1 <= max_cols and self.get_tiles()[current_x][current_y+1].name == "grasslands":
+        available_directions.append("n")
+      if current_y-1 >= 0 and current_y-1 <= max_cols and self.get_tiles()[current_x][current_y-1].name == "grasslands":
+        available_directions.append("s")
+      if current_x+1 >= 0 and current_x+1 <= max_rows and self.get_tiles()[current_x+1][current_y].name == "grasslands":
+        available_directions.append("e")
+      if current_x-1 >= 0 and current_x-1 <= max_rows and self.get_tiles()[current_x-1][current_y].name == "grasslands":
+        available_directions.append("w")
+        
+      # returns random direction from available_directions list
+      next_command_graze = random.choice(available_directions)
+      return next_command_graze
+    
+    ###########################################################################################################
+    
+    # get_next action function starts here:
+    
+    if charac.name == "Thief" and charac.get_state() =="aggressive":
+      next_command = graze()
+      return next_command
+    
+    elif charac.name == "Wolf" and charac.get_state() =="aggressive":
+      next_command = graze()
+      return next_command
+    
+    elif charac.name == "chicken" and charac.get_state() =="wild":
+      # fast mover, it moves once every turn
+      next_command = graze()
+      return next_command
+    
+    elif charac.name == "cow" and charac.get_state()=="wild":
+      # cow is slower moving compared to chicken, it only moves once every 2 turns
+      if (self.get_turn_number() % 2) == 0:
+        next_command = graze()
+        return next_command
+      else:
+        pass
+    
+    else:
+      # default do nothing if no behavior defined for character
+      pass
 
-
-
-
-
-
-
-
-
-
-
+    
+    
+        
 
 
 
