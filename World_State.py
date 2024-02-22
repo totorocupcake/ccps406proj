@@ -275,13 +275,15 @@ class World_State:
         return next_command
     
     # Aggressive wolf behavior ################################################
-    # kill chicken if there is chicken on same tile, otherwise it just moves randomly on grass
+    # kill chicken/cow if there is chicken/cow on same tile, otherwise it just moves randomly on grass
     elif charac.name == "Wolf" and charac.get_state() =="aggressive":
       char_list = self.get_chars_at_tile(charac.get_coords())
       
       for char in char_list:
         if char.name == "chicken":
           return "kill chicken"
+        elif char.name == "cow":
+          return "kill cow"
       
       next_command = npc_behaviors.graze(self,charac)
       return next_command
