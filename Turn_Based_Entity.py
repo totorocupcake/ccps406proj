@@ -19,7 +19,7 @@ class Turn_Based_Entity(Entity.Entity):
     def decrement_turn_count(self):
         if self._turn_state != "":
             # check if there is a valid turn state in order to decrement turn counter
-            self.__turn_count -= 1
+            self._turn_count -= 1
             
             if self._turn_count == 0:
                 # we waited enough turns, now need to update the tile/character object based on new state in turn_state
