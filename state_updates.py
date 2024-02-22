@@ -3,12 +3,36 @@ import text_file_processor
 import state_updates_interactions
 
 
+def state_update(world_state,charac,command,command_type):
+    # Make the updates to world_state (and any other updates required) to process the command.
+    # Command type is the type of command determined by command processor which determines what updates needs to be made.
+    # Returns back updated world_state object
+    
+    # update char's visited field
+    current_x,current_y = charac.get_coords()
+    world_state=visited_updates(world_state,charac,current_x,current_y)
+    
+    # parse command and make updates
+    if command_type == "basic":
+        return basic_commands(world_state,charac,command)
+    elif command_type == "normal":
+        # to be done, these are normal interactions based off the JSON interaction array data.
+        pass
+    elif command_type == "advanced":
+        # to be done, these are commands that are more specific and documented to be handled separately
+        pass
+    else:
+        # do nothing, just return original world state as command was not recognized but passed through command processor
+        return world_state
+
+
 def basic_commands(world_state,charac,command):
     basic_commands = ["n","s","w","e","inventory"]
 
     #added:
     directions_set = {"n","s","w","e"}
     
+    # parse basic commands
     if command=="inventory":
         object_string=""
         
@@ -81,7 +105,6 @@ def visited_updates (world_state,charac,x,y):
         if char != charac:
             charac.update_visited("Character",char.name,char.get_state())
     
-    print(charac.get_visited())
     return world_state
 
 
