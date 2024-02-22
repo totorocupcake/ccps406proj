@@ -28,6 +28,13 @@ def play_game(world_state):
             world_state=state_updates.state_update(world_state,charac,command,command_type)
             
         world_state.increment_turn() # all characters played their turn, next turn time
+    
+    # after game exited:
+    if (world_state.get_game_won() == 'Y'): 
+        print("You win!")
+    else: 
+        # runs on manual exit
+        print("Goodbye.")
 
 
 def console_output(world_state):
