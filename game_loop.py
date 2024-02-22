@@ -25,7 +25,7 @@ def play_game(world_state):
                 break
             
             # make updates to game based off validated command
-            world_state=state_update(world_state,charac,command,command_type)
+            world_state=state_updates.state_update(world_state,charac,command,command_type)
             
         world_state.increment_turn() # all characters played their turn, next turn time
 
@@ -109,22 +109,7 @@ def command_processor(world_state,charac,command):
         # ****************************************************************
         
 
-def state_update(world_state,charac,command,command_type):
-    # Make the updates to world_state (and any other updates required) to process the command.
-    # Command type is the type of command determined by command processor which determines what updates needs to be made.
-    # Returns back updated world_state object
-    
-    if command_type == "basic":
-        return state_updates.basic_commands(world_state,charac,command)
-    elif command_type == "normal":
-        # to be done, these are normal interactions based off the JSON interaction array data.
-        pass
-    elif command_type == "advanced":
-        # to be done, these are commands that are more specific and documented to be handled separately
-        pass
-    else:
-        # do nothing, just return original world state as command was not recognized but passed through command processor
-        return world_state
+
 
 def dynamic_variable_processor(world_state,get_desc_string):
     # Given a sentence string (from get_description()) replace any dynamic variables within our text files
