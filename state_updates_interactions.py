@@ -1,5 +1,5 @@
 import text_file_processor
-
+import Object
 
 
 def interaction_commands(world_state,charac,command):
@@ -241,10 +241,11 @@ def interaction_commands(world_state,charac,command):
 # ****
 # add item/object to character's inventory list
 # ********        
-                                        current_char = world_state.get_active_char()
-                                        world_state.remove_character(current_char)
-                                        current_char.update_inventory("add", found_obj_inv_list)
-                                        world_state.spawn_character(current_char)
+                                        # current_char = world_state.get_active_char()
+                                        # world_state.remove_character(current_char)
+                                        # current_char.update_inventory("add", found_obj_inv_list)
+                                        # world_state.spawn_character(current_char)
+
 
 
 
@@ -258,9 +259,9 @@ def interaction_commands(world_state,charac,command):
                             print()
                             print("DEBUG: removed object from Tile's inventory and World_State updated")
                             print("DEBUG: add object to character's inventory and World_State updated")
-                            print()
-                            print(int_JSON_obj["success_desc"])
-                            print()
+                            # print()
+                            # print(int_JSON_obj["success_desc"])
+                            # print()
 
 
 
@@ -297,11 +298,76 @@ def interaction_commands(world_state,charac,command):
             print("\t", int_JSON_obj["obtain"])
 
             if int_JSON_obj["obtain"] is not None:
-                # iteratate through the obtains list:
+
+# DEBUG: 
+                # if found_obj_inv_list is not None:
+                #     print("\tDEBUG: found_obj_inv_list[0].get_name() = ", found_obj_inv_list[0].get_name())
+                #     print("\tDEBUG: found_obj_inv_list[0].get_state() = ", found_obj_inv_list[0].get_state())
+                #     print("\tDEBUG: found_obj_inv_list[0].get_quantity() = ", found_obj_inv_list[0].get_quantity())
+
+                obtain_obj_list = []
+
+                # iteratate through the obtains list, add items to a list of objects:
                 for obtain_elem in int_JSON_obj["obtain"]:
+                    if obtain_elem["type"] == "Item":
+
+                        # first check if already in inventory
+                        current_char = world_state.get_active_char()
+                        found_in_current_inv = False
+
+                        for inv_elem in  current_char.get_inventory():
+                            if inv_elem.get_name() == obtain_elem["name"]:
+                                found_in_current_inv = True
+                                break
+
+                        if not found_in_current_inv:
+                            # if not, add to inventory
+                            new_obj = Object.Object()
+                            new_obj.set_general_type("Object")
+                            new_obj.set_type(obtain_elem["type"])
+                            new_obj.set_name(obtain_elem["name"])
+                            new_obj.set_state(obtain_elem["state"])
+                            new_obj.update_qty(obtain_elem["qty"])
+                            obtain_obj_list.append(new_obj)
+
+                            print()
+                            print(int_JSON_obj["success_desc"])
+                            print()
+                        else:       # print fail_desc:
+                            print()
+                            print(int_JSON_obj["fail_desc"])
+                            print()
+
+                        # update the character's inventory based on the obtain list:
+                        if (len(obtain_obj_list) > 0):
+                            current_char = world_state.get_active_char()
+                            world_state.remove_character(current_char)
+                            current_char.update_inventory("add", obtain_obj_list)
+                            world_state.spawn_character(current_char)
+
+#   self.name = ""
+#     self._general_type = ""
+#     self.__type = ""
+#     self.__state = ""
+#     self.co_ord_x = 0
+#     self.co_ord_y = 0
+  
+# [{'type': 'Item', 'name': 'medkit', 'state': 'null', 'qty': 1}]
+
+
+
 
                     # check to see what type it is:
-                    pass
+                    # pass
+
+
+            # print()
+            # print(int_JSON_obj["success_desc"])
+            # print()
+        else:  # requirements not met:
+            print()
+            print(int_JSON_obj["fail_desc"])
+            print()
 
     else:
         print("DEBUG: not found:")
