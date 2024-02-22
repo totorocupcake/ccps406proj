@@ -2,6 +2,7 @@ import Character
 import Tile
 import Object
 import text_file_processor
+import random
 
 
 # constants: (make sure they match values in load_status_data.py)
@@ -248,17 +249,32 @@ class World_State:
   def get_tiles(self):
     return self.__tiles
 
+  def get_next_action (self, charac):
+    
+    if charac.name == "Thief" and charac.state =="aggressive":
+      # write behavior of an aggressive thief
+      pass
+    
+    elif charac.name == "Wolf" and charac.state =="aggressive":
+      # write behavior of an aggressive wolf
+      pass
+    
+    elif charac.name == "chicken" and charac.state =="wild":
+      # write behavior of a wild chicken
+      pass
+    
+    elif charac.name == "cow" and charac.state =="wild":
+      # write behavior of a wild cow
+      pass
+    
+    else:
+      # default do nothing if no behavior defined for character
+      pass
 
-
-
-
-
-
-
-
-
-
-
+      def graze():
+        pass
+        
+        
 
 
 
