@@ -283,8 +283,21 @@ class World_State:
     # get_next action function starts here:
     
     if charac.name == "Thief" and charac.get_state() =="aggressive":
-      next_command = graze()
-      return next_command
+    
+      if self.get_active_char().get_coords() == charac.get_coords():
+        # means the thief is on same tile as the active player
+        # steal gold behavior from the player by sending command "steal %player_name%"
+        
+        for element in self.get_characters():
+              if element.get_type() == "player":
+                player_name = element.name
+        
+        next_command="steal "+ player_name
+        return next_command
+      else:
+        # just move around if no player on same time
+        next_command = graze()
+        return next_command
     
     elif charac.name == "Wolf" and charac.get_state() =="aggressive":
       next_command = graze()

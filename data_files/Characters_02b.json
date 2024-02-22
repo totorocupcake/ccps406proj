@@ -18,7 +18,7 @@
         "change_state_to": "happy",
         "requirement": [
           {
-            "type": "gold",
+            "type": "Gold",
             "name": "gold",
             "state": "null",
             "qty": "%rent_amount%",
@@ -111,7 +111,7 @@
         "change_state_to": "healthy",
         "requirement": [
           {
-            "type": "object",
+            "type": "Object",
             "name": "medkit",
             "state": "null",
             "qty": 1,
@@ -170,7 +170,7 @@
         "change_state_to": "null",
         "requirement": [
           {
-            "type": "tile",
+            "type": "Tile",
             "name": "Penny's House",
             "state": "null",
             "qty": null,
@@ -203,7 +203,7 @@
         "change_state_to": "null",
         "requirement": [
           {
-            "type": "tile",
+            "type": "Tile",
             "name": "Jimmy's House",
             "state": "null",
             "qty": null,
@@ -237,7 +237,7 @@
         "change_state_to": "null",
         "requirement": [
           {
-            "type": "tile",
+            "type": "Tile",
             "name": "Claire's House",
             "state": "null",
             "qty": null,
@@ -272,7 +272,7 @@
         "change_state_to": "defeated",
         "requirement": [
           {
-            "type": "object",
+            "type": "Object",
             "name": "gun",
             "state": "null",
             "qty": 1,
@@ -321,7 +321,7 @@
         "change_state_to": "defeated",
         "requirement": [
           {
-            "type": "object",
+            "type": "Object",
             "name": "gun",
             "state": "null",
             "qty": 1,
@@ -393,7 +393,7 @@
         "change_state_to": "tamed_not_hungry",
         "requirement": [
           {
-            "type": "object",
+            "type": "Object",
             "name": "grass",
             "state": "null",
             "qty": 1,
@@ -488,7 +488,7 @@
         "change_state_to": "tamed_hungry",
         "requirement": [
           {
-            "type": "object",
+            "type": "Object",
             "name": "apples",
             "state": "null",
             "qty": 1,
@@ -520,7 +520,7 @@
         "change_state_to": "tamed_not_hungry",
         "requirement": [
           {
-            "type": "object",
+            "type": "Object",
             "name": "grass",
             "state": "null",
             "qty": 1,
@@ -584,7 +584,7 @@
         "change_state_to": "tamed_hungry",
         "requirement": [
           {
-            "type": "object",
+            "type": "Object",
             "name": "milk bucket",
             "state": "null",
             "qty": 1,
@@ -603,7 +603,47 @@
       ]
       }
     ]
+  },
+
+  {
+    "name": "%player_name%",
+    "type": "player",
+    "state": "null",
+    "description": {
+      "long_desc": "%player_name% wearing a straw hat with weathered hands from farming",
+      "short_desc": "%player_name%"
+    },
+    "interactions":    
+    [
+      {
+        "name": "steal",
+   
+        "success_desc": "You manage to steal the gold from %player_name%.",
+        "fail_desc": "You failed to steal gold from %player_name%.",
+        "change_state_to": "null",
+        "requirement": [
+          {
+            "type": "Gold",
+            "name": "gold",
+            "state": "null",
+            "qty": "%gold%",
+            "remove_obj": "Y"
+          }          
+        ]
+        
+        
+        ,
+        "obtain":  [ {
+          "type": "Gold",
+          "name": "gold",
+          "state": "null",
+          "qty": "%gold%"
+        }
+      ]
+      }
+    ]
   }
+
 
 
   
