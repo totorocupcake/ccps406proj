@@ -38,6 +38,7 @@ def interaction_commands(world_state,charac,command):
     found_interac_char = False
     found_interac_char_inv = False
 
+    found_obj_inv_list = []
 
     interac_name = ""
     interac_general_type = ""
@@ -117,12 +118,12 @@ def interaction_commands(world_state,charac,command):
         ( found_interac_char) or ( found_interac_char_inv):
 
         # charac.get_coords()
-        print("DEBUG: charac.get_coords() = ", charac.get_coords())
+        # print("DEBUG: charac.get_coords() = ", charac.get_coords())
 
-        print("DEBUG: current_tl.get_name() = ", current_tl.get_name())
-        print("DEBUG: current_tl.get_state() = ", current_tl.get_state())
-        print("DEBUG: current_tl.get_coords() = ", current_tl.get_coords())
-        print("DEBUG: current_tl.get_general_type() = ", current_tl.get_general_type())
+        # print("DEBUG: current_tl.get_name() = ", current_tl.get_name())
+        # print("DEBUG: current_tl.get_state() = ", current_tl.get_state())
+        # print("DEBUG: current_tl.get_coords() = ", current_tl.get_coords())
+        # print("DEBUG: current_tl.get_general_type() = ", current_tl.get_general_type())
 
 
 # 3. use def lookup_interaction (type, name, state, interaction_key) to grab the interaction data from JSON
@@ -162,13 +163,13 @@ def interaction_commands(world_state,charac,command):
         #   and update 'state' where needed 
         if requirements_satisfied:
 
-            print("requirements_satisfied = True")
-            print("change_state_to: ", int_JSON_obj["change_state_to"])
+            # print("requirements_satisfied = True")
+            # print("change_state_to: ", int_JSON_obj["change_state_to"])
 
             # check which Tile/Char/Obj to change state to:
-            print("\tinterac_general_type: ", interac_general_type)
-            print("\tinterac_name: ", interac_name)
-            print("\tinterac_state: ", interac_state)
+            # print("\tinterac_general_type: ", interac_general_type)
+            # print("\tinterac_name: ", interac_name)
+            # print("\tinterac_state: ", interac_state)
             
             # if current state == change_state_to, don't bother updating state info
             if int_JSON_obj["change_state_to"] != interac_state:
@@ -178,25 +179,132 @@ def interaction_commands(world_state,charac,command):
                 if interac_general_type == "Tile":
                     # update current tile's state in World_State
 
+                    # current_x, current_y
+                    # def update_tile(self, coords, new_tile):
+                    current_tl.get_state(interac_state)
+                    world_state.update_tile(current_tl.get_coords(), current_tl)
+
+                    # debug only:
+                    print("DEBUG: world_state.get_tiles()[current_x][current_y].get_state() = ", \
+                        world_state.get_tiles()[current_x][current_y].get_state())
+                    
+
                     pass 
 
                 elif interac_general_type == "Character":
                     # find and update the character's state in World_State
+                    #     interac_name
+                    #     interac_state
+                    char_on_tile = world_state.get_chars_at_tile(current_tl.get_coords())
 
-                    pass 
+                    if len(char_on_tile) > 0:
+                        for char_elem in char_on_tile:
+                            if char_elem.get_name() == interac_name:
+                                world_state.remove_character(char_elem)
+                                char_elem.set_state(interac_state)
+                                world_state.spawn_character(char_elem)
 
-                else:  # (Object)
-                    # find and update the object's state in World_State
+                                # debug only:
+                                print("DEBUG: ", char_elem.get_name(), ",", char_elem.get_state())
+                                break
+                    
 
-                    pass 
+                else:  # interac_general_type == "Object"
+                    # find and update the Object's state
+                    
+                    #    first, if it was in tile's inventory, update there:
+                    if found_interac_tile_inventory:
+                        print("DEBUG: found in Tile inventory")
 
+# ******
+# ****** Delete object/item from current Tile's inventory and add to char's inventory:
+# ******
+
+                        if int_JSON_obj["change_state_to"] == "delete":
+                            # delete the item from the current tile's inventory
+                            # x_coord, y_coord = current_tl.get_coords()
+
+                            tl_obj_inv_list = current_tl.get_inventory()
+
+                            if len(tl_obj_inv_list) > 0:
+                                for obj_elem in tl_obj_inv_list:
+                                    if obj_elem.get_name() == interac_name:
+                                        # remove that object from tile's inventory
+                                        found_obj_inv_list.append(obj_elem)
+                                        # obj_list = []
+
+                                        # obj_list.append(obj_elem)
+                                        current_tl.update_inventory("remove", found_obj_inv_list)
+
+# ********
+# NOTE: this might not be the right place for this - should be in 'obtains' code:
+# ****
+# add item/object to character's inventory list
+# ********        
+                                        current_char = world_state.get_active_char()
+                                        world_state.remove_character(current_char)
+                                        current_char.update_inventory("add", found_obj_inv_list)
+                                        world_state.spawn_character(current_char)
+
+
+
+
+                                        break
+
+                             # then update the tile in World_State:
+                            world_state.update_tile(current_tl.get_coords(), current_tl)
+
+
+                            print()
+                            print("DEBUG: removed object from Tile's inventory and World_State updated")
+                            print("DEBUG: add object to character's inventory and World_State updated")
+                            print()
+                            print(int_JSON_obj["success_desc"])
+                            print()
+
+
+
+                            # world_state.get_tiles()[current_x][current_y]
+
+                    # # debug only:
+                    # print("DEBUG: world_state.get_tiles()[current_x][current_y].get_state() = ", \
+                    #     world_state.get_tiles()[current_x][current_y].get_state())
+
+  
+
+
+                    elif found_interac_char_inv:  # it was in a character's inventory, update there:
+                        print("DEBUG: found in character's inventory: found_interac_char_inv = True")
+
+                        pass 
+
+
+
+    # if ( found_interac_tile) or ( found_interac_tile_inventory) or \
+    #     ( found_interac_char) or ( found_interac_char_inv):
+
+
+                
+
+                        pass 
 
             
 
 
         # c) if requirements_satisfied, check 'obtain' field,
         #   and update where needed 
+            print("Obtains:")
+            print("\t", int_JSON_obj["obtain"])
 
+            if int_JSON_obj["obtain"] is not None:
+                # iteratate through the obtains list:
+                for obtain_elem in int_JSON_obj["obtain"]:
+
+                    # check to see what type it is:
+                    pass
+
+    else:
+        print("DEBUG: not found:")
 
         
 

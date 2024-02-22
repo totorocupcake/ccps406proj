@@ -63,7 +63,7 @@ class Entity:
   def set_state(self, new_state):
     self.__state = new_state
 
-  def update_inventory(self, add_remove, objects):
+  def update_inventory(self, add_remove, list_of_objects):
     # adds/removes 'objects' from the __inventory list, given a list
     #   of 'object' objects
     # add_remove should = "add" for add case
@@ -71,20 +71,20 @@ class Entity:
     if add_remove == "add":
 
       # check to make sure the inputted 'objects' argument is not empty
-      if objects is not None:
+      if list_of_objects is not None:
 
         # for each inputted object, append to the inventory list
-        for obj_elem in objects:
+        for obj_elem in list_of_objects:
           self.inventory.append(obj_elem)
           # inventory.append(obj_elem)
           # self.inventory.append(obj_elem)
     else:
 
       # check to make sure the inputted 'objects' argument is not empty
-      if objects is not None:
+      if list_of_objects is not None:
 
         # for each inputted object, remove from the inventory list, if it exists
-        for obj_elem in objects:
+        for obj_elem in list_of_objects:
 
           # check to make sure object is in inventory before calling .remove()
           if obj_elem in self.inventory:
