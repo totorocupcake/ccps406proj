@@ -132,6 +132,10 @@ def dynamic_variable_logic(world_state,keyword):
             return str(world_state.get_rent_amount())
         elif keyword == "rent_due_days_away":
             return str(world_state.get_rent_due_date())
+        elif keyword=="gold":
+            for charac in world_state.get_characters():
+                if charac.get_type() == "player":
+                    return charac.get_current_gold()
 
 
     
