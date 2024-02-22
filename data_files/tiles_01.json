@@ -50,7 +50,7 @@
         "success_desc": "You open the mail box. There is a letter within it, you take the letter.",
         "fail_desc": "You open the mail box. There is no letter inside.",
         "change_state_to": "empty",
-        "requirement": "null",
+        "requirement": null,
         "obtain": [
           {
             "type": "object",
@@ -79,7 +79,7 @@
         "success_desc": "You open the mail box. There is no letter inside.",
         "fail_desc": "You open the mail box. There is no letter inside.",
         "change_state_to": "empty",
-        "requirement": "null",
+        "requirement": null,
         "obtain": null
 
       }
@@ -118,7 +118,7 @@
         "success_desc": "You cannot lock the door right now, it is closed.",
         "fail_desc": "You cannot lock the door right now, it is closed.",
         "change_state_to": "closed",
-        "requirement": "null",
+        "requirement": null,
         "obtain": null
       }
     ]
@@ -139,7 +139,7 @@
         "success_desc": "The garage is already unlocked and open!",
         "fail_desc": "The garage is already unlocked and open!",
         "change_state_to": "open",
-        "requirement": "null",
+        "requirement": null,
         "obtain": null
 
       },
@@ -179,7 +179,7 @@
         "success_desc": "The door to the kichen is already open.",
         "fail_desc": "The door to the kichen is already open.",
         "change_state_to": "open",
-        "requirement": "null",
+        "requirement": null,
         "obtain": null
       },
       {
@@ -247,7 +247,7 @@
         "success_desc": "The door to your house is already locked.",
         "fail_desc": "The door to your house is already locked.",
         "change_state_to": "closed",
-        "requirement": "null",
+        "requirement": null,
         "obtain": null
       }
     ]
@@ -304,7 +304,7 @@
         "success_desc": "The house is already locked.",
         "fail_desc": "The house is already locked.",
         "change_state_to": "closed",
-        "requirement": "null",
+        "requirement": null,
         "obtain": null
       }
     ]
@@ -324,7 +324,7 @@
         "success_desc": "The door is already open.",
         "fail_desc": "The door is already open.",
         "change_state_to": "open",
-        "requirement": "null",
+        "requirement": null,
         "obtain": null
       },
 
@@ -514,7 +514,7 @@
         "success_desc": "The tool shed is already locked.",
         "fail_desc": "The tool shed is already locked.",
         "change_state_to": "closed",
-        "requirement": "null",
+        "requirement": null,
         "obtain": null
       }
     ]
@@ -535,7 +535,7 @@
         "success_desc": "The tool shed is already opened.",
         "fail_desc": "The tool shed is already opened.",
         "change_state_to": "open",
-        "requirement": "null"
+        "requirement": null
       },
       {
         "name": "lock",
@@ -617,7 +617,7 @@
         "success_desc": "The door is already locked.",
         "fail_desc": "The door is already locked.",
         "change_state_to": "closed",
-        "requirement": "null",
+        "requirement": null,
         "obtain": null
       }
     ]
@@ -641,7 +641,7 @@
         "success_desc": "The chicken coop is already unlocked.",
         "fail_desc": "The chicken coop is already unlocked.",
         "change_state_to": "open",
-        "requirement": "null",
+        "requirement": null,
         "obtain": null
       },
       {
@@ -695,7 +695,7 @@
         "success_desc": "The barn is already locked.",
         "fail_desc": "The barn is already locked.",
         "change_state_to": "closed",
-        "requirement": "null",
+        "requirement": null,
         "obtain": null
       }
     ]
@@ -716,7 +716,7 @@
         "success_desc": "The barn is already open.",
         "fail_desc": "The barn is already open.",
         "change_state_to": "open",
-        "requirement": "null",
+        "requirement": null,
         "obtain": null
       },
 
