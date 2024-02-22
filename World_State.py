@@ -16,7 +16,9 @@ class World_State:
   # constructor:
 
   def __init__(self):
-
+    
+    random.seed(42) # select seed for reproducible random results for testing
+    
     # Private properties (with default starting values)
     self.__turn_number = 0  
     self.__game_won = 'N'
@@ -256,7 +258,6 @@ class World_State:
       # get_next_action sub function to define a generic "Grazing" behavior for wild cow/chicken
       # should move randomly n,w,e,w if there is grassland available for them
         
-      random.seed(42) # select seed for reproducible results for testing
       available_directions = [] 
       current_x,current_y = charac.get_coords()
         
@@ -275,7 +276,6 @@ class World_State:
         
       # returns random direction from available_directions list
       next_command_graze = random.choice(available_directions)
-      print ("next command graze: ",next_command_graze)
       return next_command_graze
     
     ###########################################################################################################
