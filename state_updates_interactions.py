@@ -145,7 +145,6 @@ def interaction_commands(world_state,charac,command):
         requirements_satisfied = False
 
         # if no requirements, assume successful:
-        # obj["name"]        
 
         if int_JSON_obj["requirement"] is None:
             print("DEBUG: int_JSON_obj['requirement'] = ", int_JSON_obj["requirement"])
@@ -172,6 +171,25 @@ def interaction_commands(world_state,charac,command):
             print("\tinterac_state: ", interac_state)
             
             # if current state == change_state_to, don't bother updating state info
+            if int_JSON_obj["change_state_to"] != interac_state:
+
+                # update the state (Tile/Char/Obj) in World_State:
+
+                if interac_general_type == "Tile":
+                    # update current tile's state in World_State
+
+                    pass 
+
+                elif interac_general_type == "Character":
+                    # find and update the character's state in World_State
+
+                    pass 
+
+                else:  # (Object)
+                    # find and update the object's state in World_State
+
+                    pass 
+
 
             
 
