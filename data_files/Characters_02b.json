@@ -369,6 +369,23 @@
         "change_state_to": "tamed_hungry",
         "requirement": null,
         "obtain":  null
+      },
+      {
+        "name": "kill",
+   
+        "success_desc": "You kill the chicken.",
+        "fail_desc": "You failed to kill the chicken.",
+        "change_state_to": "delete",
+        "requirement": [
+          {
+            "type": "Character",
+            "name": "Wolf",
+            "state": "aggressive",
+            "qty": 1,
+            "remove_obj": "N"
+          }          
+        ],
+        "obtain":  null
       }
     ]
   },
@@ -401,6 +418,23 @@
           }          
         ],
         "obtain":  null
+      },
+      {
+        "name": "kill",
+   
+        "success_desc": "You kill the chicken.",
+        "fail_desc": "You failed to kill the chicken.",
+        "change_state_to": "delete",
+        "requirement": [
+          {
+            "type": "Character",
+            "name": "Wolf",
+            "state": "aggressive",
+            "qty": 1,
+            "remove_obj": "N"
+          }          
+        ],
+        "obtain":  null
       }
     ]
   },
@@ -427,6 +461,23 @@
             "name": "turn",
             "state": "null",
             "qty": 5,
+            "remove_obj": "N"
+          }          
+        ],
+        "obtain":  null
+      },
+      {
+        "name": "kill",
+   
+        "success_desc": "You kill the chicken.",
+        "fail_desc": "You failed to kill the chicken.",
+        "change_state_to": "delete",
+        "requirement": [
+          {
+            "type": "Character",
+            "name": "Wolf",
+            "state": "aggressive",
+            "qty": 1,
             "remove_obj": "N"
           }          
         ],
@@ -463,6 +514,23 @@
           "qty": 1
         }
       ]
+      },
+      {
+        "name": "kill",
+   
+        "success_desc": "You kill the chicken.",
+        "fail_desc": "You failed to kill the chicken.",
+        "change_state_to": "delete",
+        "requirement": [
+          {
+            "type": "Character",
+            "name": "Wolf",
+            "state": "aggressive",
+            "qty": 1,
+            "remove_obj": "N"
+          }          
+        ],
+        "obtain":  null
       }
     ]
   },
@@ -493,6 +561,23 @@
             "state": "null",
             "qty": 1,
             "remove_obj": "Y"
+          }          
+        ],
+        "obtain":  null
+      },
+      {
+        "name": "kill",
+   
+        "success_desc": "You kill the cow.",
+        "fail_desc": "You failed to kill the cow.",
+        "change_state_to": "delete",
+        "requirement": [
+          {
+            "type": "Character",
+            "name": "Wolf",
+            "state": "aggressive",
+            "qty": 1,
+            "remove_obj": "N"
           }          
         ],
         "obtain":  null
@@ -528,6 +613,23 @@
           }          
         ],
         "obtain":  null
+      },
+      {
+        "name": "kill",
+   
+        "success_desc": "You kill the cow.",
+        "fail_desc": "You failed to kill the cow.",
+        "change_state_to": "delete",
+        "requirement": [
+          {
+            "type": "Character",
+            "name": "Wolf",
+            "state": "aggressive",
+            "qty": 1,
+            "remove_obj": "N"
+          }          
+        ],
+        "obtain":  null
       }
     ]
   },
@@ -554,6 +656,23 @@
             "name": "turn",
             "state": "null",
             "qty": 5,
+            "remove_obj": "N"
+          }          
+        ],
+        "obtain":  null
+      },
+      {
+        "name": "kill",
+   
+        "success_desc": "You kill the cow.",
+        "fail_desc": "You failed to kill the cow.",
+        "change_state_to": "delete",
+        "requirement": [
+          {
+            "type": "Character",
+            "name": "Wolf",
+            "state": "aggressive",
+            "qty": 1,
             "remove_obj": "N"
           }          
         ],
@@ -601,6 +720,23 @@
           "qty": 1
         }
       ]
+      },
+      {
+        "name": "kill",
+   
+        "success_desc": "You kill the cow.",
+        "fail_desc": "You failed to kill the cow.",
+        "change_state_to": "delete",
+        "requirement": [
+          {
+            "type": "Character",
+            "name": "Wolf",
+            "state": "aggressive",
+            "qty": 1,
+            "remove_obj": "N"
+          }          
+        ],
+        "obtain":  null
       }
     ]
   },

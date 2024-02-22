@@ -3,6 +3,7 @@ import Tile
 import Object
 import text_file_processor
 import random
+import npc_behaviors
 
 
 # constants: (make sure they match values in load_status_data.py)
@@ -252,73 +253,58 @@ class World_State:
     return self.__tiles
 
   def get_next_action (self, charac):
+    # Function controls computer-controlled characters by providing their next command for console input
     
-    ###############################################################################################
-    def graze():
-      # get_next_action sub function to define a generic "Grazing" behavior for wild cow/chicken
-      # should move randomly n,w,e,w if there is grassland available for them
-        
-      available_directions = [] 
-      current_x,current_y = charac.get_coords()
-        
-      max_cols = len(self.get_tiles()[0])-1
-      max_rows = len(self.get_tiles())-1
-        
-      # check if n,s,e,w is available to move to and is a grassland
-      if current_y+1 >= 0 and current_y+1 <= max_cols and self.get_tiles()[current_x][current_y+1].name == "grasslands":
-        available_directions.append("n")
-      if current_y-1 >= 0 and current_y-1 <= max_cols and self.get_tiles()[current_x][current_y-1].name == "grasslands":
-        available_directions.append("s")
-      if current_x+1 >= 0 and current_x+1 <= max_rows and self.get_tiles()[current_x+1][current_y].name == "grasslands":
-        available_directions.append("e")
-      if current_x-1 >= 0 and current_x-1 <= max_rows and self.get_tiles()[current_x-1][current_y].name == "grasslands":
-        available_directions.append("w")
-        
-      # returns random direction from available_directions list
-      next_command_graze = random.choice(available_directions)
-      return next_command_graze
-    
-    ###########################################################################################################
-    
-    # get_next action function starts here:
-    
+    # Aggressive thief behavior ########################################
+    # steal gold from player if on same tile, otherwise roam the grass
     if charac.name == "Thief" and charac.get_state() =="aggressive":
-      
       for element in self.get_characters():
         # find the player character (note may not be the active player)
             if element.get_type() == "player":
               player = element
+              break
 
       if player.get_coords() == charac.get_coords():
-        # means the thief is on same tile as the active player
-        # steal gold behavior from the player by sending command "steal %player_name%"
-        
+        # steal gold from player if on same tile
         player_name = player.name
         next_command="steal "+ player_name
         return next_command
-      
       else:
         # just move around if no player on same tile
-        next_command = graze()
+        next_command = npc_behaviors.graze(self,charac)
         return next_command
     
+    # Aggressive wolf behavior ################################################
+    # kill chicken/cow if there is chicken/cow on same tile, otherwise it just moves randomly on grass
     elif charac.name == "Wolf" and charac.get_state() =="aggressive":
-      next_command = graze()
+      char_list = self.get_chars_at_tile(charac.get_coords())
+      
+      for char in char_list:
+        if char.name == "chicken":
+          return "kill chicken"
+        elif char.name == "cow":
+          return "kill cow"
+      
+      next_command = npc_behaviors.graze(self,charac)
       return next_command
     
+    # Wild chicken behavior ######################################################
+    # fast mover, it moves once every turn, roams grass randomly
     elif charac.name == "chicken" and charac.get_state() =="wild":
-      # fast mover, it moves once every turn
-      next_command = graze()
+      next_command = npc_behaviors.graze(self,charac)
       return next_command
-    
+      
+
+    # Wild cow behavior ###########################################################
+    # cow is slower moving compared to chicken, it only moves once every 2 turns, roams grass
     elif charac.name == "cow" and charac.get_state()=="wild":
-      # cow is slower moving compared to chicken, it only moves once every 2 turns
       if (self.get_turn_number() % 2) == 0:
-        next_command = graze()
+        next_command = npc_behaviors.graze(self,charac)
         return next_command
       else:
         pass
     
+    # All other characters' behavior ######################################################
     else:
       # default do nothing if no behavior defined for character
       pass
