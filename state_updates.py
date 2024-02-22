@@ -49,7 +49,9 @@ def basic_commands(world_state,charac,command):
         if x<=max_rows and x>= 0 and y>=0 and y<=max_cols:
             charac.update_coords((x,y))
         else:
-            print("You cannot go there.") 
+            # only print to console if its the active player turn
+            if charac.get_active_player=='Y':
+                print("You cannot go there.") 
     
     # added: for dealing with 'interaction' commands
     elif command is not None:

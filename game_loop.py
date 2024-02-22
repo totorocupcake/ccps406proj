@@ -141,7 +141,7 @@ def dynamic_variable_logic(world_state,keyword):
         
         if keyword == "player_name":
             for charac in world_state.get_characters():
-                if charac.get_type == "player":
+                if charac.get_type() == "player":
                     return charac.get_name()
         elif keyword == "rent_amount":
             return str(world_state.get_rent_amount())
