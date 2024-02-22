@@ -60,7 +60,7 @@ def command_input(world_state,charac):
         if charac.get_active_player() =='Y':
             command = input("Please enter your next action: ")
         else:
-            command = charac.get_next_action()
+            command = world_state.get_next_action(charac)
         
         # do some command formatting cleansing here
         if command:
