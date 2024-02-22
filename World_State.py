@@ -251,29 +251,7 @@ class World_State:
 
   def get_next_action (self, charac):
     
-    if charac.name == "Thief" and charac.state =="aggressive":
-      # write behavior of an aggressive thief
-      pass
-    
-    elif charac.name == "Wolf" and charac.state =="aggressive":
-      # write behavior of an aggressive wolf
-      pass
-    
-    elif charac.name == "chicken" and charac.state =="wild":
-      # fast mover, it moves once every turn
-      return graze()
-    
-    elif charac.name == "cow" and charac.state =="wild":
-      # cow is slower moving compared to chicken, it only moves once every 2 turns
-      if (self.get_turn_number() % 2) == 0:
-        return graze()
-      else:
-        pass
-    
-    else:
-      # default do nothing if no behavior defined for character
-      pass
-
+    ###############################################################################################
     def graze():
       # get_next_action sub function to define a generic "Grazing" behavior for wild cow/chicken
       # should move randomly n,w,e,w if there is grassland available for them
@@ -296,7 +274,40 @@ class World_State:
         available_directions.append("w")
         
       # returns random direction from available_directions list
-      return random.choice(available_directions)
+      next_command_graze = random.choice(available_directions)
+      print ("next command graze: ",next_command_graze)
+      return next_command_graze
+    
+    ###########################################################################################################
+    
+    # get_next action function starts here:
+    
+    if charac.name == "Thief" and charac.get_state() =="aggressive":
+      next_command = graze()
+      return next_command
+    
+    elif charac.name == "Wolf" and charac.get_state() =="aggressive":
+      next_command = graze()
+      return next_command
+    
+    elif charac.name == "chicken" and charac.get_state() =="wild":
+      # fast mover, it moves once every turn
+      next_command = graze()
+      return next_command
+    
+    elif charac.name == "cow" and charac.get_state()=="wild":
+      # cow is slower moving compared to chicken, it only moves once every 2 turns
+      if (self.get_turn_number() % 2) == 0:
+        next_command = graze()
+        return next_command
+      else:
+        pass
+    
+    else:
+      # default do nothing if no behavior defined for character
+      pass
+
+    
     
         
 

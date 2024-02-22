@@ -74,7 +74,8 @@ def basic_commands(world_state,charac,command):
         
         if x<=max_rows and x>= 0 and y>=0 and y<=max_cols:
             # if coord is valid, move character to new coord
-            charac.update_coords((x,y))            
+            charac.update_coords((x,y))
+            # print("character name: "+charac.name + " moved to: "+str(x)+", "+str(y)) test prints            
         else:
             # only print to console if its the active player turn
             if charac.get_active_player=='Y':
