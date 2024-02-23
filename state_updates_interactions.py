@@ -1,5 +1,6 @@
 import text_file_processor
 import Object
+import load_Tiles_temp
 
 
 def interaction_commands(world_state,charac,command):
@@ -386,6 +387,21 @@ def interaction_commands(world_state,charac,command):
                     elif obtain_elem["type"] == "tile":
                         # current_char.get_coords()
                         current_char = world_state.get_active_char()
+                        new_tile_id = text_file_processor.lookup_tileID_by_name_state(obtain_elem["name"], obtain_elem["state"])
+                        new_tile = load_Tiles_temp.get_tile_by_name_and_state(obtain_elem["name"], obtain_elem["state"])
+                        new_tile.set_tile_id(new_tile_id)
+                        print("\tDEBUG: new_tile_id = ", new_tile_id)
+                        print("\tDEBUG: new_tile.get_name() = ", new_tile.get_name())
+                        print("\tDEBUG: new_tile.get_state() = ", new_tile.get_state())
+                        print("\tDEBUG: new_tile.get_tile_id() = ", new_tile.get_tile_id())
+                        print("\tDEBUG: new_tile.get_movable() = ", new_tile.get_movable())
+                        
+                        # print("\tDEBUG: new_tile (old coords) = ", new_tile.get_coords())
+
+                        new_tile.update_coords( world_state.get_tile_by_name(obtain_elem["name"]).get_coords())
+                        print("\tDEBUG: new_tile (new coords) = ", new_tile.get_coords())
+
+                        
                         print("DEBUG: (current_char.get_coords() = ", current_char.get_coords())
                         
                         print("DEBUG: (obtain_elem['type'] == 'tile')")
