@@ -47,14 +47,11 @@ def interaction_commands(world_state,charac,command):
     current_tl = world_state.get_tiles()[current_x][current_y]
     
     if current_tl.get_name() == interac_noun:
-        # found tile named 'interac_noun'
+        # found tile named 'interac_noun', so update interac_ data:
         found_interac_tile = True
         interac_name = interac_noun
         interac_general_type = "Tile"
         interac_state = current_tl.get_state()
-
-        # (interac_general_type, \
-        #     current_tl.get_name(), current_tl.get_state(), interaction_array[0])
 
 
     # if not tile, check tile inventory for match:
@@ -63,6 +60,7 @@ def interaction_commands(world_state,charac,command):
         if len(tl_inv_list) > 0:
             for inv_elem in tl_inv_list:
                 if inv_elem.get_name() == interac_noun:
+                    # found in tile inventory, so update interac_ data:
                     found_interac_tile_inventory = True
                     interac_name = interac_noun
                     interac_general_type = "Object"
@@ -71,13 +69,14 @@ def interaction_commands(world_state,charac,command):
                     tile_current_obj_found = inv_elem
                     break
 
+
     # if not tile and not in tile inventory, check character/npc on tile
     if (not found_interac_tile) and (not found_interac_tile_inventory):
-         #et_chars_at_tile()
         chars_list = world_state.get_chars_at_tile(charac.get_coords())
         if len(chars_list) > 0:
             for char_elem in chars_list:
                 if char_elem.get_name() == interac_noun:
+                    # found matching character, so update interac_ data:
                     found_interac_char = True
                     interac_name = interac_noun
                     interac_general_type = "Character"
@@ -85,6 +84,7 @@ def interaction_commands(world_state,charac,command):
                     # track the character that matches
                     tile_char_found = char_elem
                     break
+
 
     # if not tile, not in tile-inventory, not char/npc name, check char/npc inventory
     if (not found_interac_tile) and (not found_interac_tile_inventory) and (not found_interac_char):
@@ -95,6 +95,7 @@ def interaction_commands(world_state,charac,command):
                 if len(char_inv) > 0:
                     for inv_elem in char_inv:
                         if inv_elem.get_name() == interac_noun:
+                            # found in character inventory, so update interac_ data:
                             found_interac_char_inv = True
                             interac_name = interac_noun
                             interac_general_type = "Object"
@@ -112,7 +113,8 @@ def interaction_commands(world_state,charac,command):
 
 
 
-# 2. if "barn" does exist in their coord, what is the state of the barn? and its general type?
+# 2. if "barn" (interac_noun) does exist in their coord, what is the state of the barn? and its general type?
+#       we updated state and general type in code above ^
 
     if ( found_interac_tile) or ( found_interac_tile_inventory) or \
         ( found_interac_char) or ( found_interac_char_inv):
@@ -136,12 +138,6 @@ def interaction_commands(world_state,charac,command):
 
 # 4. process the interaction based on data from 3.
  
-# {'name': 'open', 'success_desc': 'The door to the kichen is already open.', 
-#       'fail_desc': 'The door to the kichen is already open.', 
-#       'change_state_to': 'open', 
-#       'requirement': 'null', 
-#       'obtain': None}
-
         # a) check for requirements, if any:
         requirements_satisfied = False
 
@@ -156,6 +152,36 @@ def interaction_commands(world_state,charac,command):
             print("DEBUG: int_JSON_obj['requirement'] (Not None)= ", int_JSON_obj["requirement"])
 
         # else, check all requirements in array:
+            found_obj_req = False
+            for req_elem in int_JSON_obj["requirement"]:
+                # i) check 'object' requirements, must be in current char's inventory:
+                if req_elem["type"] == "object":
+                    act_char = world_state.get_active_char()
+                    act_char_inv = act_char.get_inventory()
+                    
+                    if len(act_char_inv) > 0:
+                        for inv_elem in act_char_inv:
+                            if (inv_elem.get_name() == req_elem["name"]) and \
+                                (inv_elem.get_quantity() >= req_elem["qty"]):
+                                found_obj_req = True 
+                                break
+                    if not found_obj_req:
+                        print()
+                        print(int_JSON_obj["fail_desc"])
+                        print()
+                        requirements_satisfied = False
+                        break
+
+
+
+                    pass
+            
+            # if more than one requirement, need to use 'and' 
+            if found_obj_req:
+                print("\tDEBUG: requirements satisfied")
+                requirements_satisfied = True
+
+
 
 
 
@@ -181,7 +207,18 @@ def interaction_commands(world_state,charac,command):
 
                     # current_x, current_y
                     # def update_tile(self, coords, new_tile):
-                    current_tl.get_state(interac_state)
+                    # current_tl.get_state(interac_state)
+
+                    print("DEBUG: change_state_to: ", int_JSON_obj["change_state_to"])
+                    print("\tDEBUG: need to replace appropriate tile info in World_State based on 'obtains' info")
+                    
+                    print("DEBUG: current_tl.get_name()", current_tl.get_name())
+                    print("DEBUG: current_tl.get_state()", current_tl.get_state())
+                    print("DEBUG: current_tl.get_tile_id()", current_tl.get_tile_id())
+                    print("DEBUG: interac_state", interac_state)
+                    print()
+                    
+                    current_tl.set_state(interac_state)
                     world_state.update_tile(current_tl.get_coords(), current_tl)
 
                     # debug only:
@@ -335,7 +372,8 @@ def interaction_commands(world_state,charac,command):
                             print()
                         else:       # print fail_desc:
                             print()
-                            print(int_JSON_obj["fail_desc"])
+                            print("DEBUG: (obtain_elem['type'] == 'Item') not found:")
+                            # print(int_JSON_obj["fail_desc"])
                             print()
 
                         # update the character's inventory based on the obtain list:
@@ -345,6 +383,18 @@ def interaction_commands(world_state,charac,command):
                             current_char.update_inventory("add", obtain_obj_list)
                             world_state.spawn_character(current_char)
 
+                    elif obtain_elem["type"] == "tile":
+                        # current_char.get_coords()
+                        current_char = world_state.get_active_char()
+                        print("DEBUG: (current_char.get_coords() = ", current_char.get_coords())
+                        
+                        print("DEBUG: (obtain_elem['type'] == 'tile')")
+                        print("DEBUG: (world_state.get_tile_by_name(obtain_elem['name'])", \
+                            world_state.get_tile_by_name(obtain_elem["name"]).get_name(), ",", \
+                            world_state.get_tile_by_name(obtain_elem["name"]).get_state(), ",", \
+                            world_state.get_tile_by_name(obtain_elem["name"]).get_tile_id(), ",", \
+                            world_state.get_tile_by_name(obtain_elem["name"]).get_coords()    )
+                        
 #   self.name = ""
 #     self._general_type = ""
 #     self.__type = ""
