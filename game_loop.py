@@ -1,6 +1,7 @@
 import World_State
 import re
 import state_updates
+import save_game
 
 def play_game(world_state):
     # MAIN FUNCTION within this module, that calls all other game_loop methods.
@@ -17,13 +18,14 @@ def play_game(world_state):
         
         for charac in world_state.get_characters():
             # cycle through each character in game to get their command and process it
+            
             command, command_type = command_input(world_state, charac)
             
             if command == "exit":
                 # exit game condition, so break out of game loop
                 exit_state=True
                 break
-            
+                 
             # make updates to game based off validated command
             world_state=state_updates.state_update(world_state,charac,command,command_type)
             
@@ -105,6 +107,10 @@ def command_processor(world_state,charac,command):
     if command in basic_commands:
         # check if command is a basic command, based off basic_commands set
         return (True, command,"basic") 
+    elif command == "save" or command == "save game":
+        save_game.save_game(world_state)
+        return (False, command, "basic")
+    
     else:
         # TO EXPAND this if statement to recognize more commands as valid, default rest to true for now
 
