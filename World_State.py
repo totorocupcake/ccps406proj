@@ -86,6 +86,43 @@ class World_State:
     self.__tiles = Tile_2D_array
 
     
+  def get_tile_at_coords(self, coords):
+    x_coord, y_coord = coords
+    return self.__tiles[x_coord][y_coord]
+
+
+
+
+
+
+
+
+
+
+
+
+  def get_tile_by_name(self, tile_name):
+
+    num_rows = WORLD_MAP_NUM_ROWS
+    num_cols = WORLD_MAP_NUM_COLUMNS
+
+    for i in range(num_cols):
+      inner_array = []
+      for j in range(num_rows):
+        # if tile_name == self.__tiles[j][i].get_name():
+        if tile_name == self.__tiles[i][j].get_name():
+          return self.__tiles[i][j]
+    
+    return None
+
+
+
+
+
+
+
+
+
 
 
 
