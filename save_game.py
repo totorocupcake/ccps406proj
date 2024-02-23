@@ -76,7 +76,39 @@ def save_character_status (world_state):
     for charac in characters:
         characters_list.append(serialize_character(charac))
     
-    print (characters_list)
-    
     with open('save_files/char_status_save.json', 'w') as file:
         json.dump(characters_list, file, indent=4)
+        
+def serialize_object(item):
+    current_x,current_y = item.get_coords()
+    inventory_serialized = [serialize_item(obj) for obj in item.get_inventory()]
+    if inventory_serialized == []:
+        inventory_serialized =None
+
+    return {
+        "type": item.get_type(),
+        "name": item.name,  
+        "state": item.get_state(),
+        "quantity": item.get_quantity(),  
+        "co_ord_x":current_x,
+        "co_ord_y":current_y,
+        "inventory": inventory_serialized
+        
+    }        
+        
+def save_obj_status (world_state):
+    world_map = world_state.get_tiles()
+    objects=[]
+    objects_list = []
+    
+    for row in world_map:
+        for tile in row:
+            if tile.get_inventory() !=[]:
+                objects.extend(tile.get_inventory())
+    print(objects)
+    
+    for obj in objects:
+        objects_list.append(serialize_object(obj))
+    
+    with open('save_files/objects_status_save.json', 'w') as file:
+        json.dump(objects_list, file, indent=4)
