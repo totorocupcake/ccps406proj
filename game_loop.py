@@ -2,7 +2,7 @@ import World_State
 import re
 import state_updates
 
-def play_game(world_state):
+def play_game(world_state, exit_game_loop):
     # MAIN FUNCTION within this module, that calls all other game_loop methods.
     # Coordinates the flow of game loop phase of our game.
     
@@ -29,13 +29,9 @@ def play_game(world_state):
             
         world_state.increment_turn() # all characters played their turn, next turn time
     
-    # after game exited:
-    if (world_state.get_game_won() == 'Y'): 
-        print("You win!")
-    else: 
-        # runs on manual exit
-        print("Goodbye.")
-    exit()
+    # runs after game has been won/exited
+    print("\n  exiting game...")
+    exit_game_loop()
 
 
 def console_output(world_state):

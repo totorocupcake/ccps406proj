@@ -31,12 +31,24 @@ if __name__ == "__main__":
     # This should return one object which is an instance of the world_state class.
     # Within this world_state class, it contains all the tiles/characters and objects within their inventory
     # which we will manipulate and lookup within game loop.
+
+    """
+    Exit Game Loop
+    """
+    # runs after game has been won or manually exited
+    # will run after Game Loop, but has to be defined before so it can be called when exiting the game loop
+    def exit_game_loop():
+        if world_state.get_game_won() == 'Y':
+            print("\n  GAME COMPLETE\n  You win!")
+        else: 
+            print("\n  Goodbye.")
+        exit()
     
     """
     Game Loop
     """
-    world_state=game_loop.play_game(world_state)
+    world_state=game_loop.play_game(world_state, exit_game_loop)
     
-    
-    #exit_game_loop()
+
+
     #utility()
