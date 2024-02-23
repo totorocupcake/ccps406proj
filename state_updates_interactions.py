@@ -159,19 +159,22 @@ def interaction_commands(world_state,charac,command):
         # if no requirements, assume successful:
 
         if int_JSON_obj["requirement"] is None:
-            print("DEBUG: int_JSON_obj['requirement'] = ", int_JSON_obj["requirement"])
+            # print("DEBUG: int_JSON_obj['requirement'] = None"), int_JSON_obj["requirement"])
+            print("DEBUG: int_JSON_obj['requirement'] = None")
 
             requirements_satisfied = True
 
         else:
-            print("DEBUG: int_JSON_obj['requirement'] (Not None)= ", int_JSON_obj["requirement"])
+            print("DEBUG: int_JSON_obj['requirement'] (Not None) = ", int_JSON_obj["requirement"])
 
         # else, check all requirements in array:
             found_obj_req = False
             for req_elem in int_JSON_obj["requirement"]:
                 # i) check 'object' requirements, must be in current char's inventory:
                 if req_elem["type"] == "object":
-                    act_char = world_state.get_active_char()
+                    # act_char = world_state.get_active_char()
+                    # fix below, remove act_char, replace with charac
+                    act_char = charac
                     act_char_inv = act_char.get_inventory()
                     
                     if len(act_char_inv) > 0:
@@ -203,14 +206,6 @@ def interaction_commands(world_state,charac,command):
         # b) if requirements_satisfied, check 'change_state_to' field,
         #   and update 'state' where needed 
         if requirements_satisfied:
-
-            # print("requirements_satisfied = True")
-            # print("change_state_to: ", int_JSON_obj["change_state_to"])
-
-            # check which Tile/Char/Obj to change state to:
-            # print("\tinterac_general_type: ", interac_general_type)
-            # print("\tinterac_name: ", interac_name)
-            # print("\tinterac_state: ", interac_state)
             
             # if current state == change_state_to, don't bother updating state info
             if int_JSON_obj["change_state_to"] != interac_state:
@@ -218,34 +213,38 @@ def interaction_commands(world_state,charac,command):
                 # update the state (Tile/Char/Obj) in World_State:
 
                 if interac_general_type == "Tile":
+
+                    # save tile to restore later:
+                    prev_tile = world_state.get_saved_tile_by_name(current_tl.get_name())
+                    if prev_tile is not None:
+                        world_state.update_saved_tiles("remove", prev_tile)
+                        found_prev_tile = True
+                        new_tile = prev_tile
+                    else:
+
                     # update current tile's state in World_State
 
-                    # current_x, current_y
-                    # def update_tile(self, coords, new_tile):
-                    # current_tl.get_state(interac_state)
+                        new_tile_name = current_tl.get_name()
+                        new_tile_state = int_JSON_obj["change_state_to"]
 
-                    new_tile_name = current_tl.get_name()
-                    new_tile_state = int_JSON_obj["change_state_to"]
+                        new_tile_id = text_file_processor.lookup_tileID_by_name_state(new_tile_name, new_tile_state)
+                        new_tile = load_Tiles_temp.get_tile_by_name_and_state(new_tile_name,new_tile_state)
+                        new_tile.set_tile_id(new_tile_id)
 
-                    new_tile_id = text_file_processor.lookup_tileID_by_name_state(new_tile_name, new_tile_state)
-                    new_tile = load_Tiles_temp.get_tile_by_name_and_state(new_tile_name,new_tile_state)
-                    new_tile.set_tile_id(new_tile_id)
+                        new_tile.update_coords( world_state.get_tile_by_name(new_tile_name).get_coords())
 
-                    new_tile.update_coords( world_state.get_tile_by_name(new_tile_name).get_coords())
 
-                    # Add old tile's inventory to new tile before adding to world_state
+# *************************************************
+# fix: cannot add tile inventory to new tile, store old tile instead,
+#       and restore it on open
+# *************************************************
 
-                    old_tile_inv_list = world_state.get_tile_by_name(new_tile_name).get_inventory()
-                    new_tile_inv_list = []
 
-                    if len(old_tile_inv_list) > 0:
-                        for tile_inv_elem in old_tile_inv_list:
-                            new_tile_inv_list.append(tile_inv_elem)
-
-                        new_tile.update_inventory("add", new_tile_inv_list) 
-
+                    # update the tile in world_state:
+                    world_state.update_saved_tiles("add", world_state.get_tile_by_name(current_tl.get_name()))
+                    
                     world_state.update_tile(new_tile.get_coords(), new_tile)
-
+                    
                     print("DEBUG: change_state_to: ", int_JSON_obj["change_state_to"])
                     print("\tDEBUG: need to replace appropriate tile info in World_State based on 'change_state_to' info")
                     
@@ -259,58 +258,7 @@ def interaction_commands(world_state,charac,command):
                     print("DEBUG: new_tile.get_tile_id()", new_tile.get_tile_id())
                     print()
 
-#************************************************************************************
-                    # must load the tile name/state from file
-                    # current_tl.set_state(interac_state)
-
-                        # new_tile_id = text_file_processor.lookup_tileID_by_name_state(obtain_elem["name"], obtain_elem["state"])
-                        # new_tile = load_Tiles_temp.get_tile_by_name_and_state(obtain_elem["name"], obtain_elem["state"])
-                        # new_tile.set_tile_id(new_tile_id)
-                        # print("\tDEBUG: new_tile_id = ", new_tile_id)
-                        # print("\tDEBUG: new_tile.get_name() = ", new_tile.get_name())
-                        # print("\tDEBUG: new_tile.get_state() = ", new_tile.get_state())
-                        # print("\tDEBUG: new_tile.get_tile_id() = ", new_tile.get_tile_id())
-                        # print("\tDEBUG: new_tile.get_movable() = ", new_tile.get_movable())
-                        
-                        # # print("\tDEBUG: new_tile (old coords) = ", new_tile.get_coords())
-
-                        # new_tile.update_coords( world_state.get_tile_by_name(obtain_elem["name"]).get_coords())
-                        # print("\tDEBUG: new_tile (new coords) = ", new_tile.get_coords())
-
-
-
-
-                        # # Add old tile's inventory to new tile before adding to world_state
-
-                        # old_tile_inv_list = world_state.get_tile_by_name(obtain_elem["name"]).get_inventory()
-                        # new_tile_inv_list = []
-
-                        # if len(old_tile_inv_list) > 0:
-                        #     for tile_inv_elem in old_tile_inv_list:
-                        #         new_tile_inv_list.append(tile_inv_elem)
-                            
-                        #     new_tile.update_inventory("add", new_tile_inv_list) 
-                        
-                        
-                        # print("DEBUG: (charac.get_coords() = ", charac.get_coords())
-                        
-                        # print("DEBUG: (obtain_elem['type'] == 'tile')")
-                        # print("DEBUG: OLD TILE (world_state.get_tile_by_name(obtain_elem['name']): ", \
-                        #     world_state.get_tile_by_name(obtain_elem["name"]).get_name(), ",", \
-                        #     world_state.get_tile_by_name(obtain_elem["name"]).get_state(), ",", \
-                        #     world_state.get_tile_by_name(obtain_elem["name"]).get_tile_id(), ",", \
-                        #     world_state.get_tile_by_name(obtain_elem["name"]).get_coords()    )
-                        
-                        # # update the tile in world_state:
-                        # world_state.update_tile(new_tile.get_coords(), new_tile)
-
-                        # print()
-                        # print("DEBUG: NEW TILE (world_state.get_tile_by_name(obtain_elem['name']): ", \
-                        #     world_state.get_tile_by_name(obtain_elem["name"]).get_name(), ",", \
-                        #     world_state.get_tile_by_name(obtain_elem["name"]).get_state(), ",", \
-                        #     world_state.get_tile_by_name(obtain_elem["name"]).get_tile_id(), ",", \
-                        #     world_state.get_tile_by_name(obtain_elem["name"]).get_coords()    )
-                        
+#************************************************************************************                       
 
                     world_state.update_tile(new_tile.get_coords(), new_tile)
 
@@ -368,16 +316,10 @@ def interaction_commands(world_state,charac,command):
 
 # ********
 # NOTE: this might not be the right place for this - should be in 'obtains' code:
+#           * code moved to obtains section *
 # ****
 # add item/object to character's inventory list
 # ********        
-                                        # world_state.remove_character(charac)
-                                        # charac.update_inventory("add", found_obj_inv_list)
-                                        # world_state.spawn_character(currecharacnt_char)
-
-
-
-
 
                                         break
 
@@ -408,17 +350,6 @@ def interaction_commands(world_state,charac,command):
 
                         pass 
 
-
-
-    # if ( found_interac_tile) or ( found_interac_tile_inventory) or \
-    #     ( found_interac_char) or ( found_interac_char_inv):
-
-
-                
-
-                        pass 
-
-            
 
 
         # c) if requirements_satisfied, check 'obtain' field,
@@ -477,35 +408,32 @@ def interaction_commands(world_state,charac,command):
                             world_state.spawn_character(charac)
 
                     elif obtain_elem["type"] == "tile":
-                        new_tile_id = text_file_processor.lookup_tileID_by_name_state(obtain_elem["name"], obtain_elem["state"])
-                        new_tile = load_Tiles_temp.get_tile_by_name_and_state(obtain_elem["name"], obtain_elem["state"])
-                        new_tile.set_tile_id(new_tile_id)
-                        print("\tDEBUG: new_tile_id = ", new_tile_id)
-                        print("\tDEBUG: new_tile.get_name() = ", new_tile.get_name())
-                        print("\tDEBUG: new_tile.get_state() = ", new_tile.get_state())
-                        print("\tDEBUG: new_tile.get_tile_id() = ", new_tile.get_tile_id())
-                        print("\tDEBUG: new_tile.get_movable() = ", new_tile.get_movable())
-                        
-                        # print("\tDEBUG: new_tile (old coords) = ", new_tile.get_coords())
-
-                        new_tile.update_coords( world_state.get_tile_by_name(obtain_elem["name"]).get_coords())
-                        print("\tDEBUG: new_tile (new coords) = ", new_tile.get_coords())
+                        prev_tile = world_state.get_saved_tile_by_name(obtain_elem["name"])
+                        if prev_tile is not None:
+                            world_state.update_saved_tiles("remove", prev_tile)
+                            found_prev_tile = True
+                            new_tile = prev_tile
+                        else:
 
 
 
-
-                        # Add old tile's inventory to new tile before adding to world_state
-
-                        old_tile_inv_list = world_state.get_tile_by_name(obtain_elem["name"]).get_inventory()
-                        new_tile_inv_list = []
-
-                        if len(old_tile_inv_list) > 0:
-                            for tile_inv_elem in old_tile_inv_list:
-                                new_tile_inv_list.append(tile_inv_elem)
+                            new_tile_id = text_file_processor.lookup_tileID_by_name_state(obtain_elem["name"], obtain_elem["state"])
+                            new_tile = load_Tiles_temp.get_tile_by_name_and_state(obtain_elem["name"], obtain_elem["state"])
+                            new_tile.set_tile_id(new_tile_id)
+                            print("\tDEBUG: new_tile_id = ", new_tile_id)
+                            print("\tDEBUG: new_tile.get_name() = ", new_tile.get_name())
+                            print("\tDEBUG: new_tile.get_state() = ", new_tile.get_state())
+                            print("\tDEBUG: new_tile.get_tile_id() = ", new_tile.get_tile_id())
+                            print("\tDEBUG: new_tile.get_movable() = ", new_tile.get_movable())
                             
-                            new_tile.update_inventory("add", new_tile_inv_list) 
-                        
-                        
+                            # print("\tDEBUG: new_tile (old coords) = ", new_tile.get_coords())
+
+                            new_tile.update_coords( world_state.get_tile_by_name(obtain_elem["name"]).get_coords())
+                            print("\tDEBUG: new_tile (new coords) = ", new_tile.get_coords())
+
+
+    # *****************************************************************************
+
                         print("DEBUG: (charac.get_coords() = ", charac.get_coords())
                         
                         print("DEBUG: (obtain_elem['type'] == 'tile')")
@@ -516,6 +444,8 @@ def interaction_commands(world_state,charac,command):
                             world_state.get_tile_by_name(obtain_elem["name"]).get_coords()    )
                         
                         # update the tile in world_state:
+                        world_state.update_saved_tiles("add", world_state.get_tile_by_name(obtain_elem["name"]))
+
                         world_state.update_tile(new_tile.get_coords(), new_tile)
 
                         print()
@@ -557,69 +487,5 @@ def interaction_commands(world_state,charac,command):
         
 
     return world_state
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    # # old way: interac = text_file_processor.lookup_interaction_key_only(command)
-    # # new way: using Interaction object:
-    # interac_obj = text_file_processor.lookup_interaction_ret_object(command)
-
-    # if interac_obj is None:
-    #     print("I don't understand that command")
-    # else:
-        
-    #     # for now, just debugging info
-
-    #     print("DEBUG: (interaction_commands()): interac_obj.get_entity_name(): ", \
-    #             interac_obj.get_entity_name() )
-    #     print("DEBUG: (interaction_commands()): interac_obj.get_entity_general_type(): ", \
-    #             interac_obj.get_entity_general_type())
-    #     print("DEBUG: (interaction_commands()): interac_obj.get_entity_state(): ", \
-    #             interac_obj.get_entity_state())
-    #     print("DEBUG: (interaction_commands()) -------------")
-    #     print("DEBUG: (interaction_commands()): interac_obj.get_interaction_data(): ", \
-    #             interac_obj.get_interaction_data())
-    #     print("DEBUG: (interaction_commands()): ")
-        
-    #     interac_JSON_data = interac_obj.get_interaction_data()
-
-    #     print("\tchange_state_to: ", interac_JSON_data["change_state_to"])
-
-    #     int_requirements = interac_JSON_data["requirement"]
-
-    #     if len(int_requirements) > 0:
-    #        for req_elem in int_requirements:
-    #             print("\trequirement: ", \
-    #                     req_elem["type"], ",", req_elem["name"], ",", \
-    #                     req_elem["state"], ",", req_elem["qty"], ",", \
-    #                     req_elem["remove_obj"] )
-                
 
 
