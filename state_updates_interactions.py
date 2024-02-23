@@ -224,17 +224,95 @@ def interaction_commands(world_state,charac,command):
                     # def update_tile(self, coords, new_tile):
                     # current_tl.get_state(interac_state)
 
+                    new_tile_name = current_tl.get_name()
+                    new_tile_state = int_JSON_obj["change_state_to"]
+
+                    new_tile_id = text_file_processor.lookup_tileID_by_name_state(new_tile_name, new_tile_state)
+                    new_tile = load_Tiles_temp.get_tile_by_name_and_state(new_tile_name,new_tile_state)
+                    new_tile.set_tile_id(new_tile_id)
+
+                    new_tile.update_coords( world_state.get_tile_by_name(new_tile_name).get_coords())
+
+                    # Add old tile's inventory to new tile before adding to world_state
+
+                    old_tile_inv_list = world_state.get_tile_by_name(new_tile_name).get_inventory()
+                    new_tile_inv_list = []
+
+                    if len(old_tile_inv_list) > 0:
+                        for tile_inv_elem in old_tile_inv_list:
+                            new_tile_inv_list.append(tile_inv_elem)
+
+                        new_tile.update_inventory("add", new_tile_inv_list) 
+
+                    world_state.update_tile(new_tile.get_coords(), new_tile)
+
                     print("DEBUG: change_state_to: ", int_JSON_obj["change_state_to"])
-                    print("\tDEBUG: need to replace appropriate tile info in World_State based on 'obtains' info")
+                    print("\tDEBUG: need to replace appropriate tile info in World_State based on 'change_state_to' info")
                     
                     print("DEBUG: current_tl.get_name()", current_tl.get_name())
                     print("DEBUG: current_tl.get_state()", current_tl.get_state())
                     print("DEBUG: current_tl.get_tile_id()", current_tl.get_tile_id())
                     print("DEBUG: interac_state", interac_state)
                     print()
-                    
-                    current_tl.set_state(interac_state)
-                    world_state.update_tile(current_tl.get_coords(), current_tl)
+                    print("DEBUG: new_tile.get_name()", new_tile.get_name())
+                    print("DEBUG: new_tile.get_state()", new_tile.get_state())
+                    print("DEBUG: new_tile.get_tile_id()", new_tile.get_tile_id())
+                    print()
+
+#************************************************************************************
+                    # must load the tile name/state from file
+                    # current_tl.set_state(interac_state)
+
+                        # new_tile_id = text_file_processor.lookup_tileID_by_name_state(obtain_elem["name"], obtain_elem["state"])
+                        # new_tile = load_Tiles_temp.get_tile_by_name_and_state(obtain_elem["name"], obtain_elem["state"])
+                        # new_tile.set_tile_id(new_tile_id)
+                        # print("\tDEBUG: new_tile_id = ", new_tile_id)
+                        # print("\tDEBUG: new_tile.get_name() = ", new_tile.get_name())
+                        # print("\tDEBUG: new_tile.get_state() = ", new_tile.get_state())
+                        # print("\tDEBUG: new_tile.get_tile_id() = ", new_tile.get_tile_id())
+                        # print("\tDEBUG: new_tile.get_movable() = ", new_tile.get_movable())
+                        
+                        # # print("\tDEBUG: new_tile (old coords) = ", new_tile.get_coords())
+
+                        # new_tile.update_coords( world_state.get_tile_by_name(obtain_elem["name"]).get_coords())
+                        # print("\tDEBUG: new_tile (new coords) = ", new_tile.get_coords())
+
+
+
+
+                        # # Add old tile's inventory to new tile before adding to world_state
+
+                        # old_tile_inv_list = world_state.get_tile_by_name(obtain_elem["name"]).get_inventory()
+                        # new_tile_inv_list = []
+
+                        # if len(old_tile_inv_list) > 0:
+                        #     for tile_inv_elem in old_tile_inv_list:
+                        #         new_tile_inv_list.append(tile_inv_elem)
+                            
+                        #     new_tile.update_inventory("add", new_tile_inv_list) 
+                        
+                        
+                        # print("DEBUG: (charac.get_coords() = ", charac.get_coords())
+                        
+                        # print("DEBUG: (obtain_elem['type'] == 'tile')")
+                        # print("DEBUG: OLD TILE (world_state.get_tile_by_name(obtain_elem['name']): ", \
+                        #     world_state.get_tile_by_name(obtain_elem["name"]).get_name(), ",", \
+                        #     world_state.get_tile_by_name(obtain_elem["name"]).get_state(), ",", \
+                        #     world_state.get_tile_by_name(obtain_elem["name"]).get_tile_id(), ",", \
+                        #     world_state.get_tile_by_name(obtain_elem["name"]).get_coords()    )
+                        
+                        # # update the tile in world_state:
+                        # world_state.update_tile(new_tile.get_coords(), new_tile)
+
+                        # print()
+                        # print("DEBUG: NEW TILE (world_state.get_tile_by_name(obtain_elem['name']): ", \
+                        #     world_state.get_tile_by_name(obtain_elem["name"]).get_name(), ",", \
+                        #     world_state.get_tile_by_name(obtain_elem["name"]).get_state(), ",", \
+                        #     world_state.get_tile_by_name(obtain_elem["name"]).get_tile_id(), ",", \
+                        #     world_state.get_tile_by_name(obtain_elem["name"]).get_coords()    )
+                        
+
+                    world_state.update_tile(new_tile.get_coords(), new_tile)
 
                     # debug only:
                     print("DEBUG: world_state.get_tiles()[current_x][current_y].get_state() = ", \
@@ -414,19 +492,41 @@ def interaction_commands(world_state,charac,command):
                         print("\tDEBUG: new_tile (new coords) = ", new_tile.get_coords())
 
 
+
+
                         # Add old tile's inventory to new tile before adding to world_state
 
+                        old_tile_inv_list = world_state.get_tile_by_name(obtain_elem["name"]).get_inventory()
+                        new_tile_inv_list = []
 
+                        if len(old_tile_inv_list) > 0:
+                            for tile_inv_elem in old_tile_inv_list:
+                                new_tile_inv_list.append(tile_inv_elem)
+                            
+                            new_tile.update_inventory("add", new_tile_inv_list) 
+                        
                         
                         print("DEBUG: (charac.get_coords() = ", charac.get_coords())
                         
                         print("DEBUG: (obtain_elem['type'] == 'tile')")
-                        print("DEBUG: (world_state.get_tile_by_name(obtain_elem['name'])", \
+                        print("DEBUG: OLD TILE (world_state.get_tile_by_name(obtain_elem['name']): ", \
                             world_state.get_tile_by_name(obtain_elem["name"]).get_name(), ",", \
                             world_state.get_tile_by_name(obtain_elem["name"]).get_state(), ",", \
                             world_state.get_tile_by_name(obtain_elem["name"]).get_tile_id(), ",", \
                             world_state.get_tile_by_name(obtain_elem["name"]).get_coords()    )
                         
+                        # update the tile in world_state:
+                        world_state.update_tile(new_tile.get_coords(), new_tile)
+
+                        print()
+                        print("DEBUG: NEW TILE (world_state.get_tile_by_name(obtain_elem['name']): ", \
+                            world_state.get_tile_by_name(obtain_elem["name"]).get_name(), ",", \
+                            world_state.get_tile_by_name(obtain_elem["name"]).get_state(), ",", \
+                            world_state.get_tile_by_name(obtain_elem["name"]).get_tile_id(), ",", \
+                            world_state.get_tile_by_name(obtain_elem["name"]).get_coords()    )
+                        
+
+
 #   self.name = ""
 #     self._general_type = ""
 #     self.__type = ""
