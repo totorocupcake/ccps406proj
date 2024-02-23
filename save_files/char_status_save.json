@@ -15,23 +15,7 @@
         "current_hp": 10,
         "max_hp": 10,
         "current_gold": 0,
-        "visited": [
-            {
-                "type": "Tile",
-                "name": "bedroom",
-                "state": "closed"
-            },
-            {
-                "type": "Object",
-                "name": "bedroom",
-                "state": "open"
-            },
-            {
-                "type": "Tile",
-                "name": "bedroom",
-                "state": "open"
-            }
-        ],
+        "visited": null,
         "turn counter": [
             0,
             "null"
@@ -43,11 +27,11 @@
         "co_ord_x": 2,
         "co_ord_y": 15,
         "state": "unhappy",
-        "inventory": [],
+        "inventory": null,
         "current_hp": 10,
         "max_hp": 10,
         "current_gold": 0,
-        "visited": [],
+        "visited": null,
         "turn counter": [
             0,
             "null"
@@ -59,11 +43,11 @@
         "co_ord_x": 2,
         "co_ord_y": 13,
         "state": "null",
-        "inventory": [],
+        "inventory": null,
         "current_hp": 10,
         "max_hp": 10,
         "current_gold": 0,
-        "visited": [],
+        "visited": null,
         "turn counter": [
             0,
             "null"
@@ -75,11 +59,11 @@
         "co_ord_x": 1,
         "co_ord_y": 14,
         "state": "null",
-        "inventory": [],
+        "inventory": null,
         "current_hp": 10,
         "max_hp": 10,
         "current_gold": 0,
-        "visited": [],
+        "visited": null,
         "turn counter": [
             0,
             "null"
@@ -91,11 +75,11 @@
         "co_ord_x": 1,
         "co_ord_y": 13,
         "state": "null",
-        "inventory": [],
+        "inventory": null,
         "current_hp": 10,
         "max_hp": 10,
         "current_gold": 0,
-        "visited": [],
+        "visited": null,
         "turn counter": [
             0,
             "null"
@@ -107,11 +91,11 @@
         "co_ord_x": 10,
         "co_ord_y": 9,
         "state": "injured",
-        "inventory": [],
+        "inventory": null,
         "current_hp": 10,
         "max_hp": 10,
         "current_gold": 0,
-        "visited": [],
+        "visited": null,
         "turn counter": [
             0,
             "null"
@@ -123,11 +107,11 @@
         "co_ord_x": 10,
         "co_ord_y": 13,
         "state": "null",
-        "inventory": [],
+        "inventory": null,
         "current_hp": 10,
         "max_hp": 10,
         "current_gold": 0,
-        "visited": [],
+        "visited": null,
         "turn counter": [
             0,
             "null"
@@ -139,11 +123,11 @@
         "co_ord_x": 10,
         "co_ord_y": 15,
         "state": "null",
-        "inventory": [],
+        "inventory": null,
         "current_hp": 10,
         "max_hp": 10,
         "current_gold": 0,
-        "visited": [],
+        "visited": null,
         "turn counter": [
             0,
             "null"
@@ -155,11 +139,11 @@
         "co_ord_x": 11,
         "co_ord_y": 14,
         "state": "null",
-        "inventory": [],
+        "inventory": null,
         "current_hp": 10,
         "max_hp": 10,
         "current_gold": 0,
-        "visited": [],
+        "visited": null,
         "turn counter": [
             0,
             "null"
@@ -171,11 +155,11 @@
         "co_ord_x": 12,
         "co_ord_y": 8,
         "state": "aggressive",
-        "inventory": [],
+        "inventory": null,
         "current_hp": 10,
         "max_hp": 10,
         "current_gold": 5,
-        "visited": [],
+        "visited": null,
         "turn counter": [
             0,
             "null"
@@ -197,7 +181,7 @@
         "current_hp": 10,
         "max_hp": 10,
         "current_gold": 0,
-        "visited": [],
+        "visited": null,
         "turn counter": [
             0,
             "null"
@@ -219,7 +203,7 @@
         "current_hp": 10,
         "max_hp": 10,
         "current_gold": 0,
-        "visited": [],
+        "visited": null,
         "turn counter": [
             0,
             "null"
@@ -241,7 +225,7 @@
         "current_hp": 10,
         "max_hp": 10,
         "current_gold": 0,
-        "visited": [],
+        "visited": null,
         "turn counter": [
             0,
             "null"

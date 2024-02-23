@@ -1,14 +1,1 @@
-[
-    {
-        "co_ord_x": 0,
-        "co_ord_y": 0,
-        "turn_count": 5,
-        "turn_state": "ready"
-    },
-    {
-        "co_ord_x": 10,
-        "co_ord_y": 5,
-        "turn_count": 3,
-        "turn_state": "closed"
-    }
-]
+[]

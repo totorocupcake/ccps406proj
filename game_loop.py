@@ -1,6 +1,7 @@
 import World_State
 import re
 import state_updates
+import save_game
 
 def play_game(world_state):
     # MAIN FUNCTION within this module, that calls all other game_loop methods.
@@ -23,6 +24,9 @@ def play_game(world_state):
                 # exit game condition, so break out of game loop
                 exit_state=True
                 break
+            elif command.strip()  == "save" or  command.strip()  == "save game":
+                 save_game.save_game(world_state)
+                 break
             
             # make updates to game based off validated command
             world_state=state_updates.state_update(world_state,charac,command,command_type)
