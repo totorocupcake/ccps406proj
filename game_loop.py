@@ -30,7 +30,6 @@ def play_game(world_state, exit_game_loop):
         world_state.increment_turn() # all characters played their turn, next turn time
     
     # runs after game has been won/exited
-    print("\n  exiting game...")
     exit_game_loop()
 
 
