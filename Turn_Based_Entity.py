@@ -17,7 +17,7 @@ class Turn_Based_Entity(Entity.Entity):
         self._turn_count = new_turn_count
     
     def decrement_turn_count(self):
-        if self._turn_state != "":
+        if self._turn_state != "" and self._turn_state != "null":
             # check if there is a valid turn state in order to decrement turn counter
             self._turn_count -= 1
             
