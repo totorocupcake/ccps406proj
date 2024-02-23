@@ -6,6 +6,7 @@ def save_game(world_state):
     save_world_status_turn_counter(world_state)
     save_character_status(world_state)
     save_obj_status(world_state)
+    print ("Game saved to save_files subfolder.")
 
 # Helper functions to convert objects into dictionary first before converting to text files ##################################### 
 
