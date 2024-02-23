@@ -87,23 +87,37 @@ def interaction_commands(world_state,charac,command):
                     break
 
 
-    # if not tile, not in tile-inventory, not char/npc name, check char/npc inventory
+    # if not tile, not in tile-inventory, not char/npc name, check charac inventory
     if (not found_interac_tile) and (not found_interac_tile_inventory) and (not found_interac_char):
-        chars_list = world_state.get_chars_at_tile(charac.get_coords())
-        if len(chars_list) > 0:
-            for char_elem in chars_list:
-                char_inv = char_elem.get_inventory()
-                if len(char_inv) > 0:
-                    for inv_elem in char_inv:
-                        if inv_elem.get_name() == interac_noun:
-                            # found in character inventory, so update interac_ data:
-                            found_interac_char_inv = True
-                            interac_name = interac_noun
-                            interac_general_type = "Object"
-                            interac_state = inv_elem.get_state()
-                            break
-                if found_interac_char_inv:
+
+        charac_inv = charac.get_inventory()
+        if len(charac_inv) > 0:
+            for inventory_elem in charac_inv:
+                if inventory_elem.get_name() == interac_noun:
+                    found_interac_char_inv = True
+                    interac_name = interac_noun
+                    interac_general_type = "Object"
+                    interac_state = inventory_elem.get_state()
                     break
+
+
+#----------------------------------------
+        # chars_list = world_state.get_chars_at_tile(charac.get_coords())
+        # if len(chars_list) > 0:
+        #     for char_elem in chars_list:
+        #         char_inv = char_elem.get_inventory()
+        #         if len(char_inv) > 0:
+        #             for inv_elem in char_inv:
+        #                 if inv_elem.get_name() == interac_noun:
+        #                     # found in character inventory, so update interac_ data:
+        #                     found_interac_char_inv = True
+        #                     interac_name = interac_noun
+        #                     interac_general_type = "Object"
+        #                     interac_state = inv_elem.get_state()
+        #                     break
+        #         if found_interac_char_inv:
+        #             break
+#----------------------------------------
 
 
     # the interaction noun was not found, so print a message and return
@@ -279,10 +293,9 @@ def interaction_commands(world_state,charac,command):
 # ****
 # add item/object to character's inventory list
 # ********        
-                                        # current_char = world_state.get_active_char()
-                                        # world_state.remove_character(current_char)
-                                        # current_char.update_inventory("add", found_obj_inv_list)
-                                        # world_state.spawn_character(current_char)
+                                        # world_state.remove_character(charac)
+                                        # charac.update_inventory("add", found_obj_inv_list)
+                                        # world_state.spawn_character(currecharacnt_char)
 
 
 
@@ -344,16 +357,17 @@ def interaction_commands(world_state,charac,command):
                 #     print("\tDEBUG: found_obj_inv_list[0].get_quantity() = ", found_obj_inv_list[0].get_quantity())
 
                 obtain_obj_list = []
-
+                
                 # iteratate through the obtains list, add items to a list of objects:
                 for obtain_elem in int_JSON_obj["obtain"]:
                     if obtain_elem["type"] == "Item":
 
                         # first check if already in inventory
-                        current_char = world_state.get_active_char()
+                        # 
                         found_in_current_inv = False
-
-                        for inv_elem in  current_char.get_inventory():
+                        
+                        for inv_elem in  charac.get_inventory():
+                        
                             if inv_elem.get_name() == obtain_elem["name"]:
                                 found_in_current_inv = True
                                 break
@@ -374,19 +388,17 @@ def interaction_commands(world_state,charac,command):
                         else:       # print fail_desc:
                             print()
                             print("DEBUG: (obtain_elem['type'] == 'Item') not found:")
-                            # print(int_JSON_obj["fail_desc"])
+                            print()
+                            print(int_JSON_obj["fail_desc"])
                             print()
 
                         # update the character's inventory based on the obtain list:
                         if (len(obtain_obj_list) > 0):
-                            current_char = world_state.get_active_char()
-                            world_state.remove_character(current_char)
-                            current_char.update_inventory("add", obtain_obj_list)
-                            world_state.spawn_character(current_char)
+                            world_state.remove_character(charac)
+                            charac.update_inventory("add", obtain_obj_list)
+                            world_state.spawn_character(charac)
 
                     elif obtain_elem["type"] == "tile":
-                        # current_char.get_coords()
-                        current_char = world_state.get_active_char()
                         new_tile_id = text_file_processor.lookup_tileID_by_name_state(obtain_elem["name"], obtain_elem["state"])
                         new_tile = load_Tiles_temp.get_tile_by_name_and_state(obtain_elem["name"], obtain_elem["state"])
                         new_tile.set_tile_id(new_tile_id)
@@ -401,8 +413,12 @@ def interaction_commands(world_state,charac,command):
                         new_tile.update_coords( world_state.get_tile_by_name(obtain_elem["name"]).get_coords())
                         print("\tDEBUG: new_tile (new coords) = ", new_tile.get_coords())
 
+
+                        # Add old tile's inventory to new tile before adding to world_state
+
+
                         
-                        print("DEBUG: (current_char.get_coords() = ", current_char.get_coords())
+                        print("DEBUG: (charac.get_coords() = ", charac.get_coords())
                         
                         print("DEBUG: (obtain_elem['type'] == 'tile')")
                         print("DEBUG: (world_state.get_tile_by_name(obtain_elem['name'])", \
