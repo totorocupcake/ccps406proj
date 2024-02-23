@@ -95,6 +95,28 @@ def load_tileIDMapping_file():
 
 
 
+def lookup_tileID_by_name_state(tile_name,state):
+    # given a tile name and state, find corresponding tile ID:
+
+    found_tile = False
+
+    with open(TILE_ID_MAPPING_JSON_FILE, 'r') as file:
+        parsed_tile_data = json.load(file)
+
+    for tile in parsed_tile_data:
+        if (tile["name"] == tile_name) and (tile["state"] == state):
+            found_tile = True
+            return tile["tile_id"]
+
+    if not found_tile:
+        return "Not Found"
+    
+
+
+
+
+
+
 
 
 
@@ -238,176 +260,176 @@ def lookup_interaction (type, name, state, interaction_key):
 
 
 
-def lookup_interaction_ret_object(interaction_key):
-    # Given arguments return a populate Interaction object for command processing
-    # Return None if not match
+# def lookup_interaction_ret_object(interaction_key):
+#     # Given arguments return a populate Interaction object for command processing
+#     # Return None if not match
     
-    # get data from JSON files:
+#     # get data from JSON files:
 
-    with open(OBJECTS_JSON_FILE, 'r') as file:
-        parsed_object_data = json.load(file)
+#     with open(OBJECTS_JSON_FILE, 'r') as file:
+#         parsed_object_data = json.load(file)
 
-    with open(CHARACTERS_JSON_FILE, 'r') as file:
-        parsed_character_data = json.load(file)
+#     with open(CHARACTERS_JSON_FILE, 'r') as file:
+#         parsed_character_data = json.load(file)
 
-    with open(TILES_JSON_FILE, 'r') as file:
-        parsed_tile_data = json.load(file)
+#     with open(TILES_JSON_FILE, 'r') as file:
+#         parsed_tile_data = json.load(file)
 
 
-    # setup interaction array:
-    interaction_key = interaction_key.strip()
+#     # setup interaction array:
+#     interaction_key = interaction_key.strip()
 
-    if interaction_key == "":
-        return None
+#     if interaction_key == "":
+#         return None
 
-    interaction_array = interaction_key.split(maxsplit=1)
+#     interaction_array = interaction_key.split(maxsplit=1)
 
-    if len(interaction_array) < 2:
-        return None
+#     if len(interaction_array) < 2:
+#         return None
 
-    # 1) search Objects JSON, if found return
+#     # 1) search Objects JSON, if found return
 
-    found_object = False
-    found_interac = False
+#     found_object = False
+#     found_interac = False
 
-    # iterate through each object from the JSON file:
-    for obj in parsed_object_data:
+#     # iterate through each object from the JSON file:
+#     for obj in parsed_object_data:
 
-        # if the interaction has been found, then exit the loop.
-        if found_interac:
-            break
+#         # if the interaction has been found, then exit the loop.
+#         if found_interac:
+#             break
 
-        # if the object name matches, print its details...:
-        if obj["name"] == interaction_array[1]:
+#         # if the object name matches, print its details...:
+#         if obj["name"] == interaction_array[1]:
 
-            found_object = True
+#             found_object = True
 
-            # print("Name:", obj["name"])
-            # print("state:", obj["state"])
+#             # print("Name:", obj["name"])
+#             # print("state:", obj["state"])
             
-            # iterate through each interaction for the found object:
-            for interac in obj["interactions"]:
+#             # iterate through each interaction for the found object:
+#             for interac in obj["interactions"]:
 
-                # if the interaction name matches, print its details...:
-                if interac["name"] == interaction_array[0]:
+#                 # if the interaction name matches, print its details...:
+#                 if interac["name"] == interaction_array[0]:
 
-                    found_interac = True
-                    # print("\tinteraction - name: ", interac["name"])
+#                     found_interac = True
+#                     # print("\tinteraction - name: ", interac["name"])
 
-                    # create an Interaction object
-                    inter_obj = Interaction.Interaction()
-                    inter_obj.set_entity_general_type("Object")
-                    inter_obj.set_entity_name(obj["name"])
-                    inter_obj.set_entity_state(obj["state"])
-                    # inter_obj.set_entity_type(obj["type"])
-                    inter_obj.set_interaction_data(interac)
+#                     # create an Interaction object
+#                     inter_obj = Interaction.Interaction()
+#                     inter_obj.set_entity_general_type("Object")
+#                     inter_obj.set_entity_name(obj["name"])
+#                     inter_obj.set_entity_state(obj["state"])
+#                     # inter_obj.set_entity_type(obj["type"])
+#                     inter_obj.set_interaction_data(interac)
                     
-                    return inter_obj
+#                     return inter_obj
 
 
 
 
-    # 2) search Characters JSON, if found return
-    if found_interac == False:
+#     # 2) search Characters JSON, if found return
+#     if found_interac == False:
 
 
-        found_char_elem = False
-        found_interac = False
+#         found_char_elem = False
+#         found_interac = False
 
-        # iterate through each object from the JSON file:
-        for char_elem in parsed_character_data:
+#         # iterate through each object from the JSON file:
+#         for char_elem in parsed_character_data:
 
-            # if the interaction has been found, then exit the loop.
-            if found_interac:
-                break
+#             # if the interaction has been found, then exit the loop.
+#             if found_interac:
+#                 break
 
-            # if the object name matches, print its details...:
-            if char_elem["name"] == interaction_array[1]:
+#             # if the object name matches, print its details...:
+#             if char_elem["name"] == interaction_array[1]:
 
-                found_char_elem = True
+#                 found_char_elem = True
 
-                # print("Name:", obj["name"])
-                # print("state:", obj["state"])
+#                 # print("Name:", obj["name"])
+#                 # print("state:", obj["state"])
                 
-                # iterate through each interaction for the found object:
-                for interac in char_elem["interactions"]:
+#                 # iterate through each interaction for the found object:
+#                 for interac in char_elem["interactions"]:
 
-                    # if the interaction name matches, print its details...:
-                    if interac["name"] == interaction_array[0]:
+#                     # if the interaction name matches, print its details...:
+#                     if interac["name"] == interaction_array[0]:
 
-                        found_interac = True
-                        # print("\tinteraction - name: ", interac["name"])
+#                         found_interac = True
+#                         # print("\tinteraction - name: ", interac["name"])
 
 
-                        # create an Interaction object
-                        inter_obj = Interaction.Interaction()
-                        inter_obj.set_entity_general_type("Character")
-                        inter_obj.set_entity_name(char_elem["name"])
-                        inter_obj.set_entity_state(char_elem["state"])
-                        # inter_obj.set_entity_type(char_elem["type"])
-                        inter_obj.set_interaction_data(interac)
+#                         # create an Interaction object
+#                         inter_obj = Interaction.Interaction()
+#                         inter_obj.set_entity_general_type("Character")
+#                         inter_obj.set_entity_name(char_elem["name"])
+#                         inter_obj.set_entity_state(char_elem["state"])
+#                         # inter_obj.set_entity_type(char_elem["type"])
+#                         inter_obj.set_interaction_data(interac)
                         
-                        return inter_obj
+#                         return inter_obj
 
-                        # return interac
-
-
+#                         # return interac
 
 
 
-    # 3) search Tiles, if found return
-    if found_interac == False:
 
 
-        found_tile = False
-        found_interac = False
+#     # 3) search Tiles, if found return
+#     if found_interac == False:
 
-        # iterate through each object from the JSON file:
-        for tile in parsed_tile_data:
 
-            # if the interaction has been found, then exit the loop.
-            if found_interac:
-                break
+#         found_tile = False
+#         found_interac = False
 
-            # if the object name matches, print its details...:
-            if tile["name"] == interaction_array[1]:
+#         # iterate through each object from the JSON file:
+#         for tile in parsed_tile_data:
 
-                found_tile = True
+#             # if the interaction has been found, then exit the loop.
+#             if found_interac:
+#                 break
 
-                # print("Name:", obj["name"])
-                # print("state:", obj["state"])
+#             # if the object name matches, print its details...:
+#             if tile["name"] == interaction_array[1]:
+
+#                 found_tile = True
+
+#                 # print("Name:", obj["name"])
+#                 # print("state:", obj["state"])
                 
-                # iterate through each interaction for the found object:
+#                 # iterate through each interaction for the found object:
 
-                # print("DEBUG: tile['interactions']", tile["interactions"])
+#                 # print("DEBUG: tile['interactions']", tile["interactions"])
 
-                if tile["interactions"] is not None:
+#                 if tile["interactions"] is not None:
 
-                    for interac in tile["interactions"]:
+#                     for interac in tile["interactions"]:
 
-                        # if the interaction name matches, print its details...:
-                        if interac["name"] == interaction_array[0]:
+#                         # if the interaction name matches, print its details...:
+#                         if interac["name"] == interaction_array[0]:
 
-                            found_interac = True
-                            # print("\tinteraction - name: ", interac["name"])
+#                             found_interac = True
+#                             # print("\tinteraction - name: ", interac["name"])
 
-                            # create an Interaction object
-                            inter_obj = Interaction.Interaction()
-                            inter_obj.set_entity_general_type("Tile")
-                            inter_obj.set_entity_name(tile["name"])
-                            inter_obj.set_entity_state(tile["state"])
-                            # inter_obj.set_entity_type(tile["type"])
-                            inter_obj.set_interaction_data(interac)
+#                             # create an Interaction object
+#                             inter_obj = Interaction.Interaction()
+#                             inter_obj.set_entity_general_type("Tile")
+#                             inter_obj.set_entity_name(tile["name"])
+#                             inter_obj.set_entity_state(tile["state"])
+#                             # inter_obj.set_entity_type(tile["type"])
+#                             inter_obj.set_interaction_data(interac)
                             
-                            return inter_obj
+#                             return inter_obj
 
-                            # return interac
-                else:
-                    return None
+#                             # return interac
+#                 else:
+#                     return None
 
 
-    # 4) else return None
-    return None
+#     # 4) else return None
+#     return None
 
 
 
