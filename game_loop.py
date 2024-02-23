@@ -1,6 +1,7 @@
 import World_State
 import re
 import state_updates
+import save_game
 
 def play_game(world_state):
     # MAIN FUNCTION within this module, that calls all other game_loop methods.
@@ -8,6 +9,10 @@ def play_game(world_state):
     
     exit_state=False
     command = "None"
+    
+    world_state.get_tiles()[0][0].update_turn_counter(5,"ready")
+    world_state.get_tiles()[10][5].update_turn_counter(3,"closed")
+    save_game.save_world_status_turn_counter(world_state)
     
     # exit game conditions in the while loop
     while (world_state.get_game_won() == 'N') and (exit_state==False):
