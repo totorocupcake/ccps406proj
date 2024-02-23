@@ -35,6 +35,7 @@ def play_game(world_state):
     else: 
         # runs on manual exit
         print("Goodbye.")
+    exit()
 
 
 def console_output(world_state):
