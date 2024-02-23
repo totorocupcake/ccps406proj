@@ -55,6 +55,15 @@ def serialize_character (charac):
     visited_serialized = [serialize_visited(item) for item in charac.get_visited()]
     turn_counter_serialized = [charac.get_turn_count(), charac.get_turn_state()]
 
+    if inventory_serialized == []:
+        inventory_serialized = None
+    
+    if visited_serialized == []:
+        visited_serialized = None
+    
+    if turn_counter_serialized == []:
+        turn_counter_serialized = None
+
     return{"type":charac.get_type(),
            "name": charac.name,
            "co_ord_x":current_x,
