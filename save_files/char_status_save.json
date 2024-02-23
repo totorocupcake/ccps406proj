@@ -1,0 +1,250 @@
+[
+    {
+        "type": "player",
+        "name": "totoro",
+        "co_ord_x": 6,
+        "co_ord_y": 12,
+        "state": "null",
+        "inventory": [
+            {
+                "name": "house key",
+                "quantity": 1,
+                "state": "null"
+            }
+        ],
+        "current_hp": 10,
+        "max_hp": 10,
+        "current_gold": 0,
+        "visited": [
+            {
+                "type": "Tile",
+                "name": "bedroom",
+                "state": "closed"
+            },
+            {
+                "type": "Object",
+                "name": "bedroom",
+                "state": "open"
+            },
+            {
+                "type": "Tile",
+                "name": "bedroom",
+                "state": "open"
+            }
+        ],
+        "turn counter": [
+            0,
+            "null"
+        ]
+    },
+    {
+        "type": "npc",
+        "name": "landlord",
+        "co_ord_x": 2,
+        "co_ord_y": 15,
+        "state": "unhappy",
+        "inventory": [],
+        "current_hp": 10,
+        "max_hp": 10,
+        "current_gold": 0,
+        "visited": [],
+        "turn counter": [
+            0,
+            "null"
+        ]
+    },
+    {
+        "type": "npc",
+        "name": "Merchant 1",
+        "co_ord_x": 2,
+        "co_ord_y": 13,
+        "state": "null",
+        "inventory": [],
+        "current_hp": 10,
+        "max_hp": 10,
+        "current_gold": 0,
+        "visited": [],
+        "turn counter": [
+            0,
+            "null"
+        ]
+    },
+    {
+        "type": "npc",
+        "name": "Merchant 2",
+        "co_ord_x": 1,
+        "co_ord_y": 14,
+        "state": "null",
+        "inventory": [],
+        "current_hp": 10,
+        "max_hp": 10,
+        "current_gold": 0,
+        "visited": [],
+        "turn counter": [
+            0,
+            "null"
+        ]
+    },
+    {
+        "type": "npc",
+        "name": "Merchant 3",
+        "co_ord_x": 1,
+        "co_ord_y": 13,
+        "state": "null",
+        "inventory": [],
+        "current_hp": 10,
+        "max_hp": 10,
+        "current_gold": 0,
+        "visited": [],
+        "turn counter": [
+            0,
+            "null"
+        ]
+    },
+    {
+        "type": "npc",
+        "name": "farmhand",
+        "co_ord_x": 10,
+        "co_ord_y": 9,
+        "state": "injured",
+        "inventory": [],
+        "current_hp": 10,
+        "max_hp": 10,
+        "current_gold": 0,
+        "visited": [],
+        "turn counter": [
+            0,
+            "null"
+        ]
+    },
+    {
+        "type": "npc",
+        "name": "Penny",
+        "co_ord_x": 10,
+        "co_ord_y": 13,
+        "state": "null",
+        "inventory": [],
+        "current_hp": 10,
+        "max_hp": 10,
+        "current_gold": 0,
+        "visited": [],
+        "turn counter": [
+            0,
+            "null"
+        ]
+    },
+    {
+        "type": "npc",
+        "name": "Jimmy",
+        "co_ord_x": 10,
+        "co_ord_y": 15,
+        "state": "null",
+        "inventory": [],
+        "current_hp": 10,
+        "max_hp": 10,
+        "current_gold": 0,
+        "visited": [],
+        "turn counter": [
+            0,
+            "null"
+        ]
+    },
+    {
+        "type": "npc",
+        "name": "Claire",
+        "co_ord_x": 11,
+        "co_ord_y": 14,
+        "state": "null",
+        "inventory": [],
+        "current_hp": 10,
+        "max_hp": 10,
+        "current_gold": 0,
+        "visited": [],
+        "turn counter": [
+            0,
+            "null"
+        ]
+    },
+    {
+        "type": "monster",
+        "name": "Thief",
+        "co_ord_x": 12,
+        "co_ord_y": 8,
+        "state": "aggressive",
+        "inventory": [],
+        "current_hp": 10,
+        "max_hp": 10,
+        "current_gold": 5,
+        "visited": [],
+        "turn counter": [
+            0,
+            "null"
+        ]
+    },
+    {
+        "type": "monster",
+        "name": "Wolf",
+        "co_ord_x": 10,
+        "co_ord_y": 20,
+        "state": "aggressive",
+        "inventory": [
+            {
+                "name": "meat",
+                "quantity": 5,
+                "state": "null"
+            }
+        ],
+        "current_hp": 10,
+        "max_hp": 10,
+        "current_gold": 0,
+        "visited": [],
+        "turn counter": [
+            0,
+            "null"
+        ]
+    },
+    {
+        "type": "npc",
+        "name": "chicken",
+        "co_ord_x": 3,
+        "co_ord_y": 17,
+        "state": "wild",
+        "inventory": [
+            {
+                "name": "meat",
+                "quantity": 5,
+                "state": "null"
+            }
+        ],
+        "current_hp": 10,
+        "max_hp": 10,
+        "current_gold": 0,
+        "visited": [],
+        "turn counter": [
+            0,
+            "null"
+        ]
+    },
+    {
+        "type": "npc",
+        "name": "cow",
+        "co_ord_x": 3,
+        "co_ord_y": 9,
+        "state": "wild",
+        "inventory": [
+            {
+                "name": "meat",
+                "quantity": 5,
+                "state": "null"
+            }
+        ],
+        "current_hp": 10,
+        "max_hp": 10,
+        "current_gold": 0,
+        "visited": [],
+        "turn counter": [
+            0,
+            "null"
+        ]
+    }
+]
