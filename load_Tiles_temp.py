@@ -141,6 +141,9 @@ def load_tile_2D_array_from_file():
       tile_id = world_map_status_array[j][i]
       tl = lookup_tile_Mapping_by_ID(tile_id)
 
+      # update_coords of tile:
+      tl.update_coords((i, j))
+
       # update Tile inventory:
       obj_list = get_object_list_by_tile_location(i, j)
 
