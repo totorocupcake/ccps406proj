@@ -31,8 +31,41 @@ class World_State:
     # for testing, populate with None:
     self.__tiles = [[None] * WORLD_MAP_NUM_COLUMNS for _ in range(WORLD_MAP_NUM_ROWS)]
 
+    # 
+    self.__saved_tiles = []
+
 
   # methods:
+
+
+  # needed for lock/open
+  def update_saved_tiles(self, add_remove, tile):
+      # adds/removes 'tiles' from the .__saved_tiles list, given a 'tile' object
+      # add_remove should = "add" for add case
+
+      if add_remove == "add":
+        self.__saved_tiles.append(tile)
+
+      else:
+        self.__saved_tiles.remove(tile)
+
+
+  # needed for lock/open
+  def get_saved_tile_by_name(self, tile_name):
+    for tile_elem in self.__saved_tiles:
+      if tile_elem.get_name() == tile_name:
+        return tile_elem
+      
+    # else
+    return None
+
+
+
+
+
+
+
+
 
   def increment_turn(self, amount=1):
     self.__turn_number += amount
