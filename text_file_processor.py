@@ -13,6 +13,7 @@ CHARACTER_STATUS_JSON_FILE = "data_files/character_status.json"
 
 TILE_ID_MAPPING_JSON_FILE = "data_files/tileIDMapping_01.json"
 
+WORLD_MAP_TURN_STATUS_JSON_FILE = "data_files/world_map_turn_status.json"
 WORLD_MAP_STATUS_CSV_FILE = "data_files/world_map_status_00.csv"
 # WORLD_MAP_STATUS_ROWS = 25
 WORLD_MAP_STATUS_ROWS = 22
@@ -685,8 +686,16 @@ def lookup_gold_amt (name, state):
             return None
 
 
+def load_world_map_turn_status(load_game):
+    if load_game == 'Y':
+        file_to_load = LOAD_WORLD_MAP_TURN_STATUS_JSON_FILE
+    else:
+        file_to_load = WORLD_MAP_TURN_STATUS_JSON_FILE
 
+    with open(file_to_load, 'r') as file:
+        parsed_world_map_turn_status_data = json.load(file)
 
+    return parsed_world_map_turn_status_data
 
 
 
