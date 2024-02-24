@@ -159,8 +159,6 @@ def load_tile_2D_array_from_file(load_game):
   
   for element in turn_count_data:
     # append turn count status to each tile in json file
-    print(element["co_ord_x"])
-    print(element["co_ord_y"])
     tile_2D_list[element["co_ord_x"]][element["co_ord_y"]].update_turn_counter(element["turn_count"],element["turn_state"])
 
   
