@@ -39,6 +39,8 @@ def interaction_commands(world_state,charac,command):
     found_interac_char = False
     found_interac_char_inv = False
 
+    advanced_change_state_to = False
+
     found_obj_inv_list = []
 
     interac_name = ""
@@ -165,10 +167,12 @@ def interaction_commands(world_state,charac,command):
             requirements_satisfied = True
 
         else:
-            print("DEBUG: int_JSON_obj['requirement'] (Not None) = ", int_JSON_obj["requirement"])
+            # print("DEBUG: int_JSON_obj['requirement'] (Not None) = ", int_JSON_obj["requirement"])
 
-        # else, check all requirements in array:
+# -------------------------------------
+# else, check all requirements in array:
             found_obj_req = False
+            tile_req_satisfied = True
             for req_elem in int_JSON_obj["requirement"]:
                 # i) check 'object' requirements, must be in current char's inventory:
                 if req_elem["type"] == "object":
@@ -190,25 +194,126 @@ def interaction_commands(world_state,charac,command):
                         requirements_satisfied = False
                         break
 
+                # ii) check 'tile' requirements, must be on tile-state:
+                elif req_elem["type"] == "tile":
+
+                # check for CHANGE_STATE_TO substring in requiements-state
+                    advanced_change_state_to = False
+                    substring = "CHANGE_STATE_TO"
+                    index = req_elem["state"].find(substring)
+                    if index != -1:
+
+                        print()
+                        advanced_change_state_to = True
+                        change_state_to_str_arr = req_elem["state"].split()
+                        print("DEBUG: change_state_to_str_arr[0] = ", change_state_to_str_arr[0])
+                        print("DEBUG: change_state_to_str_arr[1] = ", change_state_to_str_arr[1])
+                        print("DEBUG: change_state_to_str_arr[2] = ", change_state_to_str_arr[2])
+
+                        tile_to_update = world_state.get_tile_by_name(req_elem["name"])
+
+                        print("DEBUG:")
+                        print("DEBUG: tile_to_update.get_state() = ", tile_to_update.get_state())
+                        print("DEBUG:")
+                        
+                        if tile_to_update.get_state() == change_state_to_str_arr[0]:
+                            tile_req_satisfied = True
+
+                            new_tile_name = req_elem["name"]
+                            new_tile_state = change_state_to_str_arr[2]
+                        else:
+                            tile_req_satisfied = False
 
 
-                    pass
+                    #         print("DEBUG:")
+                    #         print("DEBUG: new_tile_state = ", new_tile_state)
+                    #         print("DEBUG:")
+                       
+                    #         new_tile_id = text_file_processor.lookup_tileID_by_name_state(new_tile_name, new_tile_state)
+                            
+                    #         new_tile = load_Tiles_temp.get_tile_by_name_and_state(new_tile_name,new_tile_state)
+                            
+                    #         # not sure if this is needed, but:
+                    #         new_tile.set_tile_id(new_tile_id)
+
+                    #         new_tile.update_coords(tile_to_update.get_coords())
+
+                    #         world_state.update_tile(new_tile.get_coords(), new_tile)
+                    #     else:
+                            # tile_req_satisfied = False
+                    # else: 
+                        
+
+                    #     new_tile_name = current_tl.get_name()
+                    #     new_tile_state = int_JSON_obj["change_state_to"]
+
+                    #     new_tile_id = text_file_processor.lookup_tileID_by_name_state(new_tile_name, new_tile_state)
+                    #     new_tile = load_Tiles_temp.get_tile_by_name_and_state(new_tile_name,new_tile_state)
+                    #     new_tile.set_tile_id(new_tile_id)
+
+                    #     new_tile.update_coords( world_state.get_tile_by_name(new_tile_name).get_coords())
+
+
+                    # # update the tile in world_state:
+                    # world_state.update_saved_tiles("add", world_state.get_tile_by_name(current_tl.get_name()))
+                    
+                    # world_state.update_tile(new_tile.get_coords(), new_tile)
+
+
+
+
+                    # pass
+            
+
+
+
+
+
+
+
+
+
+
+
+
             
             # if more than one requirement, need to use 'and' 
-            if found_obj_req:
+            if found_obj_req and tile_req_satisfied:
                 print("\tDEBUG: requirements satisfied")
                 requirements_satisfied = True
 
 
 
 
+# b) if requirements_satisfied, check 'change_state_to' field,
+#   and update 'state' where needed 
 
-        # b) if requirements_satisfied, check 'change_state_to' field,
-        #   and update 'state' where needed 
+# ---------------------------------------------------------------
+# REQUIREMENTS SATISFIED: (Y/N)
+
         if requirements_satisfied:
             
+            if advanced_change_state_to == True and tile_req_satisfied == True:
+
+                print("DEBUG:")
+                print("DEBUG: new_tile_state = ", new_tile_state)
+                print("DEBUG:")
+            
+                new_tile_id = text_file_processor.lookup_tileID_by_name_state(new_tile_name, new_tile_state)
+                
+                new_tile = load_Tiles_temp.get_tile_by_name_and_state(new_tile_name,new_tile_state)
+                
+                # not sure if this is needed, but:
+                new_tile.set_tile_id(new_tile_id)
+
+                new_tile.update_coords(tile_to_update.get_coords())
+
+                world_state.update_tile(new_tile.get_coords(), new_tile)
+
+
             # if current state == change_state_to, don't bother updating state info
             if int_JSON_obj["change_state_to"] != interac_state:
+
 
                 # update the state (Tile/Char/Obj) in World_State:
 
@@ -232,12 +337,6 @@ def interaction_commands(world_state,charac,command):
                         new_tile.set_tile_id(new_tile_id)
 
                         new_tile.update_coords( world_state.get_tile_by_name(new_tile_name).get_coords())
-
-
-# *************************************************
-# fix: cannot add tile inventory to new tile, store old tile instead,
-#       and restore it on open
-# *************************************************
 
 
                     # update the tile in world_state:
