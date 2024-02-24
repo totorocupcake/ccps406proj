@@ -26,7 +26,6 @@ if __name__ == "__main__":
     
     # updated the initialize function in game_initialization.py:
     world_state = game_initialization.initialize(STARTING_RENT_AMOUNT, STARTING_RENT_DUE_DATE)
-    world_state = game_initialization.initial_game_prompt(world_state)
     
     # This should return one object which is an instance of the world_state class.
     # Within this world_state class, it contains all the tiles/characters and objects within their inventory

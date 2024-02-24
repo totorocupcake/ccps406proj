@@ -8,18 +8,18 @@ import load_Tiles_temp as load_Tiles
 import load_Chars_and_Objs_temp as load_Chars_and_Objs
 
 
-def load_World_State(rent_amount, rent_due_date):
+def load_World_State(rent_amount, rent_due_date,load_game):
   # Create and return a fully loaded World_State object:
 
   ws = World_State.World_State()
 
-  tile_2D_list = load_Tiles.load_tile_2D_array_from_file()
+  tile_2D_list = load_Tiles.load_tile_2D_array_from_file(load_game)
 
   # load the 2D Tiles array:
   ws.load_2D_Tiles_array(tile_2D_list)
 
   # load the Characters list:
-  char_list = load_Chars_and_Objs.load_characters_list_from_file()
+  char_list = load_Chars_and_Objs.load_characters_list_from_file(load_game)
 
   # for each character, add it to World_State characters list:
   if char_list is not None:

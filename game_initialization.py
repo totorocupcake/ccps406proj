@@ -20,9 +20,22 @@ def initialize(starting_rent_amount, starting_rent_due_date):
     # Instantiate all neccessary classes so we have a complete world state object to return for game loop
 
     # NOTE: we don't really need the above function parameters, only need:
+    
+    load_game=input("Would you like to load game, or create a new game? ")
+    
+    load_game=load_game.strip()
+    
+    if load_game =="load" or load_game == "load game":
+        load_game = 'Y'
+    else:
+        load_game= 'N'
+    
+    world_state = load_World_State.load_World_State(starting_rent_amount, starting_rent_due_date,load_game)
 
-    world_state = load_World_State.load_World_State(starting_rent_amount, starting_rent_due_date)
-
+    if load_game == 'N':
+        # prompt for player name and display welcome message if new game
+        world_state = initial_game_prompt(world_state)
+    
     return world_state
 
 

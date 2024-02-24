@@ -1,27 +1,5 @@
 [
     {
-        "type": "player",
-        "name": "totoro",
-        "co_ord_x": 6,
-        "co_ord_y": 12,
-        "state": "null",
-        "inventory": [
-            {
-                "name": "house key",
-                "quantity": 1,
-                "state": "null"
-            }
-        ],
-        "current_hp": 10,
-        "max_hp": 10,
-        "current_gold": 0,
-        "visited": null,
-        "turn counter": [
-            0,
-            "null"
-        ]
-    },
-    {
         "type": "npc",
         "name": "landlord",
         "co_ord_x": 2,
@@ -31,8 +9,14 @@
         "current_hp": 10,
         "max_hp": 10,
         "current_gold": 0,
-        "visited": null,
-        "turn counter": [
+        "visited": [
+            {
+                "type": "Tile",
+                "name": "town hall",
+                "state": "null"
+            }
+        ],
+        "turn_counter": [
             0,
             "null"
         ]
@@ -47,8 +31,14 @@
         "current_hp": 10,
         "max_hp": 10,
         "current_gold": 0,
-        "visited": null,
-        "turn counter": [
+        "visited": [
+            {
+                "type": "Tile",
+                "name": "tool shop",
+                "state": "null"
+            }
+        ],
+        "turn_counter": [
             0,
             "null"
         ]
@@ -63,8 +53,14 @@
         "current_hp": 10,
         "max_hp": 10,
         "current_gold": 0,
-        "visited": null,
-        "turn counter": [
+        "visited": [
+            {
+                "type": "Tile",
+                "name": "animal products shop",
+                "state": "null"
+            }
+        ],
+        "turn_counter": [
             0,
             "null"
         ]
@@ -79,8 +75,14 @@
         "current_hp": 10,
         "max_hp": 10,
         "current_gold": 0,
-        "visited": null,
-        "turn counter": [
+        "visited": [
+            {
+                "type": "Tile",
+                "name": "plant products shop",
+                "state": "null"
+            }
+        ],
+        "turn_counter": [
             0,
             "null"
         ]
@@ -95,8 +97,14 @@
         "current_hp": 10,
         "max_hp": 10,
         "current_gold": 0,
-        "visited": null,
-        "turn counter": [
+        "visited": [
+            {
+                "type": "Tile",
+                "name": "grasslands",
+                "state": "null"
+            }
+        ],
+        "turn_counter": [
             0,
             "null"
         ]
@@ -111,8 +119,14 @@
         "current_hp": 10,
         "max_hp": 10,
         "current_gold": 0,
-        "visited": null,
-        "turn counter": [
+        "visited": [
+            {
+                "type": "Tile",
+                "name": "Pennys house",
+                "state": "null"
+            }
+        ],
+        "turn_counter": [
             0,
             "null"
         ]
@@ -127,8 +141,14 @@
         "current_hp": 10,
         "max_hp": 10,
         "current_gold": 0,
-        "visited": null,
-        "turn counter": [
+        "visited": [
+            {
+                "type": "Tile",
+                "name": "Jimmys house",
+                "state": "null"
+            }
+        ],
+        "turn_counter": [
             0,
             "null"
         ]
@@ -143,8 +163,14 @@
         "current_hp": 10,
         "max_hp": 10,
         "current_gold": 0,
-        "visited": null,
-        "turn counter": [
+        "visited": [
+            {
+                "type": "Tile",
+                "name": "Claires house",
+                "state": "null"
+            }
+        ],
+        "turn_counter": [
             0,
             "null"
         ]
@@ -153,14 +179,20 @@
         "type": "monster",
         "name": "Thief",
         "co_ord_x": 12,
-        "co_ord_y": 8,
+        "co_ord_y": 5,
         "state": "aggressive",
         "inventory": null,
         "current_hp": 10,
         "max_hp": 10,
         "current_gold": 5,
-        "visited": null,
-        "turn counter": [
+        "visited": [
+            {
+                "type": "Tile",
+                "name": "grasslands",
+                "state": "null"
+            }
+        ],
+        "turn_counter": [
             0,
             "null"
         ]
@@ -168,7 +200,7 @@
     {
         "type": "monster",
         "name": "Wolf",
-        "co_ord_x": 10,
+        "co_ord_x": 7,
         "co_ord_y": 20,
         "state": "aggressive",
         "inventory": [
@@ -181,8 +213,14 @@
         "current_hp": 10,
         "max_hp": 10,
         "current_gold": 0,
-        "visited": null,
-        "turn counter": [
+        "visited": [
+            {
+                "type": "Tile",
+                "name": "grasslands",
+                "state": "null"
+            }
+        ],
+        "turn_counter": [
             0,
             "null"
         ]
@@ -190,8 +228,8 @@
     {
         "type": "npc",
         "name": "chicken",
-        "co_ord_x": 3,
-        "co_ord_y": 17,
+        "co_ord_x": 5,
+        "co_ord_y": 18,
         "state": "wild",
         "inventory": [
             {
@@ -203,8 +241,14 @@
         "current_hp": 10,
         "max_hp": 10,
         "current_gold": 0,
-        "visited": null,
-        "turn counter": [
+        "visited": [
+            {
+                "type": "Tile",
+                "name": "grasslands",
+                "state": "null"
+            }
+        ],
+        "turn_counter": [
             0,
             "null"
         ]
@@ -213,7 +257,7 @@
         "type": "npc",
         "name": "cow",
         "co_ord_x": 3,
-        "co_ord_y": 9,
+        "co_ord_y": 5,
         "state": "wild",
         "inventory": [
             {
@@ -225,8 +269,67 @@
         "current_hp": 10,
         "max_hp": 10,
         "current_gold": 0,
-        "visited": null,
-        "turn counter": [
+        "visited": [
+            {
+                "type": "Tile",
+                "name": "grasslands",
+                "state": "null"
+            }
+        ],
+        "turn_counter": [
+            0,
+            "null"
+        ]
+    },
+    {
+        "type": "player",
+        "name": "totoro",
+        "co_ord_x": 6,
+        "co_ord_y": 11,
+        "state": "null",
+        "inventory": [
+            {
+                "name": "house key",
+                "quantity": 1,
+                "state": "null"
+            },
+            {
+                "name": "medkit",
+                "quantity": 1,
+                "state": "null"
+            }
+        ],
+        "current_hp": 10,
+        "max_hp": 10,
+        "current_gold": 0,
+        "visited": [
+            {
+                "type": "Object",
+                "name": "garage key",
+                "state": "null"
+            },
+            {
+                "type": "Tile",
+                "name": "kitchen",
+                "state": "open"
+            },
+            {
+                "type": "Object",
+                "name": "medkit",
+                "state": "null"
+            },
+            {
+                "type": "Tile",
+                "name": "bedroom",
+                "state": "open"
+            },
+            {
+                "type": "Object",
+                "name": "farm key",
+                "state": "null"
+            }
+        ],
+        "turn_counter": [
             0,
             "null"
         ]

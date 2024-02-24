@@ -12,7 +12,10 @@ def save_game(world_state):
 
 def serialize_tile_object(tile):
     current_x,current_y = tile.get_coords()
-    return {"co_ord_x":current_x, "co_ord_y":current_y, "turn_count": tile.get_turn_count(), "turn_state":tile.get_turn_state()}
+    return {"co_ord_x":current_x, 
+            "co_ord_y":current_y, 
+            "turn_count": tile.get_turn_count(), 
+            "turn_state":tile.get_turn_state()}
 
 def serialize_item(item):
     return {
@@ -54,7 +57,7 @@ def serialize_character (charac):
            "max_hp":charac.get_max_hp(),
            "current_gold": charac.get_current_gold(),
            "visited":visited_serialized,
-            "turn counter": turn_counter_serialized
+            "turn_counter": turn_counter_serialized
            }
         
 def serialize_object(item):

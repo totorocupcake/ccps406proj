@@ -3,13 +3,13 @@ import Character
 import Object
 
 
-def load_objects_list_from_file():
+def load_objects_list_from_file(load_game):
   # returns a list of 'object' objects that have been populated with 
   # data from the objects status JSON file via text_file_processor.py
 
 
   # get JSON object status data from file via text_file_processor.py
-  object_status_data = text_file_processor.load_object_status_file()
+  object_status_data = text_file_processor.load_object_status_file(load_game)
   
   # Create an empty list to store objects
   objects = []
@@ -79,13 +79,13 @@ def load_objects_list_from_file():
 
 
 
-def load_characters_list_from_file():
+def load_characters_list_from_file(load_game):
   # returns a list of character objects that have been populated with 
   # data from the character status JSON file via text_file_processor.py
 
 
   # get JSON characters status data from file via text_file_processor.py
-  character_status_data = text_file_processor.load_character_status_file()
+  character_status_data = text_file_processor.load_character_status_file(load_game)
 
   # Create an empty list to store characters
   characters = []
@@ -135,7 +135,7 @@ def load_characters_list_from_file():
     # add to visited, if any:
     if char_elem["visited"] is not None:
       for visit_elem in char_elem["visited"]:
-        charac.update_visited((visit_elem["type"], visit_elem["name"], visit_elem["state"]))
+        charac.update_visited(visit_elem["type"], visit_elem["name"], visit_elem["state"])
 
     # set/update the turn counter:
     charac.update_turn_counter( char_elem["turn_counter"][0], char_elem["turn_counter"][1] )
