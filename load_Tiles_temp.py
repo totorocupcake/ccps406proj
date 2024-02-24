@@ -9,9 +9,9 @@ WORLD_MAP_NUM_COLUMNS = text_file_processor.WORLD_MAP_STATUS_COLUMNS
 
 
 
-def get_object_list_by_tile_location(x_coord, y_coord):
+def get_object_list_by_tile_location(x_coord, y_coord,load_game):
 
-  obj_list = load_Chars_and_Objs.load_objects_list_from_file()
+  obj_list = load_Chars_and_Objs.load_objects_list_from_file(load_game)
 
   found = False
 
@@ -118,11 +118,11 @@ def lookup_tile_Mapping_by_ID(tile_id):
 
 
 
-def load_tile_2D_array_from_file():
+def load_tile_2D_array_from_file(load_game):
   # returns a 2D array/list of tile objects
 
   # get 2D array of tile ID's from world_map_status_00.csv
-  world_map_status_array = text_file_processor.load_world_map_status_csv()
+  world_map_status_array = text_file_processor.load_world_map_status_csv(load_game)
 
   # get the JSON array of tile_id_mappings 
   # tileIDMapping_data = text_file_processor.load_tileIDMapping_file()
@@ -145,7 +145,7 @@ def load_tile_2D_array_from_file():
       tl.update_coords((i, j))
 
       # update Tile inventory:
-      obj_list = get_object_list_by_tile_location(i, j)
+      obj_list = get_object_list_by_tile_location(i, j,load_game)
 
       # add objects to tile inventory if found:
       if obj_list is not None:

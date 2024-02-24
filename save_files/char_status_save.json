@@ -1,7 +1,7 @@
 [
     {
         "type": "player",
-        "name": "totoro",
+        "name": "tororo",
         "co_ord_x": 6,
         "co_ord_y": 12,
         "state": "null",
@@ -16,7 +16,7 @@
         "max_hp": 10,
         "current_gold": 0,
         "visited": null,
-        "turn counter": [
+        "turn_counter": [
             0,
             "null"
         ]
@@ -32,7 +32,7 @@
         "max_hp": 10,
         "current_gold": 0,
         "visited": null,
-        "turn counter": [
+        "turn_counter": [
             0,
             "null"
         ]
@@ -48,7 +48,7 @@
         "max_hp": 10,
         "current_gold": 0,
         "visited": null,
-        "turn counter": [
+        "turn_counter": [
             0,
             "null"
         ]
@@ -64,7 +64,7 @@
         "max_hp": 10,
         "current_gold": 0,
         "visited": null,
-        "turn counter": [
+        "turn_counter": [
             0,
             "null"
         ]
@@ -80,7 +80,7 @@
         "max_hp": 10,
         "current_gold": 0,
         "visited": null,
-        "turn counter": [
+        "turn_counter": [
             0,
             "null"
         ]
@@ -96,7 +96,7 @@
         "max_hp": 10,
         "current_gold": 0,
         "visited": null,
-        "turn counter": [
+        "turn_counter": [
             0,
             "null"
         ]
@@ -112,7 +112,7 @@
         "max_hp": 10,
         "current_gold": 0,
         "visited": null,
-        "turn counter": [
+        "turn_counter": [
             0,
             "null"
         ]
@@ -128,7 +128,7 @@
         "max_hp": 10,
         "current_gold": 0,
         "visited": null,
-        "turn counter": [
+        "turn_counter": [
             0,
             "null"
         ]
@@ -144,7 +144,7 @@
         "max_hp": 10,
         "current_gold": 0,
         "visited": null,
-        "turn counter": [
+        "turn_counter": [
             0,
             "null"
         ]
@@ -160,7 +160,7 @@
         "max_hp": 10,
         "current_gold": 5,
         "visited": null,
-        "turn counter": [
+        "turn_counter": [
             0,
             "null"
         ]
@@ -182,7 +182,7 @@
         "max_hp": 10,
         "current_gold": 0,
         "visited": null,
-        "turn counter": [
+        "turn_counter": [
             0,
             "null"
         ]
@@ -204,7 +204,7 @@
         "max_hp": 10,
         "current_gold": 0,
         "visited": null,
-        "turn counter": [
+        "turn_counter": [
             0,
             "null"
         ]
@@ -226,7 +226,7 @@
         "max_hp": 10,
         "current_gold": 0,
         "visited": null,
-        "turn counter": [
+        "turn_counter": [
             0,
             "null"
         ]
