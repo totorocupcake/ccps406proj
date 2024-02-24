@@ -34,6 +34,7 @@ class World_State:
     # 
     self.__saved_tiles = []
     self.__cheat_mode = 'N'
+    self.__graze = 'Y'
 
   # methods:
 
@@ -297,6 +298,11 @@ class World_State:
 
     # return desc_list
 
+  def set_graze (self,flag):
+    self.__graze=flag
+  def get_graze(self):
+    return self.__graze
+  
   def set_cheat_mode(self,flag):
     self.__cheat_mode = flag
 
@@ -342,11 +348,7 @@ class World_State:
         next_command="steal "+ player_name
         print("Thief submitted command to steal",player_name)
         return next_command
-      else:
-        # just move around if no player on same tile
-        next_command = npc_behaviors.graze(self,charac)
-        return next_command
-    
+        
     # Aggressive wolf behavior ################################################
     # kill chicken/cow if there is chicken/cow on same tile, otherwise it just moves randomly on grass
     elif charac.name == "Wolf" and charac.get_state() =="aggressive":
@@ -359,31 +361,26 @@ class World_State:
         elif char.name == "cow":
           print("Wolf submitted command to kill cow")
           return "kill cow"
-      
-      #next_command = npc_behaviors.graze(self,charac)
-      #return next_command
-      pass
-    
-    # Wild chicken behavior ######################################################
-    # fast mover, it moves once every turn, roams grass randomly 
-    # NOTE : TEMPORARILY COMMENTED OUT FOR JOHN TO TEST CHICKEN
-    # elif charac.name == "chicken" and charac.get_state() =="wild":
-    #  next_command = npc_behaviors.graze(self,charac)
-    #  return next_command
-      
 
     # Wild cow behavior ###########################################################
     # cow is slower moving compared to chicken, it only moves once every 2 turns, roams grass
     elif charac.name == "cow" and charac.get_state()=="wild":
-      if (self.get_turn_number() % 2) == 0:
-        next_command = npc_behaviors.graze(self,charac)
-        return next_command
-      else:
-        pass
+      if self.get_graze() == 'Y':
+        if (self.get_turn_number() % 2) == 0:
+          next_command = npc_behaviors.graze(self,charac)
+          return next_command
+      pass
     
     # All other characters' behavior ######################################################
     else:
       # default do nothing if no behavior defined for character
+      pass
+    
+    if self.__graze =="Y":
+      # graze as default if no other action for thief,chicken,wolf
+      next_command = npc_behaviors.graze(self,charac)
+      return next_command
+    else:
       pass
 
   def cheat_mode(self, command):
@@ -408,6 +405,13 @@ class World_State:
       new_charac.set_state(charac_state)
       self.spawn_character(new_charac)
       print("Spawned character")
+    elif command == "graze":
+      if self.get_graze() == 'Y':
+        self.set_graze('N')
+        print("All monster graze movement paused.")
+      elif self.get_graze() == 'N':
+        self.set_graze('Y')
+        print("All monster graze movement resumed.")
 
     
         
