@@ -97,8 +97,25 @@
         "co_ord_x": 4,
         "co_ord_y": 12,
         "inventory":null
+    },
+    {
+        "type": "farm_prod",
+        "name": "wheat",
+        "state": "null",
+        "quantity": 1,
+        "co_ord_x": 5,
+        "co_ord_y": 7,
+        "inventory":null
+    }, 
+    {
+        "type": "tool",
+        "name": "grass",
+        "state": "null",
+        "quantity": 1,
+        "co_ord_x": 4,
+        "co_ord_y": 7,
+        "inventory":null
     }
-
 
 
 
