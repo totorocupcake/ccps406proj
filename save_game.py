@@ -54,7 +54,7 @@ def serialize_character (charac):
            "max_hp":charac.get_max_hp(),
            "current_gold": charac.get_current_gold(),
            "visited":visited_serialized,
-            "turn counter": turn_counter_serialized
+            "turn_counter": turn_counter_serialized
            }
         
 def serialize_object(item):
