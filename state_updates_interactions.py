@@ -2,6 +2,9 @@ import text_file_processor
 import Object
 import load_Tiles_temp
 
+# need for function" dynamic_variable_processor" to process %_% variables
+import game_loop
+
 
 def interaction_commands(world_state,charac,command):
     # lookup command (iteraction: ACTION ENTITY)
@@ -189,7 +192,9 @@ def interaction_commands(world_state,charac,command):
                                 break
                     if not found_obj_req:
                         print()
-                        print(int_JSON_obj["fail_desc"])
+                        print("DEBUG:found_obj_req == False")
+                        output = game_loop.dynamic_variable_processor(world_state, int_JSON_obj["fail_desc"])
+                        print(output)
                         print()
                         requirements_satisfied = False
                         break
@@ -576,11 +581,15 @@ def interaction_commands(world_state,charac,command):
 
 
             print()
-            print(int_JSON_obj["success_desc"])
+            output = game_loop.dynamic_variable_processor(world_state, int_JSON_obj["success_desc"])
+            print(output)
+            # print(int_JSON_obj["success_desc"])
             print()
         else:  # requirements not met:
             print()
-            print(int_JSON_obj["fail_desc"])
+            # print(int_JSON_obj["fail_desc"])
+            output = game_loop.dynamic_variable_processor(world_state, int_JSON_obj["fail_desc"])
+            print(output)
             print()
 
     else:

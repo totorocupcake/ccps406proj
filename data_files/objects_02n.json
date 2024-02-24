@@ -587,7 +587,7 @@
       {
         "name": "read",
 
-        "success_desc": "You see a letter from your landlord saying that you owe %rent_amount% in gold that is due.",
+        "success_desc": "You see a letter from your landlord saying that you owe %rent_amount% in gold that is due in %rent_due_days_away% days",
         "fail_desc": "You cannot read the letter right now.",
         "change_state_to": "null",
         "requirement": null,
