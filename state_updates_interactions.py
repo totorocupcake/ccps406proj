@@ -367,9 +367,11 @@ def interaction_commands(world_state,charac,command):
 
                 obtain_obj_list = []
                 
-                # iteratate through the obtains list, add items to a list of objects:
+    # iteratate through the obtains list, add items to a list of objects:
                 for obtain_elem in int_JSON_obj["obtain"]:
-                    if obtain_elem["type"] == "Item":
+
+        # if obtain is an item:
+                    if (obtain_elem["type"] == "Item") or (obtain_elem["type"] == "object"):
 
                         # first check if already in inventory
                         # 
@@ -391,9 +393,9 @@ def interaction_commands(world_state,charac,command):
                             new_obj.update_qty(obtain_elem["qty"])
                             obtain_obj_list.append(new_obj)
 
-                            print()
-                            print(int_JSON_obj["success_desc"])
-                            print()
+                            # print()
+                            # print(int_JSON_obj["success_desc"])
+                            # print()
                         else:       # print fail_desc:
                             print()
                             print("DEBUG: (obtain_elem['type'] == 'Item') not found:")
@@ -407,6 +409,7 @@ def interaction_commands(world_state,charac,command):
                             charac.update_inventory("add", obtain_obj_list)
                             world_state.spawn_character(charac)
 
+        # if obtain is an tile:
                     elif obtain_elem["type"] == "tile":
                         prev_tile = world_state.get_saved_tile_by_name(obtain_elem["name"])
                         if prev_tile is not None:
@@ -473,9 +476,9 @@ def interaction_commands(world_state,charac,command):
                     # pass
 
 
-            # print()
-            # print(int_JSON_obj["success_desc"])
-            # print()
+            print()
+            print(int_JSON_obj["success_desc"])
+            print()
         else:  # requirements not met:
             print()
             print(int_JSON_obj["fail_desc"])
