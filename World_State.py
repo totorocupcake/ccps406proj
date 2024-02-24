@@ -33,7 +33,7 @@ class World_State:
 
     # 
     self.__saved_tiles = []
-
+    self.__cheat_mode = 'N'
 
   # methods:
 
@@ -297,10 +297,12 @@ class World_State:
 
     # return desc_list
 
+  def set_cheat_mode(self,flag):
+    self.__cheat_mode = flag
 
 
-
-
+  def get_cheat_mode(self):
+    return self.__cheat_mode
 
 
 
@@ -338,6 +340,7 @@ class World_State:
         # steal gold from player if on same tile
         player_name = player.name
         next_command="steal "+ player_name
+        print("Thief submitted command to steal",player_name)
         return next_command
       else:
         # just move around if no player on same tile
@@ -351,18 +354,22 @@ class World_State:
       
       for char in char_list:
         if char.name == "chicken":
+          print("Wolf submitted command to kill chicken")
           return "kill chicken"
         elif char.name == "cow":
+          print("Wolf submitted command to kill cow")
           return "kill cow"
       
-      next_command = npc_behaviors.graze(self,charac)
-      return next_command
+      #next_command = npc_behaviors.graze(self,charac)
+      #return next_command
+      pass
     
     # Wild chicken behavior ######################################################
-    # fast mover, it moves once every turn, roams grass randomly
-    elif charac.name == "chicken" and charac.get_state() =="wild":
-      next_command = npc_behaviors.graze(self,charac)
-      return next_command
+    # fast mover, it moves once every turn, roams grass randomly 
+    # NOTE : TEMPORARILY COMMENTED OUT FOR JOHN TO TEST CHICKEN
+    # elif charac.name == "chicken" and charac.get_state() =="wild":
+    #  next_command = npc_behaviors.graze(self,charac)
+    #  return next_command
       
 
     # Wild cow behavior ###########################################################
@@ -379,7 +386,29 @@ class World_State:
       # default do nothing if no behavior defined for character
       pass
 
+  def cheat_mode(self, command):
+    command = command.strip()
+    words = command.split()
     
+    if words[0] == "spawn":
+      charac_name = words[1]
+      charac_state = words[2]
+      charac_coord = words[3]
+      charac_coord = charac_coord.split(',')
+      x = int(charac_coord[0])
+      y = int(charac_coord[1]) 
+      
+      
+      if charac_name in ("thief", "penny","jimmy","claire","wolf"):
+        charac_name = charac_name[0].upper() + charac_name[1:]
+
+      new_charac = Character.Character()
+      new_charac.name = charac_name
+      new_charac.update_coords((x,y))
+      new_charac.set_state(charac_state)
+      self.spawn_character(new_charac)
+      print("Spawned character")
+
     
         
 

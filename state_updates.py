@@ -21,6 +21,9 @@ def state_update(world_state,charac,command,command_type):
     elif command_type == "advanced":
         # to be done, these are commands that are more specific and documented to be handled separately
         pass
+    elif command_type == "cheat":
+        world_state.cheat_mode(command)
+        return world_state
     else:
         # do nothing, just return original world state as command was not recognized but passed through command processor
         return world_state
