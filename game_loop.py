@@ -111,6 +111,25 @@ def command_processor(world_state,charac,command):
         save_game.save_game(world_state)
         return (False, command, "basic")
     
+    elif command == "cheat":
+        # cheat mode command recognition
+        if world_state.get_cheat_mode() == 'Y':
+            world_state.set_cheat_mode('N')
+            print("Cheat mode turned off")
+        elif world_state.get_cheat_mode() == 'N':
+            world_state.set_cheat_mode('Y')
+            print("Cheat mode turned on")
+        return (False, command, "basic")
+    elif command is not None and command.startswith("cheat "):
+        if world_state.get_cheat_mode() == 'Y':
+            words = command.split()
+            command_without_first_word = ' '.join(words[1:])
+            return (True, command_without_first_word, "cheat")
+        else:
+            print("You're not allowed to do that, cheat mode is not activated.")
+            return (False, command, "basic")
+
+    
     else:
         # TO EXPAND this if statement to recognize more commands as valid, default rest to true for now
 
