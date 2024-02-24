@@ -1,8 +1,6 @@
 import json
 import csv
 
-# use Interaction class to pass data back to state_updates.py
-import Interaction 
 
 CHARACTERS_JSON_FILE = "data_files/Characters_02b.json"
 OBJECTS_JSON_FILE = "data_files/objects_02n.json"
