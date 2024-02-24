@@ -135,7 +135,7 @@ def load_characters_list_from_file(load_game):
     # add to visited, if any:
     if char_elem["visited"] is not None:
       for visit_elem in char_elem["visited"]:
-        charac.update_visited((visit_elem["type"], visit_elem["name"], visit_elem["state"]))
+        charac.update_visited(visit_elem["type"], visit_elem["name"], visit_elem["state"])
 
     # set/update the turn counter:
     charac.update_turn_counter( char_elem["turn_counter"][0], char_elem["turn_counter"][1] )
