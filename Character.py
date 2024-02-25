@@ -7,7 +7,7 @@ class Character(Turn_Based_Entity.Turn_Based_Entity):
         # call super class constructor:
         super().__init__()
 
-        self.inventory = []
+        self._inventory = []
         self._general_type = "Character"
 
         self.__current_hp = 0
@@ -25,7 +25,7 @@ class Character(Turn_Based_Entity.Turn_Based_Entity):
     # GETTER METHODS
     def get_inventory(self):
         # returns a list of 'object' objects
-        return self.inventory
+        return self._inventory
 
 
     # char class specific methods:

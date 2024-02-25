@@ -335,7 +335,7 @@ class World_State:
     
     # Aggressive thief behavior ########################################
     # steal gold from player if on same tile, otherwise roam the grass
-    if charac.name == "Thief" and charac.get_state() =="aggressive":
+    if charac.get_name() == "Thief" and charac.get_state() =="aggressive":
       for element in self.get_characters():
         # find the player character (note may not be the active player)
             if element.get_type() == "player":
@@ -344,27 +344,27 @@ class World_State:
 
       if player.get_coords() == charac.get_coords():
         # steal gold from player if on same tile
-        player_name = player.name
+        player_name = player.get_name()
         next_command="steal "+ player_name
         print("Thief submitted command to steal",player_name)
         return next_command
         
     # Aggressive wolf behavior ################################################
     # kill chicken/cow if there is chicken/cow on same tile, otherwise it just moves randomly on grass
-    elif charac.name == "Wolf" and charac.get_state() =="aggressive":
+    elif charac.get_name() == "Wolf" and charac.get_state() =="aggressive":
       char_list = self.get_chars_at_tile(charac.get_coords())
       
       for char in char_list:
-        if char.name == "chicken":
+        if char.get_name() == "chicken":
           print("Wolf submitted command to kill chicken")
           return "kill chicken"
-        elif char.name == "cow":
+        elif char.get_name() == "cow":
           print("Wolf submitted command to kill cow")
           return "kill cow"
 
     # Wild cow behavior ###########################################################
     # cow is slower moving compared to chicken, it only moves once every 2 turns, roams grass
-    elif charac.name == "cow" and charac.get_state()=="wild":
+    elif charac.get_name() == "cow" and charac.get_state()=="wild":
       if self.get_graze() == 'Y':
         if (self.get_turn_number() % 2) == 0:
           next_command = npc_behaviors.graze(self,charac)
@@ -400,7 +400,7 @@ class World_State:
         charac_name = charac_name[0].upper() + charac_name[1:]
 
       new_charac = Character.Character()
-      new_charac.name = charac_name
+      new_charac.set_name(charac_name)
       new_charac.update_coords((x,y))
       new_charac.set_state(charac_state)
       self.spawn_character(new_charac)
@@ -457,7 +457,7 @@ if __name__ == "__main__":
   tl = Tile.Tile()
   tl.update_tile_by_id("01")
   ws.update_tile((1,4),tl)
-  print("Tile name: ",ws.get_tiles()[1][4].name)
+  print("Tile name: ",ws.get_tiles()[1][4].get_name())
   print("Tile state: ",ws.get_tiles()[1][4].get_state())
   print("Tile general type: ",ws.get_tiles()[1][4].get_general_type())
   
