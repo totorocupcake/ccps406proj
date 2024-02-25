@@ -2,7 +2,7 @@
     {
         "type": "player",
         "name": "totoro",
-        "co_ord_x": 6,
+        "co_ord_x": 7,
         "co_ord_y": 12,
         "state": "null",
         "inventory": [
@@ -22,19 +22,29 @@
         "current_gold": 0,
         "visited": [
             {
-                "type": "Character",
-                "name": "Wolf",
-                "state": "aggressive"
+                "type": "Object",
+                "name": "farm key",
+                "state": "null"
+            },
+            {
+                "type": "Tile",
+                "name": "bedroom",
+                "state": "open"
+            },
+            {
+                "type": "Object",
+                "name": "medkit",
+                "state": "null"
+            },
+            {
+                "type": "Object",
+                "name": "garage key",
+                "state": "null"
             },
             {
                 "type": "Tile",
                 "name": "kitchen",
                 "state": "open"
-            },
-            {
-                "type": "Character",
-                "name": "Wolf",
-                "state": "delete"
             }
         ],
         "turn_counter": [
@@ -221,8 +231,8 @@
     {
         "type": "monster",
         "name": "Thief",
-        "co_ord_x": 12,
-        "co_ord_y": 7,
+        "co_ord_x": 13,
+        "co_ord_y": 6,
         "state": "aggressive",
         "inventory": null,
         "current_hp": 10,
@@ -300,7 +310,7 @@
         "type": "npc",
         "name": "cow",
         "co_ord_x": 3,
-        "co_ord_y": 9,
+        "co_ord_y": 10,
         "state": "wild",
         "inventory": [
             {
@@ -322,65 +332,6 @@
         "turn_counter": [
             0,
             "null"
-        ]
-    },
-    {
-        "type": "monster",
-        "name": "Wolf",
-        "co_ord_x": 5,
-        "co_ord_y": 12,
-        "state": "aggressive",
-        "inventory": null,
-        "current_hp": 0,
-        "max_hp": 0,
-        "current_gold": 0,
-        "visited": [
-            {
-                "type": "Tile",
-                "name": "grasslands",
-                "state": "null"
-            },
-            {
-                "type": "Character",
-                "name": "totoro",
-                "state": "null"
-            },
-            {
-                "type": "Tile",
-                "name": "kitchen",
-                "state": "open"
-            }
-        ],
-        "turn_counter": [
-            0,
-            ""
-        ]
-    },
-    {
-        "type": "monster",
-        "name": "Wolf",
-        "co_ord_x": 6,
-        "co_ord_y": 12,
-        "state": "delete",
-        "inventory": null,
-        "current_hp": 0,
-        "max_hp": 0,
-        "current_gold": 0,
-        "visited": [
-            {
-                "type": "Character",
-                "name": "totoro",
-                "state": "null"
-            },
-            {
-                "type": "Tile",
-                "name": "kitchen",
-                "state": "open"
-            }
-        ],
-        "turn_counter": [
-            0,
-            ""
         ]
     }
 ]
