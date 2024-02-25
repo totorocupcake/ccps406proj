@@ -267,9 +267,9 @@
       {
         "name": "shoot",
    
-        "success_desc": "You manage to shoot the thief with your gun.",
+        "success_desc": "You manage to shoot the thief with your gun. You obtain 5 gold.",
         "fail_desc": "You cannot shoot the thief right now.",
-        "change_state_to": "defeated",
+        "change_state_to": "delete",
         "requirement": [
           {
             "type": "Object",
@@ -283,24 +283,6 @@
       }
     ]
   },
-
-
-
-
-  {
-    "name": "Thief",
-    "type": "monster",
-    "state": "defeated",
-    "description": {
-      "long_desc": "a defeated, lurking thief with a concealed dagger and a sly grin, he cannot harm you now",
-      "short_desc": "a defeated lurking thief"
-    },
-    "interactions": null
-    
-    
-  },
-
-
 
   
   {
@@ -316,9 +298,9 @@
       {
         "name": "shoot",
    
-        "success_desc": "You manage to shoot the wolf with your gun.",
+        "success_desc": "You manage to shoot the wolf with your gun. You obtain some pieces of meat from its corpse.",
         "fail_desc": "You cannot shoot the wolf right now.",
-        "change_state_to": "defeated",
+        "change_state_to": "delete",
         "requirement": [
           {
             "type": "Object",
@@ -332,24 +314,6 @@
       }
     ]
   },
-
-
-  {
-    "name": "Wolf",
-    "type": "monster",
-    "state": "defeated",
-    "description": {
-      "long_desc": "a defeated, wild wolf with sharp claws and a feral growl, it cannot harm you now",
-      "short_desc": "a defeated wild wolf"
-    },
-    "interactions": null
-    
-    
-  },
-
-
-
-
 
   {
     "name": "chicken",
