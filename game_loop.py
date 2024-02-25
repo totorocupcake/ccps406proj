@@ -42,7 +42,8 @@ def play_game(world_state):
 def console_output(world_state):
     # Prints to console out the description at active player's location
     
-    print("Turn Number: ",world_state.get_turn_number())
+    print("-" * 30)
+    print("\033[1mTurn Number: \033[0m",world_state.get_turn_number())
     
     #find active char based on active player flag = Y then find their coordinate
     active_char = world_state.get_active_char()
