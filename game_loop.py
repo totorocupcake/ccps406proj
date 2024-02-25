@@ -49,6 +49,8 @@ def console_output(world_state):
     active_char = world_state.get_active_char()
     current_coord =  active_char.get_coords()
     
+    #print_minimap(world_state,active_char,current_coord)
+    
     # get description based on coordinate of active player and parse it for dynamic text variables within string
     output=world_state.get_description(current_coord,active_char.get_visited())
     output = dynamic_variable_processor(world_state,output) # formats dynamic variables in string
@@ -144,15 +146,11 @@ def command_processor(world_state,charac,command):
     else:
         # TO EXPAND this if statement to recognize more commands as valid, default rest to true for now
 
-        
         # ****************************************************************
         # John: changed this to 'basic' for testing of interaction commands:
         # return (True, command,"To expand") 
         return (True, command,"basic") 
         # ****************************************************************
-        
-
-
 
 def dynamic_variable_processor(world_state,get_desc_string):
     # Given a sentence string (from get_description()) replace any dynamic variables within our text files
@@ -180,7 +178,13 @@ def dynamic_variable_logic(world_state,keyword):
                 if charac.get_type() == "player":
                     return charac.get_current_gold()
 
-
+def print_minimap(world_state,charac,coords):
+    x,y = coords
     
+    max_cols = len(world_state.get_tiles()[0])-1
+    max_rows = len(world_state.get_tiles())-1
     
+   # if y-1 >=0 and x-1 >=0 and y+1 <= max_cols and x+1 <= max_rows:
+        # print_tile (world_state.get_tiles()[x-1][y-1])
+        
 

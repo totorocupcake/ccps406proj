@@ -384,7 +384,7 @@ class World_State:
       return None
 
 
-  def cheat_mode(self, command):
+  def cheat_mode(self, command,charac):
     command = command.strip()
     words = command.split()
     
@@ -421,6 +421,14 @@ class World_State:
       x = int(charac_coord[0])
       y = int(charac_coord[1])
       print (self.get_description((x,y),{}))
+    elif words[0] == "teleport":
+      charac_coord = words[1]
+      charac_coord = charac_coord.split(',')
+      x = int(charac_coord[0])
+      y = int(charac_coord[1])
+      charac.update_coords((x,y))
+      print (f"Teleported to {x},{y}.")
+    return self
 
     
         

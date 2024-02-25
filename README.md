@@ -11,3 +11,6 @@ toggles animal/monster movement off/on
 ### cheat get_desc coords
 e.g. cheat get_desc 6,12 [note no space between coordinates]
 gets description at any specified location
+
+### cheat teleport coords
+e.g. cheat teleport 6,12 [note no space between coordinates]
