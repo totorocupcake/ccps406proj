@@ -157,7 +157,7 @@
     "type": "npc",
     "state": "null",
     "description": {
-      "long_desc": "A friendly neighbor Penny with a warm smile",
+      "long_desc": "a friendly neighbor Penny with a warm smile",
       "short_desc": "Penny the neighbor"
     },
     "interactions":    
@@ -190,7 +190,7 @@
     "type": "npc",
     "state": "null",
     "description": {
-      "long_desc": "A friendly neighbor Jimmy with an inquisitive look",
+      "long_desc": "a friendly neighbor Jimmy with an inquisitive look",
       "short_desc": "Jimmy the neighbor"
     },
     "interactions":    
@@ -259,7 +259,7 @@
     "type": "monster",
     "state": "aggressive",
     "description": {
-      "long_desc": "A aggressive, lurking thief with a concealed dagger and a sly grin, you should shoot him",
+      "long_desc": "an aggressive, lurking thief with a concealed dagger and a sly grin, you should shoot him",
       "short_desc": "an aggressive, lurking thief"
     },
     "interactions":    
@@ -292,7 +292,7 @@
     "type": "monster",
     "state": "defeated",
     "description": {
-      "long_desc": "A defeated, lurking thief with a concealed dagger and a sly grin, he cannot harm you now",
+      "long_desc": "a defeated, lurking thief with a concealed dagger and a sly grin, he cannot harm you now",
       "short_desc": "a defeated lurking thief"
     },
     "interactions": null
@@ -308,7 +308,7 @@
     "type": "monster",
     "state": "aggressive",
     "description": {
-      "long_desc": "A wild wolf with sharp claws and a feral growl, you should shoot it",
+      "long_desc": "a wild wolf with sharp claws and a feral growl, you should shoot it",
       "short_desc": "a wild wolf"
     },
     "interactions":    
@@ -339,7 +339,7 @@
     "type": "monster",
     "state": "defeated",
     "description": {
-      "long_desc": "A defeated, wild wolf with sharp claws and a feral growl, it cannot harm you now",
+      "long_desc": "a defeated, wild wolf with sharp claws and a feral growl, it cannot harm you now",
       "short_desc": "a defeated wild wolf"
     },
     "interactions": null
