@@ -56,10 +56,12 @@ def basic_commands(world_state,charac,command):
         # remove dangling comma added at end of last item
         object_string = object_string[:-2]
         
-        print(object_string) # print inventory
+        # Append character's gold amount to end of string:
+        object_string += ". Gold: "
+        object_string += str(charac.get_current_gold()) +"."
         
-    # else:
-    # modified:
+        print(object_string)
+        
     elif command in directions_set:
         x,y = charac.get_coords()
         
