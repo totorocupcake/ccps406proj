@@ -19,7 +19,7 @@ def serialize_tile_object(tile):
 
 def serialize_item(item):
     return {
-        "name": item.name,  
+        "name": item.get_name(),  
         "quantity": item.get_quantity(),  
         "state": item.get_state()  
     }
@@ -48,7 +48,7 @@ def serialize_character (charac):
         turn_counter_serialized = None
 
     return{"type":charac.get_type(),
-           "name": charac.name,
+           "name": charac.get_name(),
            "co_ord_x":current_x,
            "co_ord_y":current_y,
            "state": charac.get_state(),
@@ -68,7 +68,7 @@ def serialize_object(item):
 
     return {
         "type": item.get_type(),
-        "name": item.name,  
+        "name": item.get_name(),  
         "state": item.get_state(),
         "quantity": item.get_quantity(),  
         "co_ord_x":current_x,
