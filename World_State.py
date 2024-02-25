@@ -415,6 +415,12 @@ class World_State:
       elif self.get_graze() == 'N':
         self.set_graze('Y')
         print("All monster graze movement resumed.")
+    elif words[0] == "getdesc":
+      charac_coord = words[1]
+      charac_coord = charac_coord.split(',')
+      x = int(charac_coord[0])
+      y = int(charac_coord[1])
+      print (self.get_description((x,y),{}))
 
     
         
