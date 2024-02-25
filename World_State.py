@@ -403,6 +403,8 @@ class World_State:
       new_charac.set_name(charac_name)
       new_charac.update_coords((x,y))
       new_charac.set_state(charac_state)
+      new_charac.set_type(text_file_processor.lookup_type("Character",charac_name,charac_state))
+      
       self.spawn_character(new_charac)
       print("Spawned character")
     elif command == "graze":
