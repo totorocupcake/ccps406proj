@@ -1,9 +1,6 @@
 import json
 import csv
-# import utilities
-
 # need to get player variable from World_State
-# import game_loop
 
 CHARACTERS_JSON_FILE = "data_files/Characters_02b.json"
 OBJECTS_JSON_FILE = "data_files/objects_02n.json"
@@ -25,7 +22,6 @@ LOAD_OBJECTS_JSON_FILE = "save_files/objects_status_save.json"
 LOAD_CHARACTER_STATUS_JSON_FILE = "save_files/char_status_save.json"
 LOAD_WORLD_MAP_TURN_STATUS_JSON_FILE = "save_files/world_map_turn_status.json"
 
-
 def load_tile_JSON_data_file():
     # returns a JSON array of tile data 
     # from the JSON tiles_01 file
@@ -34,14 +30,7 @@ def load_tile_JSON_data_file():
         parsed_tile_data = json.load(file)
 
     return parsed_tile_data
-
-
-    pass
-
-
-
-
-
+    
 def load_object_status_file(load_game):
     # returns a JSON array of object-status data 
     # from the JSON objects_status file
@@ -55,20 +44,6 @@ def load_object_status_file(load_game):
         parsed_object_status_data = json.load(file)
 
     return parsed_object_status_data
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 def load_character_status_file(load_game):
     # returns a JSON array of character-status data 
@@ -84,16 +59,6 @@ def load_character_status_file(load_game):
 
     return parsed_character_status_data
 
-
-
-
-
-
-
-
-
-
-
 def load_tileIDMapping_file():
     # returns a JSON array of tile-id-mappings data
     # from the JSON tileIDMapping file
@@ -102,13 +67,6 @@ def load_tileIDMapping_file():
         tile_mapping_id_data = json.load(file)
 
     return tile_mapping_id_data
-
-
-
-
-
-
-
 
 def lookup_tileID_by_name_state(tile_name,state):
     # given a tile name and state, find corresponding tile ID:
@@ -119,25 +77,12 @@ def lookup_tileID_by_name_state(tile_name,state):
         parsed_tile_data = json.load(file)
 
     for tile in parsed_tile_data:
-        if (tile["name"] == tile_name) and (tile["state"] == state):
+        if (tile["name"].lower() == tile_name.lower()) and (tile["state"].lower() == state.lower()):
             found_tile = True
             return tile["tile_id"]
 
     if not found_tile:
         return "Not Found"
-    
-
-
-
-
-
-
-
-
-
-
-
-
 
 def lookup_desc (long_short , type, name, state):
     # Given arguments find, return the matching description from in-game text files
@@ -151,18 +96,16 @@ def lookup_desc (long_short , type, name, state):
 # because we don't want to be open and loading from the JSON file
 # on every function call - too slow
 
-
     # Object:
     if type == "Object":
-
         found_object = False
-
+        
         with open(OBJECTS_JSON_FILE, 'r') as file:
             parsed_object_data = json.load(file)
 
         for obj in parsed_object_data:
        
-            if (obj["name"] == name) and (obj["state"] == state):
+            if (obj["name"].lower() == name.lower()) and (obj["state"].lower() == state.lower()):
 
                 found_object = True
                 if long_short == "long":
@@ -183,7 +126,7 @@ def lookup_desc (long_short , type, name, state):
 
         for char_elem in parsed_character_data:
 
-            if (char_elem["name"] == name) and (char_elem["state"] == state):
+            if (char_elem["name"].lower() == name.lower()) and (char_elem["state"].lower() == state.lower()):
                 found_character = True
                 if long_short == "long":
                     return char_elem["description"]["long_desc"]
@@ -201,7 +144,7 @@ def lookup_desc (long_short , type, name, state):
             parsed_tile_data = json.load(file)
 
         for tile in parsed_tile_data:
-            if (tile["name"] == name) and (tile["state"] == state):
+            if (tile["name"].lower() == name.lower()) and (tile["state"].lower() == state.lower()):
                 found_tile = True
                 if long_short == "long":
                     return tile["description"]["long_desc"]
@@ -211,13 +154,6 @@ def lookup_desc (long_short , type, name, state):
         if found_tile == False:
             return ""
             # return None
-
-
-
-
-
-
-
 
 def lookup_interaction (type, name, state, interaction_key):
     # Given the name of a noun and its state, and its interaction word (verb) return it's interaction data
@@ -237,52 +173,16 @@ def lookup_interaction (type, name, state, interaction_key):
     found_interac = False
 
     for obj in parsed_data:
-       
-
-        # utilities.dynamic_variable_processor
-        
-        # name_processed = game_loop.dynamic_variable_processor(world_state, obj["name"])
-        # utilities.dynamic_variable_processor(obj["name"])
-
-        if (obj["name"] == name) and (obj["state"] == state):
-        # if (name_processed == name) and (obj["state"] == state):
-        
+        if (obj["name"].lower() == name.lower()) and (obj["state"].lower() == state.lower()):
             found_noun = True
             
             if obj["interactions"] is not None:
                 for interac in obj["interactions"]:
                     # if the interaction name matches, print its details...:
-                    if interac["name"] == interaction_key:
+                    if interac["name"].lower() == interaction_key.lower():
                         found_interac = True
                         return interac
     return None
-
-
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 # def lookup_interaction_ret_object(interaction_key):
 #     # Given arguments return a populate Interaction object for command processing
@@ -455,28 +355,6 @@ def lookup_interaction (type, name, state, interaction_key):
 #     # 4) else return None
 #     return None
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 def lookup_interaction_key_only (interaction_key):
     # Given arguments return the matching interaction object as an array for command processing
     # Return None if not match
@@ -612,22 +490,6 @@ def lookup_interaction_key_only (interaction_key):
     # 4) else return None
     return None
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 def lookup_movable (tile_name,state):
     # Given a tile name and state, return the matching movable flag.
     # Return None if not match
@@ -638,7 +500,7 @@ def lookup_movable (tile_name,state):
         parsed_tile_data = json.load(file)
 
     for tile in parsed_tile_data:
-        if (tile["name"] == tile_name) and (tile["state"] == state):
+        if (tile["name"].lower() == tile_name.lower()) and (tile["state"].lower() == state.lower()):
             found_tile = True
             return tile["movable"]
 
@@ -656,22 +518,13 @@ def lookup_tile_type (tile_name,state):
         parsed_tile_data = json.load(file)
 
     for tile in parsed_tile_data:
-        if (tile["name"] == tile_name) and (tile["state"] == state):
+        if (tile["name"].lower() == tile_name.lower()) and (tile["state"].lower() == state.lower()):
             found_tile = True
             return tile["type"]
 
     if found_tile == False:
         return None
-
-
-
-
-
-
-
-
-
-
+    
 def lookup_gold_amt (name, state):
     # Given an object name and state, return the matching gold_amt.
     # Return None if not match
@@ -685,7 +538,7 @@ def lookup_gold_amt (name, state):
 
         for obj in parsed_object_data:
 
-            if (obj["name"] == name) and (obj["state"] == state):
+            if (obj["name"].lower() == name.lower()) and (obj["state"].lower() == state.lower()):
 
                 # print("DEBUG: found_object: ", found_object)
 
@@ -694,7 +547,6 @@ def lookup_gold_amt (name, state):
                 
         if found_object == False:
             return None
-
 
 def load_world_map_turn_status(load_game):
     if load_game == 'Y':
@@ -706,13 +558,6 @@ def load_world_map_turn_status(load_game):
         parsed_world_map_turn_status_data = json.load(file)
 
     return parsed_world_map_turn_status_data
-
-
-
-
-
-
-
 
 
 def load_world_map_status_csv(load_game):
@@ -758,23 +603,6 @@ def load_world_map_status_csv(load_game):
             row_num = row_num + 1
 
     return matrix
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 if __name__ == "__main__":
 

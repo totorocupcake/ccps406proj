@@ -82,9 +82,8 @@ def command_input(world_state,charac):
 #           while 'Wold' is capitalized
 #           
 
-            # command = command.strip().lower()
-            command = command.strip()
-        
+            command = command.strip().lower()
+            
         # Command processor checks, validates, formats the command. 
         # If the command is not valid, will keep getting new command until valid
         valid_command,command,command_type = command_processor(world_state,charac,command)
