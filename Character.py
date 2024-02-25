@@ -23,10 +23,6 @@ class Character(Turn_Based_Entity.Turn_Based_Entity):
 
 
     # GETTER METHODS
-    def get_inventory(self):
-        # returns a list of 'object' objects
-        return self._inventory
-
 
     # char class specific methods:
     def get_current_hp (self): 
@@ -43,7 +39,6 @@ class Character(Turn_Based_Entity.Turn_Based_Entity):
     
     def get_active_player (self): 
         return self.__active_player    
-
 
 
     # SETTER METHODS

@@ -14,10 +14,6 @@ class Object(Entity.Entity):
         self.__qty = 0
         self.__gold_amt = 0
 
-    def get_inventory(self):
-        # returns a list of 'object' objects
-        return self._inventory
-
     # Sub-class specific methods:
     def update_qty(self, adjustment): 
         self.__qty = self.__qty + adjustment  #if want to subtract, just make adjustment negative
