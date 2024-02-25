@@ -9,5 +9,5 @@ e.g. cheat spawn wolf aggressive 6,12 [note no space between coordinates]
 toggles animal/monster movement off/on
 
 ### cheat get_desc coords
-e.g. cheat getdesc 6,12 [note no space between coordinates]
+e.g. cheat get_desc 6,12 [note no space between coordinates]
 gets description at any specified location
