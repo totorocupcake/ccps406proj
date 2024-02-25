@@ -369,19 +369,20 @@ class World_State:
         if (self.get_turn_number() % 2) == 0:
           next_command = npc_behaviors.graze(self,charac)
           return next_command
-      pass
+      return None
     
     # All other characters' behavior ######################################################
     else:
       # default do nothing if no behavior defined for character
-      pass
+      return None
     
     if self.__graze =="Y":
       # graze as default if no other action for thief,chicken,wolf
       next_command = npc_behaviors.graze(self,charac)
       return next_command
     else:
-      pass
+      return None
+
 
   def cheat_mode(self, command):
     command = command.strip()
