@@ -547,6 +547,26 @@ def lookup_gold_amt (name, state):
                 
         if found_object == False:
             return None
+        
+def lookup_type (general_type,name, state):
+    # returns the type value given a name and state and general type matched from JSON 
+    
+    if general_type == "Object":
+        with open(OBJECTS_JSON_FILE, 'r') as file:
+            parsed_data = json.load(file)
+    elif general_type == "Character":
+        with open(CHARACTERS_JSON_FILE, 'r') as file:
+            parsed_data = json.load(file)
+    else:
+        with open(TILES_JSON_FILE, 'r') as file:
+            parsed_data = json.load(file)
+            
+    for obj in parsed_data:
+        if (obj["name"].lower() == name.lower()) and (obj["state"].lower() == state.lower()):
+            return obj["type"]
+    return None
+
+
 
 def load_world_map_turn_status(load_game):
     if load_game == 'Y':
