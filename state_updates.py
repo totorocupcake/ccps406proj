@@ -83,7 +83,7 @@ def basic_commands(world_state,charac,command):
             charac.update_coords((x,y))
         else:
             # only print to console if its the active player turn
-            if charac.get_active_player=='Y':
+            if charac.get_active_player()=='Y':
                 print("You cannot go there.") 
     
     # added: for dealing with 'interaction' commands
