@@ -1,6 +1,9 @@
 import json
 import csv
+# import utilities
 
+# need to get player variable from World_State
+# import game_loop
 
 CHARACTERS_JSON_FILE = "data_files/Characters_02b.json"
 OBJECTS_JSON_FILE = "data_files/objects_02n.json"
@@ -235,14 +238,23 @@ def lookup_interaction (type, name, state, interaction_key):
 
     for obj in parsed_data:
        
+
+        # utilities.dynamic_variable_processor
+        
+        # name_processed = game_loop.dynamic_variable_processor(world_state, obj["name"])
+        # utilities.dynamic_variable_processor(obj["name"])
+
         if (obj["name"] == name) and (obj["state"] == state):
+        # if (name_processed == name) and (obj["state"] == state):
+        
             found_noun = True
             
-            for interac in obj["interactions"]:
-                # if the interaction name matches, print its details...:
-                if interac["name"] == interaction_key:
-                    found_interac = True
-                    return interac
+            if obj["interactions"] is not None:
+                for interac in obj["interactions"]:
+                    # if the interaction name matches, print its details...:
+                    if interac["name"] == interaction_key:
+                        found_interac = True
+                        return interac
     return None
 
 

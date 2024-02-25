@@ -73,7 +73,17 @@ def command_input(world_state,charac):
         
         # do some command formatting cleansing here
         if command:
-            command = command.strip().lower()
+
+# ------------------------------------------
+#       NOTE from john:  
+#           I had to remove .lower() from command formatting because
+#           our data is pretty inconsistent with upper/lower case
+#           ie, 'kitchen' is all lowercase
+#           while 'Wold' is capitalized
+#           
+
+            # command = command.strip().lower()
+            command = command.strip()
         
         # Command processor checks, validates, formats the command. 
         # If the command is not valid, will keep getting new command until valid
@@ -84,6 +94,7 @@ def command_input(world_state,charac):
 
 
 def command_processor(world_state,charac,command):
+
     # Based on the passed through string command and Character that submitted that command,
     # do any formatting for the command. So that we can pass formatted command to state_update function.
     # Function returns back a tuple containing:
