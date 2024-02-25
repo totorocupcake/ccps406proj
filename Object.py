@@ -7,7 +7,7 @@ class Object(Entity.Entity):
         # call super class constructor: 
         super().__init__()
        
-        self.inventory = []
+        self._inventory = []
         self._general_type = "Object"
 
         # sub-class specific properties:
@@ -16,7 +16,7 @@ class Object(Entity.Entity):
 
     def get_inventory(self):
         # returns a list of 'object' objects
-        return self.inventory
+        return self._inventory
 
     # Sub-class specific methods:
     def update_qty(self, adjustment): 

@@ -13,7 +13,7 @@ class Tile(Turn_Based_Entity.Turn_Based_Entity):
     super().__init__()
     # # properties from Entity:
      # NOTE: must declare the inventory property again, else get weird error
-    self.inventory = []
+    self._inventory = []
 
     # Tile-specific properties:
     self.__movable = "N"

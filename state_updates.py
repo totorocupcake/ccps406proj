@@ -96,18 +96,18 @@ def visited_updates (world_state,charac,x,y):
     
     # get and update for the new tile visited
     new_tile_visited = world_state.get_tiles()[x][y]
-    charac.update_visited("Tile",new_tile_visited.name,new_tile_visited.get_state())
+    charac.update_visited("Tile",new_tile_visited.get_name(),new_tile_visited.get_state())
             
     # add any objects within tile's inventory      
     new_tile_objs_visited = new_tile_visited.get_inventory()
     for obj in new_tile_objs_visited:
-        charac.update_visited("Object",obj.name,obj.get_state())
+        charac.update_visited("Object",obj.get_name(),obj.get_state())
         
     # add any characters on the same tile
     new_chars_visited = world_state.get_chars_at_tile((x,y))
     for char in new_chars_visited:
         if char != charac:
-            charac.update_visited("Character",char.name,char.get_state())
+            charac.update_visited("Character",char.get_name(),char.get_state())
     
     return world_state
 
