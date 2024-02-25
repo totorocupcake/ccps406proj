@@ -88,16 +88,6 @@ class Tile(Turn_Based_Entity.Turn_Based_Entity):
     # updates tile based on new state, then resets turn counter to no turn count
     self.update_tile_by_state(self.get_turn_state())
     self.update_turn_counter (0, "")
-    
-    
-
-    # *********
-    # Need to add all other miscellaneous methods of the 'Tile' class:
-    # *********
-
-
-
-
 
 
 
