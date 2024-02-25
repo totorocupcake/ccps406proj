@@ -7,7 +7,7 @@ class Entity:
     # properties:
     self.name = ""
     self._general_type = ""
-    self.__type = ""
+    self.type = ""
     self.__state = ""
     self.co_ord_x = 0
     self.co_ord_y = 0
@@ -25,7 +25,7 @@ class Entity:
     return self._general_type
 
   def get_type(self):
-    return self.__type
+    return self.type
 
   def get_state(self):
     return self.__state
@@ -58,7 +58,7 @@ class Entity:
     self._general_type = new_general_type
 
   def set_type(self, new_type):
-    self.__type = new_type
+    self.type = new_type
 
   def set_state(self, new_state):
     self.__state = new_state

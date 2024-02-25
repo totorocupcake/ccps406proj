@@ -3,7 +3,8 @@ import Entity
 class Object(Entity.Entity):
 
     # CLASS CONSTRUCTOR
-    def __init__(self): 
+    def __init__(self):
+        # call super class constructor: 
         super().__init__()
        
         self.inventory = []

@@ -4,6 +4,9 @@ class Character(Turn_Based_Entity.Turn_Based_Entity):
 
     # CLASS CONSTRUCTOR
     def __init__(self): 
+        # call super class constructor:
+        super().__init__()
+
         self.inventory = []
         self._general_type = "Character"
 

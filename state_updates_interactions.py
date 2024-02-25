@@ -34,6 +34,7 @@ def interaction_commands(world_state,charac,command):
 #   then reject the command
 
     interac_noun = interaction_array[1]
+
     current_x, current_y = charac.get_coords()
 
     # found = False
@@ -48,6 +49,7 @@ def interaction_commands(world_state,charac,command):
 
     interac_name = ""
     interac_general_type = ""
+    interac_type = ""
 
     # check current tile matches 'interac_noun':
     current_tl = world_state.get_tiles()[current_x][current_y]
@@ -86,9 +88,13 @@ def interaction_commands(world_state,charac,command):
                     found_interac_char = True
                     interac_name = interac_noun
                     interac_general_type = "Character"
+                    interac_type = char_elem.get_type()
                     interac_state = char_elem.get_state()
                     # track the character that matches
                     tile_char_found = char_elem
+
+                    print("\t\tDEBUG: found_interac_char : ", char_elem.get_name(), ",", char_elem.get_type())
+
                     break
 
 
@@ -148,13 +154,48 @@ def interaction_commands(world_state,charac,command):
         # print("DEBUG: current_tl.get_general_type() = ", current_tl.get_general_type())
 
 
+
+
+
+
+
+
+
+
+
 # 3. use def lookup_interaction (type, name, state, interaction_key) to grab the interaction data from JSON
+
+        # print("\t\tDEBUG: charac.get_type(): ", charac.get_type())
+        print("\t\tinterac_type = ", interac_type)
+
+        if interac_type == "player":
+            interac_name = "%player_name%"
+            # pass
 
         int_JSON_obj = text_file_processor.lookup_interaction(interac_general_type, \
             interac_name, interac_state, interaction_array[0])
 
-        print("DEBUG: int_JSON_obj: ")
-        print(int_JSON_obj)
+        # print("DEBUG: int_JSON_obj: ")
+        # print(int_JSON_obj)
+
+
+# ----------------------------
+# if interaction was not found, print message and return:
+        if int_JSON_obj is None:
+            print()
+            print("Command not recognized")
+            print()
+            return world_state
+
+
+
+
+
+
+
+
+
+
 
 # 4. process the interaction based on data from 3.
  
@@ -178,7 +219,7 @@ def interaction_commands(world_state,charac,command):
             tile_req_satisfied = True
             for req_elem in int_JSON_obj["requirement"]:
                 # i) check 'object' requirements, must be in current char's inventory:
-                if req_elem["type"] == "object":
+                if req_elem["type"].lower() == "object":
                     # act_char = world_state.get_active_char()
                     # fix below, remove act_char, replace with charac
                     act_char = charac
@@ -383,11 +424,14 @@ def interaction_commands(world_state,charac,command):
                         for char_elem in char_on_tile:
                             if char_elem.get_name() == interac_name:
                                 world_state.remove_character(char_elem)
-                                char_elem.set_state(interac_state)
+
+                                new_char_state = int_JSON_obj["change_state_to"]
+                                char_elem.set_state(new_char_state)
+                                                                
                                 world_state.spawn_character(char_elem)
 
                                 # debug only:
-                                print("DEBUG: ", char_elem.get_name(), ",", char_elem.get_state())
+                                print("DEBUG: Update Char state: ", char_elem.get_name(), ",", char_elem.get_state())
                                 break
                     
 
@@ -459,7 +503,7 @@ def interaction_commands(world_state,charac,command):
         # c) if requirements_satisfied, check 'obtain' field,
         #   and update where needed 
             print("Obtains:")
-            print("\t", int_JSON_obj["obtain"])
+            # print("\t", int_JSON_obj["obtain"])
 
             if int_JSON_obj["obtain"] is not None:
 
@@ -566,7 +610,7 @@ def interaction_commands(world_state,charac,command):
 
 #   self.name = ""
 #     self._general_type = ""
-#     self.__type = ""
+#     self.type = ""
 #     self.__state = ""
 #     self.co_ord_x = 0
 #     self.co_ord_y = 0
