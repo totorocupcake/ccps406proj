@@ -39,7 +39,7 @@ def basic_commands(world_state,charac,command):
     if command=="inventory":
         object_string=""
         
-        print("Inventory: ",end="")
+        print("\033[1mInventory: \033[0m",end="")
         
         for obj in charac.get_inventory():
             # loop through each item in character's inventory
@@ -56,10 +56,12 @@ def basic_commands(world_state,charac,command):
         # remove dangling comma added at end of last item
         object_string = object_string[:-2]
         
-        print(object_string) # print inventory
+        # Append character's gold amount to end of string:
+        object_string += ". \033[1mGold: \033[0m"
+        object_string += str(charac.get_current_gold()) +"."
         
-    # else:
-    # modified:
+        print(object_string)
+        
     elif command in directions_set:
         x,y = charac.get_coords()
         

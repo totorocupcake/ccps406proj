@@ -2,7 +2,7 @@
     {
         "type": "player",
         "name": "totoro",
-        "co_ord_x": 6,
+        "co_ord_x": 7,
         "co_ord_y": 12,
         "state": "null",
         "inventory": [
@@ -23,18 +23,8 @@
         "visited": [
             {
                 "type": "Object",
-                "name": "garage key",
-                "state": "null"
-            },
-            {
-                "type": "Object",
                 "name": "farm key",
                 "state": "null"
-            },
-            {
-                "type": "Tile",
-                "name": "kitchen",
-                "state": "open"
             },
             {
                 "type": "Tile",
@@ -45,6 +35,16 @@
                 "type": "Object",
                 "name": "medkit",
                 "state": "null"
+            },
+            {
+                "type": "Object",
+                "name": "garage key",
+                "state": "null"
+            },
+            {
+                "type": "Tile",
+                "name": "kitchen",
+                "state": "open"
             }
         ],
         "turn_counter": [
@@ -55,8 +55,8 @@
     {
         "type": "npc",
         "name": "landlord",
-        "co_ord_x": 1,
-        "co_ord_y": 14,
+        "co_ord_x": 2,
+        "co_ord_y": 15,
         "state": "unhappy",
         "inventory": null,
         "current_hp": 10,
@@ -66,11 +66,6 @@
             {
                 "type": "Tile",
                 "name": "town hall",
-                "state": "null"
-            },
-            {
-                "type": "Tile",
-                "name": "grasslands",
                 "state": "null"
             }
         ],
@@ -82,19 +77,14 @@
     {
         "type": "npc",
         "name": "Merchant 1",
-        "co_ord_x": 3,
-        "co_ord_y": 14,
+        "co_ord_x": 2,
+        "co_ord_y": 13,
         "state": "null",
         "inventory": null,
         "current_hp": 10,
         "max_hp": 10,
         "current_gold": 0,
         "visited": [
-            {
-                "type": "Tile",
-                "name": "town square",
-                "state": "null"
-            },
             {
                 "type": "Tile",
                 "name": "tool shop",
@@ -121,11 +111,6 @@
                 "type": "Tile",
                 "name": "animal products shop",
                 "state": "null"
-            },
-            {
-                "type": "Tile",
-                "name": "plant products shop",
-                "state": "null"
             }
         ],
         "turn_counter": [
@@ -136,8 +121,8 @@
     {
         "type": "npc",
         "name": "Merchant 3",
-        "co_ord_x": 0,
-        "co_ord_y": 12,
+        "co_ord_x": 1,
+        "co_ord_y": 13,
         "state": "null",
         "inventory": null,
         "current_hp": 10,
@@ -145,18 +130,8 @@
         "current_gold": 0,
         "visited": [
             {
-                "type": "Character",
-                "name": "Merchant 2",
-                "state": "null"
-            },
-            {
                 "type": "Tile",
                 "name": "plant products shop",
-                "state": "null"
-            },
-            {
-                "type": "Tile",
-                "name": "grasslands",
                 "state": "null"
             }
         ],
@@ -190,8 +165,8 @@
     {
         "type": "npc",
         "name": "Penny",
-        "co_ord_x": 9,
-        "co_ord_y": 14,
+        "co_ord_x": 10,
+        "co_ord_y": 13,
         "state": "null",
         "inventory": null,
         "current_hp": 10,
@@ -201,16 +176,6 @@
             {
                 "type": "Tile",
                 "name": "Pennys house",
-                "state": "null"
-            },
-            {
-                "type": "Tile",
-                "name": "road by neighbours houses",
-                "state": "null"
-            },
-            {
-                "type": "Character",
-                "name": "Jimmy",
                 "state": "null"
             }
         ],
@@ -222,19 +187,14 @@
     {
         "type": "npc",
         "name": "Jimmy",
-        "co_ord_x": 9,
-        "co_ord_y": 14,
+        "co_ord_x": 10,
+        "co_ord_y": 15,
         "state": "null",
         "inventory": null,
         "current_hp": 10,
         "max_hp": 10,
         "current_gold": 0,
         "visited": [
-            {
-                "type": "Tile",
-                "name": "road by neighbours houses",
-                "state": "null"
-            },
             {
                 "type": "Tile",
                 "name": "Jimmys house",
@@ -249,8 +209,8 @@
     {
         "type": "npc",
         "name": "Claire",
-        "co_ord_x": 12,
-        "co_ord_y": 13,
+        "co_ord_x": 11,
+        "co_ord_y": 14,
         "state": "null",
         "inventory": null,
         "current_hp": 10,
@@ -260,11 +220,6 @@
             {
                 "type": "Tile",
                 "name": "Claires house",
-                "state": "null"
-            },
-            {
-                "type": "Tile",
-                "name": "grasslands",
                 "state": "null"
             }
         ],
@@ -276,8 +231,8 @@
     {
         "type": "monster",
         "name": "Thief",
-        "co_ord_x": 11,
-        "co_ord_y": 7,
+        "co_ord_x": 13,
+        "co_ord_y": 6,
         "state": "aggressive",
         "inventory": null,
         "current_hp": 10,
@@ -298,7 +253,7 @@
     {
         "type": "monster",
         "name": "Wolf",
-        "co_ord_x": 11,
+        "co_ord_x": 10,
         "co_ord_y": 19,
         "state": "aggressive",
         "inventory": [
@@ -326,8 +281,8 @@
     {
         "type": "npc",
         "name": "chicken",
-        "co_ord_x": 2,
-        "co_ord_y": 16,
+        "co_ord_x": 3,
+        "co_ord_y": 17,
         "state": "wild",
         "inventory": [
             {
@@ -355,7 +310,7 @@
         "type": "npc",
         "name": "cow",
         "co_ord_x": 3,
-        "co_ord_y": 9,
+        "co_ord_y": 10,
         "state": "wild",
         "inventory": [
             {

@@ -369,19 +369,20 @@ class World_State:
         if (self.get_turn_number() % 2) == 0:
           next_command = npc_behaviors.graze(self,charac)
           return next_command
-      pass
+      return None
     
     # All other characters' behavior ######################################################
     else:
       # default do nothing if no behavior defined for character
-      pass
+      return None
     
     if self.__graze =="Y":
       # graze as default if no other action for thief,chicken,wolf
       next_command = npc_behaviors.graze(self,charac)
       return next_command
     else:
-      pass
+      return None
+
 
   def cheat_mode(self, command):
     command = command.strip()
@@ -403,6 +404,8 @@ class World_State:
       new_charac.set_name(charac_name)
       new_charac.update_coords((x,y))
       new_charac.set_state(charac_state)
+      new_charac.set_type(text_file_processor.lookup_type("Character",charac_name,charac_state))
+      
       self.spawn_character(new_charac)
       print("Spawned character")
     elif command == "graze":
@@ -412,6 +415,12 @@ class World_State:
       elif self.get_graze() == 'N':
         self.set_graze('Y')
         print("All monster graze movement resumed.")
+    elif words[0] == "get_desc":
+      charac_coord = words[1]
+      charac_coord = charac_coord.split(',')
+      x = int(charac_coord[0])
+      y = int(charac_coord[1])
+      print (self.get_description((x,y),{}))
 
     
         
