@@ -21,6 +21,9 @@ def state_update(world_state,charac,command,command_type):
     elif command_type == "advanced":
         # to be done, these are commands that are more specific and documented to be handled separately
         pass
+    elif command_type == "cheat":
+        world_state.cheat_mode(command)
+        return world_state
     else:
         # do nothing, just return original world state as command was not recognized but passed through command processor
         return world_state
@@ -74,8 +77,8 @@ def basic_commands(world_state,charac,command):
         
         if x<=max_rows and x>= 0 and y>=0 and y<=max_cols:
             # if coord is valid, move character to new coord
+            # print(f"{charac.name} moved to {x} {y}")
             charac.update_coords((x,y))
-            # print("character name: "+charac.name + " moved to: "+str(x)+", "+str(y)) test prints            
         else:
             # only print to console if its the active player turn
             if charac.get_active_player=='Y':
