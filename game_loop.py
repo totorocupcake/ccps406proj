@@ -32,13 +32,6 @@ def play_game(world_state):
             
         world_state.increment_turn() # all characters played their turn, next turn time
     
-    # after game exited:
-    if (world_state.get_game_won() == 'Y'): 
-        print("You win!")
-    else: 
-        # runs on manual exit
-        print("Goodbye.")
-
 
 def console_output(world_state):
     # Prints to console out the description at active player's location
@@ -77,15 +70,6 @@ def command_input(world_state,charac):
         
         # do some command formatting cleansing here
         if command:
-
-# ------------------------------------------
-#       NOTE from john:  
-#           I had to remove .lower() from command formatting because
-#           our data is pretty inconsistent with upper/lower case
-#           ie, 'kitchen' is all lowercase
-#           while 'Wold' is capitalized
-#           
-
             command = command.strip().lower()
             
         # Command processor checks, validates, formats the command. 
