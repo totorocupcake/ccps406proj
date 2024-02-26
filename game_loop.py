@@ -32,6 +32,7 @@ def play_game(world_state):
             
         world_state.increment_turn() # all characters played their turn, next turn time
     
+    return world_state
 
 def console_output(world_state):
     # Prints to console out the description at active player's location

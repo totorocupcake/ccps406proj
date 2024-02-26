@@ -94,57 +94,66 @@ def get_object_list_by_tile_location(x_coord, y_coord,load_game):
     return None
 
 def get_tile_by_name_and_state(name, state):
-  # creates and returns a tile object from load_tile_JSON_data_file()
-  #   based on a give tile 'name' and 'state'
+  # creates and returns a tile object from load_tile_JSON_data_file() based on a given tile 'name' and 'state'
+  # NOTE: refactored to be shorter by utilizing class methods of tile class
 
-  tile_data_list = text_file_processor.load_tile_JSON_data_file()
+  tl = Tile.Tile()
+  tl.set_name(name)
+  tl.update_tile_by_state(state)
+  return tl
+
+  # tile_data_list = text_file_processor.load_tile_JSON_data_file()
   
-  found = False
+  # found = False
 
-  for tile_elem in tile_data_list:
+  # for tile_elem in tile_data_list:
 
-    # if matching tile_id is found
-    if (tile_elem["name"] == name) and (tile_elem["state"] == state):
-      found = True
-      # create and populate a tile object with the appropriate data
-      tl = Tile.Tile()
-      tl.set_general_type("Tile")
-      tl.set_type( tile_elem["type"] )
-      tl.set_name(tile_elem["name"])
-      tl.set_state(tile_elem["state"])
-      tl.set_movable(tile_elem["movable"])
+  #   # if matching tile_id is found
+  #   if (tile_elem["name"] == name) and (tile_elem["state"] == state):
+  #     found = True
+  #     # create and populate a tile object with the appropriate data
+  #     tl = Tile.Tile()
+  #     tl.set_general_type("Tile")
+  #     tl.set_type( tile_elem["type"] )
+  #     tl.set_name(tile_elem["name"])
+  #     tl.set_state(tile_elem["state"])
+  #     tl.set_movable(tile_elem["movable"])
 
-  if found:
-    return tl
-  else:
-    return None
+  # if found:
+  #   return tl
+  # else:
+  #   return None
 
 def lookup_tile_Mapping_by_ID(tile_id):
-  # returns a tile object from load_tile_JSON_data_file()
-  #   based on a give tile_id
+  # returns a tile object from load_tile_JSON_data_file() based on a given tile_id
+  # NOTE: refactored to be shorter by utilizing class methods of tile class
+
+  tl = Tile.Tile()
+  tl.update_tile_by_id(tile_id)
+  return tl
 
   # get the tile mapping data from the file:
-  tileIDMapping_data = text_file_processor.load_tileIDMapping_file()
+  # tileIDMapping_data = text_file_processor.load_tileIDMapping_file()
 
-  # iterate through tileIDMapping_data list: 
-  for tile_elem in tileIDMapping_data:
+  # # iterate through tileIDMapping_data list: 
+  # for tile_elem in tileIDMapping_data:
 
-    # if matching tile_id is found
-    if tile_elem["tile_id"] == tile_id:
+  #   # if matching tile_id is found
+  #   if tile_elem["tile_id"] == tile_id:
 
-      # get the corresponding tile object with the appropriate data
-      tl = get_tile_by_name_and_state(tile_elem["name"], tile_elem["state"])
+  #     # get the corresponding tile object with the appropriate data
+  #     tl = get_tile_by_name_and_state(tile_elem["name"], tile_elem["state"])
 
-      # populate with other data:
-      if tl is not None:
-        tl.set_tile_id(tile_id)
-        tl.set_state(tile_elem["state"])
+  #     # populate with other data:
+  #     if tl is not None:
+  #       tl.set_tile_id(tile_id)
+  #       tl.set_state(tile_elem["state"])
 
 
-      return tl
+  #     return tl
 
   # if no tile found, return None
-  return None
+  # return None
 
 def load_tile_2D_array_from_file(load_game):
   # returns a 2D array/list of tile objects
