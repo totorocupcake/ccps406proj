@@ -1,4 +1,5 @@
 ## To activate cheat mode type cheat
+Whole map will display on minimap as default after cheat mode is activated.
 
 ## Cheat mode commands (after activation of cheat mode):
 
