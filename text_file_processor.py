@@ -89,70 +89,34 @@ def lookup_desc (long_short , type, name, state):
     # long_short determines whether to return long_desc vs short_desc
     # type determines if lookup is tile , character, object
     
+    # cheap and dirty solution to get started, 
+    # but will have to wrap in a class eventually
+    # because we don't want to be open and loading from the JSON file
+    # on every function call - too slow
 
-# cheap and dirty solution to get started, 
-# but will have to wrap in a class eventually
-# because we don't want to be open and loading from the JSON file
-# on every function call - too slow
-
-    # Object:
     if type == "Object":
-        found_object = False
-        
         with open(OBJECTS_JSON_FILE, 'r') as file:
-            parsed_object_data = json.load(file)
-
-        for obj in parsed_object_data:
-       
-            if (obj["name"].lower() == name.lower()) and (obj["state"].lower() == state.lower()):
-
-                found_object = True
-                if long_short == "long":
-                    return obj["description"]["long_desc"]
-                else:
-                    return obj["description"]["short_desc"]
-
-        if found_object == False:
-            return ""
-            # return None
-
+            parsed_data = json.load(file)
     elif type == "Character":
-        
-        found_character = False
-
         with open(CHARACTERS_JSON_FILE, 'r') as file:
-            parsed_character_data = json.load(file)
-
-        for char_elem in parsed_character_data:
-
-            if (char_elem["name"].lower() == name.lower()) and (char_elem["state"].lower() == state.lower()):
-                found_character = True
-                if long_short == "long":
-                    return char_elem["description"]["long_desc"]
-                else:
-                    return char_elem["description"]["short_desc"]
-
-        if found_character == False:
-            return ""
-            # return None
+            parsed_data = json.load(file)
     else:
-
-        found_tile = False
-
         with open(TILES_JSON_FILE, 'r') as file:
-            parsed_tile_data = json.load(file)
+            parsed_data = json.load(file)
+    
+    found_noun = False
+        
+    for element in parsed_data:
+        if (element["name"].lower() == name.lower()) and (element["state"].lower() == state.lower()):
+            found_noun = True
+            if long_short == "long":
+                return element["description"]["long_desc"]
+            else:
+                return element["description"]["short_desc"]
 
-        for tile in parsed_tile_data:
-            if (tile["name"].lower() == name.lower()) and (tile["state"].lower() == state.lower()):
-                found_tile = True
-                if long_short == "long":
-                    return tile["description"]["long_desc"]
-                else:
-                    return tile["description"]["short_desc"]
-
-        if found_tile == False:
-            return ""
-            # return None
+    if found_noun == False:
+        return ""
+        # return None
 
 def lookup_interaction (type, name, state, interaction_key):
     # Given the name of a noun and its state, and its interaction word (verb) return it's interaction data
@@ -167,19 +131,13 @@ def lookup_interaction (type, name, state, interaction_key):
     else:
         with open(TILES_JSON_FILE, 'r') as file:
             parsed_data = json.load(file)
-            
-    found_noun= False
-    found_interac = False
 
     for obj in parsed_data:
         if (obj["name"].lower() == name.lower()) and (obj["state"].lower() == state.lower()):
-            found_noun = True
-            
             if obj["interactions"] is not None:
                 for interac in obj["interactions"]:
                     # if the interaction name matches, print its details...:
                     if interac["name"].lower() == interaction_key.lower():
-                        found_interac = True
                         return interac
     return None
 
