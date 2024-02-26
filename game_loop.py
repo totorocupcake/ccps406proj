@@ -2,6 +2,7 @@ import World_State
 import re
 import state_updates
 import save_game
+import text_formatting
 
 def play_game(world_state):
     # MAIN FUNCTION within this module, that calls all other game_loop methods.
@@ -49,13 +50,13 @@ def console_output(world_state):
     active_char = world_state.get_active_char()
     current_coord =  active_char.get_coords()
     print("")
-    print_minimap(world_state,current_coord,active_char)
+    text_formatting.print_minimap(world_state,current_coord,active_char)
     print("")
     # get description based on coordinate of active player and parse it for dynamic text variables within string
     output=world_state.get_description(current_coord,active_char.get_visited())
     output = dynamic_variable_processor(world_state,output) # formats dynamic variables in string
     
-    print(output)
+    print(text_formatting.wrap_text(output))
 
 def command_input(world_state,charac):
     # Based on the Character passed through and the world_state, generate either a scanf if activeplayer
@@ -178,70 +179,4 @@ def dynamic_variable_logic(world_state,keyword):
                 if charac.get_type() == "player":
                     return charac.get_current_gold()
 
-def print_minimap(world_state,coords,active_char):
-    # Function handles printing one tile around the provided co-ord, assuming player is on co-ord.
-    x,y = coords
-        
-    max_cols = len(world_state.get_tiles()[0])-1
-    max_rows = len(world_state.get_tiles())-1
-   
-    if world_state.get_cheat_mode() == 'N':
-        # print only 1 tile around active player with no cheat mode
-        # first row ######################################################################################################
-        if y-1 >=0:
-            if x-1 >=0:
-                print(print_tile (world_state.get_tiles()[x-1][y-1],world_state.get_npc_chars_at_tile((x-1,y-1))),end="")
-            print(print_tile (world_state.get_tiles()[x][y-1],world_state.get_npc_chars_at_tile((x,y-1))),end="")
-            if x+1 <= max_rows:
-                print(print_tile (world_state.get_tiles()[x+1][y-1],world_state.get_npc_chars_at_tile((x+1,y-1))))
-            else:
-                print("") # reached end of row, prints new line
-        
-        # second row ######################################################################################################
-        if x-1 >=0:
-            print(print_tile (world_state.get_tiles()[x-1][y],world_state.get_npc_chars_at_tile((x-1,y))),end="")
-        # active player is represented as a green X on the minimap:
-        print ("\033[32m\033[1m X \033[0m",end="")
-        if x+1 <= max_rows:
-            print(print_tile (world_state.get_tiles()[x+1][y],world_state.get_npc_chars_at_tile((x+1,y))))
-        else:
-            print("") # reached end of row, prints new line
-            
-        # third row ######################################################################################################
-        if y+1 <= max_cols:
-            if x-1 >=0:
-                print(print_tile (world_state.get_tiles()[x-1][y+1],world_state.get_npc_chars_at_tile((x-1,y+1))),end="")
-            print(print_tile (world_state.get_tiles()[x][y+1],world_state.get_npc_chars_at_tile((x,y+1))),end="")
-            if x+1<= max_rows:
-                print(print_tile (world_state.get_tiles()[x+1][y+1],world_state.get_npc_chars_at_tile((x+1,y+1))))
-            else:
-                print("") # reached end of row, prints new line
-    else:
-        # cheat mode is activated, so we display the entire world map
-        transposed_world_map= [list(row) for row in zip(*world_state.get_tiles())]
-
-        for row in transposed_world_map:
-            for tile in row:
-                coords = tile.get_coords()
-                x,y = coords
-                
-                if active_char.get_coords() == coords:
-                    print ("\033[32m\033[1m X \033[0m",end="")
-                else:
-                    print (print_tile(tile, world_state.get_npc_chars_at_tile(coords)),end="")
-                if x==max_rows:
-                    print("") # reached end of row, prints new line
-                
-def print_tile (tile,characters):
-    # given a provided tile or char, provide the character string to represent it as on mini-map
-    if characters != []:
-        # print C if theres any other char other than the player
-        return " C "
-    if tile.get_type() == "building":
-        return " B "
-    if tile.get_type() == "non-building" and tile.get_name() != "grasslands":
-        return " ? "
-    if tile.get_type() == "non-building":
-        return " _ "
-        
 
