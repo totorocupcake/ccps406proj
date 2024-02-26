@@ -1,6 +1,6 @@
-import Character
-import Tile
-import Object
+import classes.Character as Character
+import classes.Tile as Tile
+import classes.Object as Object
 import text_file_processor
 import random
 import npc_behaviors

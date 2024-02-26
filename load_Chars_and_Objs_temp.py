@@ -1,6 +1,6 @@
 import text_file_processor
-import Character
-import Object
+import classes.Character as Character
+import classes.Object as Object
 
 
 def load_objects_list_from_file(load_game):

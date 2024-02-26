@@ -1,4 +1,4 @@
-import World_State
+import classes.World_State as World_State
 import re
 import state_updates
 import save_game
