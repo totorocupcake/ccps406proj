@@ -53,7 +53,6 @@ def load_character_status_file(load_game):
     else:
         file_to_load = CHARACTER_STATUS_JSON_FILE
     
-    
     with open(file_to_load, 'r') as file:
         parsed_character_status_data = json.load(file)
 
@@ -183,6 +182,136 @@ def lookup_interaction (type, name, state, interaction_key):
                         found_interac = True
                         return interac
     return None
+
+def lookup_movable (tile_name,state):
+    # Given a tile name and state, return the matching movable flag.
+    # Return None if not match
+
+    found_tile = False
+
+    with open(TILES_JSON_FILE, 'r') as file:
+        parsed_tile_data = json.load(file)
+
+    for tile in parsed_tile_data:
+        if (tile["name"].lower() == tile_name.lower()) and (tile["state"].lower() == state.lower()):
+            found_tile = True
+            return tile["movable"]
+
+    if found_tile == False:
+        return None
+    
+def lookup_tile_type (tile_name,state):
+    # Given a tile name and state, return the matching movable flag.
+    # Return None if not match
+
+    found_tile = False
+
+    with open(TILES_JSON_FILE, 'r') as file:
+        parsed_tile_data = json.load(file)
+
+    for tile in parsed_tile_data:
+        if (tile["name"].lower() == tile_name.lower()) and (tile["state"].lower() == state.lower()):
+            found_tile = True
+            return tile["type"]
+
+    if found_tile == False:
+        return None
+    
+def lookup_gold_amt (name, state):
+    # Given an object name and state, return the matching gold_amt.
+    # Return None if not match
+
+
+    with open(OBJECTS_JSON_FILE, 'r') as file:
+        parsed_object_data = json.load(file)
+
+
+        found_object = False
+
+        for obj in parsed_object_data:
+
+            if (obj["name"].lower() == name.lower()) and (obj["state"].lower() == state.lower()):
+
+                # print("DEBUG: found_object: ", found_object)
+
+                found_object = True                
+                return obj["gold_amt"]
+                
+        if found_object == False:
+            return None
+        
+def lookup_type (general_type,name, state):
+    # returns the type value given a name and state and general type matched from JSON 
+    
+    if general_type == "Object":
+        with open(OBJECTS_JSON_FILE, 'r') as file:
+            parsed_data = json.load(file)
+    elif general_type == "Character":
+        with open(CHARACTERS_JSON_FILE, 'r') as file:
+            parsed_data = json.load(file)
+    else:
+        with open(TILES_JSON_FILE, 'r') as file:
+            parsed_data = json.load(file)
+            
+    for obj in parsed_data:
+        if (obj["name"].lower() == name.lower()) and (obj["state"].lower() == state.lower()):
+            return obj["type"]
+    return None
+
+def load_world_map_turn_status(load_game):
+    if load_game == 'Y':
+        file_to_load = LOAD_WORLD_MAP_TURN_STATUS_JSON_FILE
+    else:
+        file_to_load = WORLD_MAP_TURN_STATUS_JSON_FILE
+
+    with open(file_to_load, 'r') as file:
+        parsed_world_map_turn_status_data = json.load(file)
+
+    return parsed_world_map_turn_status_data
+
+def load_world_map_status_csv(load_game):
+    # loads the world map status CSV file into a 2D array and returns the array
+
+    # create 2D array to store world_map_status data:
+
+    if load_game == 'Y':
+        file_to_load = LOAD_WORLD_MAP_STATUS_CSV_FILE
+    else:
+        file_to_load = WORLD_MAP_STATUS_CSV_FILE
+        
+    rows = WORLD_MAP_STATUS_ROWS
+    cols = WORLD_MAP_STATUS_COLUMNS
+    matrix = []
+    for i in range(rows):
+        row = []
+        for j in range(cols):
+            row.append(" ")
+        matrix.append(row)
+
+
+    # read from world_map_status CSV file
+    with open(file_to_load, 'r') as file:
+        # Create a CSV reader object
+        csv_reader = csv.reader(file)
+        
+        row_num = 0
+        column_num = 0
+
+        # Iterate over each row in the CSV file
+        for row in csv_reader:
+            column_num = 0
+
+            # iterate over each column in the row
+            for elem in row:
+                elem_str = str(elem)
+
+                matrix[row_num][column_num] = elem_str
+
+                column_num = column_num + 1
+
+            row_num = row_num + 1
+
+    return matrix
 
 # def lookup_interaction_ret_object(interaction_key):
 #     # Given arguments return a populate Interaction object for command processing
@@ -355,275 +484,6 @@ def lookup_interaction (type, name, state, interaction_key):
 #     # 4) else return None
 #     return None
 
-def lookup_interaction_key_only (interaction_key):
-    # Given arguments return the matching interaction object as an array for command processing
-    # Return None if not match
-    
-    # get data from JSON files:
-
-    with open(OBJECTS_JSON_FILE, 'r') as file:
-        parsed_object_data = json.load(file)
-
-    with open(CHARACTERS_JSON_FILE, 'r') as file:
-        parsed_character_data = json.load(file)
-
-    with open(TILES_JSON_FILE, 'r') as file:
-        parsed_tile_data = json.load(file)
-
-
-    # setup interaction array:
-    interaction_key = interaction_key.strip()
-    interaction_array = interaction_key.split(maxsplit=1)
-
-    # 1) search Objects JSON, if found return
-
-    found_object = False
-    found_interac = False
-
-    # iterate through each object from the JSON file:
-    for obj in parsed_object_data:
-
-        # if the interaction has been found, then exit the loop.
-        if found_interac:
-            break
-
-        # if the object name matches, print its details...:
-        if obj["name"] == interaction_array[1]:
-
-            found_object = True
-
-            # print("Name:", obj["name"])
-            # print("state:", obj["state"])
-            
-            # iterate through each interaction for the found object:
-            for interac in obj["interactions"]:
-
-                # if the interaction name matches, print its details...:
-                if interac["name"] == interaction_array[0]:
-
-                    found_interac = True
-                    # print("\tinteraction - name: ", interac["name"])
-                    
-                    return interac
-
-
-
-
-    # 2) search Characters JSON, if found return
-    if found_interac == False:
-
-
-        found_char_elem = False
-        found_interac = False
-
-        # iterate through each object from the JSON file:
-        for char_elem in parsed_character_data:
-
-            # if the interaction has been found, then exit the loop.
-            if found_interac:
-                break
-
-            # if the object name matches, print its details...:
-            if char_elem["name"] == interaction_array[1]:
-
-                found_char_elem = True
-
-                # print("Name:", obj["name"])
-                # print("state:", obj["state"])
-                
-                # iterate through each interaction for the found object:
-                for interac in char_elem["interactions"]:
-
-                    # if the interaction name matches, print its details...:
-                    if interac["name"] == interaction_array[0]:
-
-                        found_interac = True
-                        # print("\tinteraction - name: ", interac["name"])
-                        
-                        return interac
-
-
-
-
-
-    # 3) search Tiles, if found return
-    if found_interac == False:
-
-
-        found_tile = False
-        found_interac = False
-
-        # iterate through each object from the JSON file:
-        for tile in parsed_tile_data:
-
-            # if the interaction has been found, then exit the loop.
-            if found_interac:
-                break
-
-            # if the object name matches, print its details...:
-            if tile["name"] == interaction_array[1]:
-
-                found_tile = True
-
-                # print("Name:", obj["name"])
-                # print("state:", obj["state"])
-                
-                # iterate through each interaction for the found object:
-
-                # print("DEBUG: tile['interactions']", tile["interactions"])
-
-                if tile["interactions"] is not None:
-
-                    for interac in tile["interactions"]:
-
-                        # if the interaction name matches, print its details...:
-                        if interac["name"] == interaction_array[0]:
-
-                            found_interac = True
-                            # print("\tinteraction - name: ", interac["name"])
-                            
-                            return interac
-                else:
-                    return None
-
-
-    # 4) else return None
-    return None
-
-def lookup_movable (tile_name,state):
-    # Given a tile name and state, return the matching movable flag.
-    # Return None if not match
-
-    found_tile = False
-
-    with open(TILES_JSON_FILE, 'r') as file:
-        parsed_tile_data = json.load(file)
-
-    for tile in parsed_tile_data:
-        if (tile["name"].lower() == tile_name.lower()) and (tile["state"].lower() == state.lower()):
-            found_tile = True
-            return tile["movable"]
-
-    if found_tile == False:
-        return None
-    
-
-def lookup_tile_type (tile_name,state):
-    # Given a tile name and state, return the matching movable flag.
-    # Return None if not match
-
-    found_tile = False
-
-    with open(TILES_JSON_FILE, 'r') as file:
-        parsed_tile_data = json.load(file)
-
-    for tile in parsed_tile_data:
-        if (tile["name"].lower() == tile_name.lower()) and (tile["state"].lower() == state.lower()):
-            found_tile = True
-            return tile["type"]
-
-    if found_tile == False:
-        return None
-    
-def lookup_gold_amt (name, state):
-    # Given an object name and state, return the matching gold_amt.
-    # Return None if not match
-
-
-    with open(OBJECTS_JSON_FILE, 'r') as file:
-        parsed_object_data = json.load(file)
-
-
-        found_object = False
-
-        for obj in parsed_object_data:
-
-            if (obj["name"].lower() == name.lower()) and (obj["state"].lower() == state.lower()):
-
-                # print("DEBUG: found_object: ", found_object)
-
-                found_object = True                
-                return obj["gold_amt"]
-                
-        if found_object == False:
-            return None
-        
-def lookup_type (general_type,name, state):
-    # returns the type value given a name and state and general type matched from JSON 
-    
-    if general_type == "Object":
-        with open(OBJECTS_JSON_FILE, 'r') as file:
-            parsed_data = json.load(file)
-    elif general_type == "Character":
-        with open(CHARACTERS_JSON_FILE, 'r') as file:
-            parsed_data = json.load(file)
-    else:
-        with open(TILES_JSON_FILE, 'r') as file:
-            parsed_data = json.load(file)
-            
-    for obj in parsed_data:
-        if (obj["name"].lower() == name.lower()) and (obj["state"].lower() == state.lower()):
-            return obj["type"]
-    return None
-
-
-
-def load_world_map_turn_status(load_game):
-    if load_game == 'Y':
-        file_to_load = LOAD_WORLD_MAP_TURN_STATUS_JSON_FILE
-    else:
-        file_to_load = WORLD_MAP_TURN_STATUS_JSON_FILE
-
-    with open(file_to_load, 'r') as file:
-        parsed_world_map_turn_status_data = json.load(file)
-
-    return parsed_world_map_turn_status_data
-
-
-def load_world_map_status_csv(load_game):
-    # loads the world map status CSV file into a 2D array and returns the array
-
-    # create 2D array to store world_map_status data:
-
-    if load_game == 'Y':
-        file_to_load = LOAD_WORLD_MAP_STATUS_CSV_FILE
-    else:
-        file_to_load = WORLD_MAP_STATUS_CSV_FILE
-        
-    rows = WORLD_MAP_STATUS_ROWS
-    cols = WORLD_MAP_STATUS_COLUMNS
-    matrix = []
-    for i in range(rows):
-        row = []
-        for j in range(cols):
-            row.append(" ")
-        matrix.append(row)
-
-
-    # read from world_map_status CSV file
-    with open(file_to_load, 'r') as file:
-        # Create a CSV reader object
-        csv_reader = csv.reader(file)
-        
-        row_num = 0
-        column_num = 0
-
-        # Iterate over each row in the CSV file
-        for row in csv_reader:
-            column_num = 0
-
-            # iterate over each column in the row
-            for elem in row:
-                elem_str = str(elem)
-
-                matrix[row_num][column_num] = elem_str
-
-                column_num = column_num + 1
-
-            row_num = row_num + 1
-
-    return matrix
-
 if __name__ == "__main__":
 
 
@@ -678,62 +538,6 @@ if __name__ == "__main__":
     print()
     print()
 
-
-
-# ------------------------ Test: lookup_interaction_key_only (interaction_key) function
-
-
-    interaction_key = "open chicken coop"
-
-    interaction_array = lookup_interaction_key_only (interaction_key)
-
-    print("interaction_key = ", interaction_key)
-    print(interaction_array)
-
-    print()
-
-    if interaction_array is not None:
-        print("name = ", interaction_array["name"])
-    else:
-        print("No interactions found")
-
-    print()
-
-
-
-    interaction_key = "take ladder"
-
-    interaction_array = lookup_interaction_key_only (interaction_key)
-
-    print("interaction_key = ", interaction_key)
-    print(interaction_array)
-
-    print()
-
-    if interaction_array is not None:
-        print("name = ", interaction_array["name"])
-    else:
-        print("No interactions found")
-
-    print()
-
-    interaction_key = "heal farmhand"
-
-    interaction_array = lookup_interaction_key_only (interaction_key)
-
-    print("interaction_key = ", interaction_key)
-    print(interaction_array)
-
-    print()
-
-    if interaction_array is not None:
-        print("name = ", interaction_array["name"])
-    else:
-        print("No interactions found")
-
-
-    print()
-    print()
 
 # ------------------------ Test: lookup_movable (tile_name,state) function
 # Tile: 
