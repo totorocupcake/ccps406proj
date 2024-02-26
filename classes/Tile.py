@@ -1,8 +1,8 @@
 # import Entity
-import Turn_Based_Entity
+import classes.Turn_Based_Entity as Turn_Based_Entity
 
-import Character
-import Object as Object
+import classes.Character as Character
+import classes.Object as Object
 import text_file_processor
 
 # Implement the interface in a class

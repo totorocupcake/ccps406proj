@@ -1,4 +1,4 @@
-import Entity
+import classes.Entity as Entity
 
 class Object(Entity.Entity):
 

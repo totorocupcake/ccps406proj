@@ -1,5 +1,5 @@
-import Object
-import Tile
+import classes.Object as Object
+import classes.Tile as Tile
 import text_file_processor
 
 import load_Chars_and_Objs_temp as load_Chars_and_Objs

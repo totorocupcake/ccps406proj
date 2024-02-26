@@ -1,4 +1,4 @@
-import World_State
+import classes.World_State as World_State
 import load_Tiles_temp as load_Tiles
 import load_Chars_and_Objs_temp as load_Chars_and_Objs
 

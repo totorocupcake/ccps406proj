@@ -1,5 +1,5 @@
 import text_file_processor
-import Object
+import classes.Object as Object
 import load_Tiles_temp
 
 # need for function" dynamic_variable_processor" to process %_% variables
