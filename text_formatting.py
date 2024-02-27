@@ -72,3 +72,41 @@ def print_tile (tile,characters):
 def wrap_text (input_str):
     wrapped_text = textwrap.fill(input_str, width=CONSOLE_OUTPUT_CHAR_WIDTH)
     return wrapped_text
+
+def justify(text):
+    words = text.split() # split input text into a list of words
+
+    lines = []
+    current_line = []
+    current_length = 0
+
+    for word in words:
+        # check if the next word doesn't fit into the new line
+        if current_line and current_length + len(word) + len(current_line) > CONSOLE_OUTPUT_CHAR_WIDTH:
+            lines.append(full_justify(current_line)) # we reached the end of line, justify the current line
+            current_line = [word]
+            current_length = len(word)
+        else:
+            current_line.append(word)
+            current_length += len(word)
+
+    # Add the last line left-justified
+    if current_line:
+        lines.append(left_justify(current_line))
+    
+    return "\n".join(lines)
+
+def left_justify(line_words):
+        return ' '.join(line_words)
+        
+def full_justify(line_words):
+    total_space_needed = CONSOLE_OUTPUT_CHAR_WIDTH - sum(len(word) for word in line_words)
+    gaps = len(line_words) - 1
+    space, extra = divmod(total_space_needed, gaps)
+        
+    justified_line = ''
+    for i, word in enumerate(line_words[:-1]):
+        justified_line += word + ' ' * (space + (1 if i < extra else 0))
+    justified_line += line_words[-1]  # Add the last word without extra space
+        
+    return justified_line

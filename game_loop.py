@@ -50,8 +50,9 @@ def console_output(world_state):
     output=world_state.get_description(current_coord,active_char.get_visited())
     output = dynamic_variable_processor(world_state,output) # formats dynamic variables in string
     
-    print(text_formatting.wrap_text(output))
-
+    #print(text_formatting.wrap_text(output))
+    print(text_formatting.justify(output))
+    
 def command_input(world_state,charac):
     # Based on the Character passed through and the world_state, generate either a scanf if activeplayer
     # or call charac.get_next_action() class method if its a computer controlled character.
