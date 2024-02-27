@@ -52,6 +52,7 @@ def console_output(world_state):
     
     #print(text_formatting.wrap_text(output))
     print(text_formatting.justify(output))
+    print("")
     
 def command_input(world_state,charac):
     # Based on the Character passed through and the world_state, generate either a scanf if activeplayer
