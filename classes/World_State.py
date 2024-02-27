@@ -12,7 +12,6 @@ WORLD_MAP_NUM_ROWS = text_file_processor.WORLD_MAP_STATUS_ROWS
 WORLD_MAP_NUM_COLUMNS = text_file_processor.WORLD_MAP_STATUS_COLUMNS
 INTEREST_RATE = 1.05
 TURN_INCREMENT = 20
-
 class World_State:
 
   # constructor:
@@ -54,6 +53,27 @@ class World_State:
   def increment_turn(self, amount=1):
     self.__turn_number += amount
     
+    if self.get_turn_number()>self.get_rent_due_date():
+      # check if player is late to pay rent
+      # update rent amount and turn due if so
+      new_rent = round(self.get_rent_amount() * INTEREST_RATE)
+      self.update_rent_amount(new_rent)
+      self.update_rent_turn_due(TURN_INCREMENT)
+        
+      # add new letter to mailbox to notify the player
+      for row in self.get_tiles():
+        for tile in row:
+          if tile.get_name() == "mail box":
+            # find mail box on map and add a new letter from landlord to it
+            interest_letter = Object.Object()
+            interest_letter.set_name("letter from landlord")
+            interest_letter.set_type("tool")
+            interest_letter.set_state("null")
+            interest_letter.set_gold_amt(0)
+            interest_letter.update_qty(1)
+            tile.update_inventory("add",[interest_letter])
+            break
+    
     # turn counting checks for all chars
     for char in self.__characters:
         char.decrement_turn_count()
@@ -63,6 +83,8 @@ class World_State:
       for tiles in row:
         tiles.decrement_turn_count()
 
+    return self
+  
   def set_game_won(self, flag):
     self.__game_won = flag
 
@@ -355,28 +377,6 @@ class World_State:
       print (f"Teleported to {x},{y}.")
     return self
 
-  def check_rent_paid(self):
-    if self.get_turn_number()>self.get_rent_due_date():
-      # update rent amount and turn due
-      new_rent = round(self.get_rent_amount() * INTEREST_RATE)
-      self.update_rent_amount(new_rent)
-      self.update_rent_turn_due(TURN_INCREMENT)
-        
-      # add new letter to mailbox to notify the player
-      for row in self.get_tiles():
-        for tile in row:
-          if tile.get_name() == "mail box":
-            # find mail box on map and add a new letter from landlord to it
-            interest_letter = Object.Object()
-            interest_letter.set_name("letter from landlord")
-            interest_letter.set_type("tool")
-            interest_letter.set_state("null")
-            interest_letter.set_gold_amt(0)
-            interest_letter.update_qty(1)
-            tile.update_inventory("add",[interest_letter])
-            break
-              
-    return self
 
 
 
