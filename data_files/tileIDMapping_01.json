@@ -17,7 +17,7 @@
     {
         "tile_id": "04",
         "name": "mail box", 
-        "state": "have_letter"
+        "state": "null"
     }, 
     {
         "tile_id": "05",
@@ -133,11 +133,6 @@
         "tile_id": "25",
         "name": "animal products shop", 
         "state": "null"
-    }, 
-    {
-        "tile_id": "27",
-        "name": "mail box", 
-        "state": "empty"
     }, 
     {
         "tile_id": "0F",

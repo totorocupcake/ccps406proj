@@ -38,53 +38,15 @@
   {
     "name": "mail box",
     "type": "non-building",
-    "state": "have_letter",
+    "state": "null",
     "movable":"Y",
     "description": {
-      "long_desc": "You stand in the front yard of a charming farmhouse, nestled amidst the rolling hills of a rural landscape. The white-painted exterior gleams in the sunlight, adorned with green shutters that complement the rural setting. To your south lies a road that stretches both east and west as far as the eye can see.",
-      "short_desc": "You stand in your front yard."
+      "long_desc": "You stand in the front yard of a charming farmhouse, nestled amidst the rolling hills of a rural landscape. The white-painted exterior gleams in the sunlight, adorned with green shutters that complement the rural setting. To your south lies a road that stretches both east and west as far as the eye can see. There is a mail box standing beside the road.",
+      "short_desc": "You stand in your front yard where there is a mail box."
     },
-    "interactions": [
-      {
-        "name": "open",
-        "success_desc": "You open the mail box. There is a letter within it, you take the letter.",
-        "fail_desc": "You open the mail box. There is no letter inside.",
-        "change_state_to": "empty",
-        "requirement": null,
-        "obtain": [
-          {
-            "type": "object",
-            "name": "letter",
-            "state": "null",
-            "qty": 1
-          }
-        ]
-
-      }
-    ]
+    "interactions": null
   },
 
-  {
-    "name": "mail box",
-    "type": "non-building",
-    "state": "empty",
-    "movable":"Y",
-    "description": {
-      "long_desc": "You stand in the front yard of a charming farmhouse, nestled amidst the rolling hills of a rural landscape. The white-painted exterior gleams in the sunlight, adorned with green shutters that complement the rural setting. To your south lies a road that stretches both east and west as far as the eye can see.",
-      "short_desc": "You stand in your front yard."
-    },
-    "interactions": [
-      {
-        "name": "open",
-        "success_desc": "You open the mail box. There is no letter inside.",
-        "fail_desc": "You open the mail box. There is no letter inside.",
-        "change_state_to": "empty",
-        "requirement": null,
-        "obtain": null
-
-      }
-    ]
-  },
 
   {
     "name": "garage",

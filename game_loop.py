@@ -3,6 +3,9 @@ import re
 import state_updates
 import save_game
 import text_formatting
+import classes.Object as Object
+
+
 
 def play_game(world_state):
     # MAIN FUNCTION within this module, that calls all other game_loop methods.
@@ -13,6 +16,8 @@ def play_game(world_state):
     
     # exit game conditions in the while loop
     while (world_state.get_game_won() == 'N') and (exit_state==False):
+        # check if player is late to pay rent each turn
+        world_state=world_state.check_rent_paid()
         
         # prints description to console for active_player=Y
         console_output(world_state)
@@ -165,5 +170,4 @@ def dynamic_variable_logic(world_state,keyword):
             for charac in world_state.get_characters():
                 if charac.get_type() == "player":
                     return charac.get_current_gold()
-
 
