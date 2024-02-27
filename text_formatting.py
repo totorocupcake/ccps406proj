@@ -92,13 +92,10 @@ def justify(text):
 
     # Add the last line left-justified
     if current_line:
-        lines.append(left_justify(current_line))
+        lines.append(' '.join(current_line))
     
     return "\n".join(lines)
 
-def left_justify(line_words):
-        return ' '.join(line_words)
-        
 def full_justify(line_words):
     total_space_needed = CONSOLE_OUTPUT_CHAR_WIDTH - sum(len(word) for word in line_words)
     gaps = len(line_words) - 1
