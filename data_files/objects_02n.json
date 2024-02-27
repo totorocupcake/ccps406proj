@@ -580,14 +580,14 @@
     "state": "null",
     "gold_amt": 0,
     "description": {
-      "long_desc": "a letter from your landlord saying that you owe %rent_amount% in gold that is due in %rent_due_days_away% days",
-      "short_desc": "a letter from the landlord"
+      "long_desc": "a letter",
+      "short_desc": "a letter"
     },
     "interactions": [
       {
         "name": "read",
 
-        "success_desc": "You see a letter from your landlord saying that you owe %rent_amount% in gold that is due in %rent_due_days_away% days",
+        "success_desc": "You read the letter from your landlord saying that you owe %rent_amount% in gold that is due in %rent_due_days_away% days.",
         "fail_desc": "You cannot read the letter right now.",
         "change_state_to": "null",
         "requirement": null,
@@ -599,18 +599,48 @@
         "success_desc": "You take a letter from your landlord.",
         "fail_desc": "There is no letter to take here.",
         "change_state_to": "delete",
-        "requirement": [
-          {
-            "type": "tile",
-            "name": "mail box",
-            "state": "have_letter CHANGE_STATE_TO empty",
-            "qty": null,
-            "remove_obj": "N"
-          }
-        ],
+        "requirement": null,
         "obtain": [{
           "type": "Item",
           "name": "letter",
+          "state": "null",
+          "qty": 1
+        }
+      ]
+      }
+    ]
+    
+  },
+
+  {
+    "name": "letter from landlord",
+    "type": "tool",
+    "state": "null",
+    "gold_amt": 0,
+    "description": {
+      "long_desc": "a letter from landlord",
+      "short_desc": "a letter from landlord"
+    },
+    "interactions": [
+      {
+        "name": "read",
+
+        "success_desc": "You read an angry letter from your landlord saying that as you were late to pay the rent, the rent is now increased to %rent_amount%. You better pay this by turn number %rent_due_days_away%!",
+        "fail_desc": "You cannot read the letter right now.",
+        "change_state_to": "null",
+        "requirement": null,
+        "obtain": null
+      },
+      {
+        "name": "take",
+
+        "success_desc": "You take the letter from landlord.",
+        "fail_desc": "There is no letter to take here.",
+        "change_state_to": "delete",
+        "requirement": null,
+        "obtain": [{
+          "type": "Item",
+          "name": "letter from landlord",
           "state": "null",
           "qty": 1
         }
