@@ -67,11 +67,11 @@ def load_World_State(rent_amount, rent_due_date,load_game):
 
   # set all other attributes:
   # set turn to 1 to start (initialized to 0 in World_State constructor)
-  ws.increment_turn(1)
   ws.set_game_won("N")
   ws.update_rent_amount(rent_amount)
   ws.update_rent_turn_due(rent_due_date)
-
+  ws.increment_turn(1)
+  
   return ws
 
 def get_object_list_by_tile_location(x_coord, y_coord,load_game):

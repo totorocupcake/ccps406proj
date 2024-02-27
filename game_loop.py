@@ -16,8 +16,6 @@ def play_game(world_state):
     
     # exit game conditions in the while loop
     while (world_state.get_game_won() == 'N') and (exit_state==False):
-        # check if player is late to pay rent each turn
-        world_state=world_state.check_rent_paid()
         
         # prints description to console for active_player=Y
         console_output(world_state)
@@ -35,7 +33,7 @@ def play_game(world_state):
             # make updates to game based off validated command
             world_state=state_updates.state_update(world_state,charac,command,command_type)
             
-        world_state.increment_turn() # all characters played their turn, next turn time
+        world_state = world_state.increment_turn() # all characters played their turn, next turn time
     
     return world_state
 
