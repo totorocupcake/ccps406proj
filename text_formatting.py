@@ -68,12 +68,12 @@ def print_tile (tile,characters):
         return " ? "
     if tile.get_type() == "non-building":
         return " _ "
-    
-def wrap_text (input_str):
-    wrapped_text = textwrap.fill(input_str, width=CONSOLE_OUTPUT_CHAR_WIDTH)
-    return wrapped_text
 
 def justify(text):
+    """
+    This function fully justify aligns a given text string, width determined by CONSOLE_OUTPUT_CHAR_WIDTH.
+    Returns back justified string.
+    """
     words = text.split() # split input text into a list of words
 
     lines = []
@@ -84,26 +84,31 @@ def justify(text):
         # check if the next word doesn't fit into the new line
         if current_line and current_length + len(word) + len(current_line) > CONSOLE_OUTPUT_CHAR_WIDTH:
             lines.append(full_justify(current_line)) # we reached the end of line, justify the current line
-            current_line = [word]
+            current_line = [word]   # put the word that doesnt fit into the next line
             current_length = len(word)
         else:
+            # adds word to current line
             current_line.append(word)
             current_length += len(word)
 
-    # Add the last line left-justified
+    # Add the last line left-justified if there's still a line left over
     if current_line:
         lines.append(' '.join(current_line))
     
     return "\n".join(lines)
 
 def full_justify(line_words):
+    # compute the amount of total spaces needed in the line
     total_space_needed = CONSOLE_OUTPUT_CHAR_WIDTH - sum(len(word) for word in line_words)
-    gaps = len(line_words) - 1
-    space, extra = divmod(total_space_needed, gaps)
+    gaps = len(line_words) - 1  # computes the number of gaps between words in line
+    space, extra = divmod(total_space_needed, gaps) 
+    # space is the number of spaces we need between each word
+    # extra is the remainder, of how many extra spaces we still need to add
         
     justified_line = ''
     for i, word in enumerate(line_words[:-1]):
+        # adds number of space between each word, +1 extra for i < extra
         justified_line += word + ' ' * (space + (1 if i < extra else 0))
-    justified_line += line_words[-1]  # Add the last word without extra space
         
+    justified_line += line_words[-1]  # Add the last word without extra space
     return justified_line
