@@ -648,7 +648,8 @@ def interaction_commands(world_state,charac,command):
                 for obtain_elem in int_JSON_obj["obtain"]:
 
         # if obtain is an item:
-                    if (obtain_elem["type"] == "Item") or (obtain_elem["type"] == "object"):
+                    # if (obtain_elem["type"] == "Item") or (obtain_elem["type"] == "object"):
+                    if (obtain_elem["type"].lower() == "item") or (obtain_elem["type"].lower() == "object"):
 
                         # first check if already in inventory
                         # 

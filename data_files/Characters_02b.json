@@ -279,7 +279,15 @@
             "remove_obj": "N"
           }          
         ],
-        "obtain":  null
+        "obtain":   [ {
+          "type": "Gold",
+          "name": "gold",
+          "state": "null",
+          "qty": 5
+        }
+      ]
+ 
+
       }
     ]
   },
@@ -310,7 +318,14 @@
             "remove_obj": "N"
           }          
         ],
-        "obtain":  null
+        "obtain":  [ {
+          "type": "Object",
+          "name": "meat",
+          "state": "null",
+          "qty": 5
+        }
+      ]
+
       }
     ]
   },
