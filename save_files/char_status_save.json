@@ -3,7 +3,7 @@
         "type": "player",
         "name": "totoro",
         "co_ord_x": 6,
-        "co_ord_y": 12,
+        "co_ord_y": 11,
         "state": "null",
         "inventory": [
             {
@@ -23,28 +23,8 @@
         "visited": [
             {
                 "type": "Tile",
-                "name": "bedroom",
-                "state": "open"
-            },
-            {
-                "type": "Object",
-                "name": "medkit",
-                "state": "null"
-            },
-            {
-                "type": "Tile",
                 "name": "kitchen",
                 "state": "open"
-            },
-            {
-                "type": "Object",
-                "name": "farm key",
-                "state": "null"
-            },
-            {
-                "type": "Object",
-                "name": "garage key",
-                "state": "null"
             }
         ],
         "turn_counter": [
@@ -231,7 +211,7 @@
     {
         "type": "monster",
         "name": "Thief",
-        "co_ord_x": 13,
+        "co_ord_x": 12,
         "co_ord_y": 7,
         "state": "aggressive",
         "inventory": null,
@@ -254,7 +234,7 @@
         "type": "monster",
         "name": "Wolf",
         "co_ord_x": 10,
-        "co_ord_y": 20,
+        "co_ord_y": 19,
         "state": "aggressive",
         "inventory": [
             {
@@ -310,7 +290,7 @@
         "type": "npc",
         "name": "cow",
         "co_ord_x": 3,
-        "co_ord_y": 10,
+        "co_ord_y": 9,
         "state": "wild",
         "inventory": [
             {
