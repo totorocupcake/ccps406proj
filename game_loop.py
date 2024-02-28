@@ -167,5 +167,6 @@ def dynamic_variable_logic(world_state,keyword):
         elif keyword=="gold":
             for charac in world_state.get_characters():
                 if charac.get_type() == "player":
-                    return charac.get_current_gold()
+                    # return charac.get_current_gold()
+                    return str(charac.get_current_gold())
 

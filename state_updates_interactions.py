@@ -265,10 +265,14 @@ def interaction_commands(world_state,charac,command):
                         break
 
                 # ii) check 'tile' requirements, must be on tile-state:
-                elif req_elem["type"] == "tile":
+                elif req_elem["type"].lower() == "tile":
+
+                    
+
 
                 # check for CHANGE_STATE_TO substring in requiements-state
-                    
+
+                    tile_req_satisfied = False                    
 
                     advanced_change_state_to = False
                     substring = "CHANGE_STATE_TO"
@@ -295,6 +299,14 @@ def interaction_commands(world_state,charac,command):
                             new_tile_state = change_state_to_str_arr[2]
                         else:
                             tile_req_satisfied = False
+
+                    else:  # not a "CHANGE_STATE_TO" requirement, just check current tile:
+                        if req_elem["name"].lower() == current_tl.get_name().lower():
+                            tile_req_satisfied = True
+                        else:
+                            tile_req_satisfied = False
+
+
 
 
                     #         print("DEBUG:")
@@ -339,19 +351,33 @@ def interaction_commands(world_state,charac,command):
                 elif req_elem["type"] == "Gold":
                     found_gold_req = False
 
+
+                # ------ pay landlord:
+
+                    if int_JSON_obj["name"].lower() == "pay":
+
                     # print("DEBUG: int_JSON_obj['requirement'] = ", int_JSON_obj["requirement"])
 
-                    rent_amount = game_loop.dynamic_variable_processor(world_state, req_elem["qty"])
+                        rent_amount = game_loop.dynamic_variable_processor(world_state, str(req_elem["qty"]))
 
-                    # print("\tDEBUG: rent_amount =", rent_amount)
-                    # print("\tDEBUG: charac.get_current_gold() = ", charac.get_current_gold())
-
-                    if charac.get_current_gold() >= int(rent_amount):
-                        found_gold_req = True
-                        charac.increment_current_gold( (-1) * int(rent_amount))
-                        # print()
+                        # print("\tDEBUG: rent_amount =", rent_amount)
                         # print("\tDEBUG: charac.get_current_gold() = ", charac.get_current_gold())
-                    
+
+                        if charac.get_current_gold() >= int(rent_amount):
+                            found_gold_req = True
+                            charac.increment_current_gold( (-1) * int(rent_amount))
+                            # print()
+                            # print("\tDEBUG: charac.get_current_gold() = ", charac.get_current_gold())
+
+                    elif int_JSON_obj["name"].lower() == "steal":   
+                        steal_amount = game_loop.dynamic_variable_processor(world_state, str(req_elem["qty"]))
+                        # steal_amount = game_loop.dynamic_variable_processor(world_state, req_elem["qty"])
+                        steal_amount = int(steal_amount)
+
+                        active_char = world_state.get_active_char()
+                        total_gold = active_char.get_current_gold()
+                        if total_gold >= steal_amount:
+                            found_gold_req = True
 
 
 
@@ -359,10 +385,11 @@ def interaction_commands(world_state,charac,command):
                     
 
 
-                    pass
+                        pass
 
 
-                else:  # if req_elem["type"] == "Character":
+                # else:  # if req_elem["type"] == "Character":
+                elif req_elem["type"] == "Character":
 
 
 # ----------------
@@ -498,7 +525,15 @@ def interaction_commands(world_state,charac,command):
 
                                 # debug only:
                                 print("DEBUG: Update Char state: ", char_elem.get_name().lower(), ",", char_elem.get_state())
-                                break
+
+# ******
+# ****** Delete character from game if int_JSON_obj["change_state_to"] == "delete":
+# ******
+
+                                if int_JSON_obj["change_state_to"] == "delete":
+                                    world_state.remove_character(char_elem)
+
+                                    break
                     
 
                 else:  # interac_general_type == "Object"
@@ -506,7 +541,8 @@ def interaction_commands(world_state,charac,command):
                     
                     #    first, if it was in tile's inventory, update there:
                     if found_interac_tile_inventory:
-                        print("DEBUG: found in Tile inventory")
+
+                        # print("DEBUG: found in Tile inventory")
 
 # ******
 # ****** Delete object/item from current Tile's inventory and add to char's inventory:
@@ -541,9 +577,11 @@ def interaction_commands(world_state,charac,command):
                             world_state.update_tile(current_tl.get_coords(), current_tl)
 
 
-                            print()
-                            print("DEBUG: removed object from Tile's inventory and World_State updated")
-                            print("DEBUG: add object to character's inventory and World_State updated")
+                            # print()
+                            # print("DEBUG: removed object from Tile's inventory and World_State updated")
+                            # print("DEBUG: add object to character's inventory and World_State updated")
+
+
                             # print()
                             # print(int_JSON_obj["success_desc"])
                             # print()
@@ -586,7 +624,9 @@ def interaction_commands(world_state,charac,command):
                                         
 
 
-
+# -----------------------------------------------------
+# 'obtain' field:
+# -----------------------------------------------------
 
 
         # c) if requirements_satisfied, check 'obtain' field,
@@ -698,13 +738,42 @@ def interaction_commands(world_state,charac,command):
                             world_state.get_tile_by_name(obtain_elem["name"]).get_tile_id(), ",", \
                             world_state.get_tile_by_name(obtain_elem["name"]).get_coords()    )
 
-
+    # if obtain is gold:
                     elif obtain_elem["type"] == "Gold":
                         # increment gold amount:
-                        world_state.remove_character(charac)
-                        charac.increment_current_gold(obtain_elem["qty"])
-                        world_state.spawn_character(charac)
+                        active_char = world_state.get_active_char()
                         
+                        obtain_amount = game_loop.dynamic_variable_processor(world_state, str(obtain_elem["qty"])) 
+                        obtain_amount = int(obtain_amount)
+
+                        world_state.remove_character(active_char)
+
+                        if int_JSON_obj["name"].lower() == "steal":
+                            obtain_amount = (-1) * obtain_amount
+                            active_char.increment_current_gold(obtain_amount)
+                        else:
+                            active_char.increment_current_gold(obtain_amount)
+
+                        world_state.spawn_character(active_char)
+
+
+                    # # ------ steal gold from player:
+                    # elif int_JSON_obj["name"].lower() == "steal":
+                        
+                    #     stolen_qty =  game_loop.dynamic_variable_processor(world_state, str(int_JSON_obj["qty"])) 
+                    #     stolen_qty = int(stolen_qty)
+
+                    #     if charac.get_current_gold() >= stolen_qty:
+                    #         print("\tDEBUG: charac.get_current_gold() = ", charac.get_current_gold())
+                    #         charac.increment_current_gold((-1) * stolen_qty)
+                    #         print("\tDEBUG: AFTER STEAL: charac.get_current_gold() = ", charac.get_current_gold())
+
+
+
+
+
+
+
 
 
 #   self.name = ""
