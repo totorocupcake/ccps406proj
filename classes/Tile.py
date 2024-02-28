@@ -1,8 +1,8 @@
 # import Entity
-import Turn_Based_Entity
+import classes.Turn_Based_Entity as Turn_Based_Entity
 
-import Character
-import Object as Object
+import classes.Character as Character
+import classes.Object as Object
 import text_file_processor
 
 # Implement the interface in a class
@@ -72,18 +72,20 @@ class Tile(Turn_Based_Entity.Turn_Based_Entity):
     self.set_state(new_state)
     
     # update rest of tile fields to account for new tile_id
-    tileIDMapping_data = text_file_processor.load_tileIDMapping_file()
+    tileIDMapping_data =  text_file_processor.load_tileIDMapping_file()
+    tile_json = text_file_processor.load_tile_JSON_data_file()
 
     for tile_elem in tileIDMapping_data:
-
-    # if match tile name and state within tile id mapping file
-      if tile_elem["name"] == self.name and tile_elem["state"] == self.get_state():
+      if tile_elem["name"] == self.get_name() and tile_elem["state"] == self.get_state():
         # set new tile_id based on tile id mapping file
         self.__tile_id = tile_elem["tile_id"]
         
-        # update movable flag based on text parser lookup functions (from tile in-game text files)
-        self.set_movable(text_file_processor.lookup_movable(self.get_name(),self.get_state()))
-
+    for tile_elem in tile_json:
+    # if match tile name and state within tile id mapping file
+      if tile_elem["name"] == self.get_name() and tile_elem["state"] == self.get_state():
+        self.set_type(tile_elem["type"])
+        self.set_movable(tile_elem["movable"])
+      
   def turn_count_reached(self):
     # updates tile based on new state, then resets turn counter to no turn count
     self.update_tile_by_state(self.get_turn_state())

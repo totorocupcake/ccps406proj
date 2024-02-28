@@ -1,6 +1,6 @@
-import Character
-import Tile
-import Object
+import classes.Character as Character
+import classes.Tile as Tile
+import classes.Object as Object
 import text_file_processor
 import random
 import npc_behaviors
@@ -10,8 +10,8 @@ import npc_behaviors
 
 WORLD_MAP_NUM_ROWS = text_file_processor.WORLD_MAP_STATUS_ROWS
 WORLD_MAP_NUM_COLUMNS = text_file_processor.WORLD_MAP_STATUS_COLUMNS
-
-
+INTEREST_RATE = 1.05
+TURN_INCREMENT = 20
 class World_State:
 
   # constructor:
@@ -19,25 +19,17 @@ class World_State:
   def __init__(self):
     
     random.seed(42) # select seed for reproducible random results for testing
-    
     # Private properties (with default starting values)
     self.__turn_number = 0  
     self.__game_won = 'N'
     self.__rent_amount = 0
     self.__rent_due_date = 0
     self.__characters = []  # array/list of character objects
-
-    # self.__tiles = (create and populate a 2D array/list of tile objects)
-    # for testing, populate with None:
     self.__tiles = [[None] * WORLD_MAP_NUM_COLUMNS for _ in range(WORLD_MAP_NUM_ROWS)]
 
-    # 
     self.__saved_tiles = []
     self.__cheat_mode = 'N'
     self.__graze = 'Y'
-
-  # methods:
-
 
   # needed for lock/open
   def update_saved_tiles(self, add_remove, tile):
@@ -50,26 +42,37 @@ class World_State:
       else:
         self.__saved_tiles.remove(tile)
 
-
   # needed for lock/open
   def get_saved_tile_by_name(self, tile_name):
     for tile_elem in self.__saved_tiles:
       if tile_elem.get_name() == tile_name:
         return tile_elem
-      
     # else
     return None
 
-
-
-
-
-
-
-
-
   def increment_turn(self, amount=1):
     self.__turn_number += amount
+    
+    if self.get_turn_number()>self.get_rent_due_date():
+      # check if player is late to pay rent
+      # update rent amount and turn due if so
+      new_rent = round(self.get_rent_amount() * INTEREST_RATE)
+      self.update_rent_amount(new_rent)
+      self.update_rent_turn_due(TURN_INCREMENT)
+        
+      # add new letter to mailbox to notify the player
+      for row in self.get_tiles():
+        for tile in row:
+          if tile.get_name() == "mail box":
+            # find mail box on map and add a new letter from landlord to it
+            interest_letter = Object.Object()
+            interest_letter.set_name("letter from landlord")
+            interest_letter.set_type("tool")
+            interest_letter.set_state("null")
+            interest_letter.set_gold_amt(0)
+            interest_letter.update_qty(1)
+            tile.update_inventory("add",[interest_letter])
+            break
     
     # turn counting checks for all chars
     for char in self.__characters:
@@ -80,60 +83,36 @@ class World_State:
       for tiles in row:
         tiles.decrement_turn_count()
 
-
+    return self
+  
   def set_game_won(self, flag):
     self.__game_won = flag
-
 
   def update_rent_turn_due(self, increment):
     self.__rent_due_date += increment
 
-  
   def update_rent_amount(self, increment):
     self.__rent_amount += increment
-
 
   def spawn_character(self, new_character):
     if new_character not in self.__characters:
       self.__characters.append(new_character)
-
 
   def remove_character(self, character):
     # check to make sure inputted character is in the __characters list
     if character in self.__characters:
       self.__characters.remove(character)
 
-
-
-
-
   def update_tile(self, coords, new_tile):
     x_coord, y_coord = coords
     self.__tiles[x_coord][y_coord] = new_tile
 
-
-
-
-
-
   def load_2D_Tiles_array(self, Tile_2D_array):
     self.__tiles = Tile_2D_array
 
-    
   def get_tile_at_coords(self, coords):
     x_coord, y_coord = coords
     return self.__tiles[x_coord][y_coord]
-
-
-
-
-
-
-
-
-
-
-
 
   def get_tile_by_name(self, tile_name):
 
@@ -146,22 +125,7 @@ class World_State:
         # if tile_name == self.__tiles[j][i].get_name():
         if tile_name == self.__tiles[i][j].get_name():
           return self.__tiles[i][j]
-    
     return None
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
   def get_npc_chars_at_tile(self, coords):
   # return a list of npc characters for a given tile, based on its coords
@@ -179,10 +143,6 @@ class World_State:
 
     return npc_char_list
     
-
-
-
-
   def get_chars_at_tile(self, coords):
   # return the character list for a given tile, based on its coords
 
@@ -200,8 +160,6 @@ class World_State:
 
     return current_char_list
 
-
-
   def get_active_char(self):
     # Returns the Character with active player flaf set to Y
     for char in self.__characters:
@@ -209,13 +167,6 @@ class World_State:
         return char
 
     return None
-
-
-
-
-
-
-
 
   def get_description(self, coords, visited):
   # returns a list/array of description strings for a given coords and 
@@ -296,21 +247,17 @@ class World_State:
 
     return desc_detail
 
-    # return desc_list
-
   def set_graze (self,flag):
     self.__graze=flag
+    
   def get_graze(self):
     return self.__graze
   
   def set_cheat_mode(self,flag):
     self.__cheat_mode = flag
 
-
   def get_cheat_mode(self):
     return self.__cheat_mode
-
-
 
   def get_game_won(self):
     return self.__game_won
@@ -430,8 +377,6 @@ class World_State:
       print (f"Teleported to {x},{y}.")
     return self
 
-    
-        
 
 
 

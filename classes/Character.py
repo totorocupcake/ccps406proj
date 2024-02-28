@@ -1,4 +1,4 @@
-import Turn_Based_Entity
+import classes.Turn_Based_Entity as Turn_Based_Entity
 
 class Character(Turn_Based_Entity.Turn_Based_Entity):
 

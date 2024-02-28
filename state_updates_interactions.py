@@ -1,6 +1,6 @@
 import text_file_processor
-import Object
-import load_Tiles_temp
+import classes.Object as Object
+import game_initialization
 
 # need for function" dynamic_variable_processor" to process %_% variables
 import game_loop
@@ -348,7 +348,7 @@ def interaction_commands(world_state,charac,command):
             
                 new_tile_id = text_file_processor.lookup_tileID_by_name_state(new_tile_name, new_tile_state)
                 
-                new_tile = load_Tiles_temp.get_tile_by_name_and_state(new_tile_name,new_tile_state)
+                new_tile = game_initialization.get_tile_by_name_and_state(new_tile_name,new_tile_state)
                 
                 # not sure if this is needed, but:
                 new_tile.set_tile_id(new_tile_id)
@@ -380,7 +380,7 @@ def interaction_commands(world_state,charac,command):
                         new_tile_state = int_JSON_obj["change_state_to"]
 
                         new_tile_id = text_file_processor.lookup_tileID_by_name_state(new_tile_name, new_tile_state)
-                        new_tile = load_Tiles_temp.get_tile_by_name_and_state(new_tile_name,new_tile_state)
+                        new_tile = game_initialization.get_tile_by_name_and_state(new_tile_name,new_tile_state)
                         new_tile.set_tile_id(new_tile_id)
 
                         new_tile.update_coords( world_state.get_tile_by_name(new_tile_name).get_coords())
@@ -570,7 +570,7 @@ def interaction_commands(world_state,charac,command):
 
 
                             new_tile_id = text_file_processor.lookup_tileID_by_name_state(obtain_elem["name"], obtain_elem["state"])
-                            new_tile = load_Tiles_temp.get_tile_by_name_and_state(obtain_elem["name"], obtain_elem["state"])
+                            new_tile = game_initialization.get_tile_by_name_and_state(obtain_elem["name"], obtain_elem["state"])
                             new_tile.set_tile_id(new_tile_id)
                             print("\tDEBUG: new_tile_id = ", new_tile_id)
                             print("\tDEBUG: new_tile.get_name().lower() = ", new_tile.get_name().lower())

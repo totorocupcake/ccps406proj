@@ -1,4 +1,4 @@
-import Entity
+import classes.Entity as Entity
 
 
 class Turn_Based_Entity(Entity.Entity):

@@ -115,6 +115,15 @@
         "co_ord_x": 4,
         "co_ord_y": 7,
         "inventory":null
+    },
+    {
+        "type": "tool",
+        "name": "letter",
+        "state": "null",
+        "quantity": 1,
+        "co_ord_x": 6,
+        "co_ord_y": 13,
+        "inventory":null
     }
 
 

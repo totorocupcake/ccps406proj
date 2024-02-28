@@ -10,10 +10,6 @@ if __name__ == "__main__":
     """
     Text parsing
     """
-    # NOTE: below are not needed, loading is done in respective loader files, ie, 
-    #    load_World_State_temp.py etc. 
-    #    and called in game_initialization.initialize() function
-
     # object_status = text_file_processor.load_object_status_file()
     # character_status= text_file_processor.load_character_status_file()
     # world_map_status = text_file_processor.load_world_map_status_csv()
@@ -22,9 +18,6 @@ if __name__ == "__main__":
     """
     Game initialization
     """
-    # world_state = game_initialization.intialize(object_status, character_status,world_map_status,tile_id_mapping)
-    
-    # updated the initialize function in game_initialization.py:
     world_state = game_initialization.initialize(STARTING_RENT_AMOUNT, STARTING_RENT_DUE_DATE)
     
     # This should return one object which is an instance of the world_state class.
@@ -36,6 +29,13 @@ if __name__ == "__main__":
     """
     world_state=game_loop.play_game(world_state)
     
-    
-    #exit_game_loop()
+    """
+    Exit game loop
+    """
+    if (world_state.get_game_won() == 'Y'): 
+        print("You win!")
+    else: 
+        # runs on manual exit
+        print("Goodbye.")
+
     #utility()
