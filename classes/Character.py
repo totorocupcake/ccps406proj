@@ -63,6 +63,13 @@ class Character(Turn_Based_Entity.Turn_Based_Entity):
             self.__visited.add( (type, name, state) )
 
 
+
+    def increment_current_gold(self, increment_gold_amount):
+        # increment amount can be positive or negative
+        self.__current_gold += increment_gold_amount
+        
+
+
     def set_active_player (self, is_active): 
         if is_active == True: 
             self.__active_player = 'Y'

@@ -340,7 +340,7 @@
         "requirement": [
           {
             "type": "Character",
-            "name": "merchant 3",
+            "name": "Merchant 3",
             "state": "null",
             "qty": null,
             "remove_obj": "N"
@@ -671,7 +671,7 @@
         "requirement": [
           {
             "type": "Character",
-            "name": "merchant 3",
+            "name": "Merchant 3",
             "state": "null",
             "qty": null,
             "remove_obj": "N"

@@ -18,8 +18,11 @@ def interaction_commands(world_state,charac,command):
     # setup interaction array:
     interaction_key = command.strip()
 
+    # check for empty string in interaction key/command:
     if interaction_key == "":
-        return None
+        print("Command not recognized")
+        return world_state
+        # return None
 
     interaction_array = interaction_key.split(maxsplit=1)
 
@@ -167,7 +170,7 @@ def interaction_commands(world_state,charac,command):
 # 3. use def lookup_interaction (type, name, state, interaction_key) to grab the interaction data from JSON
 
         # print("\t\tDEBUG: charac.get_type(): ", charac.get_type())
-        print("\t\tinterac_type = ", interac_type)
+        # print("\t\tinterac_type = ", interac_type)
 
         if interac_type == "player":
             interac_name = "%player_name%"
@@ -183,9 +186,9 @@ def interaction_commands(world_state,charac,command):
 # ----------------------------
 # if interaction was not found, print message and return:
         if int_JSON_obj is None:
-            print()
+            # print()
             print("Command not recognized")
-            print()
+            # print()
             return world_state
 
 
@@ -216,11 +219,15 @@ def interaction_commands(world_state,charac,command):
 
 # -------------------------------------
 # else, check all requirements in array:
-            found_obj_req = False
+            found_char_req = True
+            found_obj_req = True
             tile_req_satisfied = True
             for req_elem in int_JSON_obj["requirement"]:
                 # i) check 'object' requirements, must be in current char's inventory:
                 if req_elem["type"].lower() == "object":
+
+                    found_obj_req = False
+
                     # act_char = world_state.get_active_char()
                     # fix below, remove act_char, replace with charac
                     act_char = charac
@@ -245,6 +252,8 @@ def interaction_commands(world_state,charac,command):
                 elif req_elem["type"] == "tile":
 
                 # check for CHANGE_STATE_TO substring in requiements-state
+                    
+
                     advanced_change_state_to = False
                     substring = "CHANGE_STATE_TO"
                     index = req_elem["state"].find(substring)
@@ -306,13 +315,22 @@ def interaction_commands(world_state,charac,command):
                     
                     # world_state.update_tile(new_tile.get_coords(), new_tile)
 
+                else:  # if req_elem["type"] == "Character":
 
 
+# ----------------
+#  requirement = 'Character'
+# ---------------                    
+                    # print("\tDEBUG: req. type Character")
+                    npc_at_tile_list = world_state.get_npc_chars_at_tile(charac.get_coords())
 
-                    # pass
-            
+                    found_char_req = False
 
-
+                    if len(npc_at_tile_list) > 0:
+                        for npc_elem in npc_at_tile_list:
+                            if npc_elem.get_name().lower() == req_elem["name"].lower() and npc_elem.get_state().lower() == req_elem["state"].lower():
+                                # print("\tDEBUG: found required Character: ", npc_elem.get_name())
+                                found_char_req = True
 
 
 
@@ -325,8 +343,8 @@ def interaction_commands(world_state,charac,command):
 
             
             # if more than one requirement, need to use 'and' 
-            if found_obj_req and tile_req_satisfied:
-                print("\tDEBUG: requirements satisfied")
+            if found_obj_req and tile_req_satisfied and found_char_req:
+                # print("\tDEBUG: requirements satisfied")
                 requirements_satisfied = True
 
 
@@ -494,16 +512,39 @@ def interaction_commands(world_state,charac,command):
   
 
 
-                    elif found_interac_char_inv:  # it was in a character's inventory, update there:
-                        print("DEBUG: found in character's inventory: found_interac_char_inv = True")
 
-                        pass 
+
+
+
+# ------------------------
+# if 'change_state_to': 'delete', then remove from charac's inventory
+# ------------------------
+
+
+
+                    elif found_interac_char_inv:  # it was in a character's inventory, update there:
+                        # print("DEBUG: found in character's inventory: found_interac_char_inv = True")
+
+                        if int_JSON_obj["change_state_to"] == "delete":
+                            item_to_delete_list = []
+                            char_inv = charac.get_inventory()
+                            if len(char_inv) > 0:
+                                for inv_elem in char_inv:
+                                    if inv_elem.get_name().lower() == interac_noun.lower():
+                                        item_to_delete_list.append(inv_elem)
+                                        world_state.remove_character(charac)
+                                        charac.update_inventory("remove", item_to_delete_list)
+                                        world_state.spawn_character(charac)
+
+                                        
+
+
 
 
 
         # c) if requirements_satisfied, check 'obtain' field,
         #   and update where needed 
-            print("Obtains:")
+            # print("Obtains:")
             # print("\t", int_JSON_obj["obtain"])
 
             if int_JSON_obj["obtain"] is not None:
@@ -606,6 +647,13 @@ def interaction_commands(world_state,charac,command):
                             world_state.get_tile_by_name(obtain_elem["name"]).get_state(), ",", \
                             world_state.get_tile_by_name(obtain_elem["name"]).get_tile_id(), ",", \
                             world_state.get_tile_by_name(obtain_elem["name"]).get_coords()    )
+
+
+                    elif obtain_elem["type"] == "Gold":
+                        # increment gold amount:
+                        world_state.remove_character(charac)
+                        charac.increment_current_gold(obtain_elem["qty"])
+                        world_state.spawn_character(charac)
                         
 
 

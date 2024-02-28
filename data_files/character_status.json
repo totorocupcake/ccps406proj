@@ -10,6 +10,9 @@
                     "state": "null"}, 
                     {"name": "gun",
                     "quantity": 1,
+                    "state": "null"},
+                    {"name": "wheat",
+                    "quantity": 1,
                     "state": "null"}
                     ],
         "current_hp":10,
