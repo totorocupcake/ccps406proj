@@ -17,7 +17,7 @@
                     ],
         "current_hp":10,
         "max_hp":10,
-        "current_gold":0,
+        "current_gold":20,
         "visited":null,
         "turn_counter":[0, "null"]
     },
