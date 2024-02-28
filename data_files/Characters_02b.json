@@ -13,7 +13,7 @@
       {
         "name": "pay",
    
-        "success_desc": "You paid the landlord %rent_amount%, good job!",
+        "success_desc": "You paid the landlord %rent_amount% gold, good job!",
         "fail_desc": "You are still missing some gold to pay the rent to the landlord, you need %rent_amount% gold.",
         "change_state_to": "happy",
         "requirement": [
