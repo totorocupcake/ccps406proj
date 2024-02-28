@@ -33,6 +33,10 @@ def play_game(world_state):
             # make updates to game based off validated command
             world_state=state_updates.state_update(world_state,charac,command,command_type)
             
+            # check if game ended after making state update
+            if world_state.get_game_won()=='Y':
+                break
+            
         world_state = world_state.increment_turn() # all characters played their turn, next turn time
     
     return world_state
