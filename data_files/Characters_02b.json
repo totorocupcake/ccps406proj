@@ -171,7 +171,7 @@
         "requirement": [
           {
             "type": "Tile",
-            "name": "Penny's House",
+            "name": "Pennys House",
             "state": "null",
             "qty": null,
             "remove_obj": "N"
@@ -204,7 +204,7 @@
         "requirement": [
           {
             "type": "Tile",
-            "name": "Jimmy's House",
+            "name": "Jimmys House",
             "state": "null",
             "qty": null,
             "remove_obj": "N"
@@ -232,13 +232,13 @@
       {
         "name": "help",
    
-        "success_desc": "You manage to cheer up the grumpy neighbor and Claire provided adivses you unlock the shed.",
+        "success_desc": "You manage to cheer up the grumpy neighbor and Claire provided advice that you should unlock the shed.",
         "fail_desc": "You cannot help Claire the neighbor right now.",
         "change_state_to": "null",
         "requirement": [
           {
             "type": "Tile",
-            "name": "Claire's House",
+            "name": "Claires House",
             "state": "null",
             "qty": null,
             "remove_obj": "N"
