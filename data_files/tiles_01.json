@@ -22,6 +22,18 @@
     },
     "interactions": null
   },
+  {
+    "name": "gravel road",
+    "type": "non-building",
+    "state": "null",
+    "movable":"Y",
+    "description": {
+      "long_desc": "You stand on a gravel road. The worn surface stretches into the embrace of rolling fields to the east and west.",
+      "short_desc": "The road stretches to the east and west."
+    },
+    "interactions": null
+  },
+
 
   {
     "name": "road by neighbours houses",
@@ -233,8 +245,8 @@
     "state": "closed",
     "movable":"N",
     "description": {
-      "long_desc": "You stand just outside the back door to the farmhouse.",
-      "short_desc": "You stand just outside the back door to the farmhouse."
+      "long_desc": "You stand just outside the back door to the farmhouse which leads directly to your bedroom.",
+      "short_desc": "You stand just outside the locked door of your bedroom."
     },
     "interactions": [
       {
@@ -277,7 +289,7 @@
     "state": "open",
     "movable":"Y",
     "description": {
-      "long_desc": "The dimly lit room is adorned with faded floral wallpaper and a worn-out rug. The only furniture in the small space is a creaky bed and desk in mismatched woods.",
+      "long_desc": "The dimly lit bedroom is adorned with faded floral wallpaper and a worn-out rug. The only furniture in the small space is a creaky bed and desk in mismatched woods.",
       "short_desc": "You stand in the bedroom."
     },
     "interactions": [
@@ -488,7 +500,7 @@
     "state": "open",
     "movable":"Y",
     "description": {
-      "long_desc": "Inside the shed is dimly lit and musty. It appears the last owner took most of the tools with them, as the shelves and tool racks are barren.",
+      "long_desc": "Inside the tool shed is dimly lit and musty. It appears the last owner took most of the tools with them, as the shelves and tool racks are barren.",
       "short_desc": "You stand in the tool shed."
     },
     "interactions": [

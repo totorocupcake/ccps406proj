@@ -45,6 +45,11 @@
         "state": "null"
     }, 
     {
+        "tile_id": "12",
+        "name": "gravel road", 
+        "state": "null"
+    },
+    {
         "tile_id": "0A",
         "name": "Jimmys house", 
         "state": "null"
