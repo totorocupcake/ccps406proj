@@ -1042,6 +1042,80 @@
       }
     ]
     
+  },
+
+  {
+    "name": "chicken",
+    "type": "tool",
+    "state": "tamed_inventory",
+    "gold_amt": 2,
+    "description": {
+      "long_desc": "a tamed fluffy chicken who would like a nice place to live",
+      "short_desc": "a tamed fluffy chicken"
+    },
+    "interactions": [
+      {
+        "name": "place",
+        
+        "success_desc": "You place the fluffy chicken in the chicken coop. It pecks around and settles in nicely. It looks at you for some food.",
+        "fail_desc": "You cannot place the chicken down here.",
+        "change_state_to": "delete",
+        "requirement":  [
+          {
+            "type": "tile",
+            "name": "chicken coop",
+            "state": "open",
+            "qty": null,
+            "remove_obj": "N"
+          }
+        ],
+        "obtain": [{
+          "type": "Character",
+          "name": "chicken",
+          "state": "tamed_hungry",
+          "qty": 1
+        }
+      ]
+      }
+    ]
+    
+  },
+
+  {
+    "name": "cow",
+    "type": "tool",
+    "state": "tamed_inventory",
+    "gold_amt": 2,
+    "description": {
+      "long_desc": "a tamed cow that is currently following you",
+      "short_desc": "a tamed cow"
+    },
+    "interactions": [
+      {
+        "name": "place",
+        
+        "success_desc": "You place the cow in the barn. It looks at you for some food.",
+        "fail_desc": "You cannot leave the cow here.",
+        "change_state_to": "delete",
+        "requirement":  [
+          {
+            "type": "tile",
+            "name": "barn",
+            "state": "open",
+            "qty": null,
+            "remove_obj": "N"
+          }
+        ],
+        "obtain": [{
+          "type": "Character",
+          "name": "cow",
+          "state": "tamed_hungry",
+          "qty": 1
+        }
+      ]
+      }
+    ]
+    
   }
 
 

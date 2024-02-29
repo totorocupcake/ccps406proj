@@ -343,11 +343,17 @@
       {
         "name": "catch",
    
-        "success_desc": "You manage to catch the chicken.",
+        "success_desc": "You manage to catch the chicken in your arms. It is currently in your inventory.",
         "fail_desc": "You cannot catch the chicken right now.",
-        "change_state_to": "tamed_hungry",
+        "change_state_to": "delete",
         "requirement": null,
-        "obtain":  null
+        "obtain":  [ {
+          "type": "Object",
+          "name": "chicken",
+          "state": "tamed_inventory",
+          "qty": 1
+        }
+      ]
       },
       {
         "name": "kill",
@@ -376,7 +382,7 @@
     "type": "npc",
     "state": "tamed_hungry",
     "description": {
-      "long_desc": "a tamed but hungry fluffy chicken that you have caught",
+      "long_desc": "a tamed but hungry fluffy chicken that you have caught (maybe some grass would be nice)",
       "short_desc": "a tamed but hungry chicken"
     },
     "interactions":    
@@ -424,7 +430,7 @@
     "type": "npc",
     "state": "tamed_not_hungry",
     "description": {
-      "long_desc": "a tamed well-fed fluffy chicken that you have caught",
+      "long_desc": "a tamed well-fed fluffy chicken that you have caught (its just a matter of time before it lays eggs)",
       "short_desc": "a tamed well-fed chicken"
     },
     "interactions":  [
@@ -522,7 +528,7 @@
     "type": "npc",
     "state": "wild",
     "description": {
-      "long_desc": "a wild but content cow grazing on grass and lowing softly",
+      "long_desc": "a wild but content cow grazing on grass and mooing softly",
       "short_desc": "a wild cow"
     },
     "interactions":    
@@ -531,8 +537,8 @@
         "name": "catch",
    
         "success_desc": "You manage to catch the cow.",
-        "fail_desc": "You cannot catch the cow right now.",
-        "change_state_to": "tamed_hungry",
+        "fail_desc": "The cow is too big to catch, try luring it with some apples!",
+        "change_state_to": "delete",
         "requirement": [
           {
             "type": "Object",
@@ -542,7 +548,13 @@
             "remove_obj": "Y"
           }          
         ],
-        "obtain":  null
+        "obtain":  [ {
+          "type": "Object",
+          "name": "cow",
+          "state": "tamed_inventory",
+          "qty": 1
+        }
+      ]
       },
       {
         "name": "kill",
