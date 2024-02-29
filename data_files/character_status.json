@@ -11,9 +11,11 @@
                     {"name": "gun",
                     "quantity": 1,
                     "state": "null"},
-                    {"name": "wheat",
+                    {
+                    "name": "scythe",
                     "quantity": 1,
-                    "state": "null"}
+                    "state": "null"
+                    }
                     ],
         "current_hp":10,
         "max_hp":10,

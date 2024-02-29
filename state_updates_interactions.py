@@ -205,8 +205,8 @@ def interaction_commands(world_state,charac,command):
         # print(int_JSON_obj)
 
 
-    # ----------------------------
-    # if interaction was not found, print message and return:
+        # ----------------------------
+        # if interaction was not found, print message and return:
         if int_JSON_obj is None:
             # print()
             print("Command not recognized")
@@ -253,6 +253,24 @@ def interaction_commands(world_state,charac,command):
             found_obj_req = True
             tile_req_satisfied = True
 
+
+
+# ======================================================
+#   for 'object' requirements, there can potentially be 
+#   more than one, eg,
+#       'honey' requires: 'bee smoker' and 'beekeeping suit'
+#   need to count and keep track of number of object requirements
+#       
+            obj_req_count = 0
+            found_multiple_obj_req = 0
+            for req_elem in int_JSON_obj["requirement"]:
+                if req_elem["type"].lower() == "object":
+                    obj_req_count += 1
+
+
+
+
+
             for req_elem in int_JSON_obj["requirement"]:
 
                 
@@ -266,20 +284,38 @@ def interaction_commands(world_state,charac,command):
                     act_char = charac
                     act_char_inv = act_char.get_inventory()
                     
-                    if len(act_char_inv) > 0:
-                        for inv_elem in act_char_inv:
-                            if (inv_elem.get_name().lower() == req_elem["name"]) and \
-                                (inv_elem.get_quantity() >= req_elem["qty"]):
-                                found_obj_req = True 
-                                break
-                    if not found_obj_req:
-                        # print()
-                        # print("DEBUG:found_obj_req == False")
-                        # output = game_loop.dynamic_variable_processor(world_state, int_JSON_obj["fail_desc"])
-                        # print(output)
-                        # print()
-                        requirements_satisfied = False
-                        break
+                    if obj_req_count == 1:
+
+                        if len(act_char_inv) > 0:
+                            for inv_elem in act_char_inv:
+                                if (inv_elem.get_name().lower() == req_elem["name"]) and \
+                                    (inv_elem.get_quantity() >= req_elem["qty"]):
+                                    found_obj_req = True 
+                                    break
+                        if not found_obj_req:
+                            requirements_satisfied = False
+                            break
+
+                    # more than one object is required in inventory:
+                    else: 
+
+                        # found_multiple_obj_req = 0
+                        if len(act_char_inv) > 0:
+                            for inv_elem in act_char_inv:
+                                if (inv_elem.get_name().lower() == req_elem["name"]) and \
+                                    (inv_elem.get_quantity() >= req_elem["qty"]):
+                                    found_multiple_obj_req += 1
+                                    break
+
+
+
+
+
+
+
+
+
+
 
                 # ----------
                 # 4. (a) (ii) (II)
@@ -427,6 +463,17 @@ def interaction_commands(world_state,charac,command):
                                 found_char_req = True
 
 
+
+
+# ======================================================
+#   for 'object' requirements, there can potentially be 
+#   more than one, eg,
+#       'honey' requires: 'bee smoker' and 'beekeeping suit'
+#   need to count and keep track of number of object requirements
+#
+
+            if (obj_req_count > 1) and (obj_req_count == found_multiple_obj_req):
+                found_obj_req = True
 
 
 
@@ -726,7 +773,8 @@ def interaction_commands(world_state,charac,command):
 
                         else:       # print fail_desc:
                             print()
-                            print("DEBUG: (obtain_elem['type'] == 'Item') not found:")
+                            print("DEBUG: found_in_current_inv = ", found_in_current_inv)
+                            # print("DEBUG: (obtain_elem['type'] == 'Item') not found:")
                             print()
 
                             output = game_loop.dynamic_variable_processor(world_state, int_JSON_obj["fail_desc"])
