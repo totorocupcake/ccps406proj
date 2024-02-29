@@ -1,0 +1,67 @@
+[
+    {
+        "type": "monster",
+        "name": "Thief",
+        "co_ord_x": 12,
+        "co_ord_y": 8,
+        "state": "aggressive",
+        "inventory":null,
+        "current_hp":10,
+        "max_hp":10,
+        "current_gold":5,
+        "visited":null,
+        "turn_counter":[0, "null"]
+    },
+    {
+        "type": "monster",
+        "name": "Wolf",
+        "co_ord_x": 10,
+        "co_ord_y":20,
+        "state": "aggressive",
+        "inventory":[{"name": "meat",
+                    "quantity": 5,
+                    "state": "null"}],
+        "current_hp":10,
+        "max_hp":10,
+        "current_gold":0,
+        "visited":null,
+        "turn_counter":[0, "null"]
+    },
+    {
+        "type": "npc",
+        "name": "chicken",
+        "co_ord_x": 3,
+        "co_ord_y":17,
+        "state": "wild",
+        "inventory":[{"name": "meat",
+                    "quantity": 5,
+                    "state": "null"}],
+        "current_hp":10,
+        "max_hp":10,
+        "current_gold":0,
+        "visited":null,
+        "turn_counter":[0, "null"]
+    },
+    {
+        "type": "npc",
+        "name": "cow",
+        "co_ord_x": 3,
+        "co_ord_y":9,
+        "state": "wild",
+        "inventory":[{"name": "meat",
+                    "quantity": 5,
+                    "state": "null"}],
+        "current_hp":10,
+        "max_hp":10,
+        "current_gold":0,
+        "visited":null,
+        "turn_counter":[0, "null"]
+    }
+
+
+
+
+
+
+
+]

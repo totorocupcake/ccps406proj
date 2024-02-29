@@ -8,6 +8,7 @@ TILES_JSON_FILE = "data_files/tiles_01.json"
 
 OBJECTS_STATUS_JSON_FILE = "data_files/object_status.json"
 CHARACTER_STATUS_JSON_FILE = "data_files/character_status.json"
+CHARACTER_TEMPLATE_JSON_FILE = "data_files/character_template.json"
 
 TILE_ID_MAPPING_JSON_FILE = "data_files/tileIDMapping_01.json"
 
@@ -21,6 +22,8 @@ LOAD_WORLD_MAP_STATUS_CSV_FILE = "save_files/world_map_status_save.csv"
 LOAD_OBJECTS_JSON_FILE = "save_files/objects_status_save.json"
 LOAD_CHARACTER_STATUS_JSON_FILE = "save_files/char_status_save.json"
 LOAD_WORLD_MAP_TURN_STATUS_JSON_FILE = "save_files/world_map_turn_status.json"
+
+
 
 def load_tile_JSON_data_file():
     # returns a JSON array of tile data 
@@ -66,6 +69,19 @@ def load_tileIDMapping_file():
         tile_mapping_id_data = json.load(file)
 
     return tile_mapping_id_data
+
+def load_char_template_file():
+    # returns a JSON array of template characters data 
+    # from the JSON character_template file
+       
+    file_to_load = CHARACTER_TEMPLATE_JSON_FILE
+    
+    with open(file_to_load, 'r') as file:
+        parsed_object_status_data = json.load(file)
+
+    return parsed_object_status_data
+
+
 
 def lookup_tileID_by_name_state(tile_name,state):
     # given a tile name and state, find corresponding tile ID:
