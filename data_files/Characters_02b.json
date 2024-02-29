@@ -14,7 +14,7 @@
         "name": "pay",
    
         "success_desc": "You paid the landlord %rent_amount% gold, good job!",
-        "fail_desc": "You are still missing some gold to pay the rent to the landlord, you need %rent_amount% gold.",
+        "fail_desc": "You are still missing some gold to pay the rent to the landlord (you need %rent_amount% gold in total)",
         "change_state_to": "happy",
         "requirement": [
           {
@@ -707,7 +707,7 @@
     "type": "npc",
     "state": "tamed_hungry",
     "description": {
-      "long_desc": "a tamed but hungry fluffy cow that you have caught",
+      "long_desc": "a tamed but hungry fluffy cow that you have caught (it loves apples!)",
       "short_desc": "a tamed but hungry cow"
     },
     "interactions":    
@@ -755,7 +755,7 @@
     "type": "npc",
     "state": "tamed_not_hungry",
     "description": {
-      "long_desc": "a tamed well-fed cow that you have caught",
+      "long_desc": "a tamed well-fed cow that you have caught (its just a matter of time before it is ready to milk)",
       "short_desc": "a tamed well-fed cow"
     },
     "interactions":  [
@@ -814,7 +814,7 @@
         "name": "milk",
    
         "success_desc": "You manage to milk the cow and obtain some milk.",
-        "fail_desc": "You cannot milk the cow right now.",
+        "fail_desc": "You need a milk bucket to milk the cow!",
         "change_state_to": "tamed_hungry",
         "requirement": [
           {
