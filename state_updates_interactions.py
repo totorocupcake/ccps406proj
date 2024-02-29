@@ -568,7 +568,7 @@ def interaction_commands(world_state,charac,command):
 # ******
 
                                 if int_JSON_obj["change_state_to"] == "delete":
-                                    world_state.remove_character(char_elem)
+                                    world_state = world_state.remove_character(char_elem)
 
                                     break
                     
