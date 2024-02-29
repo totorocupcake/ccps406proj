@@ -53,26 +53,8 @@ class World_State:
   def increment_turn(self, amount=1):
     self.__turn_number += amount
     
-    if self.get_turn_number()>self.get_rent_due_date():
-      # check if player is late to pay rent
-      # update rent amount and turn due if so
-      new_rent = round(self.get_rent_amount() * INTEREST_RATE)
-      self.update_rent_amount(new_rent)
-      self.update_rent_turn_due(TURN_INCREMENT)
-        
-      # add new letter to mailbox to notify the player
-      for row in self.get_tiles():
-        for tile in row:
-          if tile.get_name() == "mail box":
-            # find mail box on map and add a new letter from landlord to it
-            interest_letter = Object.Object()
-            interest_letter.set_name("letter from landlord")
-            interest_letter.set_type("tool")
-            interest_letter.set_state("null")
-            interest_letter.set_gold_amt(0)
-            interest_letter.update_qty(1)
-            tile.update_inventory("add",[interest_letter])
-            break
+    # check if player is late to pay rent, if so, add letter in their mailbox
+    self = late_rent_checks(self)
     
     # turn counting checks for all chars
     for char in self.__characters:
@@ -82,7 +64,10 @@ class World_State:
     for row in self.__tiles:
       for tiles in row:
         tiles.decrement_turn_count()
-
+    
+    # monster/animal respawning checks
+    self = spawn_monster_checks(self)
+    
     return self
   
   def set_game_won(self, flag):
@@ -375,12 +360,92 @@ class World_State:
       y = int(charac_coord[1])
       charac.update_coords((x,y))
       print (f"Teleported to {x},{y}.")
+    elif words[0] == "kill": #cheat kill thief 6,12
+      charac_name_to_kill=words[1]
+      charac_coord = words[2]
+      charac_coord=charac_coord.split(',')
+      x = int(charac_coord[0])
+      y = int(charac_coord[1])
+      for charac in self.get_chars_at_tile((x,y)):
+        if charac.get_name().lower() == charac_name_to_kill:
+           self.remove_character(charac)
+           print("Removed character.")
+           break
     return self
 
+def spawn_monster_checks(world_state):
+  """
+  This function checks for the specified characters in character_to_find within all characters
+  in the provided world state. If there is not at least one of each character, it will spawn one
+  respective character back into the world state. The spawned character is based off character_template.json
+  """
+  characters_to_find = ["wolf", "thief", "chicken","cow"]
+  found_status = [0,0,0,0]
+  
+  # find all characters in world state, and update found_status. 
+  # 0 = not found, 1= found
+  for char in world_state.get_characters():
+    for i in range(len(characters_to_find)):
+      if char.get_name().lower() == characters_to_find[i]:
+        found_status[i]=1
+          
+  template_char = text_file_processor.load_char_template_file()
+  
+  # for all characters not found (not_found=0), we find the template char status with matching name
+  # And spawn that character from template into the world_state
+  for i in range(len(characters_to_find)):
+    if found_status[i]==0:
+      for element in template_char:
+        if element["name"].lower() == characters_to_find[i].lower():
+          # we found the character in the template JSON. Time to spawn it.
+          new_charac = Character.Character()
+          new_charac.set_name(element["name"])
+          new_charac.set_type(element["type"])
+          new_charac.update_coords((element["co_ord_x"],element["co_ord_y"]))
+          new_charac.set_state(element["state"])
+            
+          if element["inventory"] is not None:
+            inv_list_of_obj = []
+            for inv_elem in element["inventory"]:
+              inv_obj = Object.Object()
+              inv_obj.set_name(inv_elem["name"])
+              inv_obj.update_qty(inv_elem["quantity"])
+              inv_obj.set_state(inv_elem["state"])
+              inv_list_of_obj.append(inv_obj)
+            new_charac.update_inventory("add", inv_list_of_obj)
 
+          new_charac.set_current_hp(element["current_hp"])
+          new_charac.set_max_hp(element["max_hp"])
+          new_charac.set_current_gold(element["current_gold"])
+          new_charac.update_turn_counter(element["turn_counter"][0],element["turn_counter"][1])
+            
+          world_state.spawn_character(new_charac)
+          #print(f"spawn {new_charac.get_name()}.")
+          
+  return world_state
 
-
-
+def late_rent_checks(world_state):
+  if world_state.get_turn_number()>world_state.get_rent_due_date():
+      # check if player is late to pay rent
+      # update rent amount and turn due if so
+      new_rent = round(world_state.get_rent_amount() * INTEREST_RATE)
+      world_state.update_rent_amount(new_rent)
+      world_state.update_rent_turn_due(TURN_INCREMENT)
+        
+      # add new letter to mailbox to notify the player
+      for row in world_state.get_tiles():
+        for tile in row:
+          if tile.get_name() == "mail box":
+            # find mail box on map and add a new letter from landlord to it
+            interest_letter = Object.Object()
+            interest_letter.set_name("letter from landlord")
+            interest_letter.set_type("tool")
+            interest_letter.set_state("null")
+            interest_letter.set_gold_amt(0)
+            interest_letter.update_qty(1)
+            tile.update_inventory("add",[interest_letter])
+            break
+  return world_state
 
 
 
