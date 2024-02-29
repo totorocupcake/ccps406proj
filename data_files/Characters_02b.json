@@ -309,6 +309,23 @@
           }
         ],
         "obtain":  null
+      },
+      {
+        "name": "greet",
+   
+        "success_desc": "Claire is not in the mood to talk right now.",
+        "fail_desc": "Claire is not in the mood to talk right now.",
+        "change_state_to": "null",
+        "requirement": [
+          {
+            "type": "Tile",
+            "name": "Claires House",
+            "state": "null",
+            "qty": null,
+            "remove_obj": "N"
+          }
+        ],
+        "obtain":  null
       }
 
     ]
@@ -335,6 +352,15 @@
       },
       {
         "name": "talk",
+   
+        "success_desc": "Claire gives advice to you that plants love water and you should water the apple tree.",
+        "fail_desc": "Claire gives advice to you that plants love water and you should water the apple tree.",
+        "change_state_to": "happy",
+        "requirement": null,
+        "obtain":  null
+      },
+      {
+        "name": "greet",
    
         "success_desc": "Claire gives advice to you that plants love water and you should water the apple tree.",
         "fail_desc": "Claire gives advice to you that plants love water and you should water the apple tree.",
