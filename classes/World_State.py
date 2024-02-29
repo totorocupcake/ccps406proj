@@ -122,7 +122,8 @@ class World_State:
     if npc_char_list is not None:
       for npc_elem in npc_char_list:
         # remove the 'player' character from the list
-        if npc_elem.get_type() == "player":
+        #if npc_elem.get_type() == "player":
+        if npc_elem.get_active_player()=='Y':
           npc_char_list.remove(npc_elem)
           break
 
@@ -180,9 +181,9 @@ class World_State:
     tile_tuple = (current_tl.get_general_type(), current_tl.get_name(), current_tl.get_state())
 
     if tile_tuple in visited:
-      desc_list.append(current_tl.get_desc("short"))
+      desc_list.append(current_tl.get_desc("short",self))
     else:
-      desc_list.append(current_tl.get_desc("long"))
+      desc_list.append(current_tl.get_desc("long",self))
 
     # add each character:
     if current_npc_char_list is not None:
@@ -191,9 +192,9 @@ class World_State:
                       char_elem.get_state() )
 
         if char_tuple in visited:
-          desc_list.append(char_elem.get_desc("short"))
+          desc_list.append(char_elem.get_desc("short",self))
         else:
-          desc_list.append(char_elem.get_desc("long"))
+          desc_list.append(char_elem.get_desc("long",self))
         
 
     # add each object in the tile's inventory:
@@ -202,9 +203,9 @@ class World_State:
         inv_tuple = (tl_inv_elem.get_general_type(), tl_inv_elem.get_name(), \
                       tl_inv_elem.get_state() )
         if inv_tuple in visited:
-          desc_list.append(tl_inv_elem.get_desc("short"))
+          desc_list.append(tl_inv_elem.get_desc("short",self))
         else:
-          desc_list.append(tl_inv_elem.get_desc("long"))
+          desc_list.append(tl_inv_elem.get_desc("long",self))
 
 
     # ------------------------------------------------------
@@ -371,6 +372,14 @@ class World_State:
            self.remove_character(charac)
            print("Removed character.")
            break
+    elif words[0]=="swap": #cheat swap penny
+      charac_to_swap=words[1]
+      for charac in self.get_characters():
+        if charac.get_name().lower() == charac_to_swap:
+          current_active_char = self.get_active_char()
+          current_active_char.set_active_player(False)
+          charac.set_active_player(True)
+          
     return self
 
 def spawn_monster_checks(world_state):

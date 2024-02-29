@@ -1,6 +1,7 @@
 import text_file_processor
 import classes.Object as Object
 import game_initialization
+import text_formatting
 
 # need for function" dynamic_variable_processor" to process %_% variables
 import game_loop
@@ -385,7 +386,7 @@ def interaction_commands(world_state,charac,command):
 
                         # print("DEBUG: int_JSON_obj['requirement'] = ", int_JSON_obj["requirement"])
 
-                        rent_amount = game_loop.dynamic_variable_processor(world_state, str(req_elem["qty"]))
+                        rent_amount = text_formatting.dynamic_variable_processor(world_state, str(req_elem["qty"]))
 
                         # print("\tDEBUG: rent_amount =", rent_amount)
                         # print("\tDEBUG: charac.get_current_gold() = ", charac.get_current_gold())
@@ -400,7 +401,7 @@ def interaction_commands(world_state,charac,command):
                     # 4. (a) (ii) (III.2)
                     #   steal from player:
                     elif int_JSON_obj["name"].lower() == "steal":   
-                        steal_amount = game_loop.dynamic_variable_processor(world_state, str(req_elem["qty"]))
+                        steal_amount = text_formatting.dynamic_variable_processor(world_state, str(req_elem["qty"]))
                         
                         steal_amount = int(steal_amount)
 
@@ -729,7 +730,7 @@ def interaction_commands(world_state,charac,command):
                             print("DEBUG: (obtain_elem['type'] == 'Item') not found:")
                             print()
 
-                            output = game_loop.dynamic_variable_processor(world_state, int_JSON_obj["fail_desc"])
+                            output = text_formatting.dynamic_variable_processor(world_state, int_JSON_obj["fail_desc"])
                             print(output)
 
                             print()
@@ -797,7 +798,7 @@ def interaction_commands(world_state,charac,command):
                         # increment gold amount:
                         active_char = world_state.get_active_char()
                         
-                        obtain_amount = game_loop.dynamic_variable_processor(world_state, str(obtain_elem["qty"])) 
+                        obtain_amount = text_formatting.dynamic_variable_processor(world_state, str(obtain_elem["qty"])) 
                         obtain_amount = int(obtain_amount)
 
                         world_state.remove_character(active_char)
@@ -837,7 +838,7 @@ def interaction_commands(world_state,charac,command):
             # 6. (a) 
             #   requirements are met
             print()
-            output = game_loop.dynamic_variable_processor(world_state, int_JSON_obj["success_desc"])
+            output = text_formatting.dynamic_variable_processor(world_state, int_JSON_obj["success_desc"])
             print(output)
             print()
 
@@ -846,7 +847,7 @@ def interaction_commands(world_state,charac,command):
         #   requirements are not met
         else:  
             print()
-            output = game_loop.dynamic_variable_processor(world_state, int_JSON_obj["fail_desc"])
+            output = text_formatting.dynamic_variable_processor(world_state, int_JSON_obj["fail_desc"])
             print(output)
             print()
 

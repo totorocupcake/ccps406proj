@@ -1,5 +1,7 @@
 import json
 import csv
+import text_formatting
+
 # need to get player variable from World_State
 
 CHARACTERS_JSON_FILE = "data_files/Characters_02b.json"
@@ -99,7 +101,7 @@ def lookup_tileID_by_name_state(tile_name,state):
     if not found_tile:
         return "Not Found"
 
-def lookup_desc (long_short , type, name, state):
+def lookup_desc (long_short , type, name, state,world_state):
     # Given arguments find, return the matching description from in-game text files
     # Returns None if not match
     # long_short determines whether to return long_desc vs short_desc
@@ -123,7 +125,8 @@ def lookup_desc (long_short , type, name, state):
     found_noun = False
         
     for element in parsed_data:
-        if (element["name"].lower() == name.lower()) and (element["state"].lower() == state.lower()):
+        name_formatted = text_formatting.dynamic_variable_processor(world_state,element["name"])
+        if (name_formatted.lower() == name.lower()) and (element["state"].lower() == state.lower()):
             found_noun = True
             if long_short == "long":
                 return element["description"]["long_desc"]
