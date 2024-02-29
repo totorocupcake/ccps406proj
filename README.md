@@ -18,3 +18,7 @@ e.g. cheat teleport 6,12 [note no space between coordinates]
 
 ### cheat kill charactername coords
 e.g. cheat kill cow 3,10 [note no space between coordinates]
+
+### cheat swap npcname
+e.g cheat swap Penny <br>
+Switches active player's perspective to any char/monster/animal in the game
