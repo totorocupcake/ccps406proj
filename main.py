@@ -3,7 +3,7 @@ import game_initialization
 import game_loop
 
 STARTING_RENT_AMOUNT = 10
-STARTING_RENT_DUE_DATE = 25
+STARTING_RENT_DUE_DATE = 50
 
 if __name__ == "__main__":
     

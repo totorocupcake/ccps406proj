@@ -1,4 +1,4 @@
-import textwrap
+import re
 
 CONSOLE_OUTPUT_CHAR_WIDTH = 100
 
@@ -112,3 +112,30 @@ def full_justify(line_words):
         
     justified_line += line_words[-1]  # Add the last word without extra space
     return justified_line
+
+def dynamic_variable_processor(world_state,get_desc_string):
+    # Given a sentence string (from get_description()) replace any dynamic variables within our text files
+    # with the relevant variable value from memory
+    
+    pattern = r'%([^%]+)%'
+    
+    get_desc_string = re.sub(pattern, lambda match: dynamic_variable_logic(world_state,match.group(1)), get_desc_string)
+    
+    return get_desc_string
+    
+def dynamic_variable_logic(world_state,keyword):
+    # Given the keyword string, replace it with a value and return that value back
+        
+        if keyword == "player_name":
+            for charac in world_state.get_characters():
+                if charac.get_type() == "player":
+                    return charac.get_name()
+        elif keyword == "rent_amount":
+            return str(world_state.get_rent_amount())
+        elif keyword == "rent_due_days_away":
+            return str(world_state.get_rent_due_date())
+        elif keyword=="gold":
+            for charac in world_state.get_characters():
+                if charac.get_type() == "player":
+                    # return charac.get_current_gold()
+                    return str(charac.get_current_gold())
