@@ -215,7 +215,7 @@
       {
         "name": "greet",
    
-        "success_desc": "You have a curious conversation with the neighbor and find out about harvesting honey.",
+        "success_desc": "You have a curious conversation with the neighbor and find out about harvesting honey. In order to harvest honey safely you need both a bee smoker and a beekeeping suit.",
         "fail_desc": "You cannot converse with Jimmy the neighbor right now.",
         "change_state_to": "null",
         "requirement": [
@@ -232,7 +232,7 @@
       {
         "name": "talk",
    
-        "success_desc": "You have a curious conversation with the neighbor and find out about harvesting honey.",
+        "success_desc": "You have a curious conversation with the neighbor and find out about harvesting honey. In order to harvest honey safely you need both a bee smoker and a beekeeping suit.",
         "fail_desc": "You cannot converse with Jimmy the neighbor right now.",
         "change_state_to": "null",
         "requirement": [
