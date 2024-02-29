@@ -93,14 +93,14 @@
     "state": "null",
     "gold_amt": 5,
     "description": {
-      "long_desc": "a pot of honey that can be sold at the merchant",
-      "short_desc": "a pot of honey"
+      "long_desc": "a large amount of honey that can be sold at the merchant",
+      "short_desc": "a large amount of honey"
     },
     "interactions":   [
       {
         "name": "harvest",
 
-        "success_desc": "You harvest a pot of honey that can be sold at the merchant for gold.",
+        "success_desc": "You harvest a large amount of honey that can be sold at the merchant for gold.",
         "fail_desc": "You cannot harvest the honey right now.",
         "change_state_to": "null",
         "requirement": [

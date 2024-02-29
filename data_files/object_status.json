@@ -124,6 +124,15 @@
         "co_ord_x": 6,
         "co_ord_y": 13,
         "inventory":null
+    },
+    {
+        "type": "farm_prod",
+        "name": "honey",
+        "state": "null",
+        "quantity": 1,
+        "co_ord_x": 1,
+        "co_ord_y": 4,
+        "inventory":null
     }
 
 
