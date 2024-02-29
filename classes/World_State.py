@@ -86,7 +86,15 @@ class World_State:
   def remove_character(self, character):
     # check to make sure inputted character is in the __characters list
     if character in self.__characters:
+      if character.get_active_player() == 'Y':
+        print(f"The controlled character was killed. Switching back to original player's perspective.")
+        
+        for charac in self.get_characters():
+          if charac.get_type() == "player":
+            charac.set_active_player(True)
+            
       self.__characters.remove(character)
+    return self
 
   def update_tile(self, coords, new_tile):
     x_coord, y_coord = coords
@@ -369,7 +377,7 @@ class World_State:
       y = int(charac_coord[1])
       for charac in self.get_chars_at_tile((x,y)):
         if charac.get_name().lower() == charac_name_to_kill:
-           self.remove_character(charac)
+           self = self.remove_character(charac)
            print("Removed character.")
            break
     elif words[0]=="swap": #cheat swap penny
