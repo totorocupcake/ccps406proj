@@ -90,6 +90,13 @@ def basic_commands(world_state,charac,command):
     elif command is not None:
         world_state = state_updates_interactions.interaction_commands(world_state, charac, command)
 
+    for char in world_state.get_characters():
+        if char.get_name() == 'landlord':
+            if char.get_state() == 'happy':
+                world_state.set_game_won('Y')
+            else:
+                break
+
     return world_state
 
 def visited_updates (world_state,charac,x,y):
