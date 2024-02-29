@@ -5,7 +5,7 @@
     "type": "npc",
     "state": "unhappy",
     "description": {
-      "long_desc": "the landlord, who is a tall person wearing a black coat and hat, is unhappy",
+      "long_desc": "the landlord asking impatiently when your rent would be paid",
       "short_desc": "the unhappy landlord"
     },
     "interactions":    
@@ -178,6 +178,23 @@
           }
         ],
         "obtain":  null
+      },
+      {
+        "name": "talk",
+   
+        "success_desc": "You exchange friendly greetings with Penny the neighbor and she advised to harvest wheat and grass in the fields.",
+        "fail_desc": "You cannot greet Penny the neighbor right now.",
+        "change_state_to": "null",
+        "requirement": [
+          {
+            "type": "Tile",
+            "name": "Pennys House",
+            "state": "null",
+            "qty": null,
+            "remove_obj": "N"
+          }
+        ],
+        "obtain":  null
       }
     ]
   },
@@ -196,7 +213,24 @@
     "interactions":    
     [
       {
-        "name": "converse",
+        "name": "greet",
+   
+        "success_desc": "You have a curious conversation with the neighbor and find out about harvesting honey.",
+        "fail_desc": "You cannot converse with Jimmy the neighbor right now.",
+        "change_state_to": "null",
+        "requirement": [
+          {
+            "type": "Tile",
+            "name": "Jimmys House",
+            "state": "null",
+            "qty": null,
+            "remove_obj": "N"
+          }
+        ],
+        "obtain":  null
+      },
+      {
+        "name": "talk",
    
         "success_desc": "You have a curious conversation with the neighbor and find out about harvesting honey.",
         "fail_desc": "You cannot converse with Jimmy the neighbor right now.",
@@ -224,7 +258,7 @@
     "type": "npc",
     "state": "null",
     "description": {
-      "long_desc": "a charming neighbor Claire who needs help",
+      "long_desc": "a charming neighbor Claire who would like some help as she needs some water",
       "short_desc": "Claire the neighbor"
     },
     "interactions":    
@@ -232,8 +266,55 @@
       {
         "name": "help",
    
-        "success_desc": "You manage to cheer up the grumpy neighbor and Claire provided advice that you should unlock the shed.",
+        "success_desc": "Claire uses the water from your watering can to water her flowers. She gives advice to you that plants love water and you should water the apple tree.",
         "fail_desc": "You cannot help Claire the neighbor right now.",
+        "change_state_to": "happy",
+        "requirement": [
+          {
+            "type": "Tile",
+            "name": "Claires House",
+            "state": "null",
+            "qty": null,
+            "remove_obj": "N"
+          },
+          {
+            "type": "Object",
+            "name": "watering can",
+            "state": "full",
+            "qty": 1,
+            "remove_obj": "Y"
+          }
+        ],
+        "obtain":  [ {
+          "type": "Object",
+          "name": "watering can",
+          "state": "empty",
+          "qty": 1
+        }
+      ]
+      },
+      {
+        "name": "talk",
+   
+        "success_desc": "Claire is not in the mood to talk right now.",
+        "fail_desc": "Claire is not in the mood to talk right now.",
+        "change_state_to": "null",
+        "requirement": [
+          {
+            "type": "Tile",
+            "name": "Claires House",
+            "state": "null",
+            "qty": null,
+            "remove_obj": "N"
+          }
+        ],
+        "obtain":  null
+      },
+      {
+        "name": "greet",
+   
+        "success_desc": "Claire is not in the mood to talk right now.",
+        "fail_desc": "Claire is not in the mood to talk right now.",
         "change_state_to": "null",
         "requirement": [
           {
@@ -246,8 +327,51 @@
         ],
         "obtain":  null
       }
+
     ]
   },
+
+  {
+    "name": "Claire",
+    "type": "npc",
+    "state": "happy",
+    "description": {
+      "long_desc": "a charming neighbor Claire who is singing to her flowers",
+      "short_desc": "Claire the neighbor"
+    },
+    "interactions":    
+    [
+      {
+        "name": "help",
+   
+        "success_desc": "Claire does not need help anymore.",
+        "fail_desc": "Claire does not need help anymore.",
+        "change_state_to": "happy",
+        "requirement": null,
+        "obtain":  null
+      },
+      {
+        "name": "talk",
+   
+        "success_desc": "Claire gives advice to you that plants love water and you should water the apple tree.",
+        "fail_desc": "Claire gives advice to you that plants love water and you should water the apple tree.",
+        "change_state_to": "happy",
+        "requirement": null,
+        "obtain":  null
+      },
+      {
+        "name": "greet",
+   
+        "success_desc": "Claire gives advice to you that plants love water and you should water the apple tree.",
+        "fail_desc": "Claire gives advice to you that plants love water and you should water the apple tree.",
+        "change_state_to": "happy",
+        "requirement": null,
+        "obtain":  null
+      }
+
+    ]
+  },
+
 
 
 
@@ -343,11 +467,17 @@
       {
         "name": "catch",
    
-        "success_desc": "You manage to catch the chicken.",
+        "success_desc": "You manage to catch the chicken in your arms. It is currently in your inventory.",
         "fail_desc": "You cannot catch the chicken right now.",
-        "change_state_to": "tamed_hungry",
+        "change_state_to": "delete",
         "requirement": null,
-        "obtain":  null
+        "obtain":  [ {
+          "type": "Object",
+          "name": "chicken",
+          "state": "tamed_inventory",
+          "qty": 1
+        }
+      ]
       },
       {
         "name": "kill",
@@ -376,7 +506,7 @@
     "type": "npc",
     "state": "tamed_hungry",
     "description": {
-      "long_desc": "a tamed but hungry fluffy chicken that you have caught",
+      "long_desc": "a tamed but hungry fluffy chicken that you have caught (maybe some grass would be nice)",
       "short_desc": "a tamed but hungry chicken"
     },
     "interactions":    
@@ -424,7 +554,7 @@
     "type": "npc",
     "state": "tamed_not_hungry",
     "description": {
-      "long_desc": "a tamed well-fed fluffy chicken that you have caught",
+      "long_desc": "a tamed well-fed fluffy chicken that you have caught (its just a matter of time before it lays eggs)",
       "short_desc": "a tamed well-fed chicken"
     },
     "interactions":  [
@@ -522,7 +652,7 @@
     "type": "npc",
     "state": "wild",
     "description": {
-      "long_desc": "a wild but content cow grazing on grass and lowing softly",
+      "long_desc": "a wild but content cow grazing on grass and mooing softly",
       "short_desc": "a wild cow"
     },
     "interactions":    
@@ -531,8 +661,8 @@
         "name": "catch",
    
         "success_desc": "You manage to catch the cow.",
-        "fail_desc": "You cannot catch the cow right now.",
-        "change_state_to": "tamed_hungry",
+        "fail_desc": "The cow is too big to catch, try luring it with some apples!",
+        "change_state_to": "delete",
         "requirement": [
           {
             "type": "Object",
@@ -542,7 +672,13 @@
             "remove_obj": "Y"
           }          
         ],
-        "obtain":  null
+        "obtain":  [ {
+          "type": "Object",
+          "name": "cow",
+          "state": "tamed_inventory",
+          "qty": 1
+        }
+      ]
       },
       {
         "name": "kill",
