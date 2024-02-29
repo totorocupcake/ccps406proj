@@ -15,3 +15,6 @@ gets description at any specified location
 
 ### cheat teleport coords
 e.g. cheat teleport 6,12 [note no space between coordinates]
+
+### cheat kill charactername coords
+e.g. cheat kill cow 3,10 [note no space between coordinates]
