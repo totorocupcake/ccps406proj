@@ -15,6 +15,16 @@
                     "name": "scythe",
                     "quantity": 1,
                     "state": "null"
+                    },
+                    {
+                    "name": "bee smoker",
+                    "quantity": 1,
+                    "state": "null"
+                    },
+                    {
+                    "name": "beekeeping suit",
+                    "quantity": 1,
+                    "state": "null"
                     }
                     ],
         "current_hp":10,
