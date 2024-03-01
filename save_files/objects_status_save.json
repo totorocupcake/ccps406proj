@@ -1,11 +1,38 @@
 [
     {
+        "type": "farm_prod",
+        "name": "honey",
+        "state": "null",
+        "quantity": 1,
+        "co_ord_x": 1,
+        "co_ord_y": 4,
+        "inventory": null
+    },
+    {
         "type": "tool",
         "name": "branch",
         "state": "null",
         "quantity": 1,
         "co_ord_x": 2,
         "co_ord_y": 4,
+        "inventory": null
+    },
+    {
+        "type": "tool",
+        "name": "gun",
+        "state": "null",
+        "quantity": 1,
+        "co_ord_x": 2,
+        "co_ord_y": 13,
+        "inventory": null
+    },
+    {
+        "type": "tool",
+        "name": "axe",
+        "state": "null",
+        "quantity": 1,
+        "co_ord_x": 2,
+        "co_ord_y": 13,
         "inventory": null
     },
     {
