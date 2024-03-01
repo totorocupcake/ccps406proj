@@ -23,4 +23,47 @@ def graze(world_state,charac):
     # returns random direction from available_directions list
     next_command_graze = random.choice(available_directions)
     return next_command_graze
-  
+
+def thief_aggressive(world_state,charac):
+    for element in world_state.get_characters():
+        # find the player character (note may not be the active player)
+        if element.get_type() == "player":
+            player = element
+            break
+
+    if player.get_coords() == charac.get_coords():
+    # steal gold from player if on same tile
+        player_name = player.get_name()
+        next_command="steal "+ player_name
+        print("The thief stole gold from ",player_name)
+        return next_command
+    
+    return check_graze(world_state,charac)
+
+def wolf_aggressive(world_state,charac):
+    char_list = world_state.get_chars_at_tile(charac.get_coords())
+      
+    for char in char_list:
+        if char.get_name() == "chicken":
+          #print("Wolf submitted command to kill chicken")
+          return "kill chicken"
+        elif char.get_name() == "cow":
+          #print("Wolf submitted command to kill cow")
+          return "kill cow"
+
+    return check_graze(world_state,charac)
+    
+def cow_wild(world_state,charac):
+    if world_state.get_graze() == 'Y':
+        if (world_state.get_turn_number() % 2) == 0:
+          next_command = graze(world_state,charac)
+          return next_command
+    return None
+
+def check_graze(world_state,charac):
+    if world_state.get_graze() =="Y":
+      # graze as default if no other action for thief,chicken,wolf
+      next_command = graze(world_state,charac)
+      return next_command
+    else:
+      return None

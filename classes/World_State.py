@@ -277,54 +277,29 @@ class World_State:
     # Aggressive thief behavior ########################################
     # steal gold from player if on same tile, otherwise roam the grass
     if charac.get_name() == "Thief" and charac.get_state() =="aggressive":
-      for element in self.get_characters():
-        # find the player character (note may not be the active player)
-            if element.get_type() == "player":
-              player = element
-              break
-
-      if player.get_coords() == charac.get_coords():
-        # steal gold from player if on same tile
-        player_name = player.get_name()
-        next_command="steal "+ player_name
-        print("Thief submitted command to steal",player_name)
-        return next_command
+      next_command = npc_behaviors.thief_aggressive(self,charac)
         
     # Aggressive wolf behavior ################################################
     # kill chicken/cow if there is chicken/cow on same tile, otherwise it just moves randomly on grass
     elif charac.get_name() == "Wolf" and charac.get_state() =="aggressive":
-      char_list = self.get_chars_at_tile(charac.get_coords())
-      
-      for char in char_list:
-        if char.get_name() == "chicken":
-          print("Wolf submitted command to kill chicken")
-          return "kill chicken"
-        elif char.get_name() == "cow":
-          print("Wolf submitted command to kill cow")
-          return "kill cow"
+      next_command = npc_behaviors.wolf_aggressive(self,charac)
 
     # Wild cow behavior ###########################################################
     # cow is slower moving compared to chicken, it only moves once every 2 turns, roams grass
     elif charac.get_name() == "cow" and charac.get_state()=="wild":
-      if self.get_graze() == 'Y':
-        if (self.get_turn_number() % 2) == 0:
-          next_command = npc_behaviors.graze(self,charac)
-          return next_command
-      return None
+      next_command=npc_behaviors.cow_wild(self,charac)
+    
+    # Wild chicken behavior ######################################################
+    elif charac.get_name() == "chicken" and charac.get_state()=="wild":
+      next_command=npc_behaviors.check_graze(self,charac)
     
     # All other characters' behavior ######################################################
     else:
       # default do nothing if no behavior defined for character
       return None
     
-    if self.__graze =="Y":
-      # graze as default if no other action for thief,chicken,wolf
-      next_command = npc_behaviors.graze(self,charac)
-      return next_command
-    else:
-      return None
-
-
+    return next_command
+  
   def cheat_mode(self, command,charac):
     command = command.strip()
     words = command.split()
