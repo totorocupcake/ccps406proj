@@ -66,6 +66,17 @@ def wolf_aggressive(world_state,charac):
         elif char.get_name() == "cow":
           #print("Wolf submitted command to kill cow")
           return "kill cow"
+    
+    for row in world_state.get_tiles():
+        for tile in row:
+            if tile.get_name() == "barn" and tile.get_state()=="open":
+                for char in world_state.get_chars_at_tile(tile.get_coords()):
+                    if char.get_name()=="cow":
+                        return navigate_to_coord(tile.get_coords(),charac.get_coords())
+            if tile.get_name() == "chicken coop" and tile.get_state()=="open":
+                for char in world_state.get_chars_at_tile(tile.get_coords()):
+                    if char.get_name()=="chicken":
+                        return navigate_to_coord(tile.get_coords(),charac.get_coords())
 
     return check_graze(world_state,charac)
     
