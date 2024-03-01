@@ -451,8 +451,8 @@
     "state": "null",
     "gold_amt": 2,
     "description": {
-      "long_desc": "a small key to unlock and lock the chicken coop, barn and tool shed",
-      "short_desc": "a key for various farm buildings"
+      "long_desc": "a farm key to unlock and lock the chicken coop, barn and tool shed",
+      "short_desc": "a farm key for various farm buildings"
     },
     "interactions": [
       {
@@ -983,7 +983,7 @@
     "state": "null",
     "gold_amt": 2,
     "description": {
-      "long_desc": "a small key to unlock and lock the house",
+      "long_desc": "a house key to unlock and lock the house",
       "short_desc": "a house key"
     },
     "interactions": [
@@ -1021,7 +1021,7 @@
     "state": "null",
     "gold_amt": 2,
     "description": {
-      "long_desc": "a small key to unlock and lock the garage",
+      "long_desc": "a garage key to unlock and lock the garage",
       "short_desc": "a garage key"
     },
     "interactions": [
