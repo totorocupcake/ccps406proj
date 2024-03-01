@@ -15,7 +15,8 @@ def serialize_tile_object(tile):
     return {"co_ord_x":current_x, 
             "co_ord_y":current_y, 
             "turn_count": tile.get_turn_count(), 
-            "turn_state":tile.get_turn_state()}
+            "turn_state":tile.get_turn_state(),
+            "gold": tile.get_current_gold()}
 
 def serialize_item(item):
     return {
@@ -123,7 +124,7 @@ def save_world_status_turn_counter (world_state):
     
     for row in world_map:
         for element in row:
-            if element.get_turn_state() != "":
+            if (element.get_turn_state() != "") or (element.get_current_gold() != 0) :
                 turn_counter_list.append(serialize_tile_object(element))
                 
     with open('save_files/world_map_turn_status.json', 'w') as file:
