@@ -142,7 +142,17 @@
         "co_ord_x": 2,
         "co_ord_y": 13,
         "inventory":null
+    },
+    {
+        "type": "tool",
+        "name": "axe",
+        "state": "null",
+        "quantity": 1,
+        "co_ord_x": 2,
+        "co_ord_y": 13,
+        "inventory":null
     }
+
 
 
 

@@ -135,12 +135,12 @@ def interaction_commands(world_state,charac,command):
 
 
                     #----------------------------------------------------------
-                    # NOTE: special case for 'take'/'buy' interaction:
-                    #   if object is in inventory and try to 'take' or 'buy', 
+                    # NOTE: special case for 'take'/'buy'/'make' interaction:
+                    #   if object is in inventory and try to 'take', 'make' or 'buy', 
                     #   print message and return world_state:
                     #----------------------------------------------------------
 
-                    if (interac_verb == "take") or interac_verb == "buy":
+                    if (interac_verb == "take") or (interac_verb == "buy") or (interac_verb == "make"):
                         print(interac_noun, "is already in inventory.")
                         return world_state
 
