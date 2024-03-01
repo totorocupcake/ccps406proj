@@ -135,9 +135,10 @@ def process_store_gold(world_state,charac,command):
     current_tile = world_state.get_tiles()[x][y]
     words=command.split()
         
-    if current_tile.get_name() == "bedroom" and current_tile.get_state() == "open" and charac.get_type() == "player":
-    # can only store gold if they are located at an open bedroom and the character is the player 
-    # (npcs cannot store gold into the player's house as the house doesnt belong to them)
+    if current_tile.get_name() == "bedroom" and current_tile.get_state() == "open" and (charac.get_type() == "player" or \
+    charac.get_name() == "Thief"):
+    # can only store gold if they are located at an open bedroom and the character is the player or thief 
+    # (other npcs cannot store/take gold into the player's house as the house doesnt belong to them)
         
         if words[0]=="store":
             take_gold_entity = charac
@@ -148,13 +149,19 @@ def process_store_gold(world_state,charac,command):
         
         gold_to_take = take_gold_entity.get_current_gold()
         
-        if gold_to_take > 0:
+        if gold_to_take > 0:    # check if there is gold to take first
+            # swaps gold between take and receiving entity
             take_gold_entity.increment_current_gold(gold_to_take*-1)
             receive_gold_entity.increment_current_gold(gold_to_take)
-            print(f"You {words[0]} {gold_to_take} {'from' if words[0] == 'take' else 'into'} your bedroom's chest. Remember to lock your house to keep your gold safe!")   
-        else:
-            print(f"You don't have any gold to {words[0]}.")
+            
+            if charac.get_active_player()=='Y':
+                print(f"You {words[0]} {gold_to_take} {'from' if words[0] == 'take' else 'into'} your bedroom's chest. Remember to lock your house to keep your gold safe!")   
+       
+        else:   # no gold to take, so no need to process command further
+            if charac.get_active_player()=='Y':
+                print(f"You don't have any gold to {words[0]}.")
     else:
+        # not currently in open bedroom or not the player or thief so they shouldnt be able to do this
         print(f"You cannot {words[0]} gold here.")
     return world_state
             

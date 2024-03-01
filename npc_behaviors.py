@@ -38,6 +38,22 @@ def thief_aggressive(world_state,charac):
         print("The thief stole gold from ",player_name)
         return next_command
     
+    # thief steals gold if players room is open and has gold in it
+    for row in world_state.get_tiles():
+        for tile in row:
+            if tile.get_name() == "bedroom":
+                if tile.get_state() == "open" and tile.get_current_gold()>0:
+                    bedroom_coord = tile.get_coords()
+                    current_coord = charac.get_coords()
+                    
+                    if bedroom_coord != current_coord:
+                        return navigate_to_coord(bedroom_coord,current_coord)
+                    else:
+                        print("A wild roaming thief stole gold from your unlocked house!")
+                        return "take gold"
+                else:
+                    break
+        
     return check_graze(world_state,charac)
 
 def wolf_aggressive(world_state,charac):
@@ -67,3 +83,13 @@ def check_graze(world_state,charac):
       return next_command
     else:
       return None
+
+def navigate_to_coord (target_coord,current_coord):
+    if target_coord[0]>current_coord[0]:
+        return "e"
+    elif target_coord[0]<current_coord[0]:
+        return "w"
+    elif target_coord[1]>current_coord[1]:
+        return "s"
+    else:
+        return "n"
