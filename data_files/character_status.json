@@ -7,10 +7,7 @@
         "state": "null",
         "inventory":[{"name": "house key",
                     "quantity": 1,
-                    "state": "null"}, 
-                    {"name": "gun",
-                    "quantity": 1,
-                    "state": "null"},
+                    "state": "null"},                     
                     {
                     "name": "scythe",
                     "quantity": 1,
