@@ -23,6 +23,7 @@ class Tile(Turn_Based_Entity.Turn_Based_Entity):
     self._general_type = "Tile"
     self._turn_counter = 0
     self._turn_state = ""
+    self.__current_gold = 0 # added for mechanic to store gold in home
     
 
   # getter methods (tile specific):
@@ -91,8 +92,12 @@ class Tile(Turn_Based_Entity.Turn_Based_Entity):
     self.update_tile_by_state(self.get_turn_state())
     self.update_turn_counter (0, "")
 
+  def get_current_gold (self): 
+        return self.__current_gold
 
-
+  def increment_current_gold(self, increment_gold_amount):
+        # increment amount can be positive or negative
+        self.__current_gold += increment_gold_amount
 
 
 

@@ -12,19 +12,49 @@
                 "state": "null"
             },
             {
-                "name": "gun",
+                "name": "scythe",
+                "quantity": 1,
+                "state": "null"
+            },
+            {
+                "name": "flint",
+                "quantity": 1,
+                "state": "null"
+            },
+            {
+                "name": "branch",
                 "quantity": 1,
                 "state": "null"
             }
         ],
         "current_hp": 10,
         "max_hp": 10,
-        "current_gold": 0,
+        "current_gold": 20,
         "visited": [
+            {
+                "type": "Object",
+                "name": "farm key",
+                "state": "null"
+            },
             {
                 "type": "Tile",
                 "name": "kitchen",
                 "state": "open"
+            },
+            {
+                "type": "Tile",
+                "name": "bedroom",
+                "state": "open"
+            },
+            {
+                "type": "Object",
+                "name": "medkit",
+                "state": "null"
+            },
+            {
+                "type": "Object",
+                "name": "garage key",
+                "state": "null"
             }
         ],
         "turn_counter": [
@@ -66,8 +96,18 @@
         "current_gold": 0,
         "visited": [
             {
+                "type": "Object",
+                "name": "gun",
+                "state": "null"
+            },
+            {
                 "type": "Tile",
                 "name": "tool shop",
+                "state": "null"
+            },
+            {
+                "type": "Object",
+                "name": "axe",
                 "state": "null"
             }
         ],
@@ -212,7 +252,7 @@
         "type": "monster",
         "name": "Thief",
         "co_ord_x": 12,
-        "co_ord_y": 7,
+        "co_ord_y": 6,
         "state": "aggressive",
         "inventory": null,
         "current_hp": 10,
@@ -234,7 +274,7 @@
         "type": "monster",
         "name": "Wolf",
         "co_ord_x": 10,
-        "co_ord_y": 19,
+        "co_ord_y": 18,
         "state": "aggressive",
         "inventory": [
             {
@@ -289,8 +329,8 @@
     {
         "type": "npc",
         "name": "cow",
-        "co_ord_x": 3,
-        "co_ord_y": 9,
+        "co_ord_x": 2,
+        "co_ord_y": 10,
         "state": "wild",
         "inventory": [
             {

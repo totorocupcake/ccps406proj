@@ -98,7 +98,7 @@ def command_processor(world_state,charac,command):
     # 2. string, command formatted for state update (not sure if this is the only output)
     # 3. command_type, which tells state_update what type of command it is (basic, normal, advanced)
     
-    basic_commands = {"n","s","e","w","inventory"}
+    basic_commands = {"n","s","e","w","inventory","store gold","take gold"}
     
     replacement_dict = {
         # use this to replace commands, so that more than one word can be recognized as same command

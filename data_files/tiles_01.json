@@ -289,8 +289,8 @@
     "state": "open",
     "movable":"Y",
     "description": {
-      "long_desc": "The dimly lit bedroom is adorned with faded floral wallpaper and a worn-out rug. The only furniture in the small space is a creaky bed and desk in mismatched woods.",
-      "short_desc": "You stand in the bedroom."
+      "long_desc": "The dimly lit bedroom is adorned with faded floral wallpaper and a worn-out rug. The only furniture in the small space is a creaky bed and desk in mismatched woods with a battered chest where you can store your gold.",
+      "short_desc": "You stand in the bedroom, there is a chest where you can store gold here."
     },
     "interactions": [
       {

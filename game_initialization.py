@@ -195,8 +195,9 @@ def load_tile_2D_array_from_file(load_game):
   turn_count_data = text_file_processor.load_world_map_turn_status(load_game)
   
   for element in turn_count_data:
-    # append turn count status to each tile in json file
+    # append turn count status and current gold to each tile in json file 
     tile_2D_list[element["co_ord_x"]][element["co_ord_y"]].update_turn_counter(element["turn_count"],element["turn_state"])
+    tile_2D_list[element["co_ord_x"]][element["co_ord_y"]].increment_current_gold(element["gold"])
 
   return tile_2D_list
 
