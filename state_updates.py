@@ -39,8 +39,8 @@ def basic_commands(world_state,charac,command):
     elif command in directions_set:
         world_state=process_movement(world_state,charac,command) # moves character based on n,s,e,w input
     
-    elif command == "store gold":
-        world_state=process_store_gold(world_state,charac) # stores character's gold if at bedroom
+    elif command == "store gold" or command== "take gold":
+        world_state=process_store_gold(world_state,charac,command) # stores/takes character's gold if at bedroom
     
     # added: for dealing with 'interaction' commands
     elif command is not None:
@@ -128,24 +128,34 @@ def process_movement(world_state,charac,command):
             print("You cannot go there.") 
     return world_state
 
-def process_store_gold(world_state,charac):
+def process_store_gold(world_state,charac,command):
     # This function stores character's gold into the tile if they are at an open bedroom tile
     coord= charac.get_coords()
     x,y=coord
     current_tile = world_state.get_tiles()[x][y]
+    words=command.split()
         
     if current_tile.get_name() == "bedroom" and current_tile.get_state() == "open" and charac.get_type() == "player":
     # can only store gold if they are located at an open bedroom and the character is the player 
     # (npcs cannot store gold into the player's house as the house doesnt belong to them)
-        charac_gold = charac.get_current_gold()
-        if charac_gold > 0:
-            current_tile.increment_current_gold(charac_gold)
-            charac.increment_current_gold(charac_gold*-1)
-            print(f"You store {charac_gold} into your bedroom's chest. Remember to lock your house to keep it safe!")   
+        
+        if words[0]=="store":
+            take_gold_entity = charac
+            receive_gold_entity = current_tile
         else:
-            print("You don't have any gold to store.")
+            take_gold_entity = current_tile
+            receive_gold_entity = charac
+        
+        gold_to_take = take_gold_entity.get_current_gold()
+        
+        if gold_to_take > 0:
+            take_gold_entity.increment_current_gold(gold_to_take*-1)
+            receive_gold_entity.increment_current_gold(gold_to_take)
+            print(f"You {words[0]} {gold_to_take} {'from' if words[0] == 'take' else 'into'} your bedroom's chest. Remember to lock your house to keep your gold safe!")   
+        else:
+            print(f"You don't have any gold to {words[0]}.")
     else:
-        print("You cannot store gold here.")
+        print(f"You cannot {words[0]} gold here.")
     return world_state
             
 # def interaction_commands(world_state,charac,command):
