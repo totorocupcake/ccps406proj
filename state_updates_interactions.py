@@ -135,12 +135,12 @@ def interaction_commands(world_state,charac,command):
 
 
                     #----------------------------------------------------------
-                    # NOTE: special case for 'take' interaction:
-                    #   if object is in inventory and try to 'take', print 
-                    #   message and return world_state:
+                    # NOTE: special case for 'take'/'buy' interaction:
+                    #   if object is in inventory and try to 'take' or 'buy', 
+                    #   print message and return world_state:
                     #----------------------------------------------------------
 
-                    if interac_verb == "take":
+                    if (interac_verb == "take") or interac_verb == "buy":
                         print(interac_noun, "is already in inventory.")
                         return world_state
 
@@ -409,7 +409,7 @@ def interaction_commands(world_state,charac,command):
                 # ----------
                 # 4. (a) (ii) (III)
                 #   check 'Gold' requirements:
-                #       pay / steal requirement type = "Gold":
+                #       pay / steal /buy requirement type = "Gold":
                 elif req_elem["type"] == "Gold":
                     found_gold_req = False
 
@@ -446,6 +446,14 @@ def interaction_commands(world_state,charac,command):
                         if total_gold >= steal_amount:
                             found_gold_req = True
 
+                    if int_JSON_obj["name"].lower() == "buy":
+
+                        if charac.get_current_gold() >=  req_elem["qty"]:
+                            found_gold_req = True
+                            charac.increment_current_gold( (-1) * req_elem["qty"])
+
+                        
+
 
 
                 # ----------
@@ -462,6 +470,7 @@ def interaction_commands(world_state,charac,command):
                             if npc_elem.get_name().lower() == req_elem["name"].lower() and npc_elem.get_state().lower() == req_elem["state"].lower():
                                 # print("\tDEBUG: found required Character: ", npc_elem.get_name())
                                 found_char_req = True
+                                break 
 
 
 

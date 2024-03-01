@@ -740,7 +740,7 @@
 
         "success_desc": "You buy a gun that can provide protection against thieves or wild animals.",
         "fail_desc": "You cannot buy the gun right now.",
-        "change_state_to": "null",
+        "change_state_to": "delete",
         "requirement": [
           {
             "type": "Character",
