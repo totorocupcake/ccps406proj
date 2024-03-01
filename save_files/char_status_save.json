@@ -29,8 +29,34 @@
         ],
         "current_hp": 10,
         "max_hp": 10,
-        "current_gold": 20,
-        "visited": null,
+        "current_gold": 0,
+        "visited": [
+            {
+                "type": "Tile",
+                "name": "kitchen",
+                "state": "open"
+            },
+            {
+                "type": "Object",
+                "name": "garage key",
+                "state": "null"
+            },
+            {
+                "type": "Tile",
+                "name": "bedroom",
+                "state": "open"
+            },
+            {
+                "type": "Object",
+                "name": "medkit",
+                "state": "null"
+            },
+            {
+                "type": "Object",
+                "name": "farm key",
+                "state": "null"
+            }
+        ],
         "turn_counter": [
             0,
             "null"
@@ -46,7 +72,13 @@
         "current_hp": 10,
         "max_hp": 10,
         "current_gold": 0,
-        "visited": null,
+        "visited": [
+            {
+                "type": "Tile",
+                "name": "town hall",
+                "state": "null"
+            }
+        ],
         "turn_counter": [
             0,
             "null"
@@ -62,7 +94,23 @@
         "current_hp": 10,
         "max_hp": 10,
         "current_gold": 0,
-        "visited": null,
+        "visited": [
+            {
+                "type": "Object",
+                "name": "gun",
+                "state": "null"
+            },
+            {
+                "type": "Tile",
+                "name": "tool shop",
+                "state": "null"
+            },
+            {
+                "type": "Object",
+                "name": "axe",
+                "state": "null"
+            }
+        ],
         "turn_counter": [
             0,
             "null"
@@ -78,7 +126,13 @@
         "current_hp": 10,
         "max_hp": 10,
         "current_gold": 0,
-        "visited": null,
+        "visited": [
+            {
+                "type": "Tile",
+                "name": "animal products shop",
+                "state": "null"
+            }
+        ],
         "turn_counter": [
             0,
             "null"
@@ -94,7 +148,13 @@
         "current_hp": 10,
         "max_hp": 10,
         "current_gold": 0,
-        "visited": null,
+        "visited": [
+            {
+                "type": "Tile",
+                "name": "plant products shop",
+                "state": "null"
+            }
+        ],
         "turn_counter": [
             0,
             "null"
@@ -110,7 +170,13 @@
         "current_hp": 10,
         "max_hp": 10,
         "current_gold": 0,
-        "visited": null,
+        "visited": [
+            {
+                "type": "Tile",
+                "name": "grasslands",
+                "state": "null"
+            }
+        ],
         "turn_counter": [
             0,
             "null"
@@ -126,7 +192,13 @@
         "current_hp": 10,
         "max_hp": 10,
         "current_gold": 0,
-        "visited": null,
+        "visited": [
+            {
+                "type": "Tile",
+                "name": "Pennys house",
+                "state": "null"
+            }
+        ],
         "turn_counter": [
             0,
             "null"
@@ -142,7 +214,13 @@
         "current_hp": 10,
         "max_hp": 10,
         "current_gold": 0,
-        "visited": null,
+        "visited": [
+            {
+                "type": "Tile",
+                "name": "Jimmys house",
+                "state": "null"
+            }
+        ],
         "turn_counter": [
             0,
             "null"
@@ -158,7 +236,13 @@
         "current_hp": 10,
         "max_hp": 10,
         "current_gold": 0,
-        "visited": null,
+        "visited": [
+            {
+                "type": "Tile",
+                "name": "Claires house",
+                "state": "null"
+            }
+        ],
         "turn_counter": [
             0,
             "null"
@@ -168,13 +252,19 @@
         "type": "monster",
         "name": "Thief",
         "co_ord_x": 12,
-        "co_ord_y": 8,
+        "co_ord_y": 7,
         "state": "aggressive",
         "inventory": null,
         "current_hp": 10,
         "max_hp": 10,
         "current_gold": 5,
-        "visited": null,
+        "visited": [
+            {
+                "type": "Tile",
+                "name": "grasslands",
+                "state": "null"
+            }
+        ],
         "turn_counter": [
             0,
             "null"
@@ -184,7 +274,7 @@
         "type": "monster",
         "name": "Wolf",
         "co_ord_x": 10,
-        "co_ord_y": 20,
+        "co_ord_y": 19,
         "state": "aggressive",
         "inventory": [
             {
@@ -196,7 +286,13 @@
         "current_hp": 10,
         "max_hp": 10,
         "current_gold": 0,
-        "visited": null,
+        "visited": [
+            {
+                "type": "Tile",
+                "name": "grasslands",
+                "state": "null"
+            }
+        ],
         "turn_counter": [
             0,
             "null"
@@ -218,7 +314,13 @@
         "current_hp": 10,
         "max_hp": 10,
         "current_gold": 0,
-        "visited": null,
+        "visited": [
+            {
+                "type": "Tile",
+                "name": "grasslands",
+                "state": "null"
+            }
+        ],
         "turn_counter": [
             0,
             "null"
@@ -228,7 +330,7 @@
         "type": "npc",
         "name": "cow",
         "co_ord_x": 3,
-        "co_ord_y": 9,
+        "co_ord_y": 10,
         "state": "wild",
         "inventory": [
             {
@@ -240,7 +342,13 @@
         "current_hp": 10,
         "max_hp": 10,
         "current_gold": 0,
-        "visited": null,
+        "visited": [
+            {
+                "type": "Tile",
+                "name": "grasslands",
+                "state": "null"
+            }
+        ],
         "turn_counter": [
             0,
             "null"

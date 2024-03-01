@@ -1,9 +1,9 @@
 [
     {
         "co_ord_x": 6,
-        "co_ord_y": 12,
+        "co_ord_y": 11,
         "turn_count": 0,
-        "turn_state": "null",
-        "gold": 5
+        "turn_state": "",
+        "gold": 20
     }
 ]
