@@ -903,7 +903,7 @@
 
         "success_desc": "You make a sharp axe that could be used for clearing brush.",
         "fail_desc": "You cannot make the axe right now.",
-        "change_state_to": "null",
+        "change_state_to": "delete",
         "requirement": [
           {
             "type": "Character",
