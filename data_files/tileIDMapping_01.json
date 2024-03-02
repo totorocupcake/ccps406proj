@@ -172,12 +172,12 @@
     }, 
     {
         "tile_id": "22",
-        "name": "field 1", 
+        "name": "wheat field", 
         "state": "not_ready"
     },
     {
         "tile_id": "24",
-        "name": "field 2", 
+        "name": "wheat field", 
         "state": "not_ready"
     }
 
