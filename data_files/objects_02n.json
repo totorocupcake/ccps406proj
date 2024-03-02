@@ -338,38 +338,7 @@
       "long_desc": "a bale of grass that can be fed to your domesticated animals",
       "short_desc": "a bale of grass"
     },
-    "interactions":  [
-      {
-        "name": "harvest",
-        
-        "success_desc": "You harvest a bale of grass that can be fed to your domesticated animals.",
-        "fail_desc": "You cannot harvest the grass right now.",
-        "change_state_to": "null",
-        "requirement": [
-          {
-            "type": "tile",
-            "name": "field 1",
-            "state": "ready CHANGE_STATE_TO not_ready",
-            "qty": null,
-            "remove_obj": "N"
-          },
-          {
-            "type": "object",
-            "name": "scythe",
-            "state": "null",
-            "qty": 1,
-            "remove_obj": "N"
-          }
-        ],
-        "obtain": [{
-          "type": "Item",
-          "name": "grass",
-          "state": "null",
-          "qty": 1
-        }
-      ]
-      }
-    ]
+    "interactions": null
     
   },
 

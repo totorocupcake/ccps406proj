@@ -86,12 +86,12 @@
     }, 
     {
         "tile_id": "13",
-        "name": "field 2", 
+        "name": "wheat field", 
         "state": "ready"
     }, 
     {
         "tile_id": "15",
-        "name": "field 1", 
+        "name": "grass field", 
         "state": "ready"
     }, 
     {
@@ -172,7 +172,7 @@
     }, 
     {
         "tile_id": "22",
-        "name": "wheat field", 
+        "name": "grass field", 
         "state": "not_ready"
     },
     {
