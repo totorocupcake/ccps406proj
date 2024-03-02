@@ -158,7 +158,7 @@
     {
         "tile_id": "19",
         "name": "apple tree", 
-        "state": "growing_notready"
+        "state": "growing_ready"
     }, 
     {
         "tile_id": "1D",
