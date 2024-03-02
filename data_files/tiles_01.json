@@ -374,7 +374,7 @@
 
 
   {
-    "name": "field 1",
+    "name": "grass field",
     "type": "non-building",
     "state": "ready",
     "movable":"Y",
@@ -382,11 +382,33 @@
       "long_desc": "Stepping into the field, you find yourself surrounded by blades of grass that tower above you. To the west lies a path surrounded by thick forrest. To the north is a number of trees, these ones much smaller than those of the forest that surrounds the property. To the east is another field, this one of wheat. To the south is the back of the farm house's garage.",
       "short_desc": "You stand in a field of grass."
     },
-    "interactions": null
+    "interactions":  {
+      "name": "harvest",
+      
+      "success_desc": "You harvest a bale of grass that can be fed to your domesticated animals.",
+      "fail_desc": "You cannot harvest the grass right now.",
+      "change_state_to": "not_ready",
+      "requirement": [
+        {
+          "type": "object",
+          "name": "scythe",
+          "state": "null",
+          "qty": 1,
+          "remove_obj": "N"
+        }
+      ],
+      "obtain": [{
+        "type": "Item",
+        "name": "grass",
+        "state": "null",
+        "qty": 1
+      }
+    ]
+    }
 
   },
   {
-    "name": "field 1",
+    "name": "grass field",
     "type": "non-building",
     "state": "not_ready",
     "movable":"Y",
