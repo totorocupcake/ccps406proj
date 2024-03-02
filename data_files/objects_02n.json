@@ -97,43 +97,6 @@
       "short_desc": "a large amount of honey"
     },
     "interactions":   [
-      {
-        "name": "harvest",
-
-        "success_desc": "You harvest a large amount of honey that can be sold at the merchant for gold.",
-        "fail_desc": "You cannot harvest the honey right now.",
-        "change_state_to": "null",
-        "requirement": [
-          {
-            "type": "tile",
-            "name": "bee hive",
-            "state": "ready CHANGE_STATE_TO not_ready",
-            "qty": null,
-            "remove_obj": "N"
-          },
-          {
-            "type": "object",
-            "name": "bee smoker",
-            "state": "null",
-            "qty": 1,
-            "remove_obj": "N"
-          },
-          {
-            "type": "object",
-            "name": "beekeeping suit",
-            "state": "null",
-            "qty": 1,
-            "remove_obj": "N"
-          }
-        ],
-        "obtain": [ {
-          "type": "Item",
-          "name": "honey",
-          "state": "null",
-          "qty": 1
-        }
-      ]
-      },
 
       {
         "name": "sell",
