@@ -3,7 +3,8 @@ import random
 def graze(world_state,charac):
       # get_next_action sub function to define a generic "Grazing" behavior for wild cow/chicken
       # should move randomly n,w,e,w if there is grassland available for them
-        
+    random.seed(42)
+    
     available_directions = [] 
     current_x,current_y = charac.get_coords()
         
@@ -82,16 +83,19 @@ def wolf_aggressive(world_state,charac):
     
 def cow_wild(world_state,charac):
     if world_state.get_graze() == 'Y':
-        if (world_state.get_turn_number() % 2) == 0:
+        if (world_state.get_turn_number() % 3) == 0:
           next_command = graze(world_state,charac)
           return next_command
     return None
 
 def check_graze(world_state,charac):
+    # graze as default if no other action for thief,chicken,wolf
     if world_state.get_graze() =="Y":
-      # graze as default if no other action for thief,chicken,wolf
-      next_command = graze(world_state,charac)
-      return next_command
+        if (world_state.get_turn_number() % 2) == 0:
+            next_command = graze(world_state,charac)
+            return next_command
+        else:
+            return None
     else:
       return None
 
