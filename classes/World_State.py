@@ -305,76 +305,82 @@ class World_State:
     command = command.strip()
     words = command.split()
     
-    if words[0] == "spawn":
-      charac_name = words[1]
-      charac_state = words[2]
-      charac_coord = words[3]
-      charac_coord = charac_coord.split(',')
-      x = int(charac_coord[0])
-      y = int(charac_coord[1]) 
-      
-      
-      if charac_name in ("thief", "penny","jimmy","claire","wolf"):
-        charac_name = charac_name[0].upper() + charac_name[1:]
+    try:
+      if words[0] == "spawn":
+        charac_name = words[1]
+        charac_state = words[2]
+        charac_coord = words[3]
+        charac_coord = charac_coord.split(',')
+        x = int(charac_coord[0])
+        y = int(charac_coord[1]) 
+        
+        
+        if charac_name in ("thief", "penny","jimmy","claire","wolf"):
+          charac_name = charac_name[0].upper() + charac_name[1:]
 
-      new_charac = Character.Character()
-      new_charac.set_name(charac_name)
-      new_charac.update_coords((x,y))
-      new_charac.set_state(charac_state)
-      new_charac.set_type(text_file_processor.lookup_type("Character",charac_name,charac_state))
+        new_charac = Character.Character()
+        new_charac.set_name(charac_name)
+        new_charac.update_coords((x,y))
+        new_charac.set_state(charac_state)
+        new_charac.set_type(text_file_processor.lookup_type("Character",charac_name,charac_state))
+        
+        self.spawn_character(new_charac)
+        print("Spawned character")
+      elif command == "graze":
+        if self.get_graze() == 'Y':
+          self.set_graze('N')
+          print("All monster graze movement paused.")
+        elif self.get_graze() == 'N':
+          self.set_graze('Y')
+          print("All monster graze movement resumed.")
+      elif words[0] == "get_desc":
+        charac_coord = words[1]
+        charac_coord = charac_coord.split(',')
+        x = int(charac_coord[0])
+        y = int(charac_coord[1])
+        print (self.get_description((x,y),{}))
+      elif words[0] == "teleport":
+        charac_coord = words[1]
+        charac_coord = charac_coord.split(',')
+        x = int(charac_coord[0])
+        y = int(charac_coord[1])
+        charac.update_coords((x,y))
+        print (f"Teleported to {x},{y}.")
+      elif words[0] == "kill": #cheat kill thief 6,12
+        charac_name_to_kill=words[1]
+        charac_coord = words[2]
+        charac_coord=charac_coord.split(',')
+        x = int(charac_coord[0])
+        y = int(charac_coord[1])
+        for charac in self.get_chars_at_tile((x,y)):
+          if charac.get_name().lower() == charac_name_to_kill:
+            self = self.remove_character(charac)
+            print("Removed character.")
+            break
+      elif words[0]=="swap": #cheat swap penny
+        charac_to_swap=words[1]
+        for charac in self.get_characters():
+          if charac.get_name().lower() == charac_to_swap:
+            current_active_char = self.get_active_char()
+            current_active_char.set_active_player(False)
+            charac.set_active_player(True)
+      elif words[0] == "create": #cheat create state gun
+        name = " ".join(words[2:])
+        obj = Object.Object()
+        obj.set_state(words[1])
+        obj.set_name(name)
+        obj.update_qty(1)
+        obj.set_type(text_file_processor.lookup_type("Object",name,words[1]))
+        obj.set_gold_amt(text_file_processor.lookup_gold_amt(name,words[1]))
+        charac.update_inventory("add",[obj])
+        print(f"Added {name} into your inventory.")
+      else:
+        print("Cheat command not recognized.")
       
-      self.spawn_character(new_charac)
-      print("Spawned character")
-    elif command == "graze":
-      if self.get_graze() == 'Y':
-        self.set_graze('N')
-        print("All monster graze movement paused.")
-      elif self.get_graze() == 'N':
-        self.set_graze('Y')
-        print("All monster graze movement resumed.")
-    elif words[0] == "get_desc":
-      charac_coord = words[1]
-      charac_coord = charac_coord.split(',')
-      x = int(charac_coord[0])
-      y = int(charac_coord[1])
-      print (self.get_description((x,y),{}))
-    elif words[0] == "teleport":
-      charac_coord = words[1]
-      charac_coord = charac_coord.split(',')
-      x = int(charac_coord[0])
-      y = int(charac_coord[1])
-      charac.update_coords((x,y))
-      print (f"Teleported to {x},{y}.")
-    elif words[0] == "kill": #cheat kill thief 6,12
-      charac_name_to_kill=words[1]
-      charac_coord = words[2]
-      charac_coord=charac_coord.split(',')
-      x = int(charac_coord[0])
-      y = int(charac_coord[1])
-      for charac in self.get_chars_at_tile((x,y)):
-        if charac.get_name().lower() == charac_name_to_kill:
-           self = self.remove_character(charac)
-           print("Removed character.")
-           break
-    elif words[0]=="swap": #cheat swap penny
-      charac_to_swap=words[1]
-      for charac in self.get_characters():
-        if charac.get_name().lower() == charac_to_swap:
-          current_active_char = self.get_active_char()
-          current_active_char.set_active_player(False)
-          charac.set_active_player(True)
-    elif words[0] == "create": #cheat create state gun
-      name = " ".join(words[2:])
-      obj = Object.Object()
-      obj.set_state(words[1])
-      obj.set_name(name)
-      obj.update_qty(1)
-      obj.set_type(text_file_processor.lookup_type("Object",name,words[1]))
-      obj.set_gold_amt(text_file_processor.lookup_gold_amt(name,words[1]))
-      charac.update_inventory("add",[obj])
-      print(f"Added {name} into your inventory.")
-    
-    return self
+      return self
+    except (ValueError,IndexError): 
+      print("Invalid cheat mode command format.")
+      return self
 
 def spawn_monster_checks(world_state):
   """

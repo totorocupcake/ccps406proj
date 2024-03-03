@@ -790,7 +790,7 @@
     "name": "tool shop",
     "type": "building",
     "state": "null",
-    "movable":"N",
+    "movable":"Y",
     "description": {
       "long_desc": "You step into a shop that smells of polished wood and metal. Tools line the walls around you.",
       "short_desc": "You step into the tool shop."

@@ -53,14 +53,31 @@
 
 
   {
-    "name": "Merchant 1",
+    "name": "Tool Merchant",
     "type": "npc",
     "state": "null",
     "description": {
-      "long_desc": "a merchant that sells guns and makes axes (assuming you have the right components)",
-      "short_desc": "a gun and axe merchant"
+      "long_desc": "a tool merchant who greets you",
+      "short_desc": "a tool merchant"
     },
-    "interactions": null
+    "interactions": [
+      {
+        "name": "greet",
+        "success_desc": "The merchant waves and gives advice that you can use the gun to kill wild animals and thieves in the area.",
+        "fail_desc": "The merchant waves and gives advice that you can use the gun to kill wild animals and thieves in the area.",
+        "change_state_to": "null",
+        "requirement": null,
+        "obtain": null
+      },
+      {
+        "name": "talk",
+        "success_desc": "The merchant waves and gives advice that you can use the gun to kill wild animals and thieves in the area.",
+        "fail_desc": "The merchant waves and gives advice that you can use the gun to kill wild animals and thieves in the area.",
+        "change_state_to": "null",
+        "requirement": null,
+        "obtain": null
+      }
+    ]
     
   }, 
 
