@@ -58,6 +58,7 @@ def interaction_commands(world_state,charac,command):
     
     # needed for processing advanced state change interaction
     advanced_change_state_to = False
+    advanced_next_tile_state_str = ""
 
     found_obj_inv_list = []
 
@@ -77,6 +78,29 @@ def interaction_commands(world_state,charac,command):
         interac_name = interac_noun
         interac_general_type = "Tile"
         interac_state = current_tl.get_state()
+
+
+
+
+
+
+
+
+
+        print() 
+        print("\tDEBUG: found_interac_tile = ", found_interac_tile)
+        print("\tDEBUG: interac_general_type = ", interac_general_type)
+        print("\tDEBUG: interac_name = ", interac_name)
+        print("\tDEBUG: interac_name = ", interac_state)
+        print() 
+
+
+
+
+
+
+
+
 
 
     # ------
@@ -140,7 +164,10 @@ def interaction_commands(world_state,charac,command):
                     #   print message and return world_state:
                     #----------------------------------------------------------
 
-                    if (interac_verb == "take") or (interac_verb == "buy") or (interac_verb == "make"):
+                    # if (interac_verb == "take") or (interac_verb == "buy") \
+                    #         or (interac_verb == "make") or (interac_verb == "harvest"):
+                    if (interac_verb == "take") or (interac_verb == "buy") \
+                            or (interac_verb == "make"):
                         print(interac_noun, "is already in inventory.")
                         return world_state
 
@@ -333,6 +360,12 @@ def interaction_commands(world_state,charac,command):
 
                     tile_req_satisfied = False                    
 
+
+# **************************************************************
+#   For bee hive, field 2 (wheat), field 1 (grass), apple tree
+#        apple tree (has 3 states, might be a bit more complicated)
+# **************************************************************
+
                     advanced_change_state_to = False
                     substring = "CHANGE_STATE_TO"
                     index = req_elem["state"].find(substring)
@@ -356,6 +389,11 @@ def interaction_commands(world_state,charac,command):
 
                             new_tile_name = req_elem["name"]
                             new_tile_state = change_state_to_str_arr[2]
+
+#   For bee hive, field 2 (wheat), field 1 (grass), apple tree
+#       after timer expires, change state to advanced_next_tile_state_str
+
+                            advanced_next_tile_state_str = change_state_to_str_arr[0]
                         else:
                             tile_req_satisfied = False
 
@@ -516,8 +554,15 @@ def interaction_commands(world_state,charac,command):
             
             # ----------
             # 5. (a) 
-            #    advanced change state: 
+            #    advanced change state - Tile: 
             if advanced_change_state_to == True and tile_req_satisfied == True:
+
+
+# ********************************************************************
+#   For bee hive, field 2 (wheat), field 1 (grass), 
+#        apple tree (has 3 states, might be a bit more complicated)
+# ********************************************************************
+
 
                 print("DEBUG:")
                 print("DEBUG: new_tile_state = ", new_tile_state)
@@ -530,7 +575,17 @@ def interaction_commands(world_state,charac,command):
                 # not sure if this is needed, but:
                 new_tile.set_tile_id(new_tile_id)
 
+
+#   For bee hive, field 2 (wheat), field 1 (grass), call for timer/change state:
+
+                print("\tDEBUG:")
+                print("\tDEBUG: advanced_next_tile_state_str = ", advanced_next_tile_state_str)
+                print("\tDEBUG:")
+            
+                new_tile.update_turn_counter(5, advanced_next_tile_state_str)
+
                 new_tile.update_coords(tile_to_update.get_coords())
+
 
                 world_state.update_tile(new_tile.get_coords(), new_tile)
 
@@ -750,7 +805,7 @@ def interaction_commands(world_state,charac,command):
 
                 obtain_obj_list = []
                 
-    # iteratate through the obtains list, add items to a list of objects:
+                # iteratate through the obtains list, add items to a list of objects:
                 for obtain_elem in int_JSON_obj["obtain"]:
 
 
@@ -786,9 +841,14 @@ def interaction_commands(world_state,charac,command):
                             print("DEBUG: found_in_current_inv = ", found_in_current_inv)
                             # print("DEBUG: (obtain_elem['type'] == 'Item') not found:")
                             print()
+                            print(obtain_elem["name"], "is already in inventory.")
+                            # print(interac_noun, "is already in inventory.")
+                            return world_state
 
-                            output = text_formatting.dynamic_variable_processor(world_state, int_JSON_obj["fail_desc"])
-                            print(output)
+                            # output = text_formatting.dynamic_variable_processor(world_state, int_JSON_obj["fail_desc"])
+                            # print(output)
+
+                            # return world_state
 
                             print()
 
@@ -796,7 +856,7 @@ def interaction_commands(world_state,charac,command):
                         if (len(obtain_obj_list) > 0):
                             # world_state.remove_character(charac)
                             charac.update_inventory("add", obtain_obj_list)
-                            world_state.spawn_character(charac)
+                            # world_state.spawn_character(charac)
 
                     # ----------
                     # 5. (d) (ii)
