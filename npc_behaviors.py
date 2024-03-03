@@ -59,7 +59,9 @@ def thief_aggressive(world_state,charac):
 
 def wolf_aggressive(world_state,charac):
     char_list = world_state.get_chars_at_tile(charac.get_coords())
-    current_tl= charac.get_coords()
+    current_coord= charac.get_coords()
+    x,y = current_coord
+    current_tl = world_state.get_tiles()[x][y]
     
     if current_tl.get_movable()=='Y':
         for char in char_list:
