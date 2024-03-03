@@ -28,6 +28,16 @@
 
         ],
         "obtain": null
+      },
+
+      {
+        "name": "greet",
+   
+        "success_desc": "The landlord keeps asking if you have enough gold to pay your outstanding rent. He advises you to sell farming products at the nearby shops.",
+        "fail_desc": "The landlord keeps asking if you have enough gold to pay your outstanding rent. He advises you to sell farming products at the nearby shops.",
+        "change_state_to": "unhappy",
+        "requirement": null,
+        "obtain": null
       }
     ]
 
@@ -41,7 +51,7 @@
     "type": "npc",
     "state": "happy",
     "description": {
-      "long_desc": "the landlord, who is a tall person wearing a black coat and hat, is happy because you have paid the rent",
+      "long_desc": "the landlord who is very happy because you have paid the rent",
       "short_desc": "the happy landlord"
     },
     "interactions": null
@@ -724,7 +734,7 @@
     "type": "npc",
     "state": "tamed_hungry",
     "description": {
-      "long_desc": "a tamed but hungry fluffy cow that you have caught (it loves apples!)",
+      "long_desc": "a tamed but hungry fluffy cow that you have caught (it loves grass!)",
       "short_desc": "a tamed but hungry cow"
     },
     "interactions":    
