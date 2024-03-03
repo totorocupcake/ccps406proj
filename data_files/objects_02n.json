@@ -726,7 +726,7 @@
 
         "success_desc": "You plant some apple seeds that might grow into an apple tree.",
         "fail_desc": "You cannot plant the apple seeds right now.",
-        "change_state_to": "null",
+        "change_state_to": "delete",
         "requirement": [
           {
             "type": "tile",
