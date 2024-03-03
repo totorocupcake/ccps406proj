@@ -372,7 +372,7 @@ class World_State:
       obj.set_type(text_file_processor.lookup_type("Object",name,words[1]))
       obj.set_gold_amt(text_file_processor.lookup_gold_amt(name,words[1]))
       charac.update_inventory("add",[obj])
-      print(f"Added {words[1]} into your inventory.")
+      print(f"Added {name} into your inventory.")
     
     return self
 

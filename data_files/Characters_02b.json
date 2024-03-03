@@ -869,7 +869,7 @@
       {
         "name": "steal",
    
-        "success_desc": "You manage to steal the gold from %player_name%.",
+        "success_desc": "You manage to steal the %gold% gold from %player_name%.",
         "fail_desc": "You failed to steal gold from %player_name%.",
         "change_state_to": "null",
         "requirement": [
