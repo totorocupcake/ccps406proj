@@ -164,7 +164,7 @@ def print_failed_requirement(world_state, int_JSON_obj,charac):
     if charac is not None and charac.get_general_type()=="Character" and charac.get_active_player()=='Y':
         print()
         output = text_formatting.dynamic_variable_processor(world_state, int_JSON_obj["fail_desc"])
-        print(output)
+        print(text_formatting.justify(output))
         print()
 
 
@@ -173,7 +173,7 @@ def print_success_requirement(world_state,int_JSON_obj,charac):
     if charac is not None and charac.get_general_type()=="Character" and charac.get_active_player()=='Y':
         print()
         output = text_formatting.dynamic_variable_processor(world_state, int_JSON_obj["success_desc"])
-        print(output)
+        print(text_formatting.justify(output))
         print()
                      
                         
@@ -255,12 +255,14 @@ def process_change_state_to(world_state,charac,int_JSON_obj,noun_entity):
                     # check if change state to has CHANGE_TILE_TO within it and make updates based on the provided tile id
                     id = int_JSON_obj["change_state_to"].split()[1]
                     noun_entity.update_tile_by_id(id)
+                    world_state = interaction_commands (world_state,noun_entity,"DEFAULT " + noun_entity.get_name())
                 else:
                     # make update to tile based on provided new state stored in change_state_to JSON field
                     noun_entity.update_tile_by_state(int_JSON_obj["change_state_to"])
-                    world_state = interaction_commands (world_state,noun_entity,"DEFAULT " + noun_entity.get_name())
-                    # in the above line, we make a call to submit command "DEFAULT tile_name" in case the updated tile 
-                    # has a default interaction
+                    
+                world_state = interaction_commands (world_state,noun_entity,"DEFAULT " + noun_entity.get_name())
+                # in the above line, we make a call to submit command "DEFAULT tile_name" in case the updated tile 
+                # has a default interaction
                     
             elif noun_entity.get_general_type() == "Character":
                 # update here is specified if the noun_entity is a character:
