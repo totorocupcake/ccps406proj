@@ -2,8 +2,8 @@
     {
         "type": "player",
         "name": "totoro",
-        "co_ord_x": 6,
-        "co_ord_y": 11,
+        "co_ord_x": 8,
+        "co_ord_y": 12,
         "state": "null",
         "inventory": [
             {
@@ -17,14 +17,19 @@
                 "state": "null"
             },
             {
-                "name": "flint",
+                "name": "bee smoker",
                 "quantity": 1,
                 "state": "null"
             },
             {
-                "name": "branch",
+                "name": "beekeeping suit",
                 "quantity": 1,
                 "state": "null"
+            },
+            {
+                "name": "watering can",
+                "quantity": 1,
+                "state": "full"
             }
         ],
         "current_hp": 10,
@@ -32,8 +37,18 @@
         "current_gold": 20,
         "visited": [
             {
+                "type": "Tile",
+                "name": "grasslands",
+                "state": "null"
+            },
+            {
                 "type": "Object",
-                "name": "farm key",
+                "name": "bee smoker",
+                "state": "null"
+            },
+            {
+                "type": "Object",
+                "name": "flint",
                 "state": "null"
             },
             {
@@ -43,17 +58,7 @@
             },
             {
                 "type": "Tile",
-                "name": "bedroom",
-                "state": "open"
-            },
-            {
-                "type": "Object",
-                "name": "medkit",
-                "state": "null"
-            },
-            {
-                "type": "Object",
-                "name": "garage key",
+                "name": "water well",
                 "state": "null"
             }
         ],
@@ -101,13 +106,13 @@
                 "state": "null"
             },
             {
-                "type": "Tile",
-                "name": "tool shop",
+                "type": "Object",
+                "name": "axe",
                 "state": "null"
             },
             {
-                "type": "Object",
-                "name": "axe",
+                "type": "Tile",
+                "name": "tool shop",
                 "state": "null"
             }
         ],
@@ -302,7 +307,7 @@
         "type": "npc",
         "name": "chicken",
         "co_ord_x": 3,
-        "co_ord_y": 17,
+        "co_ord_y": 15,
         "state": "wild",
         "inventory": [
             {
@@ -329,8 +334,8 @@
     {
         "type": "npc",
         "name": "cow",
-        "co_ord_x": 2,
-        "co_ord_y": 10,
+        "co_ord_x": 3,
+        "co_ord_y": 8,
         "state": "wild",
         "inventory": [
             {

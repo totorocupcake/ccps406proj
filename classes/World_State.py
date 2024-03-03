@@ -206,14 +206,15 @@ class World_State:
         
 
     # add each object in the tile's inventory:
-    if current_tl_inv_list is not None:
-      for tl_inv_elem in current_tl_inv_list:
-        inv_tuple = (tl_inv_elem.get_general_type(), tl_inv_elem.get_name(), \
-                      tl_inv_elem.get_state() )
-        if inv_tuple in visited:
-          desc_list.append(tl_inv_elem.get_desc("short",self))
-        else:
-          desc_list.append(tl_inv_elem.get_desc("long",self))
+    if current_tl.get_movable() == "Y":
+      if current_tl_inv_list is not None:
+        for tl_inv_elem in current_tl_inv_list:
+          inv_tuple = (tl_inv_elem.get_general_type(), tl_inv_elem.get_name(), \
+                        tl_inv_elem.get_state() )
+          if inv_tuple in visited:
+            desc_list.append(tl_inv_elem.get_desc("short",self))
+          else:
+            desc_list.append(tl_inv_elem.get_desc("long",self))
 
 
     # ------------------------------------------------------
@@ -362,7 +363,17 @@ class World_State:
           current_active_char = self.get_active_char()
           current_active_char.set_active_player(False)
           charac.set_active_player(True)
-          
+    elif words[0] == "create": #cheat create state gun
+      name = " ".join(words[2:])
+      obj = Object.Object()
+      obj.set_state(words[1])
+      obj.set_name(name)
+      obj.update_qty(1)
+      obj.set_type(text_file_processor.lookup_type("Object",name,words[1]))
+      obj.set_gold_amt(text_file_processor.lookup_gold_amt(name,words[1]))
+      charac.update_inventory("add",[obj])
+      print(f"Added {name} into your inventory.")
+    
     return self
 
 def spawn_monster_checks(world_state):
