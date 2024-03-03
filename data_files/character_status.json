@@ -45,7 +45,7 @@
     },
     {
         "type": "npc",
-        "name": "Merchant 1",
+        "name": "Tool Merchant",
         "co_ord_x": 2,
         "co_ord_y": 13,
         "state": "null",
