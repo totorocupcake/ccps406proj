@@ -345,7 +345,7 @@
 
       "success_desc": "You harvest a large amount of honey that can be sold at the merchant for gold.",
       "fail_desc": "You cannot harvest the honey right now.",
-      "change_state_to": "ready",
+      "change_state_to": "not_ready",
       "requirement": [
         {
           "type": "object",
@@ -359,13 +359,6 @@
           "name": "beekeeping suit",
           "state": "null",
           "qty": 1,
-          "remove_obj": "N"
-        }, 
-        {
-          "type": "tile",
-          "name": "bee hive",
-          "state": "ready CHANGE_STATE_TO not_ready",
-          "qty": null,
           "remove_obj": "N"
         }
       ],
@@ -423,20 +416,13 @@
       
       "success_desc": "You harvest a bale of grass that can be fed to your domesticated animals.",
       "fail_desc": "You cannot harvest the grass right now.",
-      "change_state_to": "ready",
+      "change_state_to": "not ready",
       "requirement": [
         {
           "type": "object",
           "name": "scythe",
           "state": "null",
           "qty": 1,
-          "remove_obj": "N"
-        }, 
-        {
-          "type": "tile",
-          "name": "grass field",
-          "state": "ready CHANGE_STATE_TO not_ready",
-          "qty": null,
           "remove_obj": "N"
         }
       ],
@@ -462,8 +448,8 @@
     "interactions": [
       {
         "name": "DEFAULT",
-        "success_desc": "The door unlocks.",
-        "fail_desc": "You need a key to unlock the door!",
+        "success_desc": "",
+        "fail_desc": "",
         "change_state_to": "ready",
         "requirement": [
           {
@@ -495,20 +481,13 @@
         
         "success_desc": "You harvest a bushel of wheat that can be sold at the merchant for gold.",
         "fail_desc": "You cannot harvest the wheat right now.",
-        "change_state_to": "ready",
+        "change_state_to": "not_ready",
         "requirement": [
           {
             "type": "object",
             "name": "scythe",
             "state": "null",
             "qty": 1,
-            "remove_obj": "N"
-          }, 
-          {
-            "type": "tile",
-            "name": "wheat field",
-            "state": "ready CHANGE_STATE_TO not_ready",
-            "qty": null,
             "remove_obj": "N"
           }
         ],
@@ -534,8 +513,8 @@
     "interactions":[
       {
         "name": "DEFAULT",
-        "success_desc": "The door unlocks.",
-        "fail_desc": "You need a key to unlock the door!",
+        "success_desc": "",
+        "fail_desc": "",
         "change_state_to": "ready",
         "requirement": [
           {
@@ -649,7 +628,7 @@
             "remove_obj": "N"
           }
         ],
-        "obtain": "null"
+        "obtain": null
       }
     ]
   },

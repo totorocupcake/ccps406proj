@@ -177,6 +177,30 @@ def lookup_movable (tile_name,state):
     if found_tile == False:
         return None
     
+def lookup_current_hp(name,state):
+    with open(CHARACTER_TEMPLATE_JSON_FILE, 'r') as file:
+        char_template = json.load(file)
+    
+    for char in char_template:
+        if name.lower() == char["name"].lower() and state.lower() == char["state"]:
+            return char["current_hp"]
+
+def lookup_max_hp(name,state):
+    with open(CHARACTER_TEMPLATE_JSON_FILE, 'r') as file:
+        char_template = json.load(file)
+    
+    for char in char_template:
+        if name.lower() == char["name"].lower() and state.lower() == char["state"]:
+            return char["max_hp"]  
+
+def lookup_inventory(name,state):
+    with open(CHARACTER_TEMPLATE_JSON_FILE, 'r') as file:
+        char_template = json.load(file)
+    
+    for char in char_template:
+        if name.lower() == char["name"].lower() and state.lower() == char["state"]:
+            return char["inventory"]  
+    
 def lookup_tile_type (tile_name,state):
     # Given a tile name and state, return the matching movable flag.
     # Return None if not match
