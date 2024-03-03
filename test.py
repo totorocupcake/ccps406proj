@@ -19,7 +19,8 @@ def interaction_commands (world_state,charac,command):
     check_noun_status,noun_entity = check_noun_exists(world_state,charac,current_x,current_y,interac_noun,interac_verb)
     
     if check_noun_status == False:   # noun does not exist on current location of charac
-        print("Command not recognized")
+        if charac.get_type()=="Character" and charac.get_active_player()=='Y':
+            print("Command not recognized")
         return world_state
 
     # as command is valid, check the interaction requirements to see if pass
