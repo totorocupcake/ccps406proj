@@ -29,13 +29,23 @@
             {
                 "name": "watering can",
                 "quantity": 1,
-                "state": "empty"
+                "state": "full"
             }
         ],
         "current_hp": 10,
         "max_hp": 10,
         "current_gold": 20,
         "visited": [
+            {
+                "type": "Tile",
+                "name": "grasslands",
+                "state": "null"
+            },
+            {
+                "type": "Object",
+                "name": "bee smoker",
+                "state": "null"
+            },
             {
                 "type": "Object",
                 "name": "flint",
@@ -45,16 +55,6 @@
                 "type": "Tile",
                 "name": "kitchen",
                 "state": "open"
-            },
-            {
-                "type": "Object",
-                "name": "bee smoker",
-                "state": "null"
-            },
-            {
-                "type": "Tile",
-                "name": "grasslands",
-                "state": "null"
             },
             {
                 "type": "Tile",
