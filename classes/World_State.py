@@ -206,14 +206,15 @@ class World_State:
         
 
     # add each object in the tile's inventory:
-    if current_tl_inv_list is not None:
-      for tl_inv_elem in current_tl_inv_list:
-        inv_tuple = (tl_inv_elem.get_general_type(), tl_inv_elem.get_name(), \
-                      tl_inv_elem.get_state() )
-        if inv_tuple in visited:
-          desc_list.append(tl_inv_elem.get_desc("short",self))
-        else:
-          desc_list.append(tl_inv_elem.get_desc("long",self))
+    if current_tl.get_movable() == "Y":
+      if current_tl_inv_list is not None:
+        for tl_inv_elem in current_tl_inv_list:
+          inv_tuple = (tl_inv_elem.get_general_type(), tl_inv_elem.get_name(), \
+                        tl_inv_elem.get_state() )
+          if inv_tuple in visited:
+            desc_list.append(tl_inv_elem.get_desc("short",self))
+          else:
+            desc_list.append(tl_inv_elem.get_desc("long",self))
 
 
     # ------------------------------------------------------
