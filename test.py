@@ -75,11 +75,12 @@ def check_noun_exists(world_state,charac,current_x,current_y,interac_noun,intera
 
     # ------
     # check tile's inventory
-    tl_inv_list = current_tl.get_inventory()     
-    if len(tl_inv_list) > 0:
-        for inv_elem in tl_inv_list:
-            if inv_elem.get_name().lower() == interac_noun:
-                return True, inv_elem
+    if current_tl.get_movable() == 'Y':
+        tl_inv_list = current_tl.get_inventory()     
+        if len(tl_inv_list) > 0:
+            for inv_elem in tl_inv_list:
+                if inv_elem.get_name().lower() == interac_noun:
+                    return True, inv_elem
     # ------
     # check characters on character's location
     chars_list = world_state.get_chars_at_tile(charac.get_coords())
