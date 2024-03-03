@@ -188,8 +188,8 @@
     "state": "closed",
     "movable":"N",
     "description": {
-      "long_desc": "You stand outside a grass field, there is a locked house leading to a kitchen next to you.",
-      "short_desc": "You stand outside a grass field with a locked house."
+      "long_desc": "You stand outside a grass field, your farmhouse sits on alonside a road with a locked kitchen door flickering in the light.",
+      "short_desc": "You stand outside a grass field, there is a building with a locked kitchen."
     },
     "interactions": [
       {
