@@ -74,7 +74,7 @@ def check_noun_exists(world_state,charac,current_x,current_y,interac_noun,intera
         return True, current_tl
 
     # ------
-    # check tile's inventory
+    # check tile's inventory only if tile is "open" i.e. not closed 
     if current_tl.get_movable() == 'Y':
         tl_inv_list = current_tl.get_inventory()     
         if len(tl_inv_list) > 0:
@@ -82,13 +82,14 @@ def check_noun_exists(world_state,charac,current_x,current_y,interac_noun,intera
                 if inv_elem.get_name().lower() == interac_noun:
                     return True, inv_elem
     # ------
-    # check characters on character's location
-    chars_list = world_state.get_chars_at_tile(charac.get_coords())
-    if len(chars_list) > 0:
-        for char_elem in chars_list:
-            if char_elem.get_name().lower() == interac_noun:
-                    # found matching character, so update interac_ data:
-                return True, char_elem        
+    # check characters on character's location only if tile is "open" i.e. not closed 
+    if current_tl.get_movable() == 'Y':
+        chars_list = world_state.get_chars_at_tile(charac.get_coords())
+        if len(chars_list) > 0:
+            for char_elem in chars_list:
+                if char_elem.get_name().lower() == interac_noun:
+                        # found matching character, so update interac_ data:
+                    return True, char_elem        
     # ------
     # check character's own inventory
     charac_inv = charac.get_inventory()
