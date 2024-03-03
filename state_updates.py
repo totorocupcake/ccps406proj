@@ -1,7 +1,7 @@
 # import state_updates_interactions
 import text_file_processor
 import state_updates_interactions
-
+import test
 
 def state_update(world_state,charac,command,command_type):
     # Make the updates to world_state (and any other updates required) to process the command.
@@ -44,7 +44,7 @@ def basic_commands(world_state,charac,command):
     
     # added: for dealing with 'interaction' commands
     elif command is not None:
-        world_state = state_updates_interactions.interaction_commands(world_state, charac, command)
+        world_state = test.interaction_commands(world_state, charac, command)
 
     for char in world_state.get_characters():
         # check after state updates if game is won, update flag if so in world state
@@ -150,7 +150,8 @@ def process_store_gold(world_state,charac,command):
         gold_to_take = take_gold_entity.get_current_gold()
         
         if gold_to_take > 0:    # check if there is gold to take first
-            # swaps gold between take and receiving entity
+            # swaps gold between take and e
+            # receiving entity
             take_gold_entity.increment_current_gold(gold_to_take*-1)
             receive_gold_entity.increment_current_gold(gold_to_take)
             
