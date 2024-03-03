@@ -363,13 +363,14 @@ class World_State:
           current_active_char = self.get_active_char()
           current_active_char.set_active_player(False)
           charac.set_active_player(True)
-    elif words[0] == "create": #cheat create gun state
+    elif words[0] == "create": #cheat create state gun
+      name = " ".join(words[2:])
       obj = Object.Object()
-      obj.set_name(words[1])
-      obj.set_state(words[2])
+      obj.set_state(words[1])
+      obj.set_name(name)
       obj.update_qty(1)
-      obj.set_type(text_file_processor.lookup_type("Object",words[1],words[2]))
-      obj.set_gold_amt(text_file_processor.lookup_gold_amt(words[1],words[2]))
+      obj.set_type(text_file_processor.lookup_type("Object",name,words[1]))
+      obj.set_gold_amt(text_file_processor.lookup_gold_amt(name,words[1]))
       charac.update_inventory("add",[obj])
       print(f"Added {words[1]} into your inventory.")
     
