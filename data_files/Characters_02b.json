@@ -28,6 +28,16 @@
 
         ],
         "obtain": null
+      },
+
+      {
+        "name": "greet",
+   
+        "success_desc": "The landlord keeps asking if you have enough gold to pay your outstanding rent. He advises you to sell farming products at the nearby shops.",
+        "fail_desc": "The landlord keeps asking if you have enough gold to pay your outstanding rent. He advises you to sell farming products at the nearby shops.",
+        "change_state_to": "unhappy",
+        "requirement": null,
+        "obtain": null
       }
     ]
 
@@ -41,7 +51,7 @@
     "type": "npc",
     "state": "happy",
     "description": {
-      "long_desc": "the landlord, who is a tall person wearing a black coat and hat, is happy because you have paid the rent",
+      "long_desc": "the landlord who is very happy because you have paid the rent",
       "short_desc": "the happy landlord"
     },
     "interactions": null
@@ -276,14 +286,14 @@
     "state": "null",
     "description": {
       "long_desc": "a charming neighbor Claire who would like some help as she needs some water",
-      "short_desc": "Claire the neighbor"
+      "short_desc": "Claire the neighbor who needs some water"
     },
     "interactions":    
     [
       {
         "name": "help",
    
-        "success_desc": "Claire uses the water from your watering can to water her flowers. She gives advice to you that plants love water and you should water the apple tree.",
+        "success_desc": "Claire uses the water from your watering can to water her flowers. She gives you some apple seeds and advises you to find a field to grow and water it.",
         "fail_desc": "You cannot help Claire the neighbor right now.",
         "change_state_to": "happy",
         "requirement": [
@@ -306,6 +316,12 @@
           "type": "Object",
           "name": "watering can",
           "state": "empty",
+          "qty": 1
+        },
+        {
+          "type": "Object",
+          "name": "apple seeds",
+          "state": "null",
           "qty": 1
         }
       ]
@@ -724,7 +740,7 @@
     "type": "npc",
     "state": "tamed_hungry",
     "description": {
-      "long_desc": "a tamed but hungry fluffy cow that you have caught (it loves apples!)",
+      "long_desc": "a tamed but hungry fluffy cow that you have caught (it loves grass!)",
       "short_desc": "a tamed but hungry cow"
     },
     "interactions":    

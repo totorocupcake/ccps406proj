@@ -94,6 +94,31 @@
         "change_state_to": "closed",
         "requirement": null,
         "obtain": null
+      },
+      {
+        "name": "unlock",
+        "success_desc": "The door unlocks.",
+        "fail_desc": "You need a key to unlock the door!",
+        "change_state_to": "open",
+        "requirement": [
+          {
+            "type": "object",
+            "name": "garage key",
+            "state": "null",
+            "qty": 1,
+            "remove_obj": "N"
+          }
+        ],
+        "obtain": null
+      },
+
+      {
+        "name": "close",
+        "success_desc": "You cannot lock the door right now, it is closed.",
+        "fail_desc": "You cannot lock the door right now, it is closed.",
+        "change_state_to": "closed",
+        "requirement": null,
+        "obtain": null
       }
     ]
 
@@ -119,6 +144,32 @@
       },
       {
         "name": "lock",
+        "success_desc": "The garage is now locked.",
+        "fail_desc": "You need a key to lock the garage.",
+        "change_state_to": "closed",
+        "requirement": [
+          {
+            "type": "object",
+            "name": "garage key",
+            "state": "null",
+            "qty": 1,
+            "remove_obj": "N"
+          }
+        ],
+        "obtain": null
+
+      },
+      {
+        "name": "unlock",
+        "success_desc": "The garage is already unlocked and open!",
+        "fail_desc": "The garage is already unlocked and open!",
+        "change_state_to": "open",
+        "requirement": null,
+        "obtain": null
+
+      },
+      {
+        "name": "close",
         "success_desc": "The garage is now locked.",
         "fail_desc": "You need a key to lock the garage.",
         "change_state_to": "closed",
@@ -179,6 +230,38 @@
 
           }
         ]
+      },
+      {
+        "name": "unlock",
+        "success_desc": "The door to the kichen is already open.",
+        "fail_desc": "The door to the kichen is already open.",
+        "change_state_to": "open",
+        "requirement": null,
+        "obtain": null
+      },
+      {
+        "name": "close",
+        "success_desc": "You lock the door behind you.",
+        "fail_desc": "You need a key to lock the door.",
+        "change_state_to": "closed",
+        "requirement": [
+          {
+            "type": "object",
+            "name": "house key",
+            "state": "null",
+            "qty": 1,
+            "remove_obj": "N"
+          }
+        ],
+        "obtain": [
+          {
+            "type": "tile",
+            "name": "bedroom",
+            "state": "closed",
+            "qty": 0
+
+          }
+        ]
       }
     ]
   },
@@ -188,12 +271,44 @@
     "state": "closed",
     "movable":"N",
     "description": {
-      "long_desc": "You stand outside a grass field, there is a locked house leading to a kitchen next to you.",
-      "short_desc": "You stand outside a grass field with a locked house."
+      "long_desc": "You stand outside a grass field, your farmhouse sits on alonside a road with a locked kitchen door flickering in the light.",
+      "short_desc": "You stand outside a grass field, there is a building with a locked kitchen."
     },
     "interactions": [
       {
         "name": "open",
+        "success_desc": "You open the door to your house leading inside a kitchen.",
+        "fail_desc": "You need a key to open the house.",
+        "change_state_to": "open",
+        "requirement": [
+          {
+            "type": "object",
+            "name": "house key",
+            "state": "null",
+            "qty": 1,
+            "remove_obj": "N"
+          }
+        ],
+        "obtain": [
+          {
+            "type": "tile",
+            "name": "bedroom",
+            "state": "open",
+            "qty": 0
+
+          }
+        ]
+      },
+      {
+        "name": "close",
+        "success_desc": "The door to your house is already locked.",
+        "fail_desc": "The door to your house is already locked.",
+        "change_state_to": "closed",
+        "requirement": null,
+        "obtain": null
+      },
+      {
+        "name": "unlock",
         "success_desc": "You open the door to your house leading inside a kitchen.",
         "fail_desc": "You need a key to open the house.",
         "change_state_to": "open",
@@ -280,6 +395,38 @@
         "change_state_to": "closed",
         "requirement": null,
         "obtain": null
+      },
+      {
+        "name": "unlock",
+        "success_desc": "The door unlocks.",
+        "fail_desc": "You need a key to unlock the door!",
+        "change_state_to": "open",
+        "requirement": [
+          {
+            "type": "object",
+            "name": "house key",
+            "state": "null",
+            "qty": 1,
+            "remove_obj": "N"
+          }
+        ],
+        "obtain": [
+          {
+            "type": "tile",
+            "name": "kitchen",
+            "state": "open",
+            "qty": 0
+
+          }
+        ]
+      },
+      {
+        "name": "close",
+        "success_desc": "The house is already locked.",
+        "fail_desc": "The house is already locked.",
+        "change_state_to": "closed",
+        "requirement": null,
+        "obtain": null
       }
     ]
   },
@@ -304,6 +451,40 @@
 
       {
         "name": "lock",
+        "success_desc": "You lock the door to your house.",
+        "fail_desc": "You need a key to lock the house.",
+        "change_state_to": "closed",
+        "requirement": [
+          {
+            "type": "object",
+            "name": "house key",
+            "state": "null",
+            "qty": 1,
+            "remove_obj": "N"
+          }
+
+        ],
+        "obtain": [
+          {
+            "type": "tile",
+            "name": "kitchen",
+            "state": "closed",
+            "qty": 0
+
+          }
+        ]
+      },
+      {
+        "name": "unlock",
+        "success_desc": "The door is already open.",
+        "fail_desc": "The door is already open.",
+        "change_state_to": "open",
+        "requirement": null,
+        "obtain": null
+      },
+
+      {
+        "name": "close",
         "success_desc": "You lock the door to your house.",
         "fail_desc": "You need a key to lock the house.",
         "change_state_to": "closed",
@@ -408,7 +589,7 @@
     "state": "ready",
     "movable":"Y",
     "description": {
-      "long_desc": "Stepping into the field, you find yourself surrounded by blades of grass that tower above you. To the west lies a path surrounded by thick forrest. To the north is a number of trees, these ones much smaller than those of the forest that surrounds the property. To the east is another field, this one of wheat. To the south is the back of the farm house's garage.",
+      "long_desc": "Stepping into the grass field, you find yourself surrounded by blades of grass that tower above you. To the west lies a path surrounded by thick forrest. To the north is a number of trees, these ones much smaller than those of the forest that surrounds the property. To the east is another field, this one of wheat. To the south is the back of the farm house's garage.",
       "short_desc": "You stand in a field of grass."
     },
     "interactions": [ {
@@ -442,7 +623,7 @@
     "state": "not_ready",
     "movable":"Y",
     "description": {
-      "long_desc": "Stepping into the field, you find yourself surrounded by blades of grass that tower above you. To the west lies a path surrounded by thick forrest. To the north is a number of trees, these ones much smaller than those of the forest that surrounds the property. To the east is another field, this one of wheat. To the south is the back of the farm house's garage.",
+      "long_desc": "Stepping into the grass field, you find yourself on a recently harvested patch of grass. To the west lies a path surrounded by thick forrest. To the north is a number of trees, these ones much smaller than those of the forest that surrounds the property. To the east is another field, this one of wheat. To the south is the back of the farm house's garage.",
       "short_desc": "You stand in a field of grass."
     },
     "interactions": [
@@ -507,7 +688,7 @@
     "state": "not_ready",
     "movable":"Y",
     "description": {
-      "long_desc": "Before you stretches a vast golden wheat field, swaying gently in the breeze. To the north is a weathered barn, its red exterior faded and peeling beneath the touch of time. To the east is a tool shed with a moss-covered roof that exudes a rustic charm. To the west stretches out another field.",
+      "long_desc": "Before you stretches a vast golden wheat field, it was recently harvested and needs some time to regrow. To the north is a weathered barn, its red exterior faded and peeling beneath the touch of time. To the east is a tool shed with a moss-covered roof that exudes a rustic charm. To the west stretches out another field.",
       "short_desc": "You stand in a wheat field."
     },
     "interactions":[
@@ -563,6 +744,30 @@
         "change_state_to": "closed",
         "requirement": null,
         "obtain": null
+      },
+      {
+        "name": "unlock",
+        "success_desc": "The door unlocks.",
+        "fail_desc": "You need a key to unlock the door!",
+        "change_state_to": "open",
+        "requirement": [
+          {
+            "type": "object",
+            "name": "farm key",
+            "state": "null",
+            "qty": 1,
+            "remove_obj": "N"
+          }
+        ],
+        "obtain": null
+      },
+      {
+        "name": "close",
+        "success_desc": "The tool shed is already locked.",
+        "fail_desc": "The tool shed is already locked.",
+        "change_state_to": "closed",
+        "requirement": null,
+        "obtain": null
       }
     ]
   },
@@ -586,6 +791,29 @@
       },
       {
         "name": "lock",
+        "success_desc": "You lock the tool shed behind you.",
+        "fail_desc": "You need a key to lock the tool shed.",
+        "change_state_to": "closed",
+        "requirement": [
+          {
+            "type": "object",
+            "name": "farm key",
+            "state": "null",
+            "qty": 1,
+            "remove_obj": "N"
+          }
+        ],
+        "obtain": null
+      },
+      {
+        "name": "unlock",
+        "success_desc": "The tool shed is already opened.",
+        "fail_desc": "The tool shed is already opened.",
+        "change_state_to": "open",
+        "requirement": null
+      },
+      {
+        "name": "close",
         "success_desc": "You lock the tool shed behind you.",
         "fail_desc": "You need a key to lock the tool shed.",
         "change_state_to": "closed",
@@ -666,6 +894,31 @@
         "change_state_to": "closed",
         "requirement": null,
         "obtain": null
+      },
+      {
+        "name": "unlock",
+        "success_desc": "The door to the chicken coop unlocks.",
+        "fail_desc": "You need a key to unlock that.",
+        "change_state_to": "open",
+        "requirement": [
+          {
+            "type": "object",
+            "name": "farm key",
+            "state": "null",
+            "qty": 1,
+            "remove_obj": "N"
+          }
+        ],
+        "obtain": null
+      },
+
+      {
+        "name": "close",
+        "success_desc": "The door is already locked.",
+        "fail_desc": "The door is already locked.",
+        "change_state_to": "closed",
+        "requirement": null,
+        "obtain": null
       }
     ]
   },
@@ -693,6 +946,32 @@
       },
       {
         "name": "lock",
+        "success_desc": "You lock the chicken coop behind you.",
+        "fail_desc": "You need a key to lock the chicken coop.",
+        "change_state_to": "closed",
+        "requirement": [
+          {
+            "type": "object",
+            "name": "farm key",
+            "state": "null",
+            "qty": 1,
+            "remove_obj": "N"
+          }
+        ],
+        "obtain": null
+      },
+      {
+
+        "name": "unlock",
+
+        "success_desc": "The chicken coop is already unlocked.",
+        "fail_desc": "The chicken coop is already unlocked.",
+        "change_state_to": "open",
+        "requirement": null,
+        "obtain": null
+      },
+      {
+        "name": "close",
         "success_desc": "You lock the chicken coop behind you.",
         "fail_desc": "You need a key to lock the chicken coop.",
         "change_state_to": "closed",
@@ -744,6 +1023,30 @@
         "change_state_to": "closed",
         "requirement": null,
         "obtain": null
+      },
+      {
+        "name": "unlock",
+        "success_desc": "The door unlocks.",
+        "fail_desc": "You need a key to unlock the door!",
+        "change_state_to": "open",
+        "requirement": [
+          {
+            "type": "object",
+            "name": "farm key",
+            "state": "null",
+            "qty": 1,
+            "remove_obj": "N"
+          }
+        ],
+        "obtain": null
+      },
+      {
+        "name": "close",
+        "success_desc": "The barn is already locked.",
+        "fail_desc": "The barn is already locked.",
+        "change_state_to": "closed",
+        "requirement": null,
+        "obtain": null
       }
     ]
   },
@@ -769,6 +1072,31 @@
 
       {
         "name": "lock",
+        "success_desc": "You lock the barn behind you.",
+        "fail_desc": "You need a key to unlock the barn.",
+        "change_state_to": "closed",
+        "requirement": [
+          {
+            "type": "object",
+            "name": "farm key",
+            "state": "null",
+            "qty": 1,
+            "remove_obj": "N"
+          }
+        ],
+        "obtain": null
+      },
+      {
+        "name": "unlock",
+        "success_desc": "The barn is already open.",
+        "fail_desc": "The barn is already open.",
+        "change_state_to": "open",
+        "requirement": null,
+        "obtain": null
+      },
+
+      {
+        "name": "close",
         "success_desc": "You lock the barn behind you.",
         "fail_desc": "You need a key to unlock the barn.",
         "change_state_to": "closed",
