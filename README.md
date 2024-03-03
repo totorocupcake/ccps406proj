@@ -23,6 +23,6 @@ e.g. cheat kill cow 3,10 [note no space between coordinates]
 e.g cheat swap Penny <br>
 Switches active player's perspective to any char/monster/animal in the game
 
-### cheat create itemname itemstate
-e.g. cheat create gun null <br>
-Creates a new item into your inventory (note must be the right itemname and itemstate)
+### cheat create itemstate itemname
+e.g. cheat create empty watering can <br>
+Creates a new item into your inventory (note must be the right item name and itemstate)
