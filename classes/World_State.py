@@ -194,7 +194,7 @@ class World_State:
       desc_list.append(current_tl.get_desc("long",self))
 
     # add each character:
-    if current_npc_char_list is not None:
+    if current_npc_char_list is not None and current_tl.get_movable() == 'Y':
       for char_elem in current_npc_char_list:
         char_tuple = (char_elem.get_general_type(), char_elem.get_name(), \
                       char_elem.get_state() )

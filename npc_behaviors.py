@@ -59,15 +59,19 @@ def thief_aggressive(world_state,charac):
 
 def wolf_aggressive(world_state,charac):
     char_list = world_state.get_chars_at_tile(charac.get_coords())
-      
-    for char in char_list:
-        if char.get_name() == "chicken":
-          #print("Wolf submitted command to kill chicken")
-          return "kill chicken"
-        elif char.get_name() == "cow":
-          #print("Wolf submitted command to kill cow")
-          return "kill cow"
+    current_coord= charac.get_coords()
+    x,y = current_coord
+    current_tl = world_state.get_tiles()[x][y]
     
+    if current_tl.get_movable()=='Y':
+        for char in char_list:
+            if char.get_name() == "chicken":
+                #print("Wolf submitted command to kill chicken")
+                return "kill chicken"
+            elif char.get_name() == "cow":
+                #print("Wolf submitted command to kill cow")
+                return "kill cow"
+        
     for row in world_state.get_tiles():
         for tile in row:
             if tile.get_name() == "barn" and tile.get_state()=="open":
