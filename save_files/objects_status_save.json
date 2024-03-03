@@ -46,38 +46,20 @@
     },
     {
         "type": "tool",
-        "name": "medkit",
+        "name": "letter from landlord",
         "state": "null",
         "quantity": 1,
-        "co_ord_x": 6,
-        "co_ord_y": 11,
+        "co_ord_x": 0,
+        "co_ord_y": 0,
         "inventory": null
     },
     {
         "type": "tool",
-        "name": "garage key",
+        "name": "letter from landlord",
         "state": "null",
         "quantity": 1,
-        "co_ord_x": 6,
-        "co_ord_y": 11,
-        "inventory": null
-    },
-    {
-        "type": "tool",
-        "name": "farm key",
-        "state": "null",
-        "quantity": 1,
-        "co_ord_x": 6,
-        "co_ord_y": 11,
-        "inventory": null
-    },
-    {
-        "type": "tool",
-        "name": "letter",
-        "state": "null",
-        "quantity": 1,
-        "co_ord_x": 6,
-        "co_ord_y": 13,
+        "co_ord_x": 0,
+        "co_ord_y": 0,
         "inventory": null
     },
     {
