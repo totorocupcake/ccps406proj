@@ -589,7 +589,7 @@
     "state": "ready",
     "movable":"Y",
     "description": {
-      "long_desc": "Stepping into the field, you find yourself surrounded by blades of grass that tower above you. To the west lies a path surrounded by thick forrest. To the north is a number of trees, these ones much smaller than those of the forest that surrounds the property. To the east is another field, this one of wheat. To the south is the back of the farm house's garage.",
+      "long_desc": "Stepping into the grass field, you find yourself surrounded by blades of grass that tower above you. To the west lies a path surrounded by thick forrest. To the north is a number of trees, these ones much smaller than those of the forest that surrounds the property. To the east is another field, this one of wheat. To the south is the back of the farm house's garage.",
       "short_desc": "You stand in a field of grass."
     },
     "interactions": [ {
@@ -623,7 +623,7 @@
     "state": "not_ready",
     "movable":"Y",
     "description": {
-      "long_desc": "Stepping into the field, you find yourself surrounded by blades of grass that tower above you. To the west lies a path surrounded by thick forrest. To the north is a number of trees, these ones much smaller than those of the forest that surrounds the property. To the east is another field, this one of wheat. To the south is the back of the farm house's garage.",
+      "long_desc": "Stepping into the grass field, you find yourself on a recently harvested patch of grass. To the west lies a path surrounded by thick forrest. To the north is a number of trees, these ones much smaller than those of the forest that surrounds the property. To the east is another field, this one of wheat. To the south is the back of the farm house's garage.",
       "short_desc": "You stand in a field of grass."
     },
     "interactions": [
@@ -688,7 +688,7 @@
     "state": "not_ready",
     "movable":"Y",
     "description": {
-      "long_desc": "Before you stretches a vast golden wheat field, swaying gently in the breeze. To the north is a weathered barn, its red exterior faded and peeling beneath the touch of time. To the east is a tool shed with a moss-covered roof that exudes a rustic charm. To the west stretches out another field.",
+      "long_desc": "Before you stretches a vast golden wheat field, it was recently harvested and needs some time to regrow. To the north is a weathered barn, its red exterior faded and peeling beneath the touch of time. To the east is a tool shed with a moss-covered roof that exudes a rustic charm. To the west stretches out another field.",
       "short_desc": "You stand in a wheat field."
     },
     "interactions":[
