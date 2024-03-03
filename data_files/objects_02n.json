@@ -628,8 +628,8 @@
     "state": "null",
     "gold_amt": 10,
     "description": {
-      "long_desc": "a gun that can provide protection against thieves or wild animals",
-      "short_desc": "a gun"
+      "long_desc": "a gun on the shelf for purchase that can provide protection against thieves or wild animals",
+      "short_desc": "a gun on the shelf"
     },
     "interactions":  [
       {
@@ -791,15 +791,15 @@
     "state": "null",
     "gold_amt": 4,
     "description": {
-      "long_desc": "a sharp axe that could be used for clearing brush",
-      "short_desc": "a sharp axe"
+      "long_desc": "an incomplete axe that is missing a branch and a flint waiting to be forged",
+      "short_desc": "an incomplete axe"
     },
     "interactions":  [
       {
         "name": "make",
 
-        "success_desc": "You make a sharp axe that could be used for clearing brush.",
-        "fail_desc": "You cannot make the axe right now.",
+        "success_desc": "The merchant takes your flint and branches and forges the incomplete axe into a sharp axe that could be used for clearing trees.",
+        "fail_desc": "You do not have the necessary items to make an axe, you need a branch and a flint to complete it!",
         "change_state_to": "delete",
         "requirement": [
           {
