@@ -85,7 +85,11 @@ def print_inventory(charac):
         # loop through each item in character's inventory
             
         object_string+=obj.get_name()
-            
+        
+        if obj.get_state() != "null":
+            # append obj state if not null
+            object_string+=" ("+ obj.get_state() + ")"
+        
         # append x[quantity] after each item
         object_string+=" x"
         object_string+=str(obj.get_quantity())
