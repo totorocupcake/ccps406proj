@@ -1,6 +1,4 @@
-# import state_updates_interactions
-import text_file_processor
-import state_updates_interactions
+import text_formatting
 import test
 
 def state_update(world_state,charac,command,command_type):
@@ -78,8 +76,7 @@ def visited_updates (world_state,charac,x,y):
 
 def print_inventory(charac):
     # This function prints character's inventory and gold to console
-    object_string=""
-    print("\033[1mInventory: \033[0m",end="")
+    object_string="Inventory: "
         
     for obj in charac.get_inventory():
         # loop through each item in character's inventory
@@ -101,10 +98,10 @@ def print_inventory(charac):
     object_string = object_string[:-2]
         
     # Append character's gold amount to end of string:
-    object_string += ". \033[1mGold: \033[0m"
+    object_string += ". Gold: "
     object_string += str(charac.get_current_gold()) +"."
-        
-    print(object_string)
+    print("")
+    print(text_formatting.justify(object_string))
 
 def process_movement(world_state,charac,command):
     # This function moves the character coordinate based on n,s,e,w command
