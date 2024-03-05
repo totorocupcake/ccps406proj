@@ -69,27 +69,43 @@ class Entity:
     #   of 'object' objects
     # add_remove should = "add" for add case
 
-    if add_remove == "add":
-
-      # check to make sure the inputted 'objects' argument is not empty
-      if list_of_objects is not None:
-
+    if list_of_objects is not None:
+      
+      if add_remove == "add":
         # for each inputted object, append to the inventory list
         for obj_elem in list_of_objects:
-          self._inventory.append(obj_elem)
-          # inventory.append(obj_elem)
-          # self.inventory.append(obj_elem)
-    else:
-
-      # check to make sure the inputted 'objects' argument is not empty
-      if list_of_objects is not None:
-
+          
+          found = False
+          for inv_elem in self.get_inventory():
+            
+            if inv_elem.get_name() == obj_elem.get_name() and inv_elem.get_state() == obj_elem.get_state():
+              inv_elem.update_qty(obj_elem.get_quantity())
+              found=True
+              break
+          if found == False:
+            self._inventory.append(obj_elem)
+            
+      elif add_remove == "delete":
         # for each inputted object, remove from the inventory list, if it exists
         for obj_elem in list_of_objects:
-
-          # check to make sure object is in inventory before calling .remove()
-          if obj_elem in self._inventory:
-            self._inventory.remove(obj_elem)
+          
+          for inv_elem in self.get_inventory():
+             if inv_elem.get_name() == obj_elem.get_name() and inv_elem.get_state() == obj_elem.get_state():
+                if inv_elem.get_quantity()> obj_elem.get_quantity():
+                  inv_elem.update_qty(obj_elem.get_quantity()*-1)
+                elif inv_elem.get_quantity() == obj_elem.get_quantity():
+                  self._inventory.remove(obj_elem)
+                else:
+                  print(f"Error, cannot remove item {obj_elem.get_name()}.")
+      else: #decrement
+         for obj_elem in list_of_objects:
+          for inv_elem in self.get_inventory():
+             if inv_elem.get_name() == obj_elem.get_name() and inv_elem.get_state() == obj_elem.get_state():
+                if inv_elem.get_quantity()>1:
+                  inv_elem.update_qty(-1)
+                else:
+                  self._inventory.remove(obj_elem)
+        
 
 
 

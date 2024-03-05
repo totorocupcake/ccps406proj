@@ -19,7 +19,7 @@ def interaction_commands (world_state,charac,command):
     check_noun_status,noun_entity = check_noun_exists(world_state,charac,current_x,current_y,interac_noun,interac_verb)
     
     if check_noun_status == False:   # noun does not exist on current location of charac
-        if charac.get_type()=="Character" and charac.get_active_player()=='Y':
+        if charac.get_general_type()=="Character" and charac.get_active_player()=='Y':
             print("Command not recognized")
         return world_state
 
@@ -97,11 +97,6 @@ def check_noun_exists(world_state,charac,current_x,current_y,interac_noun,intera
     if len(charac_inv) > 0:
         for inventory_elem in charac_inv:
             if inventory_elem.get_name().lower() == interac_noun:
-                if (interac_verb == "take") or (interac_verb == "buy") \
-                or (interac_verb == "make"):
-                    print(interac_noun, "is already in inventory.")
-                    return False, None
-                else:
                     return True,inventory_elem
       
     return False, None    # couldn't find the noun anywhere on the specified location
@@ -280,9 +275,9 @@ def process_change_state_to(world_state,charac,int_JSON_obj,noun_entity):
                 if int_JSON_obj["change_state_to"] == "delete":
                     x,y = charac.get_coords()
                     if noun_entity in world_state.get_tiles()[x][y].get_inventory():
-                        world_state.get_tiles()[x][y].update_inventory("remove",[noun_entity])
+                        world_state.get_tiles()[x][y].update_inventory("decrement",[noun_entity])
                     else:
-                        charac.update_inventory("remove", [noun_entity])
+                        charac.update_inventory("decrement", [noun_entity])
                 else:
                     noun_entity.set_state(int_JSON_obj["change_state_to"])
      
