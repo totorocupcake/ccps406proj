@@ -597,7 +597,7 @@
       
       "success_desc": "You harvest a bale of grass that can be fed to your domesticated animals.",
       "fail_desc": "You cannot harvest the grass right now.",
-      "change_state_to": "not ready",
+      "change_state_to": "not_ready",
       "requirement": [
         {
           "type": "object",
