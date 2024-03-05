@@ -19,7 +19,7 @@ def interaction_commands (world_state,charac,command):
     check_noun_status,noun_entity = check_noun_exists(world_state,charac,current_x,current_y,interac_noun,interac_verb)
     
     if check_noun_status == False:   # noun does not exist on current location of charac
-        if charac.get_type()=="Character" and charac.get_active_player()=='Y':
+        if charac.get_general_type()=="Character" and charac.get_active_player()=='Y':
             print("Command not recognized")
         return world_state
 
@@ -97,11 +97,6 @@ def check_noun_exists(world_state,charac,current_x,current_y,interac_noun,intera
     if len(charac_inv) > 0:
         for inventory_elem in charac_inv:
             if inventory_elem.get_name().lower() == interac_noun:
-                if (interac_verb == "take") or (interac_verb == "buy") \
-                or (interac_verb == "make"):
-                    print(interac_noun, "is already in inventory.")
-                    return False, None
-                else:
                     return True,inventory_elem
       
     return False, None    # couldn't find the noun anywhere on the specified location
@@ -280,9 +275,9 @@ def process_change_state_to(world_state,charac,int_JSON_obj,noun_entity):
                 if int_JSON_obj["change_state_to"] == "delete":
                     x,y = charac.get_coords()
                     if noun_entity in world_state.get_tiles()[x][y].get_inventory():
-                        world_state.get_tiles()[x][y].update_inventory("remove",[noun_entity])
+                        world_state.get_tiles()[x][y].update_inventory("decrement",[noun_entity])
                     else:
-                        charac.update_inventory("remove", [noun_entity])
+                        charac.update_inventory("decrement", [noun_entity])
                 else:
                     noun_entity.set_state(int_JSON_obj["change_state_to"])
      
@@ -291,33 +286,16 @@ def process_change_state_to(world_state,charac,int_JSON_obj,noun_entity):
 
 def obtain_item(world_state,charac,obtain_elem):
     # this is a helper function for process_obtain function that creates object (item) as specified by the obtain field in JSON
-    found_in_current_inv = False
-    for inv_elem in  charac.get_inventory():                    
-        if inv_elem.get_name().lower() == obtain_elem["name"].lower():
-            found_in_current_inv = True
-            break
 
-        if not found_in_current_inv:
-        # if not, add to inventory
-
-        # print("DEBUG 2: add object to character's inventory and World_State updated")
-
-            new_obj = Object.Object()
-            new_obj.set_general_type("Object")
-            new_obj.set_type(obtain_elem["type"])
-            new_obj.set_name(obtain_elem["name"])
-            new_obj.set_state(obtain_elem["state"])
-            new_obj.update_qty(obtain_elem["qty"])
-            charac.update_inventory("add", [new_obj])
-            return world_state
-        else:       # print fail_desc:
-            print()
-            print("DEBUG: found_in_current_inv = ", found_in_current_inv)            
-            print()
-            print(obtain_elem["name"], "is already in inventory.")          
-            return world_state
-
-
+    new_obj = Object.Object()
+    new_obj.set_general_type("Object")
+    new_obj.set_type(obtain_elem["type"])
+    new_obj.set_name(obtain_elem["name"])
+    new_obj.set_state(obtain_elem["state"])
+    new_obj.update_qty(obtain_elem["qty"])
+    charac.update_inventory("add", [new_obj])
+    return world_state
+        
 def obtain_tile(world_state, obtain_elem):
     # this is a helper function for process_obtain function that creates tile as specified by the obtain field in JSON
     for row in world_state.get_tiles():
@@ -401,7 +379,7 @@ def process_requirements(world_state,int_JSON_obj,charac,interac_verb):
                     # first we check if the object to remove is in the current location's tile inventory
                     for item in world_state.get_tiles()[x][y].get_inventory():
                         if item.get_name().lower() == requirement["name"].lower() and item.get_state().lower() == requirement["state"].lower():
-                            world_state.get_tiles()[x][y].update_inventory("remove",[item])
+                            world_state.get_tiles()[x][y].update_inventory("decrement",[item])
                             found_obj = True
                             break
                         
@@ -409,7 +387,7 @@ def process_requirements(world_state,int_JSON_obj,charac,interac_verb):
                     if found_obj == False:
                         for item in charac.get_inventory():
                             if item.get_name().lower() == requirement["name"].lower() and item.get_state().lower() == requirement["state"].lower():
-                                charac.update_inventory("remove",[item])
+                                charac.update_inventory("decrement",[item])
                                 break
                 
                 # check if entity to remove is gold instead of an object       
