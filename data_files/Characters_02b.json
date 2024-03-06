@@ -489,7 +489,7 @@
 
   {
     "name": "chicken",
-    "type": "npc",
+    "type": "animal",
     "state": "wild",
     "description": {
       "long_desc": "a wild fluffy chicken roaming around pecking at the ground",
@@ -507,7 +507,7 @@
         "obtain":  [ {
           "type": "Object",
           "name": "chicken",
-          "state": "tamed_inventory",
+          "state": "tamed",
           "qty": 1
         }
       ]
@@ -536,7 +536,7 @@
 
   {
     "name": "chicken",
-    "type": "npc",
+    "type": "animal",
     "state": "tamed_hungry",
     "description": {
       "long_desc": "a tamed but hungry fluffy chicken that you have caught (maybe some grass would be nice)",
@@ -584,7 +584,7 @@
 
   {
     "name": "chicken",
-    "type": "npc",
+    "type": "animal",
     "state": "tamed_not_hungry",
     "description": {
       "long_desc": "a tamed well-fed fluffy chicken that you have caught (its just a matter of time before it lays eggs)",
@@ -634,7 +634,7 @@
 
   {
     "name": "chicken",
-    "type": "npc",
+    "type": "animal",
     "state": "tamed_ready",
     "description": {
       "long_desc": "a tamed well-fed fluffy chicken that has laid some eggs",
@@ -682,7 +682,7 @@
 
   {
     "name": "cow",
-    "type": "npc",
+    "type": "animal",
     "state": "wild",
     "description": {
       "long_desc": "a wild but content cow grazing on grass and mooing softly",
@@ -708,7 +708,7 @@
         "obtain":  [ {
           "type": "Object",
           "name": "cow",
-          "state": "tamed_inventory",
+          "state": "tamed",
           "qty": 1
         }
       ]
@@ -737,7 +737,7 @@
 
   {
     "name": "cow",
-    "type": "npc",
+    "type": "animal",
     "state": "tamed_hungry",
     "description": {
       "long_desc": "a tamed but hungry fluffy cow that you have caught (it loves grass!)",
@@ -785,7 +785,7 @@
 
   {
     "name": "cow",
-    "type": "npc",
+    "type": "animal",
     "state": "tamed_not_hungry",
     "description": {
       "long_desc": "a tamed well-fed cow that you have caught (its just a matter of time before it is ready to milk)",
@@ -835,7 +835,7 @@
 
   {
     "name": "cow",
-    "type": "npc",
+    "type": "animal",
     "state": "tamed_ready",
     "description": {
       "long_desc": "a tamed well-fed cow that is ready to milk",
