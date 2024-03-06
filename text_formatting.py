@@ -59,13 +59,19 @@ def print_minimap(world_state,coords,active_char):
                 
 def print_tile (tile,characters):
     # given a provided tile or char, provide the character string to represent it as on mini-map
-    if characters != []:
-        # print C if theres any other char other than the player
-        return " C "
     if tile.get_type() == "building":
         return " B "
+    
+    if characters != []:
+        # print C if theres any other char other than the player
+        for character in characters:
+            if character.get_type().lower() == "monster" or character.get_type().lower()=="animal":
+                return " M "
+        return " C "
+    
     if tile.get_type() == "non-building" and tile.get_name() != "grasslands":
         return " ? "
+    
     if tile.get_type() == "non-building":
         return " _ "
 

@@ -163,7 +163,7 @@
         "turn_counter":[0, "null"]
     },
     {
-        "type": "npc",
+        "type": "animal",
         "name": "chicken",
         "co_ord_x": 3,
         "co_ord_y":17,
@@ -178,7 +178,7 @@
         "turn_counter":[0, "null"]
     },
     {
-        "type": "npc",
+        "type": "animal",
         "name": "cow",
         "co_ord_x": 3,
         "co_ord_y":9,

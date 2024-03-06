@@ -944,7 +944,7 @@
   {
     "name": "chicken",
     "type": "tool",
-    "state": "tamed_inventory",
+    "state": "tamed",
     "gold_amt": 2,
     "description": {
       "long_desc": "a tamed fluffy chicken who would like a nice place to live",
@@ -981,7 +981,7 @@
   {
     "name": "cow",
     "type": "tool",
-    "state": "tamed_inventory",
+    "state": "tamed",
     "gold_amt": 2,
     "description": {
       "long_desc": "a tamed cow that is currently following you",
