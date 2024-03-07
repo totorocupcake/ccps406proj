@@ -26,3 +26,15 @@ Switches active player's perspective to any char/monster/animal in the game
 ### cheat create itemstate itemname
 e.g. cheat create empty watering can <br>
 Creates a new item into your inventory (note must be the right item name and itemstate)
+
+### cheat gold gold_amount
+e.g. cheat gold 500 <br>
+Updates current gold amount to the specified amount
+
+## cheat rent_amount amount
+e.g. cheat rent_amount 50 <br>
+Updates the total gold due to pay rent to specified number
+
+## cheat rent_due turn_number
+e.g. cheat rent_due 1 <br>
+Updates the rent to be due on the specified turn number
