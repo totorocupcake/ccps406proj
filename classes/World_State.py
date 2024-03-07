@@ -75,9 +75,15 @@ class World_State:
 
   def update_rent_turn_due(self, increment):
     self.__rent_due_date += increment
+    
+  def set_rent_turn_due(self,new_rent_turn_due):
+    self.__rent_due_date = new_rent_turn_due
 
   def update_rent_amount(self, increment):
     self.__rent_amount += increment
+    
+  def set_rent_amount(self,new_rent_amount):
+    self.__rent_amount = new_rent_amount
 
   def spawn_character(self, new_character):
     if new_character not in self.__characters:
@@ -374,6 +380,17 @@ class World_State:
         obj.set_gold_amt(text_file_processor.lookup_gold_amt(name,words[1]))
         charac.update_inventory("add",[obj])
         print(f"Added {name} into your inventory.")
+      elif words[0] == "gold": #cheat gold 500
+        new_gold = int(words[1])
+        charac.set_current_gold(new_gold)
+        print(f"Gold updated to {new_gold}")
+      elif words[0] == "rent_amount": #cheat rent_amount 500
+        new_rent_amount = int(words[1])
+        self.set_rent_amount(new_rent_amount)
+      elif words[0]=="rent_due": #cheat rent_due 50
+        new_turn_due = int(words[1])
+        self.set_rent_turn_due(new_turn_due)
+    
       else:
         print("Cheat command not recognized.")
       
