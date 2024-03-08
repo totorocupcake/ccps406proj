@@ -200,7 +200,16 @@ def lookup_inventory(name,state):
     for char in char_template:
         if name.lower() == char["name"].lower() and state.lower() == char["state"]:
             return char["inventory"]  
+
+def lookup_char_gold(name,state):
+    with open(CHARACTER_TEMPLATE_JSON_FILE, 'r') as file:
+        char_template = json.load(file)
     
+    for char in char_template:
+        if name.lower() == char["name"].lower() and state.lower() == char["state"]:
+            return char["current_gold"]  
+
+
 def lookup_tile_type (tile_name,state):
     # Given a tile name and state, return the matching movable flag.
     # Return None if not match
