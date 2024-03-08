@@ -165,7 +165,17 @@
       "long_desc": "a healthy farmhand that no longer requires medical attention from the medkit",
       "short_desc": "a healthy farmhand"
     },
-    "interactions": null
+    "interactions": [
+      {
+        "name": "heal",
+   
+        "success_desc": "The farmhand no longer requires healing.",
+        "fail_desc": "The farmhand no longer requires healing.",
+        "change_state_to": "healthy",
+        "requirement": null,
+        "obtain": null
+      }
+    ]
     
   }, 
   
@@ -294,7 +304,7 @@
         "name": "help",
    
         "success_desc": "Claire uses the water from your watering can to water her flowers. She gives you some apple seeds and advises you to find a field to grow and water it.",
-        "fail_desc": "You cannot help Claire the neighbor right now.",
+        "fail_desc": "You do not have water to help Claire with.",
         "change_state_to": "happy",
         "requirement": [
           {
