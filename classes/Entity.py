@@ -1,5 +1,3 @@
-import text_file_processor
-
 class Entity:
   # class constructor:
   def __init__(self):
@@ -37,11 +35,9 @@ class Entity:
     # returns a list of 'object' objects
     return self._inventory
 
-  def get_desc(self, long_short,world_state):
+  def get_desc(self, long_short,world_state,data):
     # use __general_type (Object/Character/Tile) for lookup:
-    
-    return text_file_processor.lookup_desc(long_short, self._general_type, self._name, self.__state,world_state)
-
+    return data.lookup_desc(long_short, self._general_type, self._name, self.__state,world_state)
 
 
   # setter methods (Common):

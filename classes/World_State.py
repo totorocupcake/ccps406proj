@@ -50,7 +50,7 @@ class World_State:
     # else
     return None
 
-  def increment_turn(self, amount=1):
+  def increment_turn(self, data,amount=1):
     self.__turn_number += amount
     
     # check if player is late to pay rent, if so, add letter in their mailbox
@@ -58,12 +58,12 @@ class World_State:
     
     # turn counting checks for all chars
     for char in self.__characters:
-        char.decrement_turn_count()
+        char.decrement_turn_count(data)
     
     # turn counting checks for all tiles    
     for row in self.__tiles:
       for tiles in row:
-        tiles.decrement_turn_count()
+        tiles.decrement_turn_count(data)
     
     # monster/animal respawning checks
     self = spawn_monster_checks(self)
@@ -168,7 +168,7 @@ class World_State:
 
     return None
 
-  def get_description(self, coords, visited):
+  def get_description(self, coords, visited,data):
   # returns a list/array of description strings for a given coords and 
   #   visited set (of tuples of (type, name, state))
     x_coord, y_coord = coords
@@ -195,9 +195,9 @@ class World_State:
     tile_tuple = (current_tl.get_general_type(), current_tl.get_name(), current_tl.get_state())
 
     if tile_tuple in visited:
-      desc_list.append(current_tl.get_desc("short",self))
+      desc_list.append(current_tl.get_desc("short",self,data))
     else:
-      desc_list.append(current_tl.get_desc("long",self))
+      desc_list.append(current_tl.get_desc("long",self,data))
 
     # add each character:
     if current_npc_char_list is not None and current_tl.get_movable() == 'Y':
@@ -206,9 +206,9 @@ class World_State:
                       char_elem.get_state() )
 
         if char_tuple in visited:
-          desc_list.append(char_elem.get_desc("short",self))
+          desc_list.append(char_elem.get_desc("short",self,data))
         else:
-          desc_list.append(char_elem.get_desc("long",self))
+          desc_list.append(char_elem.get_desc("long",self,data))
         
 
     # add each object in the tile's inventory:
@@ -218,9 +218,9 @@ class World_State:
           inv_tuple = (tl_inv_elem.get_general_type(), tl_inv_elem.get_name(), \
                         tl_inv_elem.get_state() )
           if inv_tuple in visited:
-            desc_list.append(tl_inv_elem.get_desc("short",self))
+            desc_list.append(tl_inv_elem.get_desc("short",self,data))
           else:
-            desc_list.append(tl_inv_elem.get_desc("long",self))
+            desc_list.append(tl_inv_elem.get_desc("long",self,data))
 
 
     # ------------------------------------------------------
@@ -307,7 +307,7 @@ class World_State:
     
     return next_command
   
-  def cheat_mode(self, command,charac):
+  def cheat_mode(self, command,charac,data):
     command = command.strip()
     words = command.split()
     
@@ -338,7 +338,7 @@ class World_State:
         charac_coord = charac_coord.split(',')
         x = int(charac_coord[0])
         y = int(charac_coord[1])
-        print (self.get_description((x,y),{}))
+        print (self.get_description((x,y),{},data))
       elif words[0] == "teleport":
         charac_coord = words[1]
         charac_coord = charac_coord.split(',')
@@ -370,8 +370,8 @@ class World_State:
         obj.set_state(words[1])
         obj.set_name(name)
         obj.update_qty(1)
-        obj.set_type(text_file_processor.lookup_type("Object",name,words[1]))
-        obj.set_gold_amt(text_file_processor.lookup_gold_amt(name,words[1]))
+        obj.set_type(data.lookup_type("Object",name,words[1]))
+        obj.set_gold_amt(data.lookup_gold_amt(name,words[1]))
         charac.update_inventory("add",[obj])
         print(f"Added {name} into your inventory.")
       elif words[0] == "gold": #cheat gold 500
@@ -452,118 +452,3 @@ def late_rent_checks(world_state):
             tile.update_inventory("add",[interest_letter])
             break
   return world_state
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-if __name__ == "__main__":
-
-  # ------------------------------------------------ test some methods:
-  ws = World_State()
-
-  ws.increment_turn()
-
-  ws.set_game_won('Y')  
-
-  ws.update_rent_turn_due(25)
-
-  ws.update_rent_amount(10)
-
-  print("Turn no: ",ws.get_turn_no())
-  print("Game Won: ",ws.get_game_won())
-  print("Rent turn due: ",ws.get_rent_due_date())
-  print("Rent amount: ", ws.get_rent_amount())
-  
-  tl = Tile.Tile()
-  tl.update_tile_by_id("01")
-  ws.update_tile((1,4),tl)
-  print("Tile name: ",ws.get_tiles()[1][4].get_name())
-  print("Tile state: ",ws.get_tiles()[1][4].get_state())
-  print("Tile general type: ",ws.get_tiles()[1][4].get_general_type())
-  
-  charac= Character.Character()
-  charac.set_name("landlord")
-  charac.set_state("unhappy")
-  charac.update_coords((1,4))
-  ws.spawn_character(charac)
-
-
-
-
-  # # ------------ test World_State.get_description(coords, visited) function:
-
-  # ws = load_World_State(10, 25)
-
-  # empty_visited = set()
-
-  # x_coord = 8
-  # y_coord = 7
-
-  # coord_tuple = (x_coord, y_coord)
-
-  # desc_list = ws.get_description(coord_tuple, empty_visited)
-
-  # print()
-  # print("desc_list[0] = ", desc_list[0])
-  # print()
-
-  
-  # print("Get Desc long: ",ws.get_description((1,4),"long"))
-  # print("Get Desc short: ",ws.get_description((1,4),"short"))
-  
-  # print("Get Desc as str long: ",ws.get_description_as_str((1,4),"long"))
-  # print("Get Desc as str short: ",ws.get_description_as_str((1,4),"short"))
-  
-  
-  #desc = ws.get_description((1, 4), "short")
-  #desc = ws.get_description_as_str((1, 4), "short")
-  
-
-  #print()
-  #if desc is not None:
-  #  print("desc = ", desc)
-  #else:
-  #  print("desc = None")
-  #print()
-
-
-
-
-  #----------------------------
-  charac1 = Character.Character()
-
-  charac1.set_name("first character")
-
-  print("charac name = ", charac1.get_name())
-  print()
-
-  # test spawn_character() method
-  ws.spawn_character(charac1)
-  
-  charac2 = Character.Character()
-
-  charac2.set_name("second character")
-
-  print("charac name = ", charac2.get_name())
-  print()
-
-  # test spawn_character() method
-  ws.spawn_character(charac2)
-  
-  # test remove_character() method
-  ws.remove_character(charac1)
-
-
