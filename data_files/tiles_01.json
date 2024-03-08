@@ -66,14 +66,14 @@
     "state": "closed",
     "movable":"N",
     "description": {
-      "long_desc": "You stand outside the farmhouse's garage.",
+      "long_desc": "You stand outside the farmhouse's garage, there is little activity in the area.",
       "short_desc": "You stand ouside the garage."
     },
     "interactions": [
       {
         "name": "open",
-        "success_desc": "The door unlocks.",
-        "fail_desc": "You need a key to unlock the door!",
+        "success_desc": "You manage to unlock the garage.",
+        "fail_desc": "You need a garage key to unlock the door!",
         "change_state_to": "open",
         "requirement": [
           {
@@ -97,8 +97,8 @@
       },
       {
         "name": "unlock",
-        "success_desc": "The door unlocks.",
-        "fail_desc": "You need a key to unlock the door!",
+        "success_desc": "You manage to unlock the garage.",
+        "fail_desc": "You need a garage key to unlock the door!",
         "change_state_to": "open",
         "requirement": [
           {
@@ -145,7 +145,7 @@
       {
         "name": "lock",
         "success_desc": "The garage is now locked.",
-        "fail_desc": "You need a key to lock the garage.",
+        "fail_desc": "You need a garage key to lock the garage.",
         "change_state_to": "closed",
         "requirement": [
           {
@@ -171,7 +171,7 @@
       {
         "name": "close",
         "success_desc": "The garage is now locked.",
-        "fail_desc": "You need a key to lock the garage.",
+        "fail_desc": "You need a garage key to lock the garage.",
         "change_state_to": "closed",
         "requirement": [
           {
@@ -210,7 +210,7 @@
       {
         "name": "lock",
         "success_desc": "You lock the door behind you.",
-        "fail_desc": "You need a key to lock the door.",
+        "fail_desc": "You need a house key to lock the door.",
         "change_state_to": "closed",
         "requirement": [
           {
@@ -242,7 +242,7 @@
       {
         "name": "close",
         "success_desc": "You lock the door behind you.",
-        "fail_desc": "You need a key to lock the door.",
+        "fail_desc": "You need a house key to lock the door.",
         "change_state_to": "closed",
         "requirement": [
           {
@@ -278,7 +278,7 @@
       {
         "name": "open",
         "success_desc": "You open the door to your house leading inside a kitchen.",
-        "fail_desc": "You need a key to open the house.",
+        "fail_desc": "You need a house key to open the house.",
         "change_state_to": "open",
         "requirement": [
           {
@@ -310,7 +310,7 @@
       {
         "name": "unlock",
         "success_desc": "You open the door to your house leading inside a kitchen.",
-        "fail_desc": "You need a key to open the house.",
+        "fail_desc": "You need a house key to open the house.",
         "change_state_to": "open",
         "requirement": [
           {
@@ -367,7 +367,7 @@
       {
         "name": "open",
         "success_desc": "The door unlocks.",
-        "fail_desc": "You need a key to unlock the door!",
+        "fail_desc": "You need a house key to unlock the door!",
         "change_state_to": "open",
         "requirement": [
           {
@@ -399,7 +399,7 @@
       {
         "name": "unlock",
         "success_desc": "The door unlocks.",
-        "fail_desc": "You need a key to unlock the door!",
+        "fail_desc": "You need a house key to unlock the door!",
         "change_state_to": "open",
         "requirement": [
           {
@@ -452,7 +452,7 @@
       {
         "name": "lock",
         "success_desc": "You lock the door to your house.",
-        "fail_desc": "You need a key to lock the house.",
+        "fail_desc": "You need a house key to lock the house.",
         "change_state_to": "closed",
         "requirement": [
           {
@@ -486,7 +486,7 @@
       {
         "name": "close",
         "success_desc": "You lock the door to your house.",
-        "fail_desc": "You need a key to lock the house.",
+        "fail_desc": "You need a house key to lock the house.",
         "change_state_to": "closed",
         "requirement": [
           {
@@ -518,8 +518,8 @@
     "state": "ready",
     "movable":"Y",
     "description": {
-      "long_desc": "Nestled within the forest clearing is a carefully crafted bee hive. Although the bees appear to be diligently at work, the surroundings offer no sign of beekeeping tools.",
-      "short_desc": "You stand in front of a bee hive filled with honey bees."
+      "long_desc": "Nestled within the forest clearing is a carefully crafted bee hive oozing with honey. Although the bees appear to be diligently at work, the surroundings offer no sign of beekeeping tools.",
+      "short_desc": "You stand in front of a bee hive oozing with honey filled with honey bees."
     },
     "interactions": [{
       "name": "harvest",
@@ -590,7 +590,7 @@
     "movable":"Y",
     "description": {
       "long_desc": "Stepping into the grass field, you find yourself surrounded by blades of grass that tower above you. To the west lies a path surrounded by thick forrest. To the north is a number of trees, these ones much smaller than those of the forest that surrounds the property. To the east is another field, this one of wheat. To the south is the back of the farm house's garage.",
-      "short_desc": "You stand in a field of grass."
+      "short_desc": "You stand in a field of grass with blades of grass towering over you."
     },
     "interactions": [ {
       "name": "harvest",
@@ -624,7 +624,7 @@
     "movable":"Y",
     "description": {
       "long_desc": "Stepping into the grass field, you find yourself on a recently harvested patch of grass. To the west lies a path surrounded by thick forrest. To the north is a number of trees, these ones much smaller than those of the forest that surrounds the property. To the east is another field, this one of wheat. To the south is the back of the farm house's garage.",
-      "short_desc": "You stand in a field of grass."
+      "short_desc": "You stand in a field of grass, it has recently been harvested."
     },
     "interactions": [
       {
@@ -654,7 +654,7 @@
     "movable":"Y",
     "description": {
       "long_desc": "Before you stretches a vast golden wheat field, swaying gently in the breeze. To the north is a weathered barn, its red exterior faded and peeling beneath the touch of time. To the east is a tool shed with a moss-covered roof that exudes a rustic charm. To the west stretches out another field.",
-      "short_desc": "You stand in a wheat field."
+      "short_desc": "You stand in a wheat field, with lots of wheat swaying in the breeze."
     },
     "interactions": [
       {
@@ -689,7 +689,7 @@
     "movable":"Y",
     "description": {
       "long_desc": "Before you stretches a vast golden wheat field, it was recently harvested and needs some time to regrow. To the north is a weathered barn, its red exterior faded and peeling beneath the touch of time. To the east is a tool shed with a moss-covered roof that exudes a rustic charm. To the west stretches out another field.",
-      "short_desc": "You stand in a wheat field."
+      "short_desc": "You stand in a wheat field that has been recently harvested."
     },
     "interactions":[
       {
@@ -724,7 +724,7 @@
       {
         "name": "open",
         "success_desc": "The door unlocks.",
-        "fail_desc": "You need a key to unlock the door!",
+        "fail_desc": "You need a farm key to unlock the door!",
         "change_state_to": "open",
         "requirement": [
           {
@@ -748,7 +748,7 @@
       {
         "name": "unlock",
         "success_desc": "The door unlocks.",
-        "fail_desc": "You need a key to unlock the door!",
+        "fail_desc": "You need a farm key to unlock the door!",
         "change_state_to": "open",
         "requirement": [
           {
@@ -792,7 +792,7 @@
       {
         "name": "lock",
         "success_desc": "You lock the tool shed behind you.",
-        "fail_desc": "You need a key to lock the tool shed.",
+        "fail_desc": "You need a farm key to lock the tool shed.",
         "change_state_to": "closed",
         "requirement": [
           {
@@ -815,7 +815,7 @@
       {
         "name": "close",
         "success_desc": "You lock the tool shed behind you.",
-        "fail_desc": "You need a key to lock the tool shed.",
+        "fail_desc": "You need a farm key to lock the tool shed.",
         "change_state_to": "closed",
         "requirement": [
           {
@@ -866,14 +866,14 @@
     "state": "closed",
     "movable":"N",
     "description": {
-      "long_desc": "You stand outside the chicken coop.",
-      "short_desc": "You stand outside the chicken coop."
+      "long_desc": "You stand outside the chicken coop which was hidden by the tall trees, its doors locked tight.",
+      "short_desc": "You stand outside the chicken coop with a locked door."
     },
     "interactions": [
       {
         "name": "open",
         "success_desc": "The door to the chicken coop unlocks.",
-        "fail_desc": "You need a key to unlock that.",
+        "fail_desc": "You need a farm key to unlock that.",
         "change_state_to": "open",
         "requirement": [
           {
@@ -898,7 +898,7 @@
       {
         "name": "unlock",
         "success_desc": "The door to the chicken coop unlocks.",
-        "fail_desc": "You need a key to unlock that.",
+        "fail_desc": "You need a farm key to unlock that.",
         "change_state_to": "open",
         "requirement": [
           {
@@ -1003,7 +1003,7 @@
       {
         "name": "open",
         "success_desc": "The door unlocks.",
-        "fail_desc": "You need a key to unlock the door!",
+        "fail_desc": "You need a farm key to unlock the door!",
         "change_state_to": "open",
         "requirement": [
           {
@@ -1027,7 +1027,7 @@
       {
         "name": "unlock",
         "success_desc": "The door unlocks.",
-        "fail_desc": "You need a key to unlock the door!",
+        "fail_desc": "You need a farm key to unlock the door!",
         "change_state_to": "open",
         "requirement": [
           {
@@ -1073,7 +1073,7 @@
       {
         "name": "lock",
         "success_desc": "You lock the barn behind you.",
-        "fail_desc": "You need a key to unlock the barn.",
+        "fail_desc": "You need a farm key to unlock the barn.",
         "change_state_to": "closed",
         "requirement": [
           {
@@ -1098,7 +1098,7 @@
       {
         "name": "close",
         "success_desc": "You lock the barn behind you.",
-        "fail_desc": "You need a key to unlock the barn.",
+        "fail_desc": "You need a farm key to unlock the barn.",
         "change_state_to": "closed",
         "requirement": [
           {
