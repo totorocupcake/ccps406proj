@@ -161,186 +161,186 @@ def load_world_map_status_csv(load_game):
 
 # Functions for looking up data from loaded data files ###############################################
 
-def lookup_tileID_by_name_state(tile_name,state):
-    # given a tile name and state, find corresponding tile ID:
+# def lookup_tileID_by_name_state(tile_name,state):
+#     # given a tile name and state, find corresponding tile ID:
 
-    found_tile = False
+#     found_tile = False
 
-    with open(TILE_ID_MAPPING_JSON_FILE, 'r') as file:
-        parsed_tile_data = json.load(file)
+#     with open(TILE_ID_MAPPING_JSON_FILE, 'r') as file:
+#         parsed_tile_data = json.load(file)
 
-    for tile in parsed_tile_data:
-        if (tile["name"].lower() == tile_name.lower()) and (tile["state"].lower() == state.lower()):
-            found_tile = True
-            return tile["tile_id"]
+#     for tile in parsed_tile_data:
+#         if (tile["name"].lower() == tile_name.lower()) and (tile["state"].lower() == state.lower()):
+#             found_tile = True
+#             return tile["tile_id"]
 
-    if not found_tile:
-        return "Not Found"
+#     if not found_tile:
+#         return "Not Found"
 
-def lookup_desc (long_short , type, name, state,world_state):
-    # Given arguments find, return the matching description from in-game text files
-    # Returns None if not match
-    # long_short determines whether to return long_desc vs short_desc
-    # type determines if lookup is tile , character, object
+# def lookup_desc (long_short , type, name, state,world_state):
+#     # Given arguments find, return the matching description from in-game text files
+#     # Returns None if not match
+#     # long_short determines whether to return long_desc vs short_desc
+#     # type determines if lookup is tile , character, object
     
-    # cheap and dirty solution to get started, 
-    # but will have to wrap in a class eventually
-    # because we don't want to be open and loading from the JSON file
-    # on every function call - too slow
+#     # cheap and dirty solution to get started, 
+#     # but will have to wrap in a class eventually
+#     # because we don't want to be open and loading from the JSON file
+#     # on every function call - too slow
 
-    if type == "Object":
-        with open(OBJECTS_JSON_FILE, 'r') as file:
-            parsed_data = json.load(file)
-    elif type == "Character":
-        with open(CHARACTERS_JSON_FILE, 'r') as file:
-            parsed_data = json.load(file)
-    else:
-        with open(TILES_JSON_FILE, 'r') as file:
-            parsed_data = json.load(file)
+#     if type == "Object":
+#         with open(OBJECTS_JSON_FILE, 'r') as file:
+#             parsed_data = json.load(file)
+#     elif type == "Character":
+#         with open(CHARACTERS_JSON_FILE, 'r') as file:
+#             parsed_data = json.load(file)
+#     else:
+#         with open(TILES_JSON_FILE, 'r') as file:
+#             parsed_data = json.load(file)
     
-    found_noun = False
+#     found_noun = False
         
-    for element in parsed_data:
-        name_formatted = text_formatting.dynamic_variable_processor(world_state,element["name"])
-        if (name_formatted.lower() == name.lower()) and (element["state"].lower() == state.lower()):
-            found_noun = True
-            if long_short == "long":
-                return element["description"]["long_desc"]
-            else:
-                return element["description"]["short_desc"]
+#     for element in parsed_data:
+#         name_formatted = text_formatting.dynamic_variable_processor(world_state,element["name"])
+#         if (name_formatted.lower() == name.lower()) and (element["state"].lower() == state.lower()):
+#             found_noun = True
+#             if long_short == "long":
+#                 return element["description"]["long_desc"]
+#             else:
+#                 return element["description"]["short_desc"]
 
-    if found_noun == False:
-        return ""
-        # return None
+#     if found_noun == False:
+#         return ""
+#         # return None
 
-def lookup_interaction (type, name, state, interaction_key):
-    # Given the name of a noun and its state, and its interaction word (verb) return it's interaction data
-    # Return None if not match
+# def lookup_interaction (type, name, state, interaction_key):
+#     # Given the name of a noun and its state, and its interaction word (verb) return it's interaction data
+#     # Return None if not match
 
-    if type == "Object":
-        with open(OBJECTS_JSON_FILE, 'r') as file:
-            parsed_data = json.load(file)
-    elif type == "Character":
-        with open(CHARACTERS_JSON_FILE, 'r') as file:
-            parsed_data = json.load(file)
-    else:
-        with open(TILES_JSON_FILE, 'r') as file:
-            parsed_data = json.load(file)
+#     if type == "Object":
+#         with open(OBJECTS_JSON_FILE, 'r') as file:
+#             parsed_data = json.load(file)
+#     elif type == "Character":
+#         with open(CHARACTERS_JSON_FILE, 'r') as file:
+#             parsed_data = json.load(file)
+#     else:
+#         with open(TILES_JSON_FILE, 'r') as file:
+#             parsed_data = json.load(file)
 
-    for obj in parsed_data:
-        if (obj["name"].lower() == name.lower()) and (obj["state"].lower() == state.lower()):
-            if obj["interactions"] is not None:
-                for interac in obj["interactions"]:
-                    # if the interaction name matches, print its details...:
-                    if interac["name"].lower() == interaction_key.lower():
-                        return interac
-    return None
+#     for obj in parsed_data:
+#         if (obj["name"].lower() == name.lower()) and (obj["state"].lower() == state.lower()):
+#             if obj["interactions"] is not None:
+#                 for interac in obj["interactions"]:
+#                     # if the interaction name matches, print its details...:
+#                     if interac["name"].lower() == interaction_key.lower():
+#                         return interac
+#     return None
 
-def lookup_movable (tile_name,state):
-    # Given a tile name and state, return the matching movable flag.
-    # Return None if not match
+# def lookup_movable (tile_name,state):
+#     # Given a tile name and state, return the matching movable flag.
+#     # Return None if not match
 
-    found_tile = False
+#     found_tile = False
 
-    with open(TILES_JSON_FILE, 'r') as file:
-        parsed_tile_data = json.load(file)
+#     with open(TILES_JSON_FILE, 'r') as file:
+#         parsed_tile_data = json.load(file)
 
-    for tile in parsed_tile_data:
-        if (tile["name"].lower() == tile_name.lower()) and (tile["state"].lower() == state.lower()):
-            found_tile = True
-            return tile["movable"]
+#     for tile in parsed_tile_data:
+#         if (tile["name"].lower() == tile_name.lower()) and (tile["state"].lower() == state.lower()):
+#             found_tile = True
+#             return tile["movable"]
 
-    if found_tile == False:
-        return None
+#     if found_tile == False:
+#         return None
     
-def lookup_current_hp(name,state):
-    with open(CHARACTER_TEMPLATE_JSON_FILE, 'r') as file:
-        char_template = json.load(file)
+# def lookup_current_hp(name,state):
+#     with open(CHARACTER_TEMPLATE_JSON_FILE, 'r') as file:
+#         char_template = json.load(file)
     
-    for char in char_template:
-        if name.lower() == char["name"].lower() and state.lower() == char["state"]:
-            return char["current_hp"]
+#     for char in char_template:
+#         if name.lower() == char["name"].lower() and state.lower() == char["state"]:
+#             return char["current_hp"]
 
-def lookup_max_hp(name,state):
-    with open(CHARACTER_TEMPLATE_JSON_FILE, 'r') as file:
-        char_template = json.load(file)
+# def lookup_max_hp(name,state):
+#     with open(CHARACTER_TEMPLATE_JSON_FILE, 'r') as file:
+#         char_template = json.load(file)
     
-    for char in char_template:
-        if name.lower() == char["name"].lower() and state.lower() == char["state"]:
-            return char["max_hp"]  
+#     for char in char_template:
+#         if name.lower() == char["name"].lower() and state.lower() == char["state"]:
+#             return char["max_hp"]  
 
-def lookup_inventory(name,state):
-    with open(CHARACTER_TEMPLATE_JSON_FILE, 'r') as file:
-        char_template = json.load(file)
+# def lookup_inventory(name,state):
+#     with open(CHARACTER_TEMPLATE_JSON_FILE, 'r') as file:
+#         char_template = json.load(file)
     
-    for char in char_template:
-        if name.lower() == char["name"].lower() and state.lower() == char["state"]:
-            return char["inventory"]  
+#     for char in char_template:
+#         if name.lower() == char["name"].lower() and state.lower() == char["state"]:
+#             return char["inventory"]  
 
-def lookup_char_gold(name,state):
-    with open(CHARACTER_TEMPLATE_JSON_FILE, 'r') as file:
-        char_template = json.load(file)
+# def lookup_char_gold(name,state):
+#     with open(CHARACTER_TEMPLATE_JSON_FILE, 'r') as file:
+#         char_template = json.load(file)
     
-    for char in char_template:
-        if name.lower() == char["name"].lower() and state.lower() == char["state"]:
-            return char["current_gold"]  
+#     for char in char_template:
+#         if name.lower() == char["name"].lower() and state.lower() == char["state"]:
+#             return char["current_gold"]  
 
 
-def lookup_tile_type (tile_name,state):
-    # Given a tile name and state, return the matching movable flag.
-    # Return None if not match
+# def lookup_tile_type (tile_name,state):
+#     # Given a tile name and state, return the matching movable flag.
+#     # Return None if not match
 
-    found_tile = False
+#     found_tile = False
 
-    with open(TILES_JSON_FILE, 'r') as file:
-        parsed_tile_data = json.load(file)
+#     with open(TILES_JSON_FILE, 'r') as file:
+#         parsed_tile_data = json.load(file)
 
-    for tile in parsed_tile_data:
-        if (tile["name"].lower() == tile_name.lower()) and (tile["state"].lower() == state.lower()):
-            found_tile = True
-            return tile["type"]
+#     for tile in parsed_tile_data:
+#         if (tile["name"].lower() == tile_name.lower()) and (tile["state"].lower() == state.lower()):
+#             found_tile = True
+#             return tile["type"]
 
-    if found_tile == False:
-        return None
+#     if found_tile == False:
+#         return None
     
-def lookup_gold_amt (name, state):
-    # Given an object name and state, return the matching gold_amt.
-    # Return None if not match
+# def lookup_gold_amt (name, state):
+#     # Given an object name and state, return the matching gold_amt.
+#     # Return None if not match
 
 
-    with open(OBJECTS_JSON_FILE, 'r') as file:
-        parsed_object_data = json.load(file)
+#     with open(OBJECTS_JSON_FILE, 'r') as file:
+#         parsed_object_data = json.load(file)
 
 
-        found_object = False
+#         found_object = False
 
-        for obj in parsed_object_data:
+#         for obj in parsed_object_data:
 
-            if (obj["name"].lower() == name.lower()) and (obj["state"].lower() == state.lower()):
+#             if (obj["name"].lower() == name.lower()) and (obj["state"].lower() == state.lower()):
 
-                # print("DEBUG: found_object: ", found_object)
+#                 # print("DEBUG: found_object: ", found_object)
 
-                found_object = True                
-                return obj["gold_amt"]
+#                 found_object = True                
+#                 return obj["gold_amt"]
                 
-        if found_object == False:
-            return None
+#         if found_object == False:
+#             return None
         
-def lookup_type (general_type,name, state):
-    # returns the type value given a name and state and general type matched from JSON 
+# def lookup_type (general_type,name, state):
+#     # returns the type value given a name and state and general type matched from JSON 
     
-    if general_type == "Object":
-        with open(OBJECTS_JSON_FILE, 'r') as file:
-            parsed_data = json.load(file)
-    elif general_type == "Character":
-        with open(CHARACTERS_JSON_FILE, 'r') as file:
-            parsed_data = json.load(file)
-    else:
-        with open(TILES_JSON_FILE, 'r') as file:
-            parsed_data = json.load(file)
+#     if general_type == "Object":
+#         with open(OBJECTS_JSON_FILE, 'r') as file:
+#             parsed_data = json.load(file)
+#     elif general_type == "Character":
+#         with open(CHARACTERS_JSON_FILE, 'r') as file:
+#             parsed_data = json.load(file)
+#     else:
+#         with open(TILES_JSON_FILE, 'r') as file:
+#             parsed_data = json.load(file)
             
-    for obj in parsed_data:
-        if (obj["name"].lower() == name.lower()) and (obj["state"].lower() == state.lower()):
-            return obj["type"]
-    return None
+#     for obj in parsed_data:
+#         if (obj["name"].lower() == name.lower()) and (obj["state"].lower() == state.lower()):
+#             return obj["type"]
+#     return None
 
