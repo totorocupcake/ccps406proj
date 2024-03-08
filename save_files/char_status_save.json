@@ -3,7 +3,7 @@
         "type": "player",
         "name": "totoro",
         "co_ord_x": 6,
-        "co_ord_y": 3,
+        "co_ord_y": 12,
         "state": "null",
         "inventory": [
             {
@@ -27,9 +27,9 @@
                 "state": "null"
             },
             {
-                "name": "farm key",
-                "quantity": 1,
-                "state": "null"
+                "name": "meat",
+                "quantity": 2,
+                "state": "cooked"
             }
         ],
         "current_hp": 10,
@@ -40,51 +40,6 @@
                 "type": "Tile",
                 "name": "kitchen",
                 "state": "open"
-            },
-            {
-                "type": "Tile",
-                "name": "grasslands",
-                "state": "null"
-            },
-            {
-                "type": "Character",
-                "name": "cow",
-                "state": "wild"
-            },
-            {
-                "type": "Object",
-                "name": "farm key",
-                "state": "null"
-            },
-            {
-                "type": "Tile",
-                "name": "barn",
-                "state": "open"
-            },
-            {
-                "type": "Tile",
-                "name": "bedroom",
-                "state": "open"
-            },
-            {
-                "type": "Tile",
-                "name": "barn",
-                "state": "closed"
-            },
-            {
-                "type": "Character",
-                "name": "cow",
-                "state": "tamed_hungry"
-            },
-            {
-                "type": "Object",
-                "name": "medkit",
-                "state": "null"
-            },
-            {
-                "type": "Object",
-                "name": "garage key",
-                "state": "null"
             }
         ],
         "turn_counter": [
@@ -126,11 +81,6 @@
         "current_gold": 0,
         "visited": [
             {
-                "type": "Object",
-                "name": "gun",
-                "state": "null"
-            },
-            {
                 "type": "Tile",
                 "name": "tool shop",
                 "state": "null"
@@ -138,6 +88,11 @@
             {
                 "type": "Object",
                 "name": "axe",
+                "state": "null"
+            },
+            {
+                "type": "Object",
+                "name": "gun",
                 "state": "null"
             }
         ],
@@ -282,7 +237,7 @@
         "type": "monster",
         "name": "Thief",
         "co_ord_x": 12,
-        "co_ord_y": 8,
+        "co_ord_y": 6,
         "state": "aggressive",
         "inventory": null,
         "current_hp": 10,
@@ -303,8 +258,8 @@
     {
         "type": "monster",
         "name": "Wolf",
-        "co_ord_x": 8,
-        "co_ord_y": 20,
+        "co_ord_x": 10,
+        "co_ord_y": 18,
         "state": "aggressive",
         "inventory": [
             {
@@ -332,7 +287,7 @@
         "type": "animal",
         "name": "chicken",
         "co_ord_x": 3,
-        "co_ord_y": 17,
+        "co_ord_y": 15,
         "state": "wild",
         "inventory": [
             {
@@ -360,7 +315,7 @@
         "type": "animal",
         "name": "cow",
         "co_ord_x": 3,
-        "co_ord_y": 9,
+        "co_ord_y": 8,
         "state": "wild",
         "inventory": [
             {
@@ -376,39 +331,6 @@
             {
                 "type": "Tile",
                 "name": "grasslands",
-                "state": "null"
-            }
-        ],
-        "turn_counter": [
-            0,
-            "null"
-        ]
-    },
-    {
-        "type": "animal",
-        "name": "cow",
-        "co_ord_x": 6,
-        "co_ord_y": 3,
-        "state": "tamed_hungry",
-        "inventory": [
-            {
-                "name": "meat",
-                "quantity": 5,
-                "state": "null"
-            }
-        ],
-        "current_hp": 10,
-        "max_hp": 10,
-        "current_gold": 0,
-        "visited": [
-            {
-                "type": "Tile",
-                "name": "barn",
-                "state": "open"
-            },
-            {
-                "type": "Character",
-                "name": "totoro",
                 "state": "null"
             }
         ],
