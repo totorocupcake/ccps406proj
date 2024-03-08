@@ -101,7 +101,7 @@ class Character(Turn_Based_Entity.Turn_Based_Entity):
         else: 
             self.__active_player = 'N'
     
-    def turn_count_reached(self):
+    def turn_count_reached(self,data):
         # sets new state based on turn state, then resets the turn counter
         
         self.set_state(self.get_turn_state())

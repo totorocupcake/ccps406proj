@@ -6,7 +6,7 @@ import classes.Object as Object
 
 
 
-def play_game(world_state):
+def play_game(world_state,data):
     # MAIN FUNCTION within this module, that calls all other game_loop methods.
     # Coordinates the flow of game loop phase of our game.
     
@@ -17,7 +17,7 @@ def play_game(world_state):
     while (world_state.get_game_won() == 'N') and (exit_state==False):
         
         # prints description to console for active_player=Y
-        console_output(world_state)
+        console_output(world_state,data)
         
         for charac in world_state.get_characters():
             # cycle through each character in game to get their command and process it
@@ -30,17 +30,17 @@ def play_game(world_state):
                 break
                  
             # make updates to game based off validated command
-            world_state=state_updates.state_update(world_state,charac,command,command_type)
+            world_state=state_updates.state_update(world_state,charac,command,command_type,data)
             
             # check if game ended after making state update
             if world_state.get_game_won()=='Y':
                 break
             
-        world_state = world_state.increment_turn() # all characters played their turn, next turn time
+        world_state = world_state.increment_turn(data) # all characters played their turn, next turn time
     
     return world_state
 
-def console_output(world_state):
+def console_output(world_state,data):
     # Prints to console out the description at active player's location
     
     print("-" * 30)
@@ -53,7 +53,7 @@ def console_output(world_state):
     text_formatting.print_minimap(world_state,current_coord,active_char)
     print("")
     # get description based on coordinate of active player and parse it for dynamic text variables within string
-    output=world_state.get_description(current_coord,active_char.get_visited())
+    output=world_state.get_description(current_coord,active_char.get_visited(),data)
     output = text_formatting.dynamic_variable_processor(world_state,output) # formats dynamic variables in string
     
     #print(text_formatting.wrap_text(output))
