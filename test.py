@@ -322,13 +322,7 @@ def obtain_gold(world_state,charac,obtain_elem):
 def obtain_char(world_state,charac,obtain_elem):
     # this is a helper function for process_obtain function that creates a new Character as specified by the obtain field in JSON
     
-    new_charac=Character.Character()
-    new_charac.set_name(obtain_elem["name"])
-    new_charac.set_state(obtain_elem["state"])
-    new_charac.set_type(text_file_processor.lookup_type("Character",obtain_elem["name"],obtain_elem["state"]))
-    new_charac.update_coords(charac.get_coords())
-    new_charac.set_current_hp(text_file_processor.lookup_current_hp(obtain_elem["name"],obtain_elem["state"]))
-    new_charac.set_max_hp(text_file_processor.lookup_max_hp(obtain_elem["name"],obtain_elem["state"]))
+    new_charac=Character.Character(obtain_elem["name"],obtain_elem["state"],charac.get_coords())
     world_state.spawn_character(new_charac)
     
     return world_state

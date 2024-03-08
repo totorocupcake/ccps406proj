@@ -1,26 +1,51 @@
 import classes.Turn_Based_Entity as Turn_Based_Entity
+import text_file_processor
+import classes.Object as Object
 
 class Character(Turn_Based_Entity.Turn_Based_Entity):
 
     # CLASS CONSTRUCTOR
-    def __init__(self): 
+    def __init__(self, name = None, state = None, coords = None): 
         # call super class constructor:
         super().__init__()
 
-        self._inventory = []
+        self.set_name(name)
+        self.set_state(state)
         self._general_type = "Character"
-
-        self.__current_hp = 0
-        self.__max_hp = 0
-        self.__current_gold = 0
-
-        # should __visited by a set (of tuples) rather than a list?
-        # was: self.__visited = []
         self.__visited = set()
         self.__active_player = ""
-        self._turn_counter = 0
-        self._turn_state = ""
-
+        
+        if name is not None and state is not None:
+        
+            template_char = text_file_processor.load_char_template_file()
+            
+            for element in template_char:
+                if element["name"].lower() == name.lower() and element["state"].lower()==state.lower():
+                    self.set_type(element["type"])
+                    self.set_current_hp(element["current_hp"])
+                    self.set_max_hp(element["max_hp"])
+                    self.set_current_gold(element["current_gold"])
+                    self.update_turn_counter(element["turn_counter"][0],element["turn_counter"][1])
+                    if element["inventory"] is not None:
+                        inv_list_of_obj = []
+                        for inv_elem in element["inventory"]:
+                            inv_obj = Object.Object()
+                            inv_obj.set_name(inv_elem["name"])
+                            inv_obj.update_qty(inv_elem["quantity"])
+                            inv_obj.set_state(inv_elem["state"])
+                            inv_list_of_obj.append(inv_obj)
+                        self.update_inventory("add", inv_list_of_obj)
+                    if coords is None:
+                        self.update_coords((element["co_ord_x"],element["co_ord_y"]))
+                    else:
+                        x,y = coords
+                        self.update_coords((x,y))
+                    break
+        
+        # should __visited by a set (of tuples) rather than a list?
+        # was: self.__visited = []
+        
+    
 
     # GETTER METHODS
 

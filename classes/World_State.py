@@ -320,31 +320,10 @@ class World_State:
         x = int(charac_coord[0])
         y = int(charac_coord[1]) 
         
-        
         if charac_name in ("thief", "penny","jimmy","claire","wolf"):
           charac_name = charac_name[0].upper() + charac_name[1:]
 
-        new_charac = Character.Character()
-        new_charac.set_name(charac_name)
-        new_charac.update_coords((x,y))
-        new_charac.set_state(charac_state)
-        new_charac.set_type(text_file_processor.lookup_type("Character",charac_name,charac_state))
-        new_charac.set_current_hp(text_file_processor.lookup_current_hp(charac_name,charac_state))
-        new_charac.set_max_hp(text_file_processor.lookup_max_hp(charac_name,charac_state))
-        new_charac.set_current_gold(text_file_processor.lookup_char_gold(charac_name,charac_state))
-        
-        new_inventory=text_file_processor.lookup_inventory(charac_name,charac_state)
-        if new_inventory:
-          new_items = []
-          for item in new_inventory:
-            new_item = Object.Object()
-            new_item.set_name(item["name"])
-            new_item.update_qty(int(item["quantity"]))
-            new_item.set_state(item["state"])
-            new_item.set_type(text_file_processor.lookup_type("Object",item["name"],item["state"]))
-            new_item.set_gold_amt(text_file_processor.lookup_gold_amt(item["name"],item["state"]))
-            new_items.append(new_item)
-          new_charac.update_inventory("add",new_items)
+        new_charac = Character.Character(charac_name,charac_state,(x,y))
         self.spawn_character(new_charac)
         print("Spawned character")
       elif command == "graze":
@@ -445,29 +424,9 @@ def spawn_monster_checks(world_state):
       for element in template_char:
         if element["name"].lower() == characters_to_find[i].lower():
           # we found the character in the template JSON. Time to spawn it.
-          new_charac = Character.Character()
-          new_charac.set_name(element["name"])
-          new_charac.set_type(element["type"])
-          new_charac.update_coords((element["co_ord_x"],element["co_ord_y"]))
-          new_charac.set_state(element["state"])
-            
-          if element["inventory"] is not None:
-            inv_list_of_obj = []
-            for inv_elem in element["inventory"]:
-              inv_obj = Object.Object()
-              inv_obj.set_name(inv_elem["name"])
-              inv_obj.update_qty(inv_elem["quantity"])
-              inv_obj.set_state(inv_elem["state"])
-              inv_list_of_obj.append(inv_obj)
-            new_charac.update_inventory("add", inv_list_of_obj)
-
-          new_charac.set_current_hp(element["current_hp"])
-          new_charac.set_max_hp(element["max_hp"])
-          new_charac.set_current_gold(element["current_gold"])
-          new_charac.update_turn_counter(element["turn_counter"][0],element["turn_counter"][1])
-            
+          new_charac = Character.Character(element["name"],element["state"])   
           world_state.spawn_character(new_charac)
-          #print(f"spawn {new_charac.get_name()}.")
+          #print(f"Spawned {new_charac.get_name()}.")
           
   return world_state
 
