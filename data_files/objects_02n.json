@@ -872,8 +872,63 @@
             "qty": 1
           }
         ]
-    }]
+    },
+    {
+      "name": "cook",
+
+      "success_desc": "You cook the meat on your stove, it sizzles and smells heavenly.",
+      "fail_desc": "You need a stove to cook the meat.",
+      "change_state_to": "cooked",
+      "requirement": [
+        {
+          "type": "tile",
+          "name": "kitchen",
+          "state": "open",
+          "qty": null,
+          "remove_obj": "N"
+        }
+      ],
+      "obtain": null
+}
+  ]
   },
+  {
+    "name": "meat",
+    "type": "farming_prod",
+    "state": "cooked",
+    "gold_amt": 2,
+    "description": {
+      "long_desc": "a piece of cooked meat",
+      "short_desc": "a piece of cooked meat"
+    },
+    "interactions":  [
+      {
+        "name": "sell",
+
+        "success_desc": "You sell cooked meat to the merchant here.",
+        "fail_desc": "You cannot sell meat here.",
+        "change_state_to": "delete",
+        "requirement": [
+          {
+            "type": "Character",
+            "name": "merchant 2",
+            "state": "null",
+            "qty": null,
+            "remove_obj": "N"
+          }
+        ],
+        "obtain": [{
+          "type": "Gold",
+          "name": "gold",
+          "state": "null",
+          "qty": 2
+        }
+      ]
+  }
+]
+},
+
+
   {
     "name": "house key",
     "type": "tool",
