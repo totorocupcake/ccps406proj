@@ -424,8 +424,8 @@
       {
         "name": "shoot",
    
-        "success_desc": "You manage to shoot the thief with your gun. You obtain 5 gold.",
-        "fail_desc": "You cannot shoot the thief right now.",
+        "success_desc": "You manage to shoot the thief with your gun. You obtain some gold.",
+        "fail_desc": "You need a gun to shoot the thief.",
         "change_state_to": "delete",
         "requirement": [
           {
@@ -436,13 +436,7 @@
             "remove_obj": "N"
           }          
         ],
-        "obtain":   [ {
-          "type": "Gold",
-          "name": "gold",
-          "state": "null",
-          "qty": 5
-        }
-      ]
+        "obtain":   null
  
 
       }
@@ -464,7 +458,7 @@
         "name": "shoot",
    
         "success_desc": "You manage to shoot the wolf with your gun. You obtain some pieces of meat from its corpse.",
-        "fail_desc": "You cannot shoot the wolf right now.",
+        "fail_desc": "You need a gun to shoot a wolf.",
         "change_state_to": "delete",
         "requirement": [
           {
@@ -475,13 +469,7 @@
             "remove_obj": "N"
           }          
         ],
-        "obtain":  [ {
-          "type": "Object",
-          "name": "meat",
-          "state": "null",
-          "qty": 5
-        }
-      ]
+        "obtain": null
 
       }
     ]
@@ -502,7 +490,7 @@
    
         "success_desc": "You manage to catch the chicken in your arms. It is currently in your inventory.",
         "fail_desc": "You cannot catch the chicken right now.",
-        "change_state_to": "delete",
+        "change_state_to": "delete_nodrop",
         "requirement": null,
         "obtain":  [ {
           "type": "Object",
@@ -695,7 +683,7 @@
    
         "success_desc": "You manage to catch the cow.",
         "fail_desc": "The cow is too big to catch, try luring it with some apples!",
-        "change_state_to": "delete",
+        "change_state_to": "delete_nodrop",
         "requirement": [
           {
             "type": "Object",
@@ -902,7 +890,7 @@
       {
         "name": "steal",
    
-        "success_desc": "You manage to steal the %gold% gold from %player_name%.",
+        "success_desc": "You manage to steal %gold% gold from %player_name%.",
         "fail_desc": "You failed to steal gold from %player_name%.",
         "change_state_to": "null",
         "requirement": [

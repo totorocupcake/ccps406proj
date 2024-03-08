@@ -329,7 +329,22 @@ class World_State:
         new_charac.update_coords((x,y))
         new_charac.set_state(charac_state)
         new_charac.set_type(text_file_processor.lookup_type("Character",charac_name,charac_state))
+        new_charac.set_current_hp(text_file_processor.lookup_current_hp(charac_name,charac_state))
+        new_charac.set_max_hp(text_file_processor.lookup_max_hp(charac_name,charac_state))
+        new_charac.set_current_gold(text_file_processor.lookup_char_gold(charac_name,charac_state))
         
+        new_inventory=text_file_processor.lookup_inventory(charac_name,charac_state)
+        if new_inventory:
+          new_items = []
+          for item in new_inventory:
+            new_item = Object.Object()
+            new_item.set_name(item["name"])
+            new_item.update_qty(int(item["quantity"]))
+            new_item.set_state(item["state"])
+            new_item.set_type(text_file_processor.lookup_type("Object",item["name"],item["state"]))
+            new_item.set_gold_amt(text_file_processor.lookup_gold_amt(item["name"],item["state"]))
+            new_items.append(new_item)
+          new_charac.update_inventory("add",new_items)
         self.spawn_character(new_charac)
         print("Spawned character")
       elif command == "graze":
@@ -414,6 +429,12 @@ def spawn_monster_checks(world_state):
     for i in range(len(characters_to_find)):
       if char.get_name().lower() == characters_to_find[i]:
         found_status[i]=1
+        
+  for item in world_state.get_active_char().get_inventory():
+    for i in range(len(characters_to_find)):
+      if item.get_name().lower()== characters_to_find[i]:
+        found_status[i]=1
+  
           
   template_char = text_file_processor.load_char_template_file()
   

@@ -30,15 +30,16 @@ def interaction_commands (world_state,charac,command):
         return world_state
     
     # As we now passed the interaction requirements, process state_updates to world_state.
-    # First, we go through the interaction requirements and make necessary updates:
+    
+    # We check in interaction obtain field, and make updates for side-effects:
+    process_obtain(world_state,int_JSON_obj,charac)
+    
+    # Next, we go through the interaction requirements and make necessary updates:
     world_state = process_requirements(world_state,int_JSON_obj,charac,interac_verb)
     world_state = process_requirements_turn(world_state,int_JSON_obj,noun_entity)
     
     # Next, we check the interaction field "change_state_to" and make updates:
     world_state = process_change_state_to(world_state,charac,int_JSON_obj,noun_entity)
-    
-    # Next, we check in interaction obtain field, and make updates for additional side-effects:
-    process_obtain(world_state,int_JSON_obj,charac)
     
     return world_state   # done processing command, all updates made to world_state
  
@@ -263,6 +264,11 @@ def process_change_state_to(world_state,charac,int_JSON_obj,noun_entity):
                 # update here is specified if the noun_entity is a character:
                 
                 if int_JSON_obj["change_state_to"] == "delete":
+                    if charac.get_general_type() == "Character":
+                        charac.update_inventory("add",noun_entity.get_inventory())
+                        charac.increment_current_gold(noun_entity.get_current_gold())
+                    world_state = world_state.remove_character(noun_entity)
+                elif int_JSON_obj["change_state_to"] == "delete_nodrop":
                     world_state = world_state.remove_character(noun_entity)
                 else:
                     noun_entity.set_state(int_JSON_obj["change_state_to"])
