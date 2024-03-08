@@ -20,7 +20,7 @@ def interaction_commands (world_state,charac,command):
     
     if check_noun_status == False:   # noun does not exist on current location of charac
         if charac.get_general_type()=="Character" and charac.get_active_player()=='Y':
-            print("Command not recognized")
+            print(f"Command not recognized")
         return world_state
 
     # as command is valid, check the interaction requirements to see if pass
@@ -32,7 +32,7 @@ def interaction_commands (world_state,charac,command):
     # As we now passed the interaction requirements, process state_updates to world_state.
     
     # We check in interaction obtain field, and make updates for side-effects:
-    process_obtain(world_state,int_JSON_obj,charac)
+    process_obtain(world_state,int_JSON_obj,charac,noun_entity)
     
     # Next, we go through the interaction requirements and make necessary updates:
     world_state = process_requirements(world_state,int_JSON_obj,charac,interac_verb)
@@ -251,11 +251,11 @@ def process_change_state_to(world_state,charac,int_JSON_obj,noun_entity):
                     # check if change state to has CHANGE_TILE_TO within it and make updates based on the provided tile id
                     id = int_JSON_obj["change_state_to"].split()[1]
                     noun_entity.update_tile_by_id(id)
-                    world_state = interaction_commands (world_state,noun_entity,"DEFAULT " + noun_entity.get_name())
                 else:
                     # make update to tile based on provided new state stored in change_state_to JSON field
                     noun_entity.update_tile_by_state(int_JSON_obj["change_state_to"])
-                    
+                
+                # print(f"calling {noun_entity.get_name()}")
                 world_state = interaction_commands (world_state,noun_entity,"DEFAULT " + noun_entity.get_name())
                 # in the above line, we make a call to submit command "DEFAULT tile_name" in case the updated tile 
                 # has a default interaction
@@ -272,6 +272,7 @@ def process_change_state_to(world_state,charac,int_JSON_obj,noun_entity):
                     world_state = world_state.remove_character(noun_entity)
                 else:
                     noun_entity.set_state(int_JSON_obj["change_state_to"])
+                    # print(f"calling {noun_entity.get_name()}")
                     world_state = interaction_commands (world_state,noun_entity,"DEFAULT " + noun_entity.get_name())
                     # in the above line, we make a call to submit command "DEFAULT character_name" in case the updated character
                     # has a default interaction
@@ -333,7 +334,7 @@ def obtain_char(world_state,charac,obtain_elem):
     return world_state
     
     
-def process_obtain(world_state,int_JSON_obj,charac):
+def process_obtain(world_state,int_JSON_obj,charac,noun_entity):
     # this function processes the obtain field within the JSON interaction data which contains side effects
     
     if int_JSON_obj["obtain"] is not None:
@@ -347,7 +348,8 @@ def process_obtain(world_state,int_JSON_obj,charac):
                 world_state = obtain_tile(world_state,obtain_elem)
                 # here we make an extra method call to submit command "DEFAULT tile_name" to check if there
                 # is any default action needed for the new tile we obtained:
-                world_state = interaction_commands (world_state,charac,"DEFAULT " + obtain_elem["name"])
+                # print(f"calling {obtain_elem['name']}")
+                world_state = interaction_commands (world_state,noun_entity,"DEFAULT " + obtain_elem["name"])
                 
             elif obtain_elem["type"].lower() == "gold":
                 world_state = obtain_gold(world_state,charac,obtain_elem)
@@ -356,6 +358,7 @@ def process_obtain(world_state,int_JSON_obj,charac):
                 world_state = obtain_char(world_state,charac,obtain_elem)
                 # here we make an extra method call to submit command "DEFAULT character_name" to check if there
                 # is any default action needed for the new character we obtained:
+                # print(f"calling {obtain_elem['name']}")
                 world_state = interaction_commands (world_state,world_state.get_characters()[-1],"DEFAULT " + obtain_elem["name"])
                 
                 
