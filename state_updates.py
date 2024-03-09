@@ -1,7 +1,7 @@
 import text_formatting
 import test
 
-def state_update(world_state,charac,command,command_type,data):
+def state_update(world_state,charac,command,command_type):
     # Make the updates to world_state (and any other updates required) to process the command.
     # Command type is the type of command determined by command processor which determines what updates needs to be made.
     # Returns back updated world_state object
@@ -12,7 +12,7 @@ def state_update(world_state,charac,command,command_type,data):
     
     # parse command and make updates
     if command_type == "basic":
-        return basic_commands(world_state,charac,command,data)
+        return basic_commands(world_state,charac,command)
     elif command_type == "normal":
         # to be done, these are normal interactions based off the JSON interaction array data.
         pass
@@ -20,14 +20,14 @@ def state_update(world_state,charac,command,command_type,data):
         # to be done, these are commands that are more specific and documented to be handled separately
         pass
     elif command_type == "cheat":
-        world_state = world_state.cheat_mode(command,charac,data)
+        world_state = world_state.cheat_mode(command,charac)
         return world_state
     else:
         # do nothing, just return original world state as command was not recognized but passed through command processor
         return world_state
 
 
-def basic_commands(world_state,charac,command,data):
+def basic_commands(world_state,charac,command):
     #added:
     directions_set = {"n","s","w","e"}
     
@@ -42,7 +42,7 @@ def basic_commands(world_state,charac,command,data):
     
     # added: for dealing with 'interaction' commands
     elif command is not None:
-        world_state = test.interaction_commands(world_state, charac, command,data)
+        world_state = test.interaction_commands(world_state, charac, command)
 
     for char in world_state.get_characters():
         # check after state updates if game is won, update flag if so in world state

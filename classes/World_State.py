@@ -50,7 +50,7 @@ class World_State:
     # else
     return None
 
-  def increment_turn(self, data,amount=1):
+  def increment_turn(self,amount=1):
     self.__turn_number += amount
     
     # check if player is late to pay rent, if so, add letter in their mailbox
@@ -58,12 +58,12 @@ class World_State:
     
     # turn counting checks for all chars
     for char in self.__characters:
-        char.decrement_turn_count(data)
+        char.decrement_turn_count()
     
     # turn counting checks for all tiles    
     for row in self.__tiles:
       for tiles in row:
-        tiles.decrement_turn_count(data)
+        tiles.decrement_turn_count()
     
     # monster/animal respawning checks
     self = spawn_monster_checks(self)
@@ -168,7 +168,7 @@ class World_State:
 
     return None
 
-  def get_description(self, coords, visited,data):
+  def get_description(self, coords, visited):
   # returns a list/array of description strings for a given coords and 
   #   visited set (of tuples of (type, name, state))
     x_coord, y_coord = coords
@@ -195,9 +195,9 @@ class World_State:
     tile_tuple = (current_tl.get_general_type(), current_tl.get_name(), current_tl.get_state())
 
     if tile_tuple in visited:
-      desc_list.append(current_tl.get_desc("short",self,data))
+      desc_list.append(current_tl.get_desc("short",self))
     else:
-      desc_list.append(current_tl.get_desc("long",self,data))
+      desc_list.append(current_tl.get_desc("long",self))
 
     # add each character:
     if current_npc_char_list is not None and current_tl.get_movable() == 'Y':
@@ -206,9 +206,9 @@ class World_State:
                       char_elem.get_state() )
 
         if char_tuple in visited:
-          desc_list.append(char_elem.get_desc("short",self,data))
+          desc_list.append(char_elem.get_desc("short",self))
         else:
-          desc_list.append(char_elem.get_desc("long",self,data))
+          desc_list.append(char_elem.get_desc("long",self))
         
 
     # add each object in the tile's inventory:
@@ -218,9 +218,9 @@ class World_State:
           inv_tuple = (tl_inv_elem.get_general_type(), tl_inv_elem.get_name(), \
                         tl_inv_elem.get_state() )
           if inv_tuple in visited:
-            desc_list.append(tl_inv_elem.get_desc("short",self,data))
+            desc_list.append(tl_inv_elem.get_desc("short",self))
           else:
-            desc_list.append(tl_inv_elem.get_desc("long",self,data))
+            desc_list.append(tl_inv_elem.get_desc("long",self))
 
 
     # ------------------------------------------------------
@@ -307,7 +307,9 @@ class World_State:
     
     return next_command
   
-  def cheat_mode(self, command,charac,data):
+  def cheat_mode(self, command,charac):
+    import classes.Data as Data
+    
     command = command.strip()
     words = command.split()
     
@@ -338,7 +340,7 @@ class World_State:
         charac_coord = charac_coord.split(',')
         x = int(charac_coord[0])
         y = int(charac_coord[1])
-        print (self.get_description((x,y),{},data))
+        print (self.get_description((x,y),{}))
       elif words[0] == "teleport":
         charac_coord = words[1]
         charac_coord = charac_coord.split(',')
@@ -370,8 +372,8 @@ class World_State:
         obj.set_state(words[1])
         obj.set_name(name)
         obj.update_qty(1)
-        obj.set_type(data.lookup_type("Object",name,words[1]))
-        obj.set_gold_amt(data.lookup_gold_amt(name,words[1]))
+        obj.set_type(Data.Data().lookup_type("Object",name,words[1]))
+        obj.set_gold_amt(Data.Data().lookup_gold_amt(name,words[1]))
         charac.update_inventory("add",[obj])
         print(f"Added {name} into your inventory.")
       elif words[0] == "gold": #cheat gold 500

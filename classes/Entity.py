@@ -1,3 +1,5 @@
+import classes.Data as Data
+
 class Entity:
   # class constructor:
   def __init__(self):
@@ -35,9 +37,9 @@ class Entity:
     # returns a list of 'object' objects
     return self._inventory
 
-  def get_desc(self, long_short,world_state,data):
+  def get_desc(self, long_short,world_state):
     # use __general_type (Object/Character/Tile) for lookup:
-    return data.lookup_desc(long_short, self._general_type, self._name, self.__state,world_state)
+    return Data.Data().lookup_desc(long_short, self._general_type, self._name, self.__state,world_state)
 
 
   # setter methods (Common):

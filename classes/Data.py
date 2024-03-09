@@ -2,13 +2,23 @@ import text_file_processor
 import text_formatting
 
 class Data():
-    def __init__(self):
-        self._tile_data = text_file_processor.load_tile_JSON_data_file()
-        self._tile_id_mapping = text_file_processor.load_tileIDMapping_file()
-        self._char_data = text_file_processor.load_characters_JSON_data_file()
-        self._char_template = text_file_processor.load_char_template_file()
-        self._objects_data = text_file_processor.load_objects_JSON_data_file()
+    _instance = None
     
+    def __new__(cls, *args, **kwargs):
+        # singleton code from chatgpt
+        if not cls._instance:
+            cls._instance = super(Data, cls).__new__(cls)
+        return cls._instance
+    
+    def __init__(self):
+        if not hasattr(self, '_initialized'):
+            self._tile_data = text_file_processor.load_tile_JSON_data_file()
+            self._tile_id_mapping = text_file_processor.load_tileIDMapping_file()
+            self._char_data = text_file_processor.load_characters_JSON_data_file()
+            self._char_template = text_file_processor.load_char_template_file()
+            self._objects_data = text_file_processor.load_objects_JSON_data_file()
+            self._initialized = True
+        
     def get_tile_data(self):
         return self._tile_data
     
