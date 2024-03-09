@@ -25,7 +25,7 @@ LOAD_WORLD_MAP_STATUS_CSV_FILE = "save_files/world_map_status_save.csv"
 LOAD_OBJECTS_JSON_FILE = "save_files/objects_status_save.json"
 LOAD_CHARACTER_STATUS_JSON_FILE = "save_files/char_status_save.json"
 LOAD_WORLD_MAP_TURN_STATUS_JSON_FILE = "save_files/world_map_turn_status.json"
-
+LOAD_RENT_INFO_JSON_FILE = "save_files/rent_info.json"
 
 # Functions to load static data files #####################################################################
 
@@ -104,6 +104,7 @@ def load_character_status_file(load_game):
         parsed_character_status_data = json.load(file)
 
     return parsed_character_status_data
+
 def load_world_map_turn_status(load_game):
     if load_game == 'Y':
         file_to_load = LOAD_WORLD_MAP_TURN_STATUS_JSON_FILE
@@ -114,6 +115,14 @@ def load_world_map_turn_status(load_game):
         parsed_world_map_turn_status_data = json.load(file)
 
     return parsed_world_map_turn_status_data
+
+def load_rent_data():
+    file_to_load = LOAD_RENT_INFO_JSON_FILE
+
+    with open(file_to_load, 'r') as file:
+        parsed_rent_info_data = json.load(file)
+
+    return parsed_rent_info_data 
 
 def load_world_map_status_csv(load_game):
     # loads the world map status CSV file into a 2D array and returns the array

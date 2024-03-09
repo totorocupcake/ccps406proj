@@ -6,6 +6,7 @@ def save_game(world_state):
     save_world_status_turn_counter(world_state)
     save_character_status(world_state)
     save_obj_status(world_state)
+    save_rent_info(world_state)
     print ("Game saved to save_files subfolder.")
 
 # Helper functions to convert objects into dictionary first before converting to text files ##################################### 
@@ -129,3 +130,11 @@ def save_world_status_turn_counter (world_state):
                 
     with open('save_files/world_map_turn_status.json', 'w') as file:
         json.dump(turn_counter_list, file, indent=4)
+        
+def save_rent_info (world_state):
+    dict = {
+        "rent_amount": world_state.get_rent_amount(),
+        "rent_due_date": world_state.get_rent_due_date()}  
+    
+    with open('save_files/rent_info.json', 'w') as file:
+        json.dump(dict, file, indent=4)

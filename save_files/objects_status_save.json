@@ -82,6 +82,15 @@
     },
     {
         "type": "tool",
+        "name": "letter from landlord",
+        "state": "null",
+        "quantity": 1,
+        "co_ord_x": 0,
+        "co_ord_y": 0,
+        "inventory": null
+    },
+    {
+        "type": "tool",
         "name": "scythe",
         "state": "null",
         "quantity": 1,
