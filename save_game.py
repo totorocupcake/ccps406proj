@@ -134,7 +134,10 @@ def save_world_status_turn_counter (world_state):
 def save_rent_info (world_state):
     dict = {
         "rent_amount": world_state.get_rent_amount(),
-        "rent_due_date": world_state.get_rent_due_date()}  
+        "rent_due_date": world_state.get_rent_due_date(),
+        "turn_number": world_state.get_turn_number(),
+        "game_won": world_state.get_game_won()
+        }  
     
     with open('save_files/rent_info.json', 'w') as file:
         json.dump(dict, file, indent=4)
