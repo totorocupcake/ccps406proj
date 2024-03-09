@@ -5,7 +5,6 @@ class Data():
     _instance = None
     
     def __new__(cls, *args, **kwargs):
-        # singleton code from chatgpt
         if not cls._instance:
             cls._instance = super(Data, cls).__new__(cls)
         return cls._instance

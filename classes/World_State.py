@@ -10,7 +10,7 @@ import npc_behaviors
 
 WORLD_MAP_NUM_ROWS = text_file_processor.WORLD_MAP_STATUS_ROWS
 WORLD_MAP_NUM_COLUMNS = text_file_processor.WORLD_MAP_STATUS_COLUMNS
-INTEREST_RATE = 1.05
+INTEREST_RATE = 0.15
 TURN_INCREMENT = 20
 class World_State:
 

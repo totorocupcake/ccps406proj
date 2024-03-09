@@ -20,8 +20,14 @@ def initialize(starting_rent_amount, starting_rent_due_date):
     
     if load_game =="load" or load_game == "load game":
         load_game = 'Y'
+        
+        rent_data = text_file_processor.load_rent_data()
+        
+        starting_rent_amount = rent_data["rent_amount"]
+        starting_rent_due_date = rent_data["rent_due_date"]
     else:
         load_game= 'N'
+    
     
     world_state = load_World_State(starting_rent_amount, starting_rent_due_date,load_game)
 

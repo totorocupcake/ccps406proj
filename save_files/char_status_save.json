@@ -3,7 +3,7 @@
         "type": "player",
         "name": "totoro",
         "co_ord_x": 6,
-        "co_ord_y": 12,
+        "co_ord_y": 13,
         "state": "null",
         "inventory": [
             {
@@ -25,11 +25,6 @@
                 "name": "beekeeping suit",
                 "quantity": 1,
                 "state": "null"
-            },
-            {
-                "name": "meat",
-                "quantity": 2,
-                "state": "cooked"
             }
         ],
         "current_hp": 10,
@@ -237,7 +232,7 @@
         "type": "monster",
         "name": "Thief",
         "co_ord_x": 12,
-        "co_ord_y": 6,
+        "co_ord_y": 8,
         "state": "aggressive",
         "inventory": null,
         "current_hp": 10,
@@ -259,7 +254,7 @@
         "type": "monster",
         "name": "Wolf",
         "co_ord_x": 10,
-        "co_ord_y": 18,
+        "co_ord_y": 20,
         "state": "aggressive",
         "inventory": [
             {
@@ -287,7 +282,7 @@
         "type": "animal",
         "name": "chicken",
         "co_ord_x": 3,
-        "co_ord_y": 15,
+        "co_ord_y": 17,
         "state": "wild",
         "inventory": [
             {
@@ -315,7 +310,7 @@
         "type": "animal",
         "name": "cow",
         "co_ord_x": 3,
-        "co_ord_y": 8,
+        "co_ord_y": 9,
         "state": "wild",
         "inventory": [
             {
