@@ -15,17 +15,23 @@ def state_update(world_state,charac,command,command_type):
         return basic_commands(world_state,charac,command)
     elif command_type == "normal":
         # to be done, these are normal interactions based off the JSON interaction array data.
-        pass
-    elif command_type == "advanced":
-        # to be done, these are commands that are more specific and documented to be handled separately
-        pass
+        world_state = test.interaction_commands(world_state, charac, command)
+        
+        for char in world_state.get_characters():
+        # check after state updates if game is won, update flag if so in world state
+            if char.get_name() == 'landlord':
+                if char.get_state() == 'happy':
+                    world_state.set_game_won('Y')
+                break
+        
+        return world_state
+                
     elif command_type == "cheat":
         world_state = world_state.cheat_mode(command,charac)
         return world_state
     else:
         # do nothing, just return original world state as command was not recognized but passed through command processor
         return world_state
-
 
 def basic_commands(world_state,charac,command):
     #added:
@@ -40,17 +46,6 @@ def basic_commands(world_state,charac,command):
     elif command == "store gold" or command== "take gold":
         world_state=process_store_gold(world_state,charac,command) # stores/takes character's gold if at bedroom
     
-    # added: for dealing with 'interaction' commands
-    elif command is not None:
-        world_state = test.interaction_commands(world_state, charac, command)
-
-    for char in world_state.get_characters():
-        # check after state updates if game is won, update flag if so in world state
-        if char.get_name() == 'landlord':
-            if char.get_state() == 'happy':
-                world_state.set_game_won('Y')
-            break
-            
     return world_state
 
 def visited_updates (world_state,charac,x,y):
