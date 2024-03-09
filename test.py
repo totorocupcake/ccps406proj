@@ -1,8 +1,9 @@
 import classes.Object as Object
 import text_formatting
 import classes.Character as Character
+import classes.Data as Data
 
-def interaction_commands (world_state,charac,command,data):
+def interaction_commands (world_state,charac,command):
     # main function to process interactions, directs the overall flow and logic of entire module
     
     command_status, interaction_array = check_command(command)  # check command length is valid
@@ -23,7 +24,7 @@ def interaction_commands (world_state,charac,command,data):
         return world_state
 
     # as command is valid, check the interaction requirements to see if pass
-    req_status,int_JSON_obj = check_requirements(world_state,charac,noun_entity,interac_verb,data)
+    req_status,int_JSON_obj = check_requirements(world_state,charac,noun_entity,interac_verb)
     
     if req_status == False:  # failed interaction requirements
         return world_state
@@ -31,14 +32,14 @@ def interaction_commands (world_state,charac,command,data):
     # As we now passed the interaction requirements, process state_updates to world_state.
     
     # We check in interaction obtain field, and make updates for side-effects:
-    process_obtain(world_state,int_JSON_obj,charac,noun_entity,data)
+    process_obtain(world_state,int_JSON_obj,charac,noun_entity)
     
     # Next, we go through the interaction requirements and make necessary updates:
-    world_state = process_requirements(world_state,int_JSON_obj,charac,interac_verb,data)
+    world_state = process_requirements(world_state,int_JSON_obj,charac,interac_verb)
     world_state = process_requirements_turn(world_state,int_JSON_obj,noun_entity)
     
     # Next, we check the interaction field "change_state_to" and make updates:
-    world_state = process_change_state_to(world_state,charac,int_JSON_obj,noun_entity,data)
+    world_state = process_change_state_to(world_state,charac,int_JSON_obj,noun_entity)
     
     return world_state   # done processing command, all updates made to world_state
  
@@ -172,7 +173,7 @@ def print_success_requirement(world_state,int_JSON_obj,charac):
         print()
                      
                         
-def check_requirements(world_state,charac,noun_entity,interac_verb,data):
+def check_requirements(world_state,charac,noun_entity,interac_verb):
     # given a noun_entity and the interac_verb (interaction verb) find it's interaction data from JSON
     # if found, check if the interaction requirements are met and returns the interaction data from JSON
     
@@ -182,7 +183,7 @@ def check_requirements(world_state,charac,noun_entity,interac_verb,data):
         interac_name = noun_entity.get_name()
 
     # lookup the interaction data from our JSON file
-    int_JSON_obj =data.lookup_interaction(noun_entity.get_general_type(), \
+    int_JSON_obj =Data.Data().lookup_interaction(noun_entity.get_general_type(), \
             interac_name, noun_entity.get_state(), interac_verb)
     
     
@@ -227,7 +228,7 @@ def check_requirements(world_state,charac,noun_entity,interac_verb,data):
     return True,int_JSON_obj
                   
                     
-def process_change_state_to(world_state,charac,int_JSON_obj,noun_entity,data): 
+def process_change_state_to(world_state,charac,int_JSON_obj,noun_entity): 
    # this function makes update to world_state by processing the "change_state_to" field within the interaction data
    # returns back the updated world state
    
@@ -250,13 +251,13 @@ def process_change_state_to(world_state,charac,int_JSON_obj,noun_entity,data):
                 if "CHANGE_TILE_TO" in int_JSON_obj["change_state_to"]:
                     # check if change state to has CHANGE_TILE_TO within it and make updates based on the provided tile id
                     id = int_JSON_obj["change_state_to"].split()[1]
-                    noun_entity.update_tile_by_id(id,data)
+                    noun_entity.update_tile_by_id(id)
                 else:
                     # make update to tile based on provided new state stored in change_state_to JSON field
-                    noun_entity.update_tile_by_state(int_JSON_obj["change_state_to"],data)
+                    noun_entity.update_tile_by_state(int_JSON_obj["change_state_to"])
                 
                 # print(f"calling {noun_entity.get_name()}")
-                world_state = interaction_commands (world_state,noun_entity,"DEFAULT " + noun_entity.get_name(),data)
+                world_state = interaction_commands (world_state,noun_entity,"DEFAULT " + noun_entity.get_name())
                 # in the above line, we make a call to submit command "DEFAULT tile_name" in case the updated tile 
                 # has a default interaction
                     
@@ -273,7 +274,7 @@ def process_change_state_to(world_state,charac,int_JSON_obj,noun_entity,data):
                 else:
                     noun_entity.set_state(int_JSON_obj["change_state_to"])
                     # print(f"calling {noun_entity.get_name()}")
-                    world_state = interaction_commands (world_state,noun_entity,"DEFAULT " + noun_entity.get_name(),data)
+                    world_state = interaction_commands (world_state,noun_entity,"DEFAULT " + noun_entity.get_name())
                     # in the above line, we make a call to submit command "DEFAULT character_name" in case the updated character
                     # has a default interaction
             else: 
@@ -303,12 +304,12 @@ def obtain_item(world_state,charac,obtain_elem):
     charac.update_inventory("add", [new_obj])
     return world_state
         
-def obtain_tile(world_state, obtain_elem,data):
+def obtain_tile(world_state, obtain_elem):
     # this is a helper function for process_obtain function that creates tile as specified by the obtain field in JSON
     for row in world_state.get_tiles():
         for tl in row:
             if tl.get_name() == obtain_elem["name"]:
-                tl.update_tile_by_state(obtain_elem["state"],data)
+                tl.update_tile_by_state(obtain_elem["state"])
     return world_state
 
 
@@ -328,7 +329,7 @@ def obtain_char(world_state,charac,obtain_elem):
     return world_state
     
     
-def process_obtain(world_state,int_JSON_obj,charac,noun_entity,data):
+def process_obtain(world_state,int_JSON_obj,charac,noun_entity):
     # this function processes the obtain field within the JSON interaction data which contains side effects
     
     if int_JSON_obj["obtain"] is not None:
@@ -339,11 +340,11 @@ def process_obtain(world_state,int_JSON_obj,charac,noun_entity,data):
                 world_state = obtain_item(world_state,charac,obtain_elem)
                 
             elif obtain_elem["type"] == "tile":
-                world_state = obtain_tile(world_state,obtain_elem,data)
+                world_state = obtain_tile(world_state,obtain_elem)
                 # here we make an extra method call to submit command "DEFAULT tile_name" to check if there
                 # is any default action needed for the new tile we obtained:
                 # print(f"calling {obtain_elem['name']}")
-                world_state = interaction_commands (world_state,noun_entity,"DEFAULT " + obtain_elem["name"],data)
+                world_state = interaction_commands (world_state,noun_entity,"DEFAULT " + obtain_elem["name"])
                 
             elif obtain_elem["type"].lower() == "gold":
                 world_state = obtain_gold(world_state,charac,obtain_elem)
@@ -353,7 +354,7 @@ def process_obtain(world_state,int_JSON_obj,charac,noun_entity,data):
                 # here we make an extra method call to submit command "DEFAULT character_name" to check if there
                 # is any default action needed for the new character we obtained:
                 # print(f"calling {obtain_elem['name']}")
-                world_state = interaction_commands (world_state,world_state.get_characters()[-1],"DEFAULT " + obtain_elem["name"],data)
+                world_state = interaction_commands (world_state,world_state.get_characters()[-1],"DEFAULT " + obtain_elem["name"])
                 
                 
 def process_requirements_turn(world_state,int_JSON_obj,noun_entity):
@@ -366,7 +367,7 @@ def process_requirements_turn(world_state,int_JSON_obj,noun_entity):
     return world_state
                  
 
-def process_requirements(world_state,int_JSON_obj,charac,interac_verb,data):
+def process_requirements(world_state,int_JSON_obj,charac,interac_verb):
     # this function processes any requirements that specifies that the requirement entity needs to be removed
     # or any requirement entity that needs their state to be updated
     
@@ -413,6 +414,6 @@ def process_requirements(world_state,int_JSON_obj,charac,interac_verb,data):
                     new_state = requirement["state"].split()[2]
                     x,y = charac.get_coords()
                     current_tl = world_state.get_tiles()[x][y]
-                    current_tl.update_tile_by_state(new_state,data)
+                    current_tl.update_tile_by_state(new_state)
                                
     return world_state

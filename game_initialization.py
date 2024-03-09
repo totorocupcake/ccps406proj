@@ -3,11 +3,12 @@ import classes.Object as Object
 import classes.Tile as Tile
 import text_file_processor
 import classes.Character as Character
+import classes.Data as Data
 
 WORLD_MAP_NUM_ROWS = text_file_processor.WORLD_MAP_STATUS_ROWS
 WORLD_MAP_NUM_COLUMNS = text_file_processor.WORLD_MAP_STATUS_COLUMNS
 
-def initialize(starting_rent_amount, starting_rent_due_date,data):
+def initialize(starting_rent_amount, starting_rent_due_date):
     # Needs to return 1 world state object instance
     # Instantiate all neccessary classes so we have a complete world state object to return for game loop
 
@@ -22,7 +23,7 @@ def initialize(starting_rent_amount, starting_rent_due_date,data):
     else:
         load_game= 'N'
     
-    world_state = load_World_State(starting_rent_amount, starting_rent_due_date,load_game,data)
+    world_state = load_World_State(starting_rent_amount, starting_rent_due_date,load_game)
 
     if load_game == 'N':
         # prompt for player name and display welcome message if new game
@@ -47,12 +48,12 @@ def initial_game_prompt(world_state):
         
     return world_state
     
-def load_World_State(rent_amount, rent_due_date,load_game,data):
+def load_World_State(rent_amount, rent_due_date,load_game):
   # Create and return a fully loaded World_State object:
 
   ws = World_State.World_State()
 
-  tile_2D_list = load_tile_2D_array_from_file(load_game,data)
+  tile_2D_list = load_tile_2D_array_from_file(load_game)
 
   # load the 2D Tiles array:
   ws.load_2D_Tiles_array(tile_2D_list)
@@ -74,9 +75,9 @@ def load_World_State(rent_amount, rent_due_date,load_game,data):
   
   return ws
 
-def get_object_list_by_tile_location(x_coord, y_coord,load_game,data):
+def get_object_list_by_tile_location(x_coord, y_coord,load_game):
 
-  obj_list = load_objects_list_from_file(load_game,data)
+  obj_list = load_objects_list_from_file(load_game)
 
   found = False
 
@@ -124,12 +125,12 @@ def get_tile_by_name_and_state(name, state):
   # else:
   #   return None
 
-def lookup_tile_Mapping_by_ID(tile_id,data):
+def lookup_tile_Mapping_by_ID(tile_id):
   # returns a tile object from load_tile_JSON_data_file() based on a given tile_id
   # NOTE: refactored to be shorter by utilizing class methods of tile class
 
   tl = Tile.Tile()
-  tl.update_tile_by_id(tile_id,data)
+  tl.update_tile_by_id(tile_id)
   return tl
 
   # get the tile mapping data from the file:
@@ -155,7 +156,7 @@ def lookup_tile_Mapping_by_ID(tile_id,data):
   # if no tile found, return None
   # return None
 
-def load_tile_2D_array_from_file(load_game,data):
+def load_tile_2D_array_from_file(load_game):
   # returns a 2D array/list of tile objects
 
   # get 2D array of tile ID's from world_map_status_00.csv
@@ -176,13 +177,13 @@ def load_tile_2D_array_from_file(load_game,data):
     inner_array = []
     for j in range(num_rows):
       tile_id = world_map_status_array[j][i]
-      tl = lookup_tile_Mapping_by_ID(tile_id,data)
+      tl = lookup_tile_Mapping_by_ID(tile_id)
 
       # update_coords of tile:
       tl.update_coords((i, j))
 
       # update Tile inventory:
-      obj_list = get_object_list_by_tile_location(i, j,load_game,data)
+      obj_list = get_object_list_by_tile_location(i, j,load_game)
 
       # add objects to tile inventory if found:
       if obj_list is not None:
@@ -201,7 +202,7 @@ def load_tile_2D_array_from_file(load_game,data):
 
   return tile_2D_list
 
-def load_objects_list_from_file(load_game,data):
+def load_objects_list_from_file(load_game):
   # returns a list of 'object' objects that have been populated with 
   # data from the objects status JSON file via text_file_processor.py
 
@@ -237,7 +238,7 @@ def load_objects_list_from_file(load_game,data):
     obj.update_coords((obj_elem["co_ord_x"], obj_elem["co_ord_y"]))
     
     # need to add gold_amt, look-up from 'objects_02n.json' via 'text_file_processor'
-    obj.set_gold_amt = data.lookup_gold_amt(obj.get_name(), obj.get_state())
+    obj.set_gold_amt = Data.Data().lookup_gold_amt(obj.get_name(), obj.get_state())
 
     # for each item in 'inventory' create an 'Object' object, and add it to inventory:
     if obj_elem["inventory"] is not None:
