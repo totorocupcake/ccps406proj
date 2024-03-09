@@ -16,7 +16,9 @@ class Data():
             self._char_data = text_file_processor.load_characters_JSON_data_file()
             self._char_template = text_file_processor.load_char_template_file()
             self._objects_data = text_file_processor.load_objects_JSON_data_file()
+            self._unique_names, self._unique_interactions = self.get_unique_keywords()
             self._initialized = True
+            
         
     def get_tile_data(self):
         return self._tile_data
@@ -32,6 +34,12 @@ class Data():
     
     def get_objects_data(self):
         return self._objects_data
+    
+    def get_unique_names(self):
+        return self._unique_names
+    
+    def get_unique_interactions(self):
+        return self._unique_interactions
     
     def lookup_tileID_by_name_state(self, tile_name,state):
     # given a tile name and state, find corresponding tile ID:
@@ -161,3 +169,26 @@ class Data():
                 return obj["type"]
         return None
 
+    def get_unique_keywords(self):
+        unique_names = set()
+        unique_interaction = set()
+        
+        for tile in self._tile_data:
+            unique_names.add(tile["name"].lower())
+            if tile["interactions"] is not None:
+                for interaction in tile["interactions"]:
+                    unique_interaction.add(interaction["name"].lower())
+        
+        for char in self._char_data:
+            unique_names.add(char["name"].lower())
+            if char["interactions"] is not None:
+                for interaction in char["interactions"]:
+                    unique_interaction.add(interaction["name"].lower())
+        
+        for obj in self._objects_data:
+            unique_names.add(obj["name"].lower())
+            if obj["interactions"] is not None:
+                for interaction in obj["interactions"]:
+                    unique_interaction.add(interaction["name"].lower())
+                
+        return unique_names, unique_interaction
