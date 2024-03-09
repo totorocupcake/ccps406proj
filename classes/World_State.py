@@ -50,6 +50,9 @@ class World_State:
     # else
     return None
 
+  def set_turn_number (self, num):
+    self.__turn_number = num
+    
   def increment_turn(self,amount=1):
     self.__turn_number += amount
     
@@ -445,12 +448,14 @@ def late_rent_checks(world_state):
         for tile in row:
           if tile.get_name() == "mail box":
             # find mail box on map and add a new letter from landlord to it
+            x,y = tile.get_coords()
             interest_letter = Object.Object()
             interest_letter.set_name("letter from landlord")
             interest_letter.set_type("tool")
             interest_letter.set_state("null")
             interest_letter.set_gold_amt(0)
             interest_letter.update_qty(1)
+            interest_letter.update_coords((x,y))
             tile.update_inventory("add",[interest_letter])
             break
   return world_state

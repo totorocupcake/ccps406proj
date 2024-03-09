@@ -85,8 +85,8 @@
         "name": "letter from landlord",
         "state": "null",
         "quantity": 1,
-        "co_ord_x": 0,
-        "co_ord_y": 0,
+        "co_ord_x": 6,
+        "co_ord_y": 13,
         "inventory": null
     },
     {

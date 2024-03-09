@@ -19,12 +19,7 @@ def initialize(starting_rent_amount, starting_rent_due_date):
     load_game=load_game.strip()
     
     if load_game =="load" or load_game == "load game":
-        load_game = 'Y'
-        
-        rent_data = text_file_processor.load_rent_data()
-        
-        starting_rent_amount = rent_data["rent_amount"]
-        starting_rent_due_date = rent_data["rent_due_date"]
+        load_game = 'Y'  
     else:
         load_game= 'N'
     
@@ -74,10 +69,19 @@ def load_World_State(rent_amount, rent_due_date,load_game):
 
   # set all other attributes:
   # set turn to 1 to start (initialized to 0 in World_State constructor)
-  ws.set_game_won("N")
-  ws.update_rent_amount(rent_amount)
-  ws.update_rent_turn_due(rent_due_date)
-  ws.increment_turn(1)
+  
+  
+  if load_game == 'Y':
+    data = text_file_processor.load_rent_data()
+    ws.set_game_won(data["game_won"])
+    ws.set_turn_number(data["turn_number"])
+    ws.update_rent_amount(data["rent_amount"])
+    ws.update_rent_turn_due(data["rent_due_date"])
+  else:
+    ws.set_game_won("N")
+    ws.update_rent_amount(rent_amount)
+    ws.update_rent_turn_due(rent_due_date)
+    ws.increment_turn(1)
   
   return ws
 
