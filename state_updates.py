@@ -152,7 +152,7 @@ def process_store_gold(world_state,charac,command):
             receive_gold_entity.increment_current_gold(gold_to_take)
             
             if charac.get_active_player()=='Y':
-                print(f"You {words[0]} {gold_to_take} {'from' if words[0] == 'take' else 'into'} your bedroom's chest. Remember to lock your house to keep your gold safe!")   
+                print(f"You {words[0]} {gold_to_take} gold {'from' if words[0] == 'take' else 'into'} your bedroom's chest. Remember to lock your house to keep your gold safe!")   
        
         else:   # no gold to take, so no need to process command further
             if charac.get_active_player()=='Y':
