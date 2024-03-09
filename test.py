@@ -20,7 +20,7 @@ def interaction_commands (world_state,charac,command):
     
     if check_noun_status == False:   # noun does not exist on current location of charac
         if charac.get_general_type()=="Character" and charac.get_active_player()=='Y':
-            print(f"Command not recognized")
+            print(f"You cannot do that here.")
         return world_state
 
     # as command is valid, check the interaction requirements to see if pass
@@ -52,14 +52,14 @@ def check_command(command):
 
     # check for empty string in interaction key/command:
     if interaction_key == "":
-        print("Command not recognized")
+        print("You cannot do that here.")
         return False,""
 
     interaction_array = interaction_key.split(maxsplit=1)
 
     if len(interaction_array) < 2:
         # invalid interaction, so print message and return:
-        print("Command not recognized")
+        print("You cannot do that here.")
         return False,""
     
     return True,interaction_array
