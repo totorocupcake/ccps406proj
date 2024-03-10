@@ -3,7 +3,7 @@
         "type": "player",
         "name": "totoro",
         "co_ord_x": 6,
-        "co_ord_y": 13,
+        "co_ord_y": 12,
         "state": "null",
         "inventory": [
             {
@@ -25,41 +25,21 @@
                 "name": "beekeeping suit",
                 "quantity": 1,
                 "state": "null"
-            },
-            {
-                "name": "medkit",
-                "quantity": 1,
-                "state": "null"
             }
         ],
-        "current_hp": 10,
+        "current_hp": 2,
         "max_hp": 10,
         "current_gold": 20,
         "visited": [
-            {
-                "type": "Object",
-                "name": "garage key",
-                "state": "null"
-            },
-            {
-                "type": "Tile",
-                "name": "bedroom",
-                "state": "open"
-            },
             {
                 "type": "Tile",
                 "name": "kitchen",
                 "state": "open"
             },
             {
-                "type": "Object",
-                "name": "farm key",
-                "state": "null"
-            },
-            {
-                "type": "Object",
-                "name": "medkit",
-                "state": "null"
+                "type": "Character",
+                "name": "Wolf",
+                "state": "aggressive"
             }
         ],
         "turn_counter": [
@@ -351,6 +331,39 @@
             {
                 "type": "Tile",
                 "name": "grasslands",
+                "state": "null"
+            }
+        ],
+        "turn_counter": [
+            0,
+            "null"
+        ]
+    },
+    {
+        "type": "monster",
+        "name": "Wolf",
+        "co_ord_x": 6,
+        "co_ord_y": 12,
+        "state": "aggressive",
+        "inventory": [
+            {
+                "name": "meat",
+                "quantity": 5,
+                "state": "null"
+            }
+        ],
+        "current_hp": 0,
+        "max_hp": 10,
+        "current_gold": 0,
+        "visited": [
+            {
+                "type": "Tile",
+                "name": "kitchen",
+                "state": "open"
+            },
+            {
+                "type": "Character",
+                "name": "totoro",
                 "state": "null"
             }
         ],

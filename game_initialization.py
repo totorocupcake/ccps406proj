@@ -318,9 +318,10 @@ def load_characters_list_from_file(load_game):
         inv_list_of_ojb.append(inv_obj)
        
       charac.update_inventory("add", inv_list_of_ojb)
-
-    charac.set_current_hp(char_elem["current_hp"])
+      
     charac.set_max_hp(char_elem["max_hp"])
+    charac.set_current_hp(char_elem["current_hp"])
+    
     charac.set_current_gold(char_elem["current_gold"])
 
     # add to visited, if any:

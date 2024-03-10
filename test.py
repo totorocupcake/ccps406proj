@@ -252,6 +252,7 @@ def process_change_state_to(world_state,charac,int_JSON_obj,noun_entity):
                     # check if change state to has CHANGE_TILE_TO within it and make updates based on the provided tile id
                     id = int_JSON_obj["change_state_to"].split()[1]
                     noun_entity.update_tile_by_id(id)
+                    
                 else:
                     # make update to tile based on provided new state stored in change_state_to JSON field
                     noun_entity.update_tile_by_state(int_JSON_obj["change_state_to"])
@@ -269,8 +270,14 @@ def process_change_state_to(world_state,charac,int_JSON_obj,noun_entity):
                         charac.update_inventory("add",noun_entity.get_inventory())
                         charac.increment_current_gold(noun_entity.get_current_gold())
                     world_state = world_state.remove_character(noun_entity)
+                    
                 elif int_JSON_obj["change_state_to"] == "delete_nodrop":
                     world_state = world_state.remove_character(noun_entity)
+                    
+                elif "CHANGE_HP" in int_JSON_obj["change_state_to"]:
+                    change_hp = int_JSON_obj["change_state_to"].split()[1]
+                    noun_entity.set_current_hp(noun_entity.get_current_hp()+ int(change_hp),world_state)
+                    
                 else:
                     noun_entity.set_state(int_JSON_obj["change_state_to"])
                     # print(f"calling {noun_entity.get_name()}")
@@ -323,9 +330,12 @@ def obtain_gold(world_state,charac,obtain_elem):
 def obtain_char(world_state,charac,obtain_elem):
     # this is a helper function for process_obtain function that creates a new Character as specified by the obtain field in JSON
     
-    new_charac=Character.Character(obtain_elem["name"],obtain_elem["state"],charac.get_coords())
-    world_state.spawn_character(new_charac)
-    
+    if obtain_elem["name"] == "HP":
+        charac.set_current_hp(charac.get_current_hp() + obtain_elem["qty"],world_state)
+    else:
+        new_charac=Character.Character(obtain_elem["name"],obtain_elem["state"],charac.get_coords())
+        world_state.spawn_character(new_charac)
+        world_state = interaction_commands (world_state,world_state.get_characters()[-1],"DEFAULT " + obtain_elem["name"])
     return world_state
     
     
@@ -354,7 +364,7 @@ def process_obtain(world_state,int_JSON_obj,charac,noun_entity):
                 # here we make an extra method call to submit command "DEFAULT character_name" to check if there
                 # is any default action needed for the new character we obtained:
                 # print(f"calling {obtain_elem['name']}")
-                world_state = interaction_commands (world_state,world_state.get_characters()[-1],"DEFAULT " + obtain_elem["name"])
+                
                 
                 
 def process_requirements_turn(world_state,int_JSON_obj,noun_entity):
