@@ -140,7 +140,7 @@ def command_processor(world_state,command):
             print("You're not allowed to do that, cheat mode is not activated.")
             return (False, command, "basic")
 
-    elif noun in Data.Data().get_unique_names() and verb in Data.Data().get_unique_interactions():
+    elif noun in {text_formatting.dynamic_variable_processor(world_state,name) for name in Data.Data().get_unique_names()} and verb in Data.Data().get_unique_interactions():
         return (True, command,"normal") 
     
     elif command is None:

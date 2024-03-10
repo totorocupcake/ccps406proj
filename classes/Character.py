@@ -1,6 +1,7 @@
 import classes.Turn_Based_Entity as Turn_Based_Entity
 import text_file_processor
 import classes.Object as Object
+import text_formatting
 
 class Character(Turn_Based_Entity.Turn_Based_Entity):
 
@@ -14,6 +15,8 @@ class Character(Turn_Based_Entity.Turn_Based_Entity):
         self._general_type = "Character"
         self.__visited = set()
         self.__active_player = ""
+        self.__max_hp = 0
+        self.__current_hp = 0
         
         if name is not None and state is not None:
         
@@ -69,8 +72,17 @@ class Character(Turn_Based_Entity.Turn_Based_Entity):
     # SETTER METHODS
 
     # char class specific methods:
-    def set_current_hp (self, new_current_hp): 
-        self.__current_hp = new_current_hp
+    def set_current_hp (self, new_current_hp,world_state=None):
+        if new_current_hp > 0 and new_current_hp <= self.get_max_hp():
+            self.__current_hp = new_current_hp
+            
+        elif new_current_hp > self.get_max_hp():
+            self.__current_hp = self.get_max_hp()
+            
+        else:
+            process_dead_char(self,world_state)        
+
+        return world_state
     
     def set_max_hp (self, new_max_hp): 
         self.__max_hp = new_max_hp
@@ -108,7 +120,25 @@ class Character(Turn_Based_Entity.Turn_Based_Entity):
         self.update_turn_counter (0, "")
 
 
-
+def process_dead_char(charac,world_state):
+    if charac.get_type() == "player":
+        charac.set_current_hp(charac.get_max_hp())
+        charac.set_current_gold(0)
+        
+        for row in world_state.get_tiles():
+            for tile in row:
+                if tile.get_name().lower() == "bedroom":
+                    x,y = tile.get_coords()
+                    charac.update_coords((x,y))
+                    break
+                
+        if charac.get_active_player()=='Y':
+            print(text_formatting.justify("You wake up in your bedroom, someone managed to rescue you from the farmlands after they saw you heavily injured outside. You lost all your gold on hand."))
+    
+    else:
+        world_state.remove_character(charac)
+    
+    return world_state
 
 
 if __name__ == "__main__": 

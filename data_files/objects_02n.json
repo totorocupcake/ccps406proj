@@ -924,7 +924,22 @@
           "qty": 2
         }
       ]
-  }
+  },
+  {
+    "name": "eat",
+
+    "success_desc": "You eat the cooked meat and recover 5 hp.",
+    "fail_desc": "You cannot eat meat here.",
+    "change_state_to": "delete",
+    "requirement": null,
+    "obtain": [{
+      "type": "Character",
+      "name": "HP",
+      "state": "null",
+      "qty": 5
+    }
+  ]
+}
 ]
 },
 
