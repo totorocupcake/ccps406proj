@@ -14,7 +14,7 @@ class Character(Turn_Based_Entity.Turn_Based_Entity):
         self.set_state(state)
         self._general_type = "Character"
         self.__visited = set()
-        self.__active_player = ""
+        self.__active_player = "N"
         self.__max_hp = 0
         self.__current_hp = 0
         
@@ -25,8 +25,8 @@ class Character(Turn_Based_Entity.Turn_Based_Entity):
             for element in template_char:
                 if element["name"].lower() == name.lower() and element["state"].lower()==state.lower():
                     self.set_type(element["type"])
-                    self.set_current_hp(element["current_hp"])
                     self.set_max_hp(element["max_hp"])
+                    self.set_current_hp(element["current_hp"])
                     self.set_current_gold(element["current_gold"])
                     self.update_turn_counter(element["turn_counter"][0],element["turn_counter"][1])
                     if element["inventory"] is not None:

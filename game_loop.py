@@ -80,13 +80,14 @@ def command_input(world_state,charac):
             
         # Command processor checks, validates, formats the command. 
         # If the command is not valid, will keep getting new command until valid
-        valid_command,command,command_type = command_processor(world_state,command)
-
+        valid_command,command,command_type = command_processor(world_state,command,charac)
+        #print(f"{charac.get_name()} submitted {command}")
+        
     # command was validated by command processor, so return formatted command for state update
     return (command, command_type) 
 
 
-def command_processor(world_state,command):
+def command_processor(world_state,command,charac):
 
     # Based on the passed through string command and Character that submitted that command,
     # do any formatting for the command. So that we can pass formatted command to state_update function.
@@ -140,10 +141,10 @@ def command_processor(world_state,command):
             print("You're not allowed to do that, cheat mode is not activated.")
             return (False, command, "basic")
 
-    elif noun in {text_formatting.dynamic_variable_processor(world_state,name) for name in Data.Data().get_unique_names()} and verb in Data.Data().get_unique_interactions():
+    elif noun in {text_formatting.dynamic_variable_processor(world_state,name).lower() for name in Data.Data().get_unique_names()} and verb in Data.Data().get_unique_interactions():
         return (True, command,"normal") 
     
-    elif command is None:
+    elif command is None and charac.get_active_player()=='N':
         return (True, command, "basic")
         
     else:

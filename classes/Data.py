@@ -103,6 +103,17 @@ class Data():
                 return tile["movable"]
         return None
     
+    def lookup_block (self, tile_name, state):
+    # Given a tile name and state, return the matching movable flag.
+    # Return None if not match
+
+        parsed_tile_data = self.get_tile_data()
+
+        for tile in parsed_tile_data:
+            if (tile["name"].lower() == tile_name.lower()) and (tile["state"].lower() == state.lower()):
+                return tile["block"]
+        return None
+    
     def lookup_current_hp(self, name,state):
         char_template = self.get_char_template()
         
