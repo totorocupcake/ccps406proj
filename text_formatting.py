@@ -71,6 +71,8 @@ def print_tile (tile,characters):
             if character.get_type().lower() == "monster" or character.get_type().lower()=="animal":
                 return " M "
         return " C "
+    if tile.get_type() == "road":
+        return " - "
     
     if tile.get_type() == "non-building" and tile.get_name() != "grasslands":
         return " ? "

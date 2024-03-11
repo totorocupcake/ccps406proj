@@ -14,7 +14,7 @@
 
   {
     "name": "road",
-    "type": "non-building",
+    "type": "road",
     "state": "null",
     "movable":"Y",
     "block" : "N",
@@ -26,7 +26,7 @@
   },
   {
     "name": "gravel road",
-    "type": "non-building",
+    "type": "road",
     "state": "null",
     "movable":"Y",
     "block" : "N",
@@ -40,7 +40,7 @@
 
   {
     "name": "road by neighbours houses",
-    "type": "non-building",
+    "type": "road",
     "state": "null",
     "movable":"Y",
     "block" : "N",
@@ -1194,7 +1194,7 @@
 
   {
     "name": "Pennys house",
-    "type": "non-building",
+    "type": "building",
     "state": "null",
     "movable":"Y",
     "block" : "N",
@@ -1207,7 +1207,7 @@
 
   {
     "name": "Jimmys house",
-    "type": "non-building",
+    "type": "building",
     "state": "null",
     "movable":"Y",
     "block" : "N",
@@ -1220,7 +1220,7 @@
 
   {
     "name": "Claires house",
-    "type": "non-building",
+    "type": "building",
     "state": "null",
     "movable":"Y",
     "block" : "N",
