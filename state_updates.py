@@ -116,8 +116,16 @@ def process_movement(world_state,charac,command):
         
     if x<=max_rows and x>= 0 and y>=0 and y<=max_cols:
         # if coord is valid, move character to new coord
-        # print(f"{charac.get_name()} moved to {x} {y}")
-        charac.update_coords((x,y))
+        new_tile = world_state.get_tiles()[x][y]
+
+        if new_tile.get_block() == "N":
+            # check if tile is not a 'blocked tile'
+            # print(f"{charac.get_name()} moved to {x} {y}")
+            charac.update_coords((x,y))
+        else:
+            # tile is a blocked tile so cannot moved onto it
+            if charac.get_active_player() == "Y":
+                print(text_formatting.justify(new_tile.get_desc("long",world_state)))
     else:
         # only print to console if its the active player turn
         if charac.get_active_player()=='Y':

@@ -16,7 +16,8 @@ class Tile(Turn_Based_Entity.Turn_Based_Entity):
 
     # Tile-specific properties:
     self.__movable = "N"
-
+    self.__block = "N"
+    
     # for tile_id: use string instead of int (can still code it in hex though)
     self.__tile_id = "00"
     self._general_type = "Tile"
@@ -34,6 +35,11 @@ class Tile(Turn_Based_Entity.Turn_Based_Entity):
   def get_movable(self):
     return self.__movable
 
+  def get_block(self):
+    return self.__block
+  
+  def get_current_gold (self): 
+        return self.__current_gold
 
   # setter methods (tile specific):
   # --------------
@@ -43,6 +49,9 @@ class Tile(Turn_Based_Entity.Turn_Based_Entity):
 
   def set_movable(self, flag):
     self.__movable = flag
+    
+  def set_block(self, flag):
+    self.__block = flag
 
   def update_tile_by_id(self, new_tile_id):
     # update tile_id to new tile_id. 
@@ -61,8 +70,9 @@ class Tile(Turn_Based_Entity.Turn_Based_Entity):
         self.set_state(tile_elem["state"])
         self.set_name(tile_elem["name"])
   
-        # update movable flag and type fields based on text parser lookup functions (from tile in-game text files)
+        # update other fields based on text parser lookup functions (from tile in-game text files)
         self.set_movable(Data.Data().lookup_movable(self.get_name(),self.get_state()))
+        self.set_block(Data.Data().lookup_block(self.get_name(),self.get_state()))
         self.set_type(Data.Data().lookup_tile_type(self.get_name(),self.get_state()))
 
     
@@ -85,14 +95,12 @@ class Tile(Turn_Based_Entity.Turn_Based_Entity):
       if tile_elem["name"] == self.get_name() and tile_elem["state"] == self.get_state():
         self.set_type(tile_elem["type"])
         self.set_movable(tile_elem["movable"])
+        self.set_block(tile_elem["block"])
       
   def turn_count_reached(self):
     # updates tile based on new state, then resets turn counter to no turn count
     self.update_tile_by_state(self.get_turn_state())
     self.update_turn_counter (0, "")
-
-  def get_current_gold (self): 
-        return self.__current_gold
 
   def increment_current_gold(self, increment_gold_amount):
         # increment amount can be positive or negative

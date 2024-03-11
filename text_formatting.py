@@ -26,7 +26,7 @@ def print_minimap(world_state,coords,active_char):
         if x-1 >=0:
             print(print_tile (world_state.get_tiles()[x-1][y],world_state.get_npc_chars_at_tile((x-1,y))),end="")
         # active player is represented as a green X on the minimap:
-        print ("\033[32m\033[1m X \033[0m",end="")
+        print ("\033[32m\033[1m O \033[0m",end="")
         if x+1 <= max_rows:
             print(print_tile (world_state.get_tiles()[x+1][y],world_state.get_npc_chars_at_tile((x+1,y))))
         else:
@@ -51,7 +51,7 @@ def print_minimap(world_state,coords,active_char):
                 x,y = coords
                 
                 if active_char.get_coords() == coords:
-                    print ("\033[32m\033[1m X \033[0m",end="")
+                    print ("\033[32m\033[1m O \033[0m",end="")
                 else:
                     print (print_tile(tile, world_state.get_npc_chars_at_tile(coords)),end="")
                 if x==max_rows:
@@ -61,6 +61,9 @@ def print_tile (tile,characters):
     # given a provided tile or char, provide the character string to represent it as on mini-map
     if tile.get_type() == "building":
         return " B "
+    
+    if tile.get_type() == "blocked":
+        return " X "
     
     if characters != []:
         # print C if theres any other char other than the player

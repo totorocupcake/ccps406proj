@@ -37,7 +37,7 @@ def initial_game_prompt(world_state):
     
     # ****************************************************
     
-    print("Welcome to our game!")
+    print("Welcome to Farm Quest!")
     player_name=input("Please enter the name of your character: ")
     player_name = player_name.strip()
     
@@ -113,28 +113,6 @@ def get_tile_by_name_and_state(name, state):
   tl.update_tile_by_state(state)
   return tl
 
-  # tile_data_list = text_file_processor.load_tile_JSON_data_file()
-  
-  # found = False
-
-  # for tile_elem in tile_data_list:
-
-  #   # if matching tile_id is found
-  #   if (tile_elem["name"] == name) and (tile_elem["state"] == state):
-  #     found = True
-  #     # create and populate a tile object with the appropriate data
-  #     tl = Tile.Tile()
-  #     tl.set_general_type("Tile")
-  #     tl.set_type( tile_elem["type"] )
-  #     tl.set_name(tile_elem["name"])
-  #     tl.set_state(tile_elem["state"])
-  #     tl.set_movable(tile_elem["movable"])
-
-  # if found:
-  #   return tl
-  # else:
-  #   return None
-
 def lookup_tile_Mapping_by_ID(tile_id):
   # returns a tile object from load_tile_JSON_data_file() based on a given tile_id
   # NOTE: refactored to be shorter by utilizing class methods of tile class
@@ -143,40 +121,11 @@ def lookup_tile_Mapping_by_ID(tile_id):
   tl.update_tile_by_id(tile_id)
   return tl
 
-  # get the tile mapping data from the file:
-  # tileIDMapping_data = text_file_processor.load_tileIDMapping_file()
-
-  # # iterate through tileIDMapping_data list: 
-  # for tile_elem in tileIDMapping_data:
-
-  #   # if matching tile_id is found
-  #   if tile_elem["tile_id"] == tile_id:
-
-  #     # get the corresponding tile object with the appropriate data
-  #     tl = get_tile_by_name_and_state(tile_elem["name"], tile_elem["state"])
-
-  #     # populate with other data:
-  #     if tl is not None:
-  #       tl.set_tile_id(tile_id)
-  #       tl.set_state(tile_elem["state"])
-
-
-  #     return tl
-
-  # if no tile found, return None
-  # return None
-
 def load_tile_2D_array_from_file(load_game):
   # returns a 2D array/list of tile objects
 
   # get 2D array of tile ID's from world_map_status_00.csv
   world_map_status_array = text_file_processor.load_world_map_status_csv(load_game)
-
-  # get the JSON array of tile_id_mappings 
-  # tileIDMapping_data = text_file_processor.load_tileIDMapping_file()
-
-  # get the JSON array of tiles
-  # tile_data = text_file_processor.load_tile_JSON_data_file()
 
   num_rows = WORLD_MAP_NUM_ROWS
   num_cols = WORLD_MAP_NUM_COLUMNS

@@ -179,6 +179,16 @@
         "tile_id": "24",
         "name": "wheat field", 
         "state": "not_ready"
+    },
+    {
+        "tile_id": "26",
+        "name": "lake", 
+        "state": "null"
+    },
+    {
+        "tile_id": "27",
+        "name": "mountain", 
+        "state": "null"
     }
 
 ]
