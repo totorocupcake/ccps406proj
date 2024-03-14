@@ -252,7 +252,7 @@
     "name": "wheat",
     "type": "farm_prod",
     "state": "null",
-    "gold_amt": 10,
+    "gold_amt": 3,
     "description": {
       "long_desc": "a bushel of wheat that can be sold to the merchant for gold",
       "short_desc": "a bushel of wheat"
@@ -553,7 +553,7 @@
     "name": "apples",
     "type": "farm_prod",
     "state": "null",
-    "gold_amt": 5,
+    "gold_amt": 10,
     "description": {
       "long_desc": "a bunch of apples that can be sold at the merchant for gold or fed to a cow in order to domesticate it",
       "short_desc": "a bunch of apples"
@@ -578,7 +578,7 @@
           "type": "Gold",
           "name": "gold",
           "state": "null",
-          "qty": 8
+          "qty": 10
         }
       ]
       }
@@ -650,7 +650,7 @@
             "type": "Gold",
             "name": "gold",
             "state": "null",
-            "qty": 10,
+            "qty": 8,
             "remove_obj": "Y"
           } 
 
@@ -676,7 +676,7 @@
     "name": "eggs",
     "type": "farm_prod",
     "state": "null",
-    "gold_amt": 6,
+    "gold_amt": 10,
     "description": {
       "long_desc": "a dozen eggs that can be sold at the merchant for gold",
       "short_desc": "a dozen eggs"
@@ -701,7 +701,7 @@
           "type": "Gold",
           "name": "gold",
           "state": "null",
-          "qty": 6
+          "qty": 10
         }
       ]
       }
@@ -748,7 +748,7 @@
     "name": "milk",
     "type": "farm_prod",
     "state": "null",
-    "gold_amt": 4,
+    "gold_amt": 15,
     "description": {
       "long_desc": "a bottle of milk that can be sold at the merchant for gold",
       "short_desc": "a bottle of milk"
@@ -773,7 +773,7 @@
           "type": "Gold",
           "name": "gold",
           "state": "null",
-          "qty": 4
+          "qty": 15
         }
       ]
       }
@@ -844,7 +844,7 @@
       "name": "meat",
       "type": "farming_prod",
       "state": "null",
-      "gold_amt": 1,
+      "gold_amt": 6,
       "description": {
         "long_desc": "a piece of meat",
         "short_desc": "a piece of meat"
@@ -869,7 +869,7 @@
             "type": "Gold",
             "name": "gold",
             "state": "null",
-            "qty": 1
+            "qty": 6
           }
         ]
     },
@@ -896,7 +896,7 @@
     "name": "meat",
     "type": "farming_prod",
     "state": "cooked",
-    "gold_amt": 2,
+    "gold_amt": 7,
     "description": {
       "long_desc": "a piece of cooked meat",
       "short_desc": "a piece of cooked meat"
@@ -921,7 +921,7 @@
           "type": "Gold",
           "name": "gold",
           "state": "null",
-          "qty": 2
+          "qty": 7
         }
       ]
   },

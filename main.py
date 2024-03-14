@@ -2,8 +2,8 @@ import game_initialization
 import game_loop
 import classes.Data as Data
 
-STARTING_RENT_AMOUNT = 10
-STARTING_RENT_DUE_DATE = 50
+STARTING_RENT_AMOUNT = 20
+STARTING_RENT_DUE_DATE = 100
 
 if __name__ == "__main__":
     
