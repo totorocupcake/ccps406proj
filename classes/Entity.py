@@ -1,4 +1,4 @@
-import text_file_processor
+import classes.Data as Data
 
 class Entity:
   # class constructor:
@@ -39,9 +39,7 @@ class Entity:
 
   def get_desc(self, long_short,world_state):
     # use __general_type (Object/Character/Tile) for lookup:
-    
-    return text_file_processor.lookup_desc(long_short, self._general_type, self._name, self.__state,world_state)
-
+    return Data.Data().lookup_desc(long_short, self._general_type, self._name, self.__state,world_state)
 
 
   # setter methods (Common):

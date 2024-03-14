@@ -36,7 +36,8 @@ def thief_aggressive(world_state,charac):
     # steal gold from player if on same tile
         player_name = player.get_name()
         next_command="steal "+ player_name
-        print("The thief stole gold from ",player_name)
+        if player.get_active_player()=='Y':
+            print("The thief stole gold from ",player_name)
         return next_command
     
     # thief steals gold if players room is open and has gold in it
@@ -65,9 +66,15 @@ def wolf_aggressive(world_state,charac):
     
     if current_tl.get_movable()=='Y':
         for char in char_list:
+            if char.get_type() == "player":
+                if char.get_active_player()=='Y':
+                    print(f"The wolf hit {char.get_name()} for 2 hp.")
+                return "hit " +char.get_name()
+            
             if char.get_name() == "chicken":
                 #print("Wolf submitted command to kill chicken")
                 return "kill chicken"
+            
             elif char.get_name() == "cow":
                 #print("Wolf submitted command to kill cow")
                 return "kill cow"

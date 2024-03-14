@@ -134,7 +134,7 @@
         "name": "heal",
    
         "success_desc": "You have healed the injured farmhand and he offers you a reward of 8 gold.",
-        "fail_desc": "You cannot heal the farmhand right now.",
+        "fail_desc": "You need a medkit to heal the farmhand.",
         "change_state_to": "healthy",
         "requirement": [
           {
@@ -165,7 +165,17 @@
       "long_desc": "a healthy farmhand that no longer requires medical attention from the medkit",
       "short_desc": "a healthy farmhand"
     },
-    "interactions": null
+    "interactions": [
+      {
+        "name": "heal",
+   
+        "success_desc": "The farmhand no longer requires healing.",
+        "fail_desc": "The farmhand no longer requires healing.",
+        "change_state_to": "healthy",
+        "requirement": null,
+        "obtain": null
+      }
+    ]
     
   }, 
   
@@ -294,7 +304,7 @@
         "name": "help",
    
         "success_desc": "Claire uses the water from your watering can to water her flowers. She gives you some apple seeds and advises you to find a field to grow and water it.",
-        "fail_desc": "You cannot help Claire the neighbor right now.",
+        "fail_desc": "You do not have water to help Claire with.",
         "change_state_to": "happy",
         "requirement": [
           {
@@ -424,8 +434,8 @@
       {
         "name": "shoot",
    
-        "success_desc": "You manage to shoot the thief with your gun. You obtain 5 gold.",
-        "fail_desc": "You cannot shoot the thief right now.",
+        "success_desc": "You manage to shoot the thief with your gun. You obtain some gold.",
+        "fail_desc": "You need a gun to shoot the thief.",
         "change_state_to": "delete",
         "requirement": [
           {
@@ -436,13 +446,7 @@
             "remove_obj": "N"
           }          
         ],
-        "obtain":   [ {
-          "type": "Gold",
-          "name": "gold",
-          "state": "null",
-          "qty": 5
-        }
-      ]
+        "obtain":   null
  
 
       }
@@ -464,7 +468,7 @@
         "name": "shoot",
    
         "success_desc": "You manage to shoot the wolf with your gun. You obtain some pieces of meat from its corpse.",
-        "fail_desc": "You cannot shoot the wolf right now.",
+        "fail_desc": "You need a gun to shoot a wolf.",
         "change_state_to": "delete",
         "requirement": [
           {
@@ -475,13 +479,7 @@
             "remove_obj": "N"
           }          
         ],
-        "obtain":  [ {
-          "type": "Object",
-          "name": "meat",
-          "state": "null",
-          "qty": 5
-        }
-      ]
+        "obtain": null
 
       }
     ]
@@ -502,7 +500,7 @@
    
         "success_desc": "You manage to catch the chicken in your arms. It is currently in your inventory.",
         "fail_desc": "You cannot catch the chicken right now.",
-        "change_state_to": "delete",
+        "change_state_to": "delete_nodrop",
         "requirement": null,
         "obtain":  [ {
           "type": "Object",
@@ -695,7 +693,7 @@
    
         "success_desc": "You manage to catch the cow.",
         "fail_desc": "The cow is too big to catch, try luring it with some apples!",
-        "change_state_to": "delete",
+        "change_state_to": "delete_nodrop",
         "requirement": [
           {
             "type": "Object",
@@ -902,7 +900,7 @@
       {
         "name": "steal",
    
-        "success_desc": "You manage to steal the %gold% gold from %player_name%.",
+        "success_desc": "You manage to steal %gold% gold from %player_name%.",
         "fail_desc": "You failed to steal gold from %player_name%.",
         "change_state_to": "null",
         "requirement": [
@@ -924,7 +922,21 @@
           "qty": "%gold%"
         }
       ]
+      },
+      {
+        "name": "hit",
+   
+        "success_desc": "You hit %player_name% for 2 hp.",
+        "fail_desc": "You failed to hit %player_name%.",
+        "change_state_to": "CHANGE_HP -2",
+        "requirement": null
+        
+        ,
+        "obtain":  null
       }
+
+
+
     ]
   }
 

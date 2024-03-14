@@ -1,9 +1,8 @@
 # import Entity
 import classes.Turn_Based_Entity as Turn_Based_Entity
-
+import classes.Data as Data
 import classes.Character as Character
 import classes.Object as Object
-import text_file_processor
 
 # Implement the interface in a class
 class Tile(Turn_Based_Entity.Turn_Based_Entity):
@@ -17,7 +16,8 @@ class Tile(Turn_Based_Entity.Turn_Based_Entity):
 
     # Tile-specific properties:
     self.__movable = "N"
-
+    self.__block = "N"
+    
     # for tile_id: use string instead of int (can still code it in hex though)
     self.__tile_id = "00"
     self._general_type = "Tile"
@@ -35,6 +35,11 @@ class Tile(Turn_Based_Entity.Turn_Based_Entity):
   def get_movable(self):
     return self.__movable
 
+  def get_block(self):
+    return self.__block
+  
+  def get_current_gold (self): 
+        return self.__current_gold
 
   # setter methods (tile specific):
   # --------------
@@ -44,6 +49,9 @@ class Tile(Turn_Based_Entity.Turn_Based_Entity):
 
   def set_movable(self, flag):
     self.__movable = flag
+    
+  def set_block(self, flag):
+    self.__block = flag
 
   def update_tile_by_id(self, new_tile_id):
     # update tile_id to new tile_id. 
@@ -52,7 +60,7 @@ class Tile(Turn_Based_Entity.Turn_Based_Entity):
     self.__tile_id = new_tile_id
     
     # update rest of tile fields to account for new tile_id
-    tileIDMapping_data = text_file_processor.load_tileIDMapping_file()
+    tileIDMapping_data = Data.Data().get_tile_id_mapping()
 
     for tile_elem in tileIDMapping_data:
 
@@ -62,9 +70,10 @@ class Tile(Turn_Based_Entity.Turn_Based_Entity):
         self.set_state(tile_elem["state"])
         self.set_name(tile_elem["name"])
   
-        # update movable flag and type fields based on text parser lookup functions (from tile in-game text files)
-        self.set_movable(text_file_processor.lookup_movable(self.get_name(),self.get_state()))
-        self.set_type(text_file_processor.lookup_tile_type(self.get_name(),self.get_state()))
+        # update other fields based on text parser lookup functions (from tile in-game text files)
+        self.set_movable(Data.Data().lookup_movable(self.get_name(),self.get_state()))
+        self.set_block(Data.Data().lookup_block(self.get_name(),self.get_state()))
+        self.set_type(Data.Data().lookup_tile_type(self.get_name(),self.get_state()))
 
     
   def update_tile_by_state(self, new_state):
@@ -73,8 +82,8 @@ class Tile(Turn_Based_Entity.Turn_Based_Entity):
     self.set_state(new_state)
     
     # update rest of tile fields to account for new tile_id
-    tileIDMapping_data =  text_file_processor.load_tileIDMapping_file()
-    tile_json = text_file_processor.load_tile_JSON_data_file()
+    tileIDMapping_data =  Data.Data().get_tile_id_mapping()
+    tile_json = Data.Data().get_tile_data()
 
     for tile_elem in tileIDMapping_data:
       if tile_elem["name"] == self.get_name() and tile_elem["state"] == self.get_state():
@@ -86,147 +95,13 @@ class Tile(Turn_Based_Entity.Turn_Based_Entity):
       if tile_elem["name"] == self.get_name() and tile_elem["state"] == self.get_state():
         self.set_type(tile_elem["type"])
         self.set_movable(tile_elem["movable"])
+        self.set_block(tile_elem["block"])
       
   def turn_count_reached(self):
     # updates tile based on new state, then resets turn counter to no turn count
     self.update_tile_by_state(self.get_turn_state())
     self.update_turn_counter (0, "")
 
-  def get_current_gold (self): 
-        return self.__current_gold
-
   def increment_current_gold(self, increment_gold_amount):
         # increment amount can be positive or negative
         self.__current_gold += increment_gold_amount
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-if __name__ == "__main__":
-
-  # some test cases:
-  # ---------------
-  tl = Tile()
-  
-  tl.set_name("town square")
-  tl.set_general_type("Tile")
-  tl.set_type("non-building")
-  tl.set_state("null")
-  tl.set_movable("Y")
-
-  print()
-  print("name = ", tl.get_name())
-  print("state = ", tl.get_state())
-  print("get_desc('short') = ", tl.get_desc("short") )
-  print("get_desc('long') = ", tl.get_desc("long") )
-  print()
-
-
-  tl.set_name("road")
-  tl.set_general_type("Tile")
-  tl.set_type("non-building")
-  tl.set_state("null")
-
-
-  print()
-  print("name = ", tl.get_name())
-  print("state = ", tl.get_state())
-  print("get_desc('short') = ", tl.get_desc("short") )
-  print("get_desc('long') = ", tl.get_desc("long") )
-  print()
-
-
-  # for tile_id: use string instead of int (can still code it in hex though)
-  tl.set_tile_id("11")
-
-  tl.update_coords((1, 1))
-
-  print()
-  print("Tile info:")
-  print("name = ", tl.get_name())
-  print("type = ", tl.get_type())
-  print("state = ", tl.get_state())
-  print("coords = ", tl.get_coords())
-
-
-  
-  # create two 'object' objects and add to Tile inventory
-
-  list_of_obj = []
-
-  obj1 = Object.Object()
-  obj1.set_name("Easter egg")
-  obj1.set_type("item")
-  obj1.set_state("null")
-
-  obj2 = Object.Object()
-  obj2.set_name("Gift")
-  obj2.set_type("item")
-  obj2.set_state("null")
-
-  list_of_obj.append(obj1)
-  list_of_obj.append(obj2)
-
-  tl.update_inventory("add", list_of_obj)
-  
-  inventory_list = tl.get_inventory()
-
-  print()
-  print("len(inventory_list) = ", len(inventory_list))
-
-  print()
-  print("inventory:")
-  # if inventory_list is not None:
-  if len(inventory_list) > 0:
-    for obj_elem in inventory_list:
-      print("name = ", obj_elem.get_name())
-      print("type = ", obj_elem.get_type())
-      print("state = ", obj_elem.get_state())
-      print()
-  else:
-    print("List is empty")
-      
-
-  tileIDMapping_data = text_file_processor.load_tileIDMapping_file()
-
-  print()
-  print("tileIDMapping_data[0]: ")
-  print(tileIDMapping_data[0])
-
-  # test turn_count_reached
-  print()
-  tl.update_tile_by_id("24")   
-  tl.update_turn_counter(1,"ready")
-  print("Tile info:")
-  print("tile id = ", tl.get_tile_id())
-  print("name = ", tl.get_name())
-  print("type = ", tl.get_type())
-  print("state = ", tl.get_state())
-  print("coords = ", tl.get_coords())
-  print("turn count = ", tl.get_turn_count())
-  print("turn state = ", tl.get_turn_state())
-  tl.decrement_turn_count()
-  print("Tile info:")
-  print("tile id = ", tl.get_tile_id())
-  print("name = ", tl.get_name())
-  print("type = ", tl.get_type())
-  print("state = ", tl.get_state())
-  print("coords = ", tl.get_coords())
-  print("turn count = ", tl.get_turn_count())
-  print("turn state = ", tl.get_turn_state())

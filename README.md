@@ -3,7 +3,7 @@ Whole map will display on minimap as default after cheat mode is activated.
 
 ## Cheat mode commands (after activation of cheat mode):
 
-### spawn monstername monsterstate coords 
+### cheat spawn monstername monsterstate coords 
 e.g. cheat spawn wolf aggressive 6,12 [note no space between coordinates]
 
 ### cheat graze 

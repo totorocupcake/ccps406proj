@@ -3,6 +3,7 @@ import classes.Object as Object
 import classes.Tile as Tile
 import text_file_processor
 import classes.Character as Character
+import classes.Data as Data
 
 WORLD_MAP_NUM_ROWS = text_file_processor.WORLD_MAP_STATUS_ROWS
 WORLD_MAP_NUM_COLUMNS = text_file_processor.WORLD_MAP_STATUS_COLUMNS
@@ -18,9 +19,10 @@ def initialize(starting_rent_amount, starting_rent_due_date):
     load_game=load_game.strip()
     
     if load_game =="load" or load_game == "load game":
-        load_game = 'Y'
+        load_game = 'Y'  
     else:
         load_game= 'N'
+    
     
     world_state = load_World_State(starting_rent_amount, starting_rent_due_date,load_game)
 
@@ -35,7 +37,7 @@ def initial_game_prompt(world_state):
     
     # ****************************************************
     
-    print("Welcome to our game!")
+    print("Welcome to Farm Quest!")
     player_name=input("Please enter the name of your character: ")
     player_name = player_name.strip()
     
@@ -67,10 +69,19 @@ def load_World_State(rent_amount, rent_due_date,load_game):
 
   # set all other attributes:
   # set turn to 1 to start (initialized to 0 in World_State constructor)
-  ws.set_game_won("N")
-  ws.update_rent_amount(rent_amount)
-  ws.update_rent_turn_due(rent_due_date)
-  ws.increment_turn(1)
+  
+  
+  if load_game == 'Y':
+    data = text_file_processor.load_rent_data()
+    ws.set_game_won(data["game_won"])
+    ws.set_turn_number(data["turn_number"])
+    ws.update_rent_amount(data["rent_amount"])
+    ws.update_rent_turn_due(data["rent_due_date"])
+  else:
+    ws.set_game_won("N")
+    ws.update_rent_amount(rent_amount)
+    ws.update_rent_turn_due(rent_due_date)
+    ws.increment_turn(1)
   
   return ws
 
@@ -102,28 +113,6 @@ def get_tile_by_name_and_state(name, state):
   tl.update_tile_by_state(state)
   return tl
 
-  # tile_data_list = text_file_processor.load_tile_JSON_data_file()
-  
-  # found = False
-
-  # for tile_elem in tile_data_list:
-
-  #   # if matching tile_id is found
-  #   if (tile_elem["name"] == name) and (tile_elem["state"] == state):
-  #     found = True
-  #     # create and populate a tile object with the appropriate data
-  #     tl = Tile.Tile()
-  #     tl.set_general_type("Tile")
-  #     tl.set_type( tile_elem["type"] )
-  #     tl.set_name(tile_elem["name"])
-  #     tl.set_state(tile_elem["state"])
-  #     tl.set_movable(tile_elem["movable"])
-
-  # if found:
-  #   return tl
-  # else:
-  #   return None
-
 def lookup_tile_Mapping_by_ID(tile_id):
   # returns a tile object from load_tile_JSON_data_file() based on a given tile_id
   # NOTE: refactored to be shorter by utilizing class methods of tile class
@@ -132,40 +121,11 @@ def lookup_tile_Mapping_by_ID(tile_id):
   tl.update_tile_by_id(tile_id)
   return tl
 
-  # get the tile mapping data from the file:
-  # tileIDMapping_data = text_file_processor.load_tileIDMapping_file()
-
-  # # iterate through tileIDMapping_data list: 
-  # for tile_elem in tileIDMapping_data:
-
-  #   # if matching tile_id is found
-  #   if tile_elem["tile_id"] == tile_id:
-
-  #     # get the corresponding tile object with the appropriate data
-  #     tl = get_tile_by_name_and_state(tile_elem["name"], tile_elem["state"])
-
-  #     # populate with other data:
-  #     if tl is not None:
-  #       tl.set_tile_id(tile_id)
-  #       tl.set_state(tile_elem["state"])
-
-
-  #     return tl
-
-  # if no tile found, return None
-  # return None
-
 def load_tile_2D_array_from_file(load_game):
   # returns a 2D array/list of tile objects
 
   # get 2D array of tile ID's from world_map_status_00.csv
   world_map_status_array = text_file_processor.load_world_map_status_csv(load_game)
-
-  # get the JSON array of tile_id_mappings 
-  # tileIDMapping_data = text_file_processor.load_tileIDMapping_file()
-
-  # get the JSON array of tiles
-  # tile_data = text_file_processor.load_tile_JSON_data_file()
 
   num_rows = WORLD_MAP_NUM_ROWS
   num_cols = WORLD_MAP_NUM_COLUMNS
@@ -237,8 +197,7 @@ def load_objects_list_from_file(load_game):
     obj.update_coords((obj_elem["co_ord_x"], obj_elem["co_ord_y"]))
     
     # need to add gold_amt, look-up from 'objects_02n.json' via 'text_file_processor'
-    obj.set_gold_amt = text_file_processor.lookup_gold_amt(obj.get_name(), obj.get_state())
-
+    obj.set_gold_amt = Data.Data().lookup_gold_amt(obj.get_name(), obj.get_state())
 
     # for each item in 'inventory' create an 'Object' object, and add it to inventory:
     if obj_elem["inventory"] is not None:
@@ -308,9 +267,10 @@ def load_characters_list_from_file(load_game):
         inv_list_of_ojb.append(inv_obj)
        
       charac.update_inventory("add", inv_list_of_ojb)
-
-    charac.set_current_hp(char_elem["current_hp"])
+      
     charac.set_max_hp(char_elem["max_hp"])
+    charac.set_current_hp(char_elem["current_hp"])
+    
     charac.set_current_gold(char_elem["current_gold"])
 
     # add to visited, if any:

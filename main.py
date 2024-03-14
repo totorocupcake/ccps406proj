@@ -1,6 +1,6 @@
-import text_file_processor
 import game_initialization
 import game_loop
+import classes.Data as Data
 
 STARTING_RENT_AMOUNT = 10
 STARTING_RENT_DUE_DATE = 50
@@ -10,10 +10,8 @@ if __name__ == "__main__":
     """
     Text parsing
     """
-    # object_status = text_file_processor.load_object_status_file()
-    # character_status= text_file_processor.load_character_status_file()
-    # world_map_status = text_file_processor.load_world_map_status_csv()
-    # tile_id_mapping = text_file_processor.load_tileIDMapping_file()
+    # Initialize read-only files into data object which is a Singleton class.
+    data = Data.Data()
     
     """
     Game initialization

@@ -10,7 +10,7 @@ import npc_behaviors
 
 WORLD_MAP_NUM_ROWS = text_file_processor.WORLD_MAP_STATUS_ROWS
 WORLD_MAP_NUM_COLUMNS = text_file_processor.WORLD_MAP_STATUS_COLUMNS
-INTEREST_RATE = 1.05
+INTEREST_RATE = 0.15
 TURN_INCREMENT = 20
 class World_State:
 
@@ -50,7 +50,10 @@ class World_State:
     # else
     return None
 
-  def increment_turn(self, amount=1):
+  def set_turn_number (self, num):
+    self.__turn_number = num
+    
+  def increment_turn(self,amount=1):
     self.__turn_number += amount
     
     # check if player is late to pay rent, if so, add letter in their mailbox
@@ -308,6 +311,8 @@ class World_State:
     return next_command
   
   def cheat_mode(self, command,charac):
+    import classes.Data as Data
+    
     command = command.strip()
     words = command.split()
     
@@ -320,16 +325,10 @@ class World_State:
         x = int(charac_coord[0])
         y = int(charac_coord[1]) 
         
-        
         if charac_name in ("thief", "penny","jimmy","claire","wolf"):
           charac_name = charac_name[0].upper() + charac_name[1:]
 
-        new_charac = Character.Character()
-        new_charac.set_name(charac_name)
-        new_charac.update_coords((x,y))
-        new_charac.set_state(charac_state)
-        new_charac.set_type(text_file_processor.lookup_type("Character",charac_name,charac_state))
-        
+        new_charac = Character.Character(charac_name,charac_state,(x,y))
         self.spawn_character(new_charac)
         print("Spawned character")
       elif command == "graze":
@@ -376,8 +375,8 @@ class World_State:
         obj.set_state(words[1])
         obj.set_name(name)
         obj.update_qty(1)
-        obj.set_type(text_file_processor.lookup_type("Object",name,words[1]))
-        obj.set_gold_amt(text_file_processor.lookup_gold_amt(name,words[1]))
+        obj.set_type(Data.Data().lookup_type("Object",name,words[1]))
+        obj.set_gold_amt(Data.Data().lookup_gold_amt(name,words[1]))
         charac.update_inventory("add",[obj])
         print(f"Added {name} into your inventory.")
       elif words[0] == "gold": #cheat gold 500
@@ -414,6 +413,12 @@ def spawn_monster_checks(world_state):
     for i in range(len(characters_to_find)):
       if char.get_name().lower() == characters_to_find[i]:
         found_status[i]=1
+        
+  for item in world_state.get_active_char().get_inventory():
+    for i in range(len(characters_to_find)):
+      if item.get_name().lower()== characters_to_find[i]:
+        found_status[i]=1
+  
           
   template_char = text_file_processor.load_char_template_file()
   
@@ -424,29 +429,9 @@ def spawn_monster_checks(world_state):
       for element in template_char:
         if element["name"].lower() == characters_to_find[i].lower():
           # we found the character in the template JSON. Time to spawn it.
-          new_charac = Character.Character()
-          new_charac.set_name(element["name"])
-          new_charac.set_type(element["type"])
-          new_charac.update_coords((element["co_ord_x"],element["co_ord_y"]))
-          new_charac.set_state(element["state"])
-            
-          if element["inventory"] is not None:
-            inv_list_of_obj = []
-            for inv_elem in element["inventory"]:
-              inv_obj = Object.Object()
-              inv_obj.set_name(inv_elem["name"])
-              inv_obj.update_qty(inv_elem["quantity"])
-              inv_obj.set_state(inv_elem["state"])
-              inv_list_of_obj.append(inv_obj)
-            new_charac.update_inventory("add", inv_list_of_obj)
-
-          new_charac.set_current_hp(element["current_hp"])
-          new_charac.set_max_hp(element["max_hp"])
-          new_charac.set_current_gold(element["current_gold"])
-          new_charac.update_turn_counter(element["turn_counter"][0],element["turn_counter"][1])
-            
+          new_charac = Character.Character(element["name"],element["state"])   
           world_state.spawn_character(new_charac)
-          #print(f"spawn {new_charac.get_name()}.")
+          #print(f"Spawned {new_charac.get_name()}.")
           
   return world_state
 
@@ -463,127 +448,14 @@ def late_rent_checks(world_state):
         for tile in row:
           if tile.get_name() == "mail box":
             # find mail box on map and add a new letter from landlord to it
+            x,y = tile.get_coords()
             interest_letter = Object.Object()
             interest_letter.set_name("letter from landlord")
             interest_letter.set_type("tool")
             interest_letter.set_state("null")
             interest_letter.set_gold_amt(0)
             interest_letter.update_qty(1)
+            interest_letter.update_coords((x,y))
             tile.update_inventory("add",[interest_letter])
             break
   return world_state
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-if __name__ == "__main__":
-
-  # ------------------------------------------------ test some methods:
-  ws = World_State()
-
-  ws.increment_turn()
-
-  ws.set_game_won('Y')  
-
-  ws.update_rent_turn_due(25)
-
-  ws.update_rent_amount(10)
-
-  print("Turn no: ",ws.get_turn_no())
-  print("Game Won: ",ws.get_game_won())
-  print("Rent turn due: ",ws.get_rent_due_date())
-  print("Rent amount: ", ws.get_rent_amount())
-  
-  tl = Tile.Tile()
-  tl.update_tile_by_id("01")
-  ws.update_tile((1,4),tl)
-  print("Tile name: ",ws.get_tiles()[1][4].get_name())
-  print("Tile state: ",ws.get_tiles()[1][4].get_state())
-  print("Tile general type: ",ws.get_tiles()[1][4].get_general_type())
-  
-  charac= Character.Character()
-  charac.set_name("landlord")
-  charac.set_state("unhappy")
-  charac.update_coords((1,4))
-  ws.spawn_character(charac)
-
-
-
-
-  # # ------------ test World_State.get_description(coords, visited) function:
-
-  # ws = load_World_State(10, 25)
-
-  # empty_visited = set()
-
-  # x_coord = 8
-  # y_coord = 7
-
-  # coord_tuple = (x_coord, y_coord)
-
-  # desc_list = ws.get_description(coord_tuple, empty_visited)
-
-  # print()
-  # print("desc_list[0] = ", desc_list[0])
-  # print()
-
-  
-  # print("Get Desc long: ",ws.get_description((1,4),"long"))
-  # print("Get Desc short: ",ws.get_description((1,4),"short"))
-  
-  # print("Get Desc as str long: ",ws.get_description_as_str((1,4),"long"))
-  # print("Get Desc as str short: ",ws.get_description_as_str((1,4),"short"))
-  
-  
-  #desc = ws.get_description((1, 4), "short")
-  #desc = ws.get_description_as_str((1, 4), "short")
-  
-
-  #print()
-  #if desc is not None:
-  #  print("desc = ", desc)
-  #else:
-  #  print("desc = None")
-  #print()
-
-
-
-
-  #----------------------------
-  charac1 = Character.Character()
-
-  charac1.set_name("first character")
-
-  print("charac name = ", charac1.get_name())
-  print()
-
-  # test spawn_character() method
-  ws.spawn_character(charac1)
-  
-  charac2 = Character.Character()
-
-  charac2.set_name("second character")
-
-  print("charac name = ", charac2.get_name())
-  print()
-
-  # test spawn_character() method
-  ws.spawn_character(charac2)
-  
-  # test remove_character() method
-  ws.remove_character(charac1)
-
-
