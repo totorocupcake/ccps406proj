@@ -369,6 +369,7 @@
     "type": "building",
     "state": "closed",
     "movable":"N",
+    "block" : "N", 
     "description": {
       "long_desc": "You stand just outside the back door to the farmhouse which leads directly to your bedroom.",
       "short_desc": "You stand just outside the locked door of your bedroom."
