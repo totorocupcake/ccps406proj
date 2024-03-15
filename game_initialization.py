@@ -4,6 +4,7 @@ import classes.Tile as Tile
 import text_file_processor
 import classes.Character as Character
 import classes.Data as Data
+import sys
 
 WORLD_MAP_NUM_ROWS = text_file_processor.WORLD_MAP_STATUS_ROWS
 WORLD_MAP_NUM_COLUMNS = text_file_processor.WORLD_MAP_STATUS_COLUMNS
@@ -26,6 +27,12 @@ def initialize(starting_rent_amount, starting_rent_due_date):
     
     world_state = load_World_State(starting_rent_amount, starting_rent_due_date,load_game)
 
+    check_status = check_world_state(world_state)
+    
+    if check_status == False:
+      sys.stderr.write("Files used to create the game is invalid.\n")
+      sys.exit(1)
+    
     if load_game == 'N':
         # prompt for player name and display welcome message if new game
         world_state = initial_game_prompt(world_state)
@@ -287,3 +294,7 @@ def load_characters_list_from_file(load_game):
   # return characters list
   return characters
 
+def check_world_state(world_state):
+  if world_state.get_active_char() is None:
+    return False
+  

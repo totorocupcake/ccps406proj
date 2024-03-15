@@ -2,70 +2,20 @@
     {
         "type": "player",
         "name": "totoro",
-        "co_ord_x": 10,
-        "co_ord_y": 7,
+        "co_ord_x": 6,
+        "co_ord_y": 11,
         "state": "null",
         "inventory": [
             {
                 "name": "house key",
                 "quantity": 1,
                 "state": "null"
-            },
-            {
-                "name": "scythe",
-                "quantity": 1,
-                "state": "null"
-            },
-            {
-                "name": "bee smoker",
-                "quantity": 1,
-                "state": "null"
-            },
-            {
-                "name": "beekeeping suit",
-                "quantity": 1,
-                "state": "null"
-            },
-            {
-                "name": "gun",
-                "quantity": 1,
-                "state": "null"
             }
         ],
         "current_hp": 10,
         "max_hp": 10,
-        "current_gold": 25,
+        "current_gold": 0,
         "visited": [
-            {
-                "type": "Object",
-                "name": "garage key",
-                "state": "null"
-            },
-            {
-                "type": "Object",
-                "name": "farm key",
-                "state": "null"
-            },
-            {
-                "type": "Tile",
-                "name": "grasslands",
-                "state": "null"
-            },
-            {
-                "type": "Object",
-                "name": "medkit",
-                "state": "null"
-            },
-            {
-                "type": "Tile",
-                "name": "bedroom",
-                "state": "open"
-            },
-            {
-                "type": "Character",
-                "name": "Thief",
-                "state": "aggressive"
-            },
             {
                 "type": "Tile",
                 "name": "kitchen",
@@ -265,86 +215,14 @@
     },
     {
         "type": "monster",
-        "name": "Wolf",
-        "co_ord_x": 9,
-        "co_ord_y": 14,
+        "name": "Thief",
+        "co_ord_x": 12,
+        "co_ord_y": 8,
         "state": "aggressive",
-        "inventory": [
-            {
-                "name": "meat",
-                "quantity": 5,
-                "state": "null"
-            }
-        ],
+        "inventory": null,
         "current_hp": 10,
         "max_hp": 10,
-        "current_gold": 0,
-        "visited": [
-            {
-                "type": "Tile",
-                "name": "grasslands",
-                "state": "null"
-            },
-            {
-                "type": "Tile",
-                "name": "gravel road",
-                "state": "null"
-            }
-        ],
-        "turn_counter": [
-            0,
-            "null"
-        ]
-    },
-    {
-        "type": "animal",
-        "name": "chicken",
-        "co_ord_x": 3,
-        "co_ord_y": 14,
-        "state": "wild",
-        "inventory": [
-            {
-                "name": "meat",
-                "quantity": 5,
-                "state": "null"
-            }
-        ],
-        "current_hp": 10,
-        "max_hp": 10,
-        "current_gold": 0,
-        "visited": [
-            {
-                "type": "Tile",
-                "name": "grasslands",
-                "state": "null"
-            },
-            {
-                "type": "Tile",
-                "name": "gravel road",
-                "state": "null"
-            }
-        ],
-        "turn_counter": [
-            0,
-            "null"
-        ]
-    },
-    {
-        "type": "animal",
-        "name": "cow",
-        "co_ord_x": 2,
-        "co_ord_y": 7,
-        "state": "wild",
-        "inventory": [
-            {
-                "name": "meat",
-                "quantity": 5,
-                "state": "null"
-            }
-        ],
-        "current_hp": 10,
-        "max_hp": 10,
-        "current_gold": 0,
+        "current_gold": 5,
         "visited": [
             {
                 "type": "Tile",
@@ -359,20 +237,77 @@
     },
     {
         "type": "monster",
-        "name": "Thief",
-        "co_ord_x": 12,
-        "co_ord_y": 17,
+        "name": "Wolf",
+        "co_ord_x": 10,
+        "co_ord_y": 20,
         "state": "aggressive",
-        "inventory": null,
+        "inventory": [
+            {
+                "name": "meat",
+                "quantity": 2,
+                "state": "null"
+            }
+        ],
         "current_hp": 10,
         "max_hp": 10,
-        "current_gold": 5,
+        "current_gold": 0,
         "visited": [
             {
                 "type": "Tile",
-                "name": "mountain",
+                "name": "grasslands",
                 "state": "null"
-            },
+            }
+        ],
+        "turn_counter": [
+            0,
+            "null"
+        ]
+    },
+    {
+        "type": "animal",
+        "name": "chicken",
+        "co_ord_x": 3,
+        "co_ord_y": 17,
+        "state": "wild",
+        "inventory": [
+            {
+                "name": "meat",
+                "quantity": 2,
+                "state": "null"
+            }
+        ],
+        "current_hp": 10,
+        "max_hp": 10,
+        "current_gold": 0,
+        "visited": [
+            {
+                "type": "Tile",
+                "name": "grasslands",
+                "state": "null"
+            }
+        ],
+        "turn_counter": [
+            0,
+            "null"
+        ]
+    },
+    {
+        "type": "animal",
+        "name": "cow",
+        "co_ord_x": 3,
+        "co_ord_y": 9,
+        "state": "wild",
+        "inventory": [
+            {
+                "name": "meat",
+                "quantity": 2,
+                "state": "null"
+            }
+        ],
+        "current_hp": 10,
+        "max_hp": 10,
+        "current_gold": 0,
+        "visited": [
             {
                 "type": "Tile",
                 "name": "grasslands",

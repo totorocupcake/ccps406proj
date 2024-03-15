@@ -1,13 +1,36 @@
 import csv
 import json
+import functools
+
+CHARACTER_STATUS_PATH = "save_files/char_status_save.json"
+OBJ_STATUS_PATH = "save_files/objects_status_save.json"
+WORLD_CSV_PATH = "save_files/world_map_status_save.csv"
+WORLD_TURN_STATUS_PATH = "save_files/world_map_turn_status.json"
+WORLD_GLOBAL_INFO_PATH = "save_files/rent_info.json"
 
 def save_game(world_state):
-    save_world_status(world_state)
-    save_world_status_turn_counter(world_state)
-    save_character_status(world_state)
-    save_obj_status(world_state)
-    save_rent_info(world_state)
-    print ("Game saved to save_files subfolder.")
+    
+    if( save_world_status(world_state) and save_world_status_turn_counter(world_state) \
+        and save_character_status(world_state) and save_obj_status(world_state) \
+        and save_rent_info(world_state)):
+        print ("Game saved to save_files subfolder.")
+    else:
+        print("An error occurred while trying to save the game.")
+    
+def error_handler(func):
+    # Error handler to wrap around each save function to detect errors in attempt to write to save files
+    
+    @functools.wraps(func)
+    def wrapper(*args, **kwargs):
+        try:
+            return func(*args, **kwargs)  # Attempt to call the function
+        except PermissionError:
+            return False
+        except OSError as e:
+            return False
+        except Exception as e:
+            return False
+    return wrapper
 
 # Helper functions to convert objects into dictionary first before converting to text files ##################################### 
 
@@ -80,6 +103,7 @@ def serialize_object(item):
 
 # Functions to save each file ######################################################################################
 
+@error_handler
 def save_character_status (world_state):
     characters = world_state.get_characters()
     characters_list = []
@@ -87,9 +111,12 @@ def save_character_status (world_state):
     for charac in characters:
         characters_list.append(serialize_character(charac))
     
-    with open('save_files/char_status_save.json', 'w') as file:
+    with open(CHARACTER_STATUS_PATH, 'w') as file:
         json.dump(characters_list, file, indent=4)
+        
+    return True
 
+@error_handler
 def save_obj_status (world_state):
     world_map = world_state.get_tiles()
     objects=[]
@@ -103,22 +130,28 @@ def save_obj_status (world_state):
     for obj in objects:
         objects_list.append(serialize_object(obj))
     
-    with open('save_files/objects_status_save.json', 'w') as file:
+    with open(OBJ_STATUS_PATH, 'w') as file:
         json.dump(objects_list, file, indent=4)
-        
+    
+    return True
+
+@error_handler
 def save_world_status (world_state):
     # save csv of tile id from given world state
     
     world_map = world_state.get_tiles()
     transposed_world_map= [list(row) for row in zip(*world_map)]
 
-    with open("save_files/world_map_status_save.csv","w", newline = '') as file:
+    with open(WORLD_CSV_PATH,"w", newline = '') as file:
         writer = csv.writer(file)
         
         for row in transposed_world_map:
             row_data = [element.get_tile_id() for element in row]
             writer.writerow(row_data)
-            
+    
+    return True
+
+@error_handler
 def save_world_status_turn_counter (world_state):
     world_map = world_state.get_tiles()
     turn_counter_list =[]
@@ -128,9 +161,12 @@ def save_world_status_turn_counter (world_state):
             if (element.get_turn_state() != "") or (element.get_current_gold() != 0) :
                 turn_counter_list.append(serialize_tile_object(element))
                 
-    with open('save_files/world_map_turn_status.json', 'w') as file:
+    with open(WORLD_TURN_STATUS_PATH, 'w') as file:
         json.dump(turn_counter_list, file, indent=4)
-        
+    
+    return True
+
+@error_handler
 def save_rent_info (world_state):
     dict = {
         "rent_amount": world_state.get_rent_amount(),
@@ -139,5 +175,8 @@ def save_rent_info (world_state):
         "game_won": world_state.get_game_won()
         }  
     
-    with open('save_files/rent_info.json', 'w') as file:
+    with open(WORLD_GLOBAL_INFO_PATH, 'w') as file:
         json.dump(dict, file, indent=4)
+    
+    return True
+    
