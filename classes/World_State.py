@@ -379,6 +379,7 @@ class World_State:
       # default do nothing if no behavior defined for character
       return None
     
+    # print(f"{charac.get_name()} submitted {next_command}")
     return next_command
   
   def cheat_mode(self, command,charac):
