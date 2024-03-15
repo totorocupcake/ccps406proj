@@ -2,6 +2,7 @@ import classes.Turn_Based_Entity as Turn_Based_Entity
 import text_file_processor
 import classes.Object as Object
 import text_formatting
+import sys
 
 class Character(Turn_Based_Entity.Turn_Based_Entity):
 
@@ -73,6 +74,11 @@ class Character(Turn_Based_Entity.Turn_Based_Entity):
 
     # char class specific methods:
     def set_current_hp (self, new_current_hp,world_state=None):
+        
+        if not isinstance(new_current_hp, int):
+            sys.stderr.write("Error: HP value is invalid\n")
+            sys.exit(1)
+        
         if new_current_hp > 0 and new_current_hp <= self.get_max_hp():
             self.__current_hp = new_current_hp
             
@@ -85,29 +91,52 @@ class Character(Turn_Based_Entity.Turn_Based_Entity):
         return world_state
     
     def set_max_hp (self, new_max_hp): 
+        if not isinstance(new_max_hp, int):
+            sys.stderr.write("Error: Max HP value is invalid\n")
+            sys.exit(1)
+        
         self.__max_hp = new_max_hp
     
     def set_current_gold (self, new_current_gold): 
+        
+        if not isinstance(new_current_gold, int):
+            sys.stderr.write("Error: Gold value is invalid\n")
+            sys.exit(1)
+            
         self.__current_gold = new_current_gold
 
     def set_visited (self, new_visited): 
+        
+        if not isinstance(new_visited, set):
+            sys.stderr.write("Error: Visited value is invalid\n")
+            sys.exit(1)
+            
         self.__visited = new_visited
 
     def update_visited(self, type, name, state):
-        # check if its already in the set, 
-        #   if not, add the tuple to the set:
-        if (type, name, state) not in self.__visited:
-            self.__visited.add( (type, name, state) )
-
-
+        if not isinstance(type, str) and not isinstance(name, str) and not isinstance(state, str):
+            sys.stderr.write("Error: Visited value is invalid\n")
+            sys.exit(1)
+    
+        self.__visited.add( (type, name, state) )
 
     def increment_current_gold(self, increment_gold_amount):
         # increment amount can be positive or negative
+        
+        if not isinstance(increment_gold_amount, int):
+            sys.stderr.write("Error: Gold value is invalid\n")
+            sys.exit(1)
+        
         self.__current_gold += increment_gold_amount
         
 
 
     def set_active_player (self, is_active): 
+        
+        if not isinstance(is_active, bool):
+            sys.stderr.write("Error: Active player value is invalid\n")
+            sys.exit(1)
+        
         if is_active == True: 
             self.__active_player = 'Y'
         else: 
@@ -121,6 +150,7 @@ class Character(Turn_Based_Entity.Turn_Based_Entity):
 
 
 def process_dead_char(charac,world_state):
+    
     if charac.get_type() == "player":
         charac.set_current_hp(charac.get_max_hp())
         charac.set_current_gold(0)
@@ -139,23 +169,3 @@ def process_dead_char(charac,world_state):
         world_state.remove_character(charac)
     
     return world_state
-
-
-if __name__ == "__main__": 
-
-    charac = Character()
-    charac.set_name("cow")
-    charac.set_state("tamed_not_hungry")
-    charac.update_turn_counter(1, "tamed_ready")
-
-    print("Name: ", charac.name)
-    print("State: ", charac.get_state())
-    print("Turn count: ", charac.get_turn_count())
-    print("Turn State: ", charac.get_turn_state())
-    
-    charac.decrement_turn_count()
-    print("Name: ", charac.name)
-    print("State: ", charac.get_state())
-    print("Turn count: ", charac.get_turn_count())
-    print("Turn State: ", charac.get_turn_state())
-    pass

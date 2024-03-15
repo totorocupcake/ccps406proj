@@ -1,10 +1,10 @@
 import classes.Character as Character
-import classes.Tile as Tile
 import classes.Object as Object
+import classes.Tile as Tile
 import text_file_processor
 import random
 import npc_behaviors
-
+import sys
 
 # constants: (make sure they match values in load_status_data.py)
 
@@ -31,9 +31,19 @@ class World_State:
     
 
   def set_turn_number (self, num):
+    
+    if not isinstance(num, int):
+      sys.stderr.write("Error: Turn number value is invalid\n")
+      sys.exit(1)
+    
     self.__turn_number = num
     
   def increment_turn(self,amount=1):
+    
+    if not isinstance(amount, int):
+      sys.stderr.write("Error: Turn number value is invalid\n")
+      sys.exit(1)
+    
     self.__turn_number += amount
     
     # check if player is late to pay rent, if so, add letter in their mailbox
@@ -54,25 +64,60 @@ class World_State:
     return self
   
   def set_game_won(self, flag):
+    
+    if not isinstance(flag, str):
+      sys.stderr.write("Error: Game won value is invalid\n")
+      sys.exit(1)
+      
     self.__game_won = flag
 
   def update_rent_turn_due(self, increment):
+    
+    if not isinstance(increment, int):
+      sys.stderr.write("Error: Rent due value is invalid\n")
+      sys.exit(1)
+      
     self.__rent_due_date += increment
     
   def set_rent_turn_due(self,new_rent_turn_due):
+    
+    if not isinstance(new_rent_turn_due, int):
+      sys.stderr.write("Error: Rent due value is invalid\n")
+      sys.exit(1)
+    
     self.__rent_due_date = new_rent_turn_due
 
   def update_rent_amount(self, increment):
+    
+    if not isinstance(increment, int):
+      sys.stderr.write("Error: Rent value is invalid\n")
+      sys.exit(1)
+    
     self.__rent_amount += increment
     
   def set_rent_amount(self,new_rent_amount):
+    
+    if not isinstance(new_rent_amount, int):
+      sys.stderr.write("Error: Rent value is invalid\n")
+      sys.exit(1)
+      
     self.__rent_amount = new_rent_amount
 
   def spawn_character(self, new_character):
+    
+    if not isinstance(new_character, Character.Character):
+      sys.stderr.write("Error: Spawn character value is invalid\n")
+      sys.exit(1)
+      
     if new_character not in self.__characters:
       self.__characters.append(new_character)
 
   def remove_character(self, character):
+    
+    if not isinstance(character, Character.Character):
+      sys.stderr.write("Error: Remove character value is invalid\n")
+      sys.exit(1)
+
     # check to make sure inputted character is in the __characters list
     if character in self.__characters:
       if character.get_active_player() == 'Y':
@@ -86,25 +131,47 @@ class World_State:
     return self
 
   def update_tile(self, coords, new_tile):
+    
+    if not isinstance(new_tile, Tile.Tile) and not isinstance(coords, tuple):
+      sys.stderr.write("Error: Update tile value is invalid\n")
+      sys.exit(1)
+    
     x_coord, y_coord = coords
+    
+    if not isinstance(x_coord, int) and not isinstance(y_coord, int):
+      sys.stderr.write("Error: Update tile value is invalid\n")
+      sys.exit(1)
+    
     self.__tiles[x_coord][y_coord] = new_tile
 
   def load_2D_Tiles_array(self, Tile_2D_array):
     self.__tiles = Tile_2D_array
 
   def get_tile_at_coords(self, coords):
+    
+    if not isinstance(coords, tuple):
+      sys.stderr.write("Error: Coordinate value is invalid\n")
+      sys.exit(1)
+    
     x_coord, y_coord = coords
+    
+    if not isinstance(x_coord, int) and not isinstance(y_coord, int):
+      sys.stderr.write("Error: Coordinate value is invalid\n")
+      sys.exit(1)
+    
     return self.__tiles[x_coord][y_coord]
 
   def get_tile_by_name(self, tile_name):
 
+    if not isinstance(tile_name, str):
+      sys.stderr.write("Error: Tile name value is invalid\n")
+      sys.exit(1)
+    
     num_rows = WORLD_MAP_NUM_ROWS
     num_cols = WORLD_MAP_NUM_COLUMNS
 
     for i in range(num_cols):
-      inner_array = []
       for j in range(num_rows):
-        # if tile_name == self.__tiles[j][i].get_name():
         if tile_name == self.__tiles[i][j].get_name():
           return self.__tiles[i][j]
     return None
@@ -112,6 +179,10 @@ class World_State:
   def get_npc_chars_at_tile(self, coords):
   # return a list of npc characters for a given tile, based on its coords
 
+    if not isinstance(coords, tuple):
+      sys.stderr.write("Error: Coordinate value is invalid\n")
+      sys.exit(1)
+    
     # get all characters as a list
     npc_char_list = self.get_chars_at_tile(coords)
 
@@ -119,7 +190,6 @@ class World_State:
     if npc_char_list is not None:
       for npc_elem in npc_char_list:
         # remove the 'player' character from the list
-        #if npc_elem.get_type() == "player":
         if npc_elem.get_active_player()=='Y':
           npc_char_list.remove(npc_elem)
           break
@@ -129,7 +199,16 @@ class World_State:
   def get_chars_at_tile(self, coords):
   # return the character list for a given tile, based on its coords
 
+    if not isinstance(coords, tuple):
+      sys.stderr.write("Error: Coordinate value is invalid\n")
+      sys.exit(1)
+    
     x_coord, y_coord = coords
+    
+    if not isinstance(x_coord, int) and not isinstance(y_coord, int):
+      sys.stderr.write("Error: Coordinate value is invalid\n")
+      sys.exit(1)
+    
 
     char_list = self.__characters
 
@@ -144,7 +223,8 @@ class World_State:
     return current_char_list
 
   def get_active_char(self):
-    # Returns the Character with active player flaf set to Y
+    # Returns the Character with active player flag set to Y
+    
     for char in self.__characters:
       if char.get_active_player() == 'Y':
         return char
@@ -154,6 +234,7 @@ class World_State:
   def get_description(self, coords, visited):
   # returns a list/array of description strings for a given coords and 
   #   visited set (of tuples of (type, name, state))
+  
     x_coord, y_coord = coords
 
     # get the tile at coords
@@ -232,12 +313,22 @@ class World_State:
     return desc_detail
 
   def set_graze (self,flag):
+    
+    if not isinstance(flag, str):
+      sys.stderr.write("Error: Graze value is invalid\n")
+      sys.exit(1)
+    
     self.__graze=flag
     
   def get_graze(self):
     return self.__graze
   
   def set_cheat_mode(self,flag):
+    
+    if not isinstance(flag, str):
+      sys.stderr.write("Error: Cheat mode value is invalid\n")
+      sys.exit(1)
+      
     self.__cheat_mode = flag
 
   def get_cheat_mode(self):

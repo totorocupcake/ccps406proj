@@ -1,8 +1,7 @@
 # import Entity
 import classes.Turn_Based_Entity as Turn_Based_Entity
 import classes.Data as Data
-import classes.Character as Character
-import classes.Object as Object
+import sys
 
 # Implement the interface in a class
 class Tile(Turn_Based_Entity.Turn_Based_Entity):
@@ -45,17 +44,34 @@ class Tile(Turn_Based_Entity.Turn_Based_Entity):
   # --------------
 
   def set_tile_id(self, new_id):
+    
+    if not isinstance(new_id, str):
+      sys.stderr.write("Error: Tile ID value is invalid\n")
+      sys.exit(1)
+            
     self.__tile_id = new_id
 
   def set_movable(self, flag):
+    if not isinstance(flag, str):
+      sys.stderr.write("Error: Movable value is invalid\n")
+      sys.exit(1)
+    
     self.__movable = flag
     
   def set_block(self, flag):
+    if not isinstance(flag, str):
+      sys.stderr.write("Error: Block value is invalid\n")
+      sys.exit(1)
+  
     self.__block = flag
 
   def update_tile_by_id(self, new_tile_id):
     # update tile_id to new tile_id. 
     # other tile's fields (name, type, state, movable) will be synced to new tile_id provided 
+    
+    if not isinstance(new_tile_id, str):
+      sys.stderr.write("Error: Tile ID value is invalid\n")
+      sys.exit(1)
     
     self.__tile_id = new_tile_id
     
@@ -78,6 +94,10 @@ class Tile(Turn_Based_Entity.Turn_Based_Entity):
     
   def update_tile_by_state(self, new_state):
     # update tile to new state and also update tile_id and movable fields to account for new state
+    
+    if not isinstance(new_state, str):
+      sys.stderr.write("Error: State value is invalid\n")
+      sys.exit(1)
     
     self.set_state(new_state)
     
@@ -103,5 +123,10 @@ class Tile(Turn_Based_Entity.Turn_Based_Entity):
     self.update_turn_counter (0, "")
 
   def increment_current_gold(self, increment_gold_amount):
-        # increment amount can be positive or negative
-        self.__current_gold += increment_gold_amount
+    # increment amount can be positive or negative
+    
+    if not isinstance(increment_gold_amount, int):
+      sys.stderr.write("Error: Gold value is invalid\n")
+      sys.exit(1)
+    
+    self.__current_gold += increment_gold_amount

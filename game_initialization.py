@@ -30,7 +30,7 @@ def initialize(starting_rent_amount, starting_rent_due_date):
     check_status = check_world_state(world_state)
     
     if check_status == False:
-      sys.stderr.write("Files used to create the game is invalid.\n")
+      sys.stderr.write("Error: Files used to create the game is invalid.\n")
       sys.exit(1)
     
     if load_game == 'N':
