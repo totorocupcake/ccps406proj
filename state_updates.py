@@ -1,5 +1,5 @@
 import text_formatting
-import test
+import interaction_processing
 
 def state_update(world_state,charac,command,command_type):
     # Make the updates to world_state (and any other updates required) to process the command.
@@ -15,7 +15,7 @@ def state_update(world_state,charac,command,command_type):
         return basic_commands(world_state,charac,command)
     elif command_type == "normal":
         # to be done, these are normal interactions based off the JSON interaction array data.
-        world_state = test.interaction_commands(world_state, charac, command)
+        world_state = interaction_processing.interaction_commands(world_state, charac, command)
         
         for char in world_state.get_characters():
         # check after state updates if game is won, update flag if so in world state
