@@ -12,9 +12,9 @@ def graze(world_state,charac):
     max_rows = len(world_state.get_tiles())-1
         
     # check if n,s,e,w is available to move to and is a grassland
-    if current_y+1 >= 0 and current_y+1 <= max_cols and world_state.get_tiles()[current_x][current_y+1].get_name() == "grasslands":
-        available_directions.append("n")
     if current_y-1 >= 0 and current_y-1 <= max_cols and world_state.get_tiles()[current_x][current_y-1].get_name() == "grasslands":
+        available_directions.append("n")
+    if current_y+1 >= 0 and current_y+1 <= max_cols and world_state.get_tiles()[current_x][current_y+1].get_name() == "grasslands":
         available_directions.append("s")
     if current_x+1 >= 0 and current_x+1 <= max_rows and world_state.get_tiles()[current_x+1][current_y].get_name() == "grasslands":
         available_directions.append("e")
