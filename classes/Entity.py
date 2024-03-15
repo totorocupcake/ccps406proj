@@ -11,11 +11,9 @@ class Entity:
     self.__state = ""
     self._co_ord_x = 0
     self._co_ord_y = 0
-    # # self.__inventory = []
     self._inventory = []
      
-
-
+     
   # getter methods (Common):
   # --------------
   def get_name(self):
@@ -105,22 +103,4 @@ class Entity:
                   self._inventory.remove(obj_elem)
         
 
-
-
-
-
-
-
-
-
-
-
-
-
-if __name__ == "__main__":
-
-  
-
-
-  pass
 
