@@ -35,5 +35,3 @@ if __name__ == "__main__":
     else: 
         # runs on manual exit
         print("Goodbye.")
-
-    #utility()
