@@ -52,10 +52,10 @@ class Data():
                 return tile["tile_id"]
         return "Not Found"
     
-    def lookup_desc (self, long_short, type, name, state, world_state):
+    def lookup_desc (self, long, type, name, state, world_state):
     # Given arguments find, return the matching description from in-game text files
     # Returns None if not match
-    # long_short determines whether to return long_desc vs short_desc
+    # long determines whether to return long_desc vs short_desc
     # type determines if lookup is tile, character, object
 
         if type == Enum.general_type.OBJECT:
@@ -68,7 +68,7 @@ class Data():
         for element in parsed_data:
             name_formatted = text_formatting.dynamic_variable_processor(world_state,element["name"])
             if (name_formatted.lower() == name.lower()) and (element["state"].lower() == state.lower()):
-                if long_short == "long":
+                if long:
                     return element["description"]["long_desc"]
                 else:
                     return element["description"]["short_desc"]
