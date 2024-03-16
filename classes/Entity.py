@@ -1,4 +1,5 @@
 import classes.Data as Data
+import classes.enums as Enum
 import sys
 
 class Entity:
@@ -66,7 +67,7 @@ class Entity:
 
   def set_general_type(self, new_general_type):
     
-    if not isinstance(new_general_type,str):
+    if not isinstance(new_general_type,Enum.general_type):
       sys.stderr.write("Error: General type value is invalid\n")
       sys.exit(1)
     
