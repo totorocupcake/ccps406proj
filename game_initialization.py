@@ -1,6 +1,7 @@
 import classes.World_State as World_State
 import classes.Object as Object
 import classes.Tile as Tile
+import classes.enums as Enum
 import text_file_processor
 import classes.Character as Character
 import classes.Data as Data
@@ -174,7 +175,7 @@ def load_objects_list_from_file(load_game):
 
     # set all 'Object' object attributes
     obj.set_name(obj_elem["name"])
-    obj.set_general_type("Object")
+    obj.set_general_type(Enum.general_type.OBJECT)
     obj.set_type(obj_elem["type"])
     obj.set_state(obj_elem["state"])
 
@@ -221,7 +222,7 @@ def load_characters_list_from_file(load_game):
 
     # set all character object attributes
     charac.set_name(char_elem["name"])
-    charac.set_general_type("Character")
+    charac.set_general_type(Enum.general_type.CHARACTER)
     charac.set_type(char_elem["type"])
     charac.set_state(char_elem["state"])
 

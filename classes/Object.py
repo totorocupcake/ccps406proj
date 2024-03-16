@@ -1,5 +1,6 @@
 import classes.Entity as Entity
 import sys
+import classes.enums as Enum
 
 class Object(Entity.Entity):
 
@@ -7,7 +8,7 @@ class Object(Entity.Entity):
         super().__init__()
        
         self._inventory = []
-        self._general_type = "Object"
+        self._general_type = Enum.general_type.OBJECT
 
         # sub-class specific properties:
         self.__qty = 0

@@ -3,6 +3,7 @@ import text_file_processor
 import classes.Object as Object
 import text_formatting
 import sys
+import classes.enums as Enum
 
 class Character(Turn_Based_Entity.Turn_Based_Entity):
 
@@ -11,7 +12,7 @@ class Character(Turn_Based_Entity.Turn_Based_Entity):
 
         self.set_name(name)
         self.set_state(state)
-        self._general_type = "Character"
+        self._general_type = Enum.general_type.CHARACTER
         self.__visited = set()
         self.__active_player = False
         self.__max_hp = 0

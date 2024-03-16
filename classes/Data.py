@@ -1,5 +1,6 @@
 import text_file_processor
 import text_formatting
+import classes.enums as Enum
 
 class Data():
     _instance = None
@@ -57,9 +58,9 @@ class Data():
     # long_short determines whether to return long_desc vs short_desc
     # type determines if lookup is tile, character, object
 
-        if type == "Object":
+        if type == Enum.general_type.OBJECT:
             parsed_data = self.get_objects_data()
-        elif type == "Character":
+        elif type == Enum.general_type.CHARACTER:
             parsed_data = self.get_char_data()
         else:
             parsed_data = self.get_tile_data()
@@ -77,9 +78,9 @@ class Data():
     # Given the name of a noun and its state, and its interaction word (verb) return it's interaction data
     # Return None if not match
 
-        if type == "Object":
+        if type == Enum.general_type.OBJECT:
             parsed_data = self.get_objects_data()
-        elif type == "Character":
+        elif type == Enum.general_type.CHARACTER:
             parsed_data = self.get_char_data()
         else:
             parsed_data = self.get_tile_data()
@@ -168,9 +169,9 @@ class Data():
     def lookup_type (self,general_type,name, state):
     # returns the type value given a name and state and general type matched from JSON 
     
-        if general_type == "Object":
+        if general_type == Enum.general_type.OBJECT:
                 parsed_data = self.get_objects_data()
-        elif general_type == "Character":
+        elif general_type == Enum.general_type.CHARACTER:
                 parsed_data = self.get_char_data()
         else:
                 parsed_data = self.get_tile_data()

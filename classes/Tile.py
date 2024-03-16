@@ -1,6 +1,7 @@
 import classes.Turn_Based_Entity as Turn_Based_Entity
 import classes.Data as Data
 import sys
+import classes.enums as Enum
 
 class Tile(Turn_Based_Entity.Turn_Based_Entity):
   
@@ -12,7 +13,7 @@ class Tile(Turn_Based_Entity.Turn_Based_Entity):
     self.__movable = "N"
     self.__block = "N"
     self.__tile_id = "00"
-    self._general_type = "Tile"
+    self._general_type = Enum.general_type.TILE
     self._turn_counter = 0
     self._turn_state = ""
     self.__current_gold = 0
