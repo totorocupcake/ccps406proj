@@ -255,9 +255,9 @@ class World_State:
     tile_tuple = (current_tl.get_general_type(), current_tl.get_name(), current_tl.get_state())
 
     if tile_tuple in visited:
-      desc_list.append(current_tl.get_desc("short",self))
+      desc_list.append(current_tl.get_desc(False,self))
     else:
-      desc_list.append(current_tl.get_desc("long",self))
+      desc_list.append(current_tl.get_desc(True,self))
 
     # add each character:
     if current_npc_char_list is not None and current_tl.get_movable() == 'Y':
@@ -266,9 +266,9 @@ class World_State:
                       char_elem.get_state() )
 
         if char_tuple in visited:
-          desc_list.append(char_elem.get_desc("short",self))
+          desc_list.append(char_elem.get_desc(False,self))
         else:
-          desc_list.append(char_elem.get_desc("long",self))
+          desc_list.append(char_elem.get_desc(True,self))
         
 
     # add each object in the tile's inventory:
@@ -278,9 +278,9 @@ class World_State:
           inv_tuple = (tl_inv_elem.get_general_type(), tl_inv_elem.get_name(), \
                         tl_inv_elem.get_state() )
           if inv_tuple in visited:
-            desc_list.append(tl_inv_elem.get_desc("short",self))
+            desc_list.append(tl_inv_elem.get_desc(False,self))
           else:
-            desc_list.append(tl_inv_elem.get_desc("long",self))
+            desc_list.append(tl_inv_elem.get_desc(True,self))
 
 
     # ------------------------------------------------------

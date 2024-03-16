@@ -119,7 +119,7 @@ def process_movement(world_state,charac,command):
         else:
             # tile is a blocked tile so cannot moved onto it
             if charac.get_active_player():
-                print(text_formatting.justify(new_tile.get_desc("long",world_state)))
+                print(text_formatting.justify(new_tile.get_desc(True,world_state)))
     else:
         # only print to console if its the active player turn
         if charac.get_active_player():
