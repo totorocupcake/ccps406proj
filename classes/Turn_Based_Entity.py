@@ -2,7 +2,6 @@ import classes.Entity as Entity
 import sys
 
 class Turn_Based_Entity(Entity.Entity):
-  # CLASS CONSTRUCTOR
     def __init__(self): 
         super().__init__()
 
@@ -45,13 +44,3 @@ class Turn_Based_Entity(Entity.Entity):
     def turn_count_reached(self):
         # needs to be overridden in child classes (Tile and Character) to update the fields based on new state stored in turn_state
         pass
-    
-"""
-Some test scripts below
-
-test = Turn_Based_Entity()
-test.set_turn_counter(5, "ready")
-print(test.get_turn_count())
-print(test.get_turn_state())
-
-"""

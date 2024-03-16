@@ -13,35 +13,28 @@ def interaction_commands (world_state,charac,command):
 
     interac_noun = interaction_array[1].lower()
     interac_verb = interaction_array[0].lower()
-    current_x, current_y = charac.get_coords()
     
-    # check noun exists on current location of charac, if it does return the entity associated with the string interac_noun
-    check_noun_status,noun_entity = check_noun_exists(world_state,charac,current_x,current_y,interac_noun,interac_verb)
+    # check noun exists on current location of charac, if it does return the associated entity
+    check_noun_status,noun_entity = check_noun_exists(world_state,charac,interac_noun)
     
     if check_noun_status == False:   # noun does not exist on current location of charac
         if charac.get_general_type()=="Character" and charac.get_active_player()=='Y':
             print(f"You cannot do that here.")
         return world_state
 
-    # as command is valid, check the interaction requirements to see if pass
+    # check the interaction requirements to see if pass
     req_status,int_JSON_obj = check_requirements(world_state,charac,noun_entity,interac_verb)
     
     if req_status == False:  # failed interaction requirements
         return world_state
     
-    # As we now passed the interaction requirements, process state_updates to world_state.
-    
-    # We check in interaction obtain field, and make updates for side-effects:
+    # Requirements passed, make updates to world_state
     process_obtain(world_state,int_JSON_obj,charac,noun_entity)
-    
-    # Next, we go through the interaction requirements and make necessary updates:
     world_state = process_requirements(world_state,int_JSON_obj,charac,interac_verb)
     world_state = process_requirements_turn(world_state,int_JSON_obj,noun_entity)
-    
-    # Next, we check the interaction field "change_state_to" and make updates:
     world_state = process_change_state_to(world_state,charac,int_JSON_obj,noun_entity)
     
-    return world_state   # done processing command, all updates made to world_state
+    return world_state 
  
 
 def check_command(command):
@@ -50,7 +43,6 @@ def check_command(command):
     
     interaction_key = command.strip()
 
-    # check for empty string in interaction key/command:
     if interaction_key == "":
         print("You cannot do that here.")
         return False,""
@@ -58,24 +50,24 @@ def check_command(command):
     interaction_array = interaction_key.split(maxsplit=1)
 
     if len(interaction_array) < 2:
-        # invalid interaction, so print message and return:
         print("You cannot do that here.")
         return False,""
     
     return True,interaction_array
 
 
-def check_noun_exists(world_state,charac,current_x,current_y,interac_noun,interac_verb):
+def check_noun_exists(world_state,charac,interac_noun):
     # This function checks if the provided interac_noun exists in the current location of the charac
     # if found, also returns the entity found associated with interac_noun
     
     # check tile at location
+    current_x, current_y = charac.get_coords()
+    
     current_tl = world_state.get_tiles()[current_x][current_y]
     
     if current_tl.get_name().lower() == interac_noun:
         return True, current_tl
 
-    # ------
     # check tile's inventory only if tile is "open" i.e. not closed 
     if current_tl.get_movable() == 'Y':
         tl_inv_list = current_tl.get_inventory()     
@@ -83,16 +75,15 @@ def check_noun_exists(world_state,charac,current_x,current_y,interac_noun,intera
             for inv_elem in tl_inv_list:
                 if inv_elem.get_name().lower() == interac_noun:
                     return True, inv_elem
-    # ------
+
     # check characters on character's location only if tile is "open" i.e. not closed 
     if current_tl.get_movable() == 'Y':
         chars_list = world_state.get_chars_at_tile(charac.get_coords())
         if len(chars_list) > 0:
             for char_elem in chars_list:
                 if char_elem.get_name().lower() == interac_noun:
-                        # found matching character, so update interac_ data:
                     return True, char_elem        
-    # ------
+
     # check character's own inventory
     charac_inv = charac.get_inventory()
     if len(charac_inv) > 0:
@@ -194,7 +185,6 @@ def check_requirements(world_state,charac,noun_entity,interac_verb):
     
         
     if int_JSON_obj["requirement"] is None:
-    # check if there are no requirements required and assume requirements are satisfied:  
         print_success_requirement(world_state,int_JSON_obj,charac)
         return True,int_JSON_obj
 
@@ -223,7 +213,7 @@ def check_requirements(world_state,charac,noun_entity,interac_verb):
                     print_failed_requirement(world_state,int_JSON_obj,charac)
                     return False,None
     
-    # if got to here, means all requirements passed, so return true and print associatedsuccess text        
+    # if got to here, means all requirements passed, so return true and print associated success text        
     print_success_requirement(world_state,int_JSON_obj,charac)
     return True,int_JSON_obj
                   
@@ -237,17 +227,14 @@ def process_change_state_to(world_state,charac,int_JSON_obj,noun_entity):
     no_turn_required = True
     if int_JSON_obj["requirement"] is not None:
         for requirement in int_JSON_obj["requirement"]:
-            
             if requirement["type"]=="turn":
                 no_turn_required=False
                 break
     
-    # check if no turn delay is required, then we make updates directly to the state based on change_state_to field in JSON
+    # if no turn delay is required, then we make updates directly to the state based on change_state_to field in JSON
     if no_turn_required ==True: 
         if int_JSON_obj["change_state_to"] != noun_entity.get_state():
             if noun_entity.get_general_type() == "Tile":
-                # update here is specified if the noun_entity is tile:
-                
                 if "CHANGE_TILE_TO" in int_JSON_obj["change_state_to"]:
                     # check if change state to has CHANGE_TILE_TO within it and make updates based on the provided tile id
                     id = int_JSON_obj["change_state_to"].split()[1]
@@ -257,14 +244,11 @@ def process_change_state_to(world_state,charac,int_JSON_obj,noun_entity):
                     # make update to tile based on provided new state stored in change_state_to JSON field
                     noun_entity.update_tile_by_state(int_JSON_obj["change_state_to"])
                 
-                # print(f"calling {noun_entity.get_name()}")
                 world_state = interaction_commands (world_state,noun_entity,"DEFAULT " + noun_entity.get_name())
                 # in the above line, we make a call to submit command "DEFAULT tile_name" in case the updated tile 
                 # has a default interaction
                     
             elif noun_entity.get_general_type() == "Character":
-                # update here is specified if the noun_entity is a character:
-                
                 if int_JSON_obj["change_state_to"] == "delete":
                     if charac.get_general_type() == "Character":
                         charac.update_inventory("add",noun_entity.get_inventory())
@@ -280,13 +264,11 @@ def process_change_state_to(world_state,charac,int_JSON_obj,noun_entity):
                     
                 else:
                     noun_entity.set_state(int_JSON_obj["change_state_to"])
-                    # print(f"calling {noun_entity.get_name()}")
                     world_state = interaction_commands (world_state,noun_entity,"DEFAULT " + noun_entity.get_name())
                     # in the above line, we make a call to submit command "DEFAULT character_name" in case the updated character
                     # has a default interaction
             else: 
-                # update here is specified if the noun_entity is an object (item):
-                
+                # update here is specified if the noun_entity is an object (item)
                 if int_JSON_obj["change_state_to"] == "delete":
                     x,y = charac.get_coords()
                     if noun_entity in world_state.get_tiles()[x][y].get_inventory():
@@ -296,7 +278,7 @@ def process_change_state_to(world_state,charac,int_JSON_obj,noun_entity):
                 else:
                     noun_entity.set_state(int_JSON_obj["change_state_to"])
      
-    return world_state # all necessary updates done, return updated world state
+    return world_state
 
 
 def obtain_item(world_state,charac,obtain_elem):
@@ -353,7 +335,6 @@ def process_obtain(world_state,int_JSON_obj,charac,noun_entity):
                 world_state = obtain_tile(world_state,obtain_elem)
                 # here we make an extra method call to submit command "DEFAULT tile_name" to check if there
                 # is any default action needed for the new tile we obtained:
-                # print(f"calling {obtain_elem['name']}")
                 world_state = interaction_commands (world_state,noun_entity,"DEFAULT " + obtain_elem["name"])
                 
             elif obtain_elem["type"].lower() == "gold":
@@ -362,10 +343,7 @@ def process_obtain(world_state,int_JSON_obj,charac,noun_entity):
             elif obtain_elem["type"].lower() == "character":
                 world_state = obtain_char(world_state,charac,obtain_elem)
                 # here we make an extra method call to submit command "DEFAULT character_name" to check if there
-                # is any default action needed for the new character we obtained:
-                # print(f"calling {obtain_elem['name']}")
-                
-                
+                # is any default action needed for the new character we obtained:   
                 
 def process_requirements_turn(world_state,int_JSON_obj,noun_entity):
     # this function processes any requirement that specify type=="turn" which means we have to set-up wait for X turn mechanic

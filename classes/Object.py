@@ -3,9 +3,7 @@ import sys
 
 class Object(Entity.Entity):
 
-    # CLASS CONSTRUCTOR
     def __init__(self):
-        # call super class constructor: 
         super().__init__()
        
         self._inventory = []

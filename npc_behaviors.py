@@ -1,7 +1,7 @@
 import random
 
 def graze(world_state,charac):
-      # get_next_action sub function to define a generic "Grazing" behavior for wild cow/chicken
+      # get_next_action sub function to define a generic "Grazing" behavior for monsters/animals
       # should move randomly n,w,e,w if there is grassland available for them
     random.seed(42)
     
@@ -27,7 +27,6 @@ def graze(world_state,charac):
 
 def thief_aggressive(world_state,charac):
     for element in world_state.get_characters():
-        # find the player character (note may not be the active player)
         if element.get_type() == "player":
             player = element
             break
@@ -72,11 +71,9 @@ def wolf_aggressive(world_state,charac):
                 return "hit " +char.get_name()
             
             if char.get_name() == "chicken":
-                #print("Wolf submitted command to kill chicken")
                 return "kill chicken"
             
             elif char.get_name() == "cow":
-                #print("Wolf submitted command to kill cow")
                 return "kill cow"
         
     for row in world_state.get_tiles():
@@ -100,7 +97,6 @@ def cow_wild(world_state,charac):
     return None
 
 def check_graze(world_state,charac):
-    # graze as default if no other action for thief,chicken,wolf
     if world_state.get_graze() =="Y":
         if (world_state.get_turn_number() % 2) == 0:
             next_command = graze(world_state,charac)
