@@ -72,7 +72,7 @@ def load_char_template_file():
 def load_object_status_file(load_game):
     # returns a JSON array of object-status data from the JSON objects_status file
     
-    if load_game =='Y':
+    if load_game:
         file_to_load = LOAD_OBJECTS_JSON_FILE
     else:
         file_to_load = OBJECTS_STATUS_JSON_FILE
@@ -84,7 +84,7 @@ def load_object_status_file(load_game):
 
 def load_character_status_file(load_game):
     # returns a JSON array of character-status data from the JSON character_status file
-    if load_game =='Y':
+    if load_game:
         file_to_load = LOAD_CHARACTER_STATUS_JSON_FILE
     else:
         file_to_load = CHARACTER_STATUS_JSON_FILE
@@ -95,7 +95,7 @@ def load_character_status_file(load_game):
     return parsed_character_status_data
 
 def load_world_map_turn_status(load_game):
-    if load_game == 'Y':
+    if load_game:
         file_to_load = LOAD_WORLD_MAP_TURN_STATUS_JSON_FILE
     else:
         file_to_load = WORLD_MAP_TURN_STATUS_JSON_FILE
@@ -116,7 +116,7 @@ def load_rent_data():
 def load_world_map_status_csv(load_game):
     # loads the world map status CSV file into a 2D array and returns the array
 
-    if load_game == 'Y':
+    if load_game:
         file_to_load = LOAD_WORLD_MAP_STATUS_CSV_FILE
     else:
         file_to_load = WORLD_MAP_STATUS_CSV_FILE

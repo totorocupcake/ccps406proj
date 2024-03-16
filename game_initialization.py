@@ -16,9 +16,9 @@ def initialize(starting_rent_amount, starting_rent_due_date):
     load_game=load_game.strip()
     
     if load_game =="load" or load_game == "load game":
-        load_game = 'Y'  
+        load_game = True 
     else:
-        load_game= 'N'
+        load_game= False
     
     
     world_state = load_World_State(starting_rent_amount, starting_rent_due_date,load_game)
@@ -29,7 +29,7 @@ def initialize(starting_rent_amount, starting_rent_due_date):
       sys.stderr.write("Error: Files used to create the game is invalid.\n")
       sys.exit(1)
     
-    if load_game == 'N':
+    if not load_game:
         # prompt for player name and display welcome message if new game
         world_state = initial_game_prompt(world_state)
     
@@ -71,7 +71,7 @@ def load_World_State(rent_amount, rent_due_date,load_game):
   # set turn to 1 to start (initialized to 0 in World_State constructor)
   
   
-  if load_game == 'Y':
+  if load_game:
     data = text_file_processor.load_rent_data()
     ws.set_game_won(data["game_won"])
     ws.set_turn_number(data["turn_number"])
