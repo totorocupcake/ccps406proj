@@ -117,7 +117,7 @@ class World_State:
 
     # check to make sure inputted character is in the __characters list
     if character in self.__characters:
-      if character.get_active_player() == 'Y':
+      if character.get_active_player():
         print(f"The controlled character was killed. Switching back to original player's perspective.")
         
         for charac in self.get_characters():
@@ -186,7 +186,7 @@ class World_State:
     # remove the player character from the list
     if npc_char_list is not None:
       for npc_elem in npc_char_list:
-        if npc_elem.get_active_player()=='Y':
+        if npc_elem.get_active_player():
           npc_char_list.remove(npc_elem)
           break
 
@@ -222,7 +222,7 @@ class World_State:
     # Returns the Character with active player flag set to Y
     
     for char in self.__characters:
-      if char.get_active_player() == 'Y':
+      if char.get_active_player():
         return char
 
     return None

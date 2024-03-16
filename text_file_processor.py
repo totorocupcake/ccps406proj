@@ -1,6 +1,5 @@
 import json
 import csv
-import classes.Data as Data
 
 CHARACTERS_JSON_FILE = "data_files/Characters_02b.json"
 OBJECTS_JSON_FILE = "data_files/objects_02n.json"

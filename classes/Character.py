@@ -13,7 +13,7 @@ class Character(Turn_Based_Entity.Turn_Based_Entity):
         self.set_state(state)
         self._general_type = "Character"
         self.__visited = set()
-        self.__active_player = "N"
+        self.__active_player = False
         self.__max_hp = 0
         self.__current_hp = 0
         
@@ -129,11 +129,8 @@ class Character(Turn_Based_Entity.Turn_Based_Entity):
             sys.stderr.write("Error: Active player value is invalid\n")
             sys.exit(1)
         
-        if is_active == True: 
-            self.__active_player = 'Y'
-        else: 
-            self.__active_player = 'N'
-    
+        self.__active_player =  is_active
+       
     def turn_count_reached(self):
         # sets new state based on turn state, then resets the turn counter
         
@@ -154,7 +151,7 @@ def process_dead_char(charac,world_state):
                     charac.update_coords((x,y))
                     break
                 
-        if charac.get_active_player()=='Y':
+        if charac.get_active_player():
             print(text_formatting.justify("You wake up in your bedroom, someone managed to rescue you from the farmlands after they saw you heavily injured outside. You lost all your gold on hand."))
     
     else:
