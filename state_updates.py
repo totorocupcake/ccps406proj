@@ -118,11 +118,11 @@ def process_movement(world_state,charac,command):
             charac.update_coords((x,y))
         else:
             # tile is a blocked tile so cannot moved onto it
-            if charac.get_active_player() == "Y":
+            if charac.get_active_player():
                 print(text_formatting.justify(new_tile.get_desc("long",world_state)))
     else:
         # only print to console if its the active player turn
-        if charac.get_active_player()=='Y':
+        if charac.get_active_player():
             print("You cannot go there.") 
     return world_state
 
@@ -151,11 +151,11 @@ def process_store_gold(world_state,charac,command):
             take_gold_entity.increment_current_gold(gold_to_take*-1)
             receive_gold_entity.increment_current_gold(gold_to_take)
             
-            if charac.get_active_player()=='Y':
+            if charac.get_active_player():
                 print(f"You {words[0]} {gold_to_take} gold {'from' if words[0] == 'take' else 'into'} your bedroom's chest. Remember to lock your house to keep your gold safe!")   
        
         else: 
-            if charac.get_active_player()=='Y':
+            if charac.get_active_player():
                 print(f"You don't have any gold to {words[0]}.")
     else:
         # not currently in open bedroom or not the player or thief so they shouldnt be able to do this

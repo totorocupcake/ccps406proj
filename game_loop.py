@@ -13,7 +13,7 @@ def play_game(world_state):
     
     while (world_state.get_game_won() == 'N') and (exit_state==False):
         
-        # prints description to console for active_player=Y
+        # prints description to console for active_player
         console_output(world_state)
         
         for charac in world_state.get_characters():
@@ -65,7 +65,7 @@ def command_input(world_state,charac):
     while valid_command == False:
         # keep prompting for a command until command is valid
         
-        if charac.get_active_player() =='Y':
+        if charac.get_active_player():
             command = input("Please enter your next action: ")
         else:
             command = world_state.get_next_action(charac)
@@ -134,7 +134,7 @@ def command_processor(world_state,command,charac):
     elif noun in {text_formatting.dynamic_variable_processor(world_state,name).lower() for name in Data.Data().get_unique_names()} and verb in Data.Data().get_unique_interactions():
         return (True, command,Enum.command_type.NORMAL) 
     
-    elif command is None and charac.get_active_player()=='N':
+    elif command is None and not charac.get_active_player():
         return (True, command, Enum.command_type.BASIC)
         
     else:

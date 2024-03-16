@@ -18,7 +18,7 @@ def interaction_commands (world_state,charac,command):
     check_noun_status,noun_entity = check_noun_exists(world_state,charac,interac_noun)
     
     if check_noun_status == False:   # noun does not exist on current location of charac
-        if charac.get_general_type()=="Character" and charac.get_active_player()=='Y':
+        if charac.get_general_type()=="Character" and charac.get_active_player():
             print(f"You cannot do that here.")
         return world_state
 
@@ -148,7 +148,7 @@ def check_char_requirement (req_elem,npc_at_tile_list):
 
 def print_failed_requirement(world_state, int_JSON_obj,charac):
     # This is a helper function for check_requirements to print the associated interaction failed text to console
-    if charac is not None and charac.get_general_type()=="Character" and charac.get_active_player()=='Y':
+    if charac is not None and charac.get_general_type()=="Character" and charac.get_active_player():
         print()
         output = text_formatting.dynamic_variable_processor(world_state, int_JSON_obj["fail_desc"])
         print(text_formatting.justify(output))
@@ -157,7 +157,7 @@ def print_failed_requirement(world_state, int_JSON_obj,charac):
 
 def print_success_requirement(world_state,int_JSON_obj,charac):
     # This is a helper function for check_requirements to print the associated interaction success text to console
-    if charac is not None and charac.get_general_type()=="Character" and charac.get_active_player()=='Y':
+    if charac is not None and charac.get_general_type()=="Character" and charac.get_active_player():
         print()
         output = text_formatting.dynamic_variable_processor(world_state, int_JSON_obj["success_desc"])
         print(text_formatting.justify(output))
@@ -179,7 +179,7 @@ def check_requirements(world_state,charac,noun_entity,interac_verb):
     
     
     if int_JSON_obj is None:    # not found, so no need to process further
-        if charac is not None and charac.get_general_type()=="Character" and charac.get_active_player()=='Y':
+        if charac is not None and charac.get_general_type()=="Character" and charac.get_active_player():
             print("Command not recognized")
         return False, None
     
