@@ -14,12 +14,10 @@ INTEREST_RATE = 0.15
 TURN_INCREMENT = 20
 class World_State:
 
-  # constructor:
-
   def __init__(self):
     
     random.seed(42) # select seed for reproducible random results for testing
-    # Private properties (with default starting values)
+
     self.__turn_number = 0  
     self.__game_won = 'N'
     self.__rent_amount = 0
@@ -58,7 +56,6 @@ class World_State:
       for tiles in row:
         tiles.decrement_turn_count()
     
-    # monster/animal respawning checks
     self = spawn_monster_checks(self)
     
     return self
@@ -189,7 +186,6 @@ class World_State:
     # remove the player character from the list
     if npc_char_list is not None:
       for npc_elem in npc_char_list:
-        # remove the 'player' character from the list
         if npc_elem.get_active_player()=='Y':
           npc_char_list.remove(npc_elem)
           break
@@ -233,7 +229,7 @@ class World_State:
 
   def get_description(self, coords, visited):
   # returns a list/array of description strings for a given coords and 
-  #   visited set (of tuples of (type, name, state))
+  # visited set (of tuples of (type, name, state))
   
     x_coord, y_coord = coords
 
@@ -366,7 +362,7 @@ class World_State:
       next_command = npc_behaviors.wolf_aggressive(self,charac)
 
     # Wild cow behavior ###########################################################
-    # cow is slower moving compared to chicken, it only moves once every 2 turns, roams grass
+    # cow is slower moving compared to chicken, it only moves once every 3 turns, roams grass
     elif charac.get_name() == "cow" and charac.get_state()=="wild":
       next_command=npc_behaviors.cow_wild(self,charac)
     

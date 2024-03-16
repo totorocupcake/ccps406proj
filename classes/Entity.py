@@ -2,7 +2,6 @@ import classes.Data as Data
 import sys
 
 class Entity:
-  # class constructor:
   def __init__(self):
 
     # properties:
@@ -16,7 +15,7 @@ class Entity:
      
      
   # getter methods (Common):
-  # --------------
+
   def get_name(self):
     return self._name
 
@@ -37,12 +36,10 @@ class Entity:
     return self._inventory
 
   def get_desc(self, long_short,world_state):
-    # use __general_type (Object/Character/Tile) for lookup:
     return Data.Data().lookup_desc(long_short, self._general_type, self._name, self.__state,world_state)
 
 
   # setter methods (Common):
-  # --------------
 
   def update_coords(self, new_coords):
     

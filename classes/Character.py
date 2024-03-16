@@ -6,9 +6,7 @@ import sys
 
 class Character(Turn_Based_Entity.Turn_Based_Entity):
 
-    # CLASS CONSTRUCTOR
     def __init__(self, name = None, state = None, coords = None): 
-        # call super class constructor:
         super().__init__()
 
         self.set_name(name)
@@ -20,6 +18,7 @@ class Character(Turn_Based_Entity.Turn_Based_Entity):
         self.__current_hp = 0
         
         if name is not None and state is not None:
+        # Creates a new character from template file based on supplied name and state of char
         
             template_char = text_file_processor.load_char_template_file()
             
@@ -45,15 +44,9 @@ class Character(Turn_Based_Entity.Turn_Based_Entity):
                         x,y = coords
                         self.update_coords((x,y))
                     break
-        
-        # should __visited by a set (of tuples) rather than a list?
-        # was: self.__visited = []
-        
-    
 
     # GETTER METHODS
-
-    # char class specific methods:
+    
     def get_current_hp (self): 
         return self.__current_hp
     
@@ -72,7 +65,6 @@ class Character(Turn_Based_Entity.Turn_Based_Entity):
 
     # SETTER METHODS
 
-    # char class specific methods:
     def set_current_hp (self, new_current_hp,world_state=None):
         
         if not isinstance(new_current_hp, int):

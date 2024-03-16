@@ -42,7 +42,7 @@ class Data():
         return self._unique_interactions
     
     def lookup_tileID_by_name_state(self, tile_name,state):
-    # given a tile name and state, find corresponding tile ID:
+    # given a tile name and state, returns corresponding tile ID
 
         parsed_tile_data = self.get_tile_id_mapping()
 
@@ -55,7 +55,7 @@ class Data():
     # Given arguments find, return the matching description from in-game text files
     # Returns None if not match
     # long_short determines whether to return long_desc vs short_desc
-    # type determines if lookup is tile , character, object
+    # type determines if lookup is tile, character, object
 
         if type == "Object":
             parsed_data = self.get_objects_data()
@@ -181,6 +181,8 @@ class Data():
         return None
 
     def get_unique_keywords(self):
+        # This function returns a set of all possible verbs and noun from all JSON data files
+        
         unique_names = set()
         unique_interaction = set()
         

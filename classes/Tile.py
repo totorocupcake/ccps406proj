@@ -1,32 +1,24 @@
-# import Entity
 import classes.Turn_Based_Entity as Turn_Based_Entity
 import classes.Data as Data
 import sys
 
-# Implement the interface in a class
 class Tile(Turn_Based_Entity.Turn_Based_Entity):
   
-  # class constructor:
   def __init__(self):
     super().__init__()
-    # # properties from Entity:
-     # NOTE: must declare the inventory property again, else get weird error
     self._inventory = []
 
     # Tile-specific properties:
     self.__movable = "N"
     self.__block = "N"
-    
-    # for tile_id: use string instead of int (can still code it in hex though)
     self.__tile_id = "00"
     self._general_type = "Tile"
     self._turn_counter = 0
     self._turn_state = ""
-    self.__current_gold = 0 # added for mechanic to store gold in home
+    self.__current_gold = 0
     
 
   # getter methods (tile specific):
-  # --------------
   
   def get_tile_id(self):
     return self.__tile_id
@@ -41,8 +33,7 @@ class Tile(Turn_Based_Entity.Turn_Based_Entity):
         return self.__current_gold
 
   # setter methods (tile specific):
-  # --------------
-
+  
   def set_tile_id(self, new_id):
     
     if not isinstance(new_id, str):
@@ -52,6 +43,7 @@ class Tile(Turn_Based_Entity.Turn_Based_Entity):
     self.__tile_id = new_id
 
   def set_movable(self, flag):
+    
     if not isinstance(flag, str):
       sys.stderr.write("Error: Movable value is invalid\n")
       sys.exit(1)
@@ -59,6 +51,7 @@ class Tile(Turn_Based_Entity.Turn_Based_Entity):
     self.__movable = flag
     
   def set_block(self, flag):
+    
     if not isinstance(flag, str):
       sys.stderr.write("Error: Block value is invalid\n")
       sys.exit(1)
@@ -79,8 +72,6 @@ class Tile(Turn_Based_Entity.Turn_Based_Entity):
     tileIDMapping_data = Data.Data().get_tile_id_mapping()
 
     for tile_elem in tileIDMapping_data:
-
-    # if matching tile_id is found
       if tile_elem["tile_id"] == self.__tile_id :
         # set new state and name based on tile id mapping file
         self.set_state(tile_elem["state"])

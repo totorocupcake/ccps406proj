@@ -14,7 +14,6 @@ def state_update(world_state,charac,command,command_type):
     if command_type == "basic":
         return basic_commands(world_state,charac,command)
     elif command_type == "normal":
-        # to be done, these are normal interactions based off the JSON interaction array data.
         world_state = interaction_processing.interaction_commands(world_state, charac, command)
         
         for char in world_state.get_characters():
@@ -34,11 +33,10 @@ def state_update(world_state,charac,command,command_type):
         return world_state
 
 def basic_commands(world_state,charac,command):
-    #added:
     directions_set = {"n","s","w","e"}
     
     if command=="inventory":
-        print_inventory(charac) # prints character's inventory
+        print_inventory(charac) 
         
     elif command in directions_set:
         world_state=process_movement(world_state,charac,command) # moves character based on n,s,e,w input
@@ -74,19 +72,15 @@ def print_inventory(charac):
     object_string="Inventory: "
         
     for obj in charac.get_inventory():
-        # loop through each item in character's inventory
-            
         object_string+=obj.get_name()
         
         if obj.get_state() != "null":
-            # append obj state if not null
             object_string+=" ("+ obj.get_state() + ")"
         
         # append x[quantity] after each item
         object_string+=" x"
         object_string+=str(obj.get_quantity())
             
-        # append comma between items
         object_string+=", "
         
     # remove dangling comma added at end of last item
@@ -120,7 +114,6 @@ def process_movement(world_state,charac,command):
 
         if new_tile.get_block() == "N":
             # check if tile is not a 'blocked tile'
-            # print(f"{charac.get_name()} moved to {x} {y}")
             charac.update_coords((x,y))
         else:
             # tile is a blocked tile so cannot moved onto it
@@ -154,15 +147,13 @@ def process_store_gold(world_state,charac,command):
         gold_to_take = take_gold_entity.get_current_gold()
         
         if gold_to_take > 0:    # check if there is gold to take first
-            # swaps gold between take and e
-            # receiving entity
             take_gold_entity.increment_current_gold(gold_to_take*-1)
             receive_gold_entity.increment_current_gold(gold_to_take)
             
             if charac.get_active_player()=='Y':
                 print(f"You {words[0]} {gold_to_take} gold {'from' if words[0] == 'take' else 'into'} your bedroom's chest. Remember to lock your house to keep your gold safe!")   
        
-        else:   # no gold to take, so no need to process command further
+        else: 
             if charac.get_active_player()=='Y':
                 print(f"You don't have any gold to {words[0]}.")
     else:

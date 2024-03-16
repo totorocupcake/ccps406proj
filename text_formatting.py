@@ -12,6 +12,7 @@ def print_minimap(world_state,coords,active_char):
    
     if world_state.get_cheat_mode() == 'N':
         # print only 1 tile around active player with no cheat mode
+        
         # first row ######################################################################################################
         if y-1 >=0:
             if x-1 >=0:
@@ -59,6 +60,7 @@ def print_minimap(world_state,coords,active_char):
                 
 def print_tile (tile,characters):
     # given a provided tile or char, provide the character string to represent it as on mini-map
+    
     if tile.get_type() == "building":
         return " B "
     
@@ -66,11 +68,11 @@ def print_tile (tile,characters):
         return " X "
     
     if characters != []:
-        # print C if theres any other char other than the player
         for character in characters:
             if character.get_type().lower() == "monster" or character.get_type().lower()=="animal":
                 return " M "
         return " C "
+    
     if tile.get_type() == "road":
         return " - "
     
@@ -85,7 +87,7 @@ def justify(text):
     This function fully justify aligns a given text string, width determined by CONSOLE_OUTPUT_CHAR_WIDTH.
     Returns back justified string.
     """
-    words = text.split() # split input text into a list of words
+    words = text.split()
 
     lines = []
     current_line = []
@@ -148,5 +150,4 @@ def dynamic_variable_logic(world_state,keyword):
         elif keyword=="gold":
             for charac in world_state.get_characters():
                 if charac.get_type() == "player":
-                    # return charac.get_current_gold()
                     return str(charac.get_current_gold())

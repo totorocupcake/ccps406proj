@@ -18,10 +18,6 @@ if __name__ == "__main__":
     """
     world_state = game_initialization.initialize(STARTING_RENT_AMOUNT, STARTING_RENT_DUE_DATE)
     
-    # This should return one object which is an instance of the world_state class.
-    # Within this world_state class, it contains all the tiles/characters and objects within their inventory
-    # which we will manipulate and lookup within game loop.
-    
     """
     Game Loop
     """
