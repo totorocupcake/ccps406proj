@@ -1,5 +1,6 @@
 import text_formatting
 import interaction_processing
+import classes.enums as Enum
 
 def state_update(world_state,charac,command,command_type):
     # Make the updates to world_state (and any other updates required) to process the command.
@@ -11,9 +12,9 @@ def state_update(world_state,charac,command,command_type):
     world_state=visited_updates(world_state,charac,current_x,current_y)
     
     # parse command and make updates
-    if command_type == "basic":
+    if command_type == Enum.command_type.BASIC:
         return basic_commands(world_state,charac,command)
-    elif command_type == "normal":
+    elif command_type == Enum.command_type.NORMAL:
         world_state = interaction_processing.interaction_commands(world_state, charac, command)
         
         for char in world_state.get_characters():
@@ -25,7 +26,7 @@ def state_update(world_state,charac,command,command_type):
         
         return world_state
                 
-    elif command_type == "cheat":
+    elif command_type == Enum.command_type.CHEAT:
         world_state = world_state.cheat_mode(command,charac)
         return world_state
     else:

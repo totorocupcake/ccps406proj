@@ -2,6 +2,7 @@ import state_updates
 import save_game
 import text_formatting
 import classes.Data as Data
+import classes.enums as Enum
 
 def play_game(world_state):
     # MAIN FUNCTION within this module, that calls all other game_loop methods.
@@ -107,11 +108,11 @@ def command_processor(world_state,command,charac):
         noun=""
     
     if command in basic_commands:
-        return (True, command,"basic") 
+        return (True, command,Enum.command_type.BASIC) 
     
     elif command == "save" or command == "save game":
         save_game.save_game(world_state)
-        return (False, command, "basic")
+        return (False, command, Enum.command_type.BASIC)
     
     elif command == "cheat":
         # cheat mode command recognition
@@ -121,24 +122,24 @@ def command_processor(world_state,command,charac):
         elif world_state.get_cheat_mode() == 'N':
             world_state.set_cheat_mode('Y')
             print("Cheat mode turned on")
-        return (False, command, "basic")
+        return (False, command, Enum.command_type.BASIC)
     
     elif command is not None and command.startswith("cheat "):
         if world_state.get_cheat_mode() == 'Y':
-            return (True, noun, "cheat")
+            return (True, noun, Enum.command_type.CHEAT)
         else:
             print("You're not allowed to do that, cheat mode is not activated.")
-            return (False, command, "basic")
+            return (False, command, Enum.command_type.CHEAT)
 
     elif noun in {text_formatting.dynamic_variable_processor(world_state,name).lower() for name in Data.Data().get_unique_names()} and verb in Data.Data().get_unique_interactions():
-        return (True, command,"normal") 
+        return (True, command,Enum.command_type.NORMAL) 
     
     elif command is None and charac.get_active_player()=='N':
-        return (True, command, "basic")
+        return (True, command, Enum.command_type.BASIC)
         
     else:
         print("Command not recognized. Please try again.")
-        return (False,command,"")
+        return (False,command,Enum.command_type.BASIC)
     
 
 
