@@ -63,7 +63,7 @@ def wolf_aggressive(world_state,charac):
     x,y = current_coord
     current_tl = world_state.get_tiles()[x][y]
     
-    if current_tl.get_movable()=='Y':
+    if current_tl.get_movable():
         for char in char_list:
             if char.get_type() == "player":
                 if char.get_active_player():

@@ -10,7 +10,7 @@ class Tile(Turn_Based_Entity.Turn_Based_Entity):
     self._inventory = []
 
     # Tile-specific properties:
-    self.__movable = "N"
+    self.__movable = False
     self.__block = "N"
     self.__tile_id = "00"
     self._general_type = Enum.general_type.TILE
@@ -45,7 +45,7 @@ class Tile(Turn_Based_Entity.Turn_Based_Entity):
 
   def set_movable(self, flag):
     
-    if not isinstance(flag, str):
+    if not isinstance(flag, bool):
       sys.stderr.write("Error: Movable value is invalid\n")
       sys.exit(1)
     

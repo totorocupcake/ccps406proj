@@ -105,7 +105,7 @@ class Data():
         return None
     
     def lookup_block (self, tile_name, state):
-    # Given a tile name and state, return the matching movable flag.
+    # Given a tile name and state, return the matching block flag.
     # Return None if not match
 
         parsed_tile_data = self.get_tile_data()
@@ -144,7 +144,7 @@ class Data():
                 return char["current_gold"]  
             
     def lookup_tile_type (self,tile_name,state):
-    # Given a tile name and state, return the matching movable flag.
+    # Given a tile name and state, return the matching tile type.
     # Return None if not match
 
         parsed_tile_data = self.get_tile_data()
