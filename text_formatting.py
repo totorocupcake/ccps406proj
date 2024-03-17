@@ -10,7 +10,7 @@ def print_minimap(world_state,coords,active_char):
     max_cols = len(world_state.get_tiles()[0])-1
     max_rows = len(world_state.get_tiles())-1
    
-    if world_state.get_cheat_mode() == 'N':
+    if not world_state.get_cheat_mode():
         # print only 1 tile around active player with no cheat mode
         
         # first row ######################################################################################################

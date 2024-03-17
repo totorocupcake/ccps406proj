@@ -25,7 +25,7 @@ class World_State:
     self.__rent_due_date = 0
     self.__characters = []  # array/list of character objects
     self.__tiles = [[None] * WORLD_MAP_NUM_COLUMNS for _ in range(WORLD_MAP_NUM_ROWS)]
-    self.__cheat_mode = 'N'
+    self.__cheat_mode = False
     self.__graze = 'Y'
     
 
@@ -322,7 +322,7 @@ class World_State:
   
   def set_cheat_mode(self,flag):
     
-    if not isinstance(flag, str):
+    if not isinstance(flag, bool):
       sys.stderr.write("Error: Cheat mode value is invalid\n")
       sys.exit(1)
       
@@ -465,6 +465,7 @@ class World_State:
       return self
     except (ValueError,IndexError): 
       print("Invalid cheat mode command format.")
+      
       return self
 
 def spawn_monster_checks(world_state):
