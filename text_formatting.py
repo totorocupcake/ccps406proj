@@ -62,7 +62,7 @@ def print_minimap(world_state,coords,active_char):
 def print_tile (tile,characters):
     # given a provided tile or char, provide the character string to represent it as on mini-map
     
-    if tile.get_type() == "building":
+    if tile.get_type() == Enum.tile_type.building:
         return " B "
     
     if tile.get_block():
@@ -74,13 +74,13 @@ def print_tile (tile,characters):
                 return " M "
         return " C "
     
-    if tile.get_type() == "road":
+    if tile.get_type() == Enum.tile_type.road:
         return " - "
     
-    if tile.get_type() == "non-building" and tile.get_name() != "grasslands":
+    if tile.get_type() == Enum.tile_type.non_building and tile.get_name() != "grasslands":
         return " ? "
     
-    if tile.get_type() == "non-building":
+    if tile.get_type() == Enum.tile_type.non_building:
         return " _ "
 
 def justify(text):

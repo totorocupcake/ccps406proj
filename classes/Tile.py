@@ -58,6 +58,14 @@ class Tile(Turn_Based_Entity.Turn_Based_Entity):
       sys.exit(1)
   
     self.__block = flag
+    
+  def set_type(self, new_type):
+    
+    if new_type is not None and not isinstance(new_type,Enum.tile_type):
+      sys.stderr.write("Error: Tile type value is invalid\n")
+      sys.exit(1)
+    
+    self._type = new_type
 
   def update_tile_by_id(self, new_tile_id):
     # update tile_id to new tile_id. 
@@ -81,7 +89,7 @@ class Tile(Turn_Based_Entity.Turn_Based_Entity):
         # update other fields based on text parser lookup functions (from tile in-game text files)
         self.set_movable(Data.Data().lookup_movable(self.get_name(),self.get_state()))
         self.set_block(Data.Data().lookup_block(self.get_name(),self.get_state()))
-        self.set_type(Data.Data().lookup_tile_type(self.get_name(),self.get_state()))
+        self.set_type(Enum.tile_type[Data.Data().lookup_tile_type(self.get_name(),self.get_state())])
 
     
   def update_tile_by_state(self, new_state):
@@ -105,7 +113,7 @@ class Tile(Turn_Based_Entity.Turn_Based_Entity):
     for tile_elem in tile_json:
     # if match tile name and state within tile id mapping file
       if tile_elem["name"] == self.get_name() and tile_elem["state"] == self.get_state():
-        self.set_type(tile_elem["type"])
+        self.set_type(Enum.tile_type[tile_elem["type"]])
         self.set_movable(tile_elem["movable"])
         self.set_block(tile_elem["block"])
       
