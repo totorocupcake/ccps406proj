@@ -79,7 +79,7 @@ def load_World_State(rent_amount, rent_due_date,load_game):
     ws.update_rent_amount(data["rent_amount"])
     ws.update_rent_turn_due(data["rent_due_date"])
   else:
-    ws.set_game_won("N")
+    ws.set_game_won(False)
     ws.update_rent_amount(rent_amount)
     ws.update_rent_turn_due(rent_due_date)
     ws.increment_turn(1)

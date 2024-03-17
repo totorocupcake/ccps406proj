@@ -21,7 +21,7 @@ def state_update(world_state,charac,command,command_type):
         # check after state updates if game is won, update flag if so in world state
             if char.get_name() == 'landlord':
                 if char.get_state() == 'happy':
-                    world_state.set_game_won('Y')
+                    world_state.set_game_won(True)
                 break
         
         return world_state

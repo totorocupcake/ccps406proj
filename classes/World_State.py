@@ -12,6 +12,7 @@ WORLD_MAP_NUM_ROWS = text_file_processor.WORLD_MAP_STATUS_ROWS
 WORLD_MAP_NUM_COLUMNS = text_file_processor.WORLD_MAP_STATUS_COLUMNS
 INTEREST_RATE = 0.15
 TURN_INCREMENT = 20
+
 class World_State:
 
   def __init__(self):
@@ -19,7 +20,7 @@ class World_State:
     random.seed(42) # select seed for reproducible random results for testing
 
     self.__turn_number = 0  
-    self.__game_won = 'N'
+    self.__game_won = False
     self.__rent_amount = 0
     self.__rent_due_date = 0
     self.__characters = []  # array/list of character objects
@@ -62,7 +63,7 @@ class World_State:
   
   def set_game_won(self, flag):
     
-    if not isinstance(flag, str):
+    if not isinstance(flag, bool):
       sys.stderr.write("Error: Game won value is invalid\n")
       sys.exit(1)
       

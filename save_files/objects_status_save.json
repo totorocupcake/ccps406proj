@@ -46,6 +46,15 @@
     },
     {
         "type": "tool",
+        "name": "medkit",
+        "state": "null",
+        "quantity": 1,
+        "co_ord_x": 6,
+        "co_ord_y": 11,
+        "inventory": null
+    },
+    {
+        "type": "tool",
         "name": "garage key",
         "state": "null",
         "quantity": 1,
@@ -65,6 +74,15 @@
     {
         "type": "tool",
         "name": "letter",
+        "state": "null",
+        "quantity": 1,
+        "co_ord_x": 6,
+        "co_ord_y": 13,
+        "inventory": null
+    },
+    {
+        "type": "tool",
+        "name": "letter from landlord",
         "state": "null",
         "quantity": 1,
         "co_ord_x": 6,
