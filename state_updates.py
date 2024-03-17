@@ -113,7 +113,7 @@ def process_movement(world_state,charac,command):
         # if coord is valid, move character to new coord
         new_tile = world_state.get_tiles()[x][y]
 
-        if new_tile.get_block() == "N":
+        if not new_tile.get_block():
             # check if tile is not a 'blocked tile'
             charac.update_coords((x,y))
         else:
