@@ -11,7 +11,7 @@ def play_game(world_state):
     exit_state=False
     command = "None"
     
-    while (world_state.get_game_won() == 'N') and (exit_state==False):
+    while not world_state.get_game_won() and not exit_state:
         
         # prints description to console for active_player
         console_output(world_state)
@@ -28,7 +28,7 @@ def play_game(world_state):
             # make updates to game based off validated command
             world_state=state_updates.state_update(world_state,charac,command,command_type)
             
-            if world_state.get_game_won()=='Y':
+            if world_state.get_game_won():
                 break
             
         world_state = world_state.increment_turn()

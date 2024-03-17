@@ -18,7 +18,7 @@ if __name__ == "__main__":
     Exit game loop
     """
     
-    if (world_state.get_game_won() == 'Y'): 
+    if world_state.get_game_won(): 
         print("You win!")
     else: 
         # runs on manual exit
