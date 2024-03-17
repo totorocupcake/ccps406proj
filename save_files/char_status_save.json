@@ -1,13 +1,18 @@
 [
     {
         "type": "player",
-        "name": "totoro",
+        "name": "%player_name%",
         "co_ord_x": 6,
-        "co_ord_y": 13,
+        "co_ord_y": 12,
         "state": "null",
         "inventory": [
             {
                 "name": "house key",
+                "quantity": 1,
+                "state": "null"
+            },
+            {
+                "name": "gun",
                 "quantity": 1,
                 "state": "null"
             }
@@ -17,39 +22,14 @@
         "current_gold": 0,
         "visited": [
             {
-                "type": "Object",
-                "name": "medkit",
-                "state": "null"
-            },
-            {
-                "type": "Object",
-                "name": "letter",
-                "state": "null"
+                "type": "Character",
+                "name": "Thief",
+                "state": "aggressive"
             },
             {
                 "type": "Tile",
                 "name": "kitchen",
                 "state": "open"
-            },
-            {
-                "type": "Tile",
-                "name": "mail box",
-                "state": "null"
-            },
-            {
-                "type": "Tile",
-                "name": "bedroom",
-                "state": "open"
-            },
-            {
-                "type": "Object",
-                "name": "farm key",
-                "state": "null"
-            },
-            {
-                "type": "Object",
-                "name": "garage key",
-                "state": "null"
             }
         ],
         "turn_counter": [
@@ -92,17 +72,17 @@
         "visited": [
             {
                 "type": "Object",
-                "name": "gun",
-                "state": "null"
-            },
-            {
-                "type": "Object",
                 "name": "axe",
                 "state": "null"
             },
             {
                 "type": "Tile",
                 "name": "tool shop",
+                "state": "null"
+            },
+            {
+                "type": "Object",
+                "name": "gun",
                 "state": "null"
             }
         ],

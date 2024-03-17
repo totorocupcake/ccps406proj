@@ -72,7 +72,7 @@ def serialize_character (charac):
     if turn_counter_serialized == []:
         turn_counter_serialized = None
 
-    return{"type":charac.get_type(),
+    return{"type":charac.get_type().name,
            "name": charac.get_name(),
            "co_ord_x":current_x,
            "co_ord_y":current_y,
