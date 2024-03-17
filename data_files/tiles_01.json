@@ -1,7 +1,7 @@
 [
   {
     "name": "town square",
-    "type": "non-building",
+    "type": "non_building",
     "state": "null",
     "movable":true,
     "block" : false,
@@ -53,7 +53,7 @@
 
   {
     "name": "mail box",
-    "type": "non-building",
+    "type": "non_building",
     "state": "null",
     "movable":true,
     "block" : false,
@@ -353,7 +353,7 @@
 
   {
     "name": "water well",
-    "type": "non-building",
+    "type": "non_building",
     "state": "null",
     "movable":true,
     "block" : false,
@@ -526,7 +526,7 @@
 
   {
     "name": "bee hive",
-    "type": "non-building",
+    "type": "non_building",
     "state": "ready",
     "movable":true,
     "block" : false,
@@ -568,7 +568,7 @@
 
   {
     "name": "bee hive",
-    "type": "non-building",
+    "type": "non_building",
     "state": "not_ready",
     "movable":true,
     "block" : false,
@@ -599,7 +599,7 @@
 
   {
     "name": "grass field",
-    "type": "non-building",
+    "type": "non_building",
     "state": "ready",
     "movable":true,
     "block" : false,
@@ -634,7 +634,7 @@
   },
   {
     "name": "grass field",
-    "type": "non-building",
+    "type": "non_building",
     "state": "not_ready",
     "movable":true,
     "block" : false,
@@ -665,7 +665,7 @@
 
   {
     "name": "wheat field",
-    "type": "non-building",
+    "type": "non_building",
     "state": "ready",
     "movable":true,
     "block" : false,
@@ -701,7 +701,7 @@
 
   {
     "name": "wheat field",
-    "type": "non-building",
+    "type": "non_building",
     "state": "not_ready",
     "movable":true,
     "block" : false,
@@ -854,7 +854,7 @@
 
   {
     "name": "trees",
-    "type": "non-building",
+    "type": "non_building",
     "state": "blocked",
     "movable":false,
     "block" : false,
@@ -1235,7 +1235,7 @@
 
   {
     "name": "apple tree",
-    "type": "non-building",
+    "type": "non_building",
     "state": "empty",
     "movable":true,
     "block" : false,
@@ -1249,7 +1249,7 @@
 
   {
     "name": "apple tree",
-    "type": "non-building",
+    "type": "non_building",
     "state": "growing_notready",
     "movable":true,
     "block" : false,
@@ -1294,7 +1294,7 @@
 
   {
     "name": "apple tree",
-    "type": "non-building",
+    "type": "non_building",
     "state": "growing_ready",
     "movable":true,
     "block" : false,
@@ -1329,7 +1329,7 @@
   },
   {
     "name": "grasslands",
-    "type": "non-building",
+    "type": "non_building",
     "state": "null",
     "movable":true,
     "block" : false,

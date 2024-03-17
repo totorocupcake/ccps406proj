@@ -15,3 +15,10 @@ class character_type(Enum):
     npc = 2
     monster = 3
     animal = 4
+    
+class tile_type(Enum):
+    building = 1
+    non_building = 2
+    road = 3
+    blocked = 4
+    
