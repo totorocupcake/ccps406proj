@@ -116,16 +116,16 @@ def command_processor(world_state,command,charac):
     
     elif command == "cheat":
         # cheat mode command recognition
-        if world_state.get_cheat_mode() == 'Y':
-            world_state.set_cheat_mode('N')
+        if world_state.get_cheat_mode():
+            world_state.set_cheat_mode(False)
             print("Cheat mode turned off")
-        elif world_state.get_cheat_mode() == 'N':
-            world_state.set_cheat_mode('Y')
+        else:
+            world_state.set_cheat_mode(True)
             print("Cheat mode turned on")
         return (False, command, Enum.command_type.BASIC)
     
     elif command is not None and command.startswith("cheat "):
-        if world_state.get_cheat_mode() == 'Y':
+        if world_state.get_cheat_mode():
             return (True, noun, Enum.command_type.CHEAT)
         else:
             print("You're not allowed to do that, cheat mode is not activated.")
