@@ -1,6 +1,7 @@
 import classes.Character as Character
 import classes.Object as Object
 import classes.Tile as Tile
+import classes.enums as Enum
 import text_file_processor
 import random
 import npc_behaviors
@@ -122,7 +123,7 @@ class World_State:
         print(f"The controlled character was killed. Switching back to original player's perspective.")
         
         for charac in self.get_characters():
-          if charac.get_type() == "player":
+          if charac.get_type() == Enum.character_type.player:
             charac.set_active_player(True)
             
       self.__characters.remove(character)

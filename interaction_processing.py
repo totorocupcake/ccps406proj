@@ -125,7 +125,7 @@ def check_gold_requirement (world_state,charac,req_elem,interac_verb):
     # This is a helper function for check_requirements to check if gold requirement is satisifed
     if interac_verb == "steal":
         for char in world_state.get_characters():
-            if char.get_type() == "player":
+            if char.get_type() == Enum.character_type.player:
                 entity = char
                 break
     else:
@@ -168,7 +168,7 @@ def check_requirements(world_state,charac,noun_entity,interac_verb):
     # given a noun_entity and the interac_verb (interaction verb) find it's interaction data from JSON
     # if found, check if the interaction requirements are met and returns the interaction data from JSON
     
-    if noun_entity.get_type() == "player":
+    if noun_entity.get_type() == Enum.character_type.player:
         interac_name = "%player_name%"
     else:
         interac_name = noun_entity.get_name()
@@ -250,7 +250,7 @@ def process_change_state_to(world_state,charac,int_JSON_obj,noun_entity):
                     
             elif noun_entity.get_general_type() == Enum.general_type.CHARACTER:
                 if int_JSON_obj["change_state_to"] == "delete":
-                    if charac.get_general_type() == "Character":
+                    if charac.get_general_type() == Enum.general_type.CHARACTER:
                         charac.update_inventory("add",noun_entity.get_inventory())
                         charac.increment_current_gold(noun_entity.get_current_gold())
                     world_state = world_state.remove_character(noun_entity)
@@ -388,7 +388,7 @@ def process_requirements(world_state,int_JSON_obj,charac,interac_verb):
                         # check for special case for steal command, the entity to remove gold is the player character instead of
                         # entity submitting the steal command
                         for char in world_state.get_characters():
-                            if char.get_type() == "player":
+                            if char.get_type() == Enum.character_type.player:
                                 entity = char
                                 break
                     else:

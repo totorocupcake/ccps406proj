@@ -25,7 +25,7 @@ class Character(Turn_Based_Entity.Turn_Based_Entity):
             
             for element in template_char:
                 if element["name"].lower() == name.lower() and element["state"].lower()==state.lower():
-                    self.set_type(element["type"])
+                    self.set_type(Enum.character_type[element["type"]])
                     self.set_max_hp(element["max_hp"])
                     self.set_current_hp(element["current_hp"])
                     self.set_current_gold(element["current_gold"])
@@ -121,7 +121,14 @@ class Character(Turn_Based_Entity.Turn_Based_Entity):
             sys.exit(1)
         
         self.__current_gold += increment_gold_amount
-        
+    
+    def set_type(self, new_type):
+    
+        if new_type is not None and not isinstance(new_type,Enum.character_type):
+            sys.stderr.write("Error: Character type value is invalid\n")
+            sys.exit(1)
+    
+        self._type = new_type
 
 
     def set_active_player (self, is_active): 
@@ -141,7 +148,7 @@ class Character(Turn_Based_Entity.Turn_Based_Entity):
 
 def process_dead_char(charac,world_state):
     
-    if charac.get_type() == "player":
+    if charac.get_type() == Enum.character_type.player:
         charac.set_current_hp(charac.get_max_hp())
         charac.set_current_gold(0)
         

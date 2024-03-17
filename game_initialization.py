@@ -44,7 +44,7 @@ def initial_game_prompt(world_state):
     
     for charac in world_state.get_characters():
         # Find the player and update their name
-        if charac.get_type()=="player":
+        if charac.get_type()==Enum.character_type.player:
             charac.set_name(player_name)
             break
         
@@ -223,11 +223,11 @@ def load_characters_list_from_file(load_game):
     # set all character object attributes
     charac.set_name(char_elem["name"])
     charac.set_general_type(Enum.general_type.CHARACTER)
-    charac.set_type(char_elem["type"])
+    charac.set_type(Enum.character_type[char_elem["type"]])
     charac.set_state(char_elem["state"])
 
     # if player type is "player", set to active player:
-    if char_elem["type"] == "player":
+    if charac.get_type() == Enum.character_type.player:
       charac.set_active_player(True)
     else:
       charac.set_active_player(False)

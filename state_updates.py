@@ -133,7 +133,7 @@ def process_store_gold(world_state,charac,command):
     current_tile = world_state.get_tiles()[x][y]
     words=command.split()
         
-    if current_tile.get_name() == "bedroom" and current_tile.get_state() == "open" and (charac.get_type() == "player" or \
+    if current_tile.get_name() == "bedroom" and current_tile.get_state() == "open" and (charac.get_type() == Enum.character_type.player or \
     charac.get_name() == "Thief"):
     # can only store gold if they are located at an open bedroom and the character is the player or thief 
     # (other npcs cannot store/take gold into the player's house as the house doesnt belong to them)

@@ -1,4 +1,5 @@
 import re
+import classes.enums as Enum
 
 CONSOLE_OUTPUT_CHAR_WIDTH = 100
 
@@ -69,7 +70,7 @@ def print_tile (tile,characters):
     
     if characters != []:
         for character in characters:
-            if character.get_type().lower() == "monster" or character.get_type().lower()=="animal":
+            if character.get_type() == Enum.character_type.monster or character.get_type() ==Enum.character_type.animal:
                 return " M "
         return " C "
     
@@ -141,7 +142,7 @@ def dynamic_variable_logic(world_state,keyword):
         
         if keyword == "player_name":
             for charac in world_state.get_characters():
-                if charac.get_type() == "player":
+                if charac.get_type() == Enum.character_type.player:
                     return charac.get_name()
         elif keyword == "rent_amount":
             return str(world_state.get_rent_amount())
@@ -149,5 +150,5 @@ def dynamic_variable_logic(world_state,keyword):
             return str(world_state.get_rent_due_date())
         elif keyword=="gold":
             for charac in world_state.get_characters():
-                if charac.get_type() == "player":
+                if charac.get_type() == Enum.character_type.player:
                     return str(charac.get_current_gold())

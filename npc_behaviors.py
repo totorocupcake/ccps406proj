@@ -1,4 +1,5 @@
 import random
+import classes.enums as Enum
 
 def graze(world_state,charac):
       # get_next_action sub function to define a generic "Grazing" behavior for monsters/animals
@@ -27,7 +28,7 @@ def graze(world_state,charac):
 
 def thief_aggressive(world_state,charac):
     for element in world_state.get_characters():
-        if element.get_type() == "player":
+        if element.get_type() == Enum.character_type.player:
             player = element
             break
 
@@ -65,7 +66,7 @@ def wolf_aggressive(world_state,charac):
     
     if current_tl.get_movable():
         for char in char_list:
-            if char.get_type() == "player":
+            if char.get_type() == Enum.character_type.player:
                 if char.get_active_player():
                     print(f"The wolf hit {char.get_name()} for 2 hp.")
                 return "hit " +char.get_name()

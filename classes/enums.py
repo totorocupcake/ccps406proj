@@ -9,3 +9,9 @@ class general_type(Enum):
     CHARACTER = 1
     OBJECT = 2
     TILE = 3
+    
+class character_type(Enum):
+    player = 1
+    npc = 2
+    monster = 3
+    animal = 4
