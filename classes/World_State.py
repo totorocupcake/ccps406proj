@@ -26,7 +26,7 @@ class World_State:
     self.__characters = []  # array/list of character objects
     self.__tiles = [[None] * WORLD_MAP_NUM_COLUMNS for _ in range(WORLD_MAP_NUM_ROWS)]
     self.__cheat_mode = False
-    self.__graze = 'Y'
+    self.__graze = True
     
 
   def set_turn_number (self, num):
@@ -311,7 +311,7 @@ class World_State:
 
   def set_graze (self,flag):
     
-    if not isinstance(flag, str):
+    if not isinstance(flag, bool):
       sys.stderr.write("Error: Graze value is invalid\n")
       sys.exit(1)
     
@@ -352,31 +352,25 @@ class World_State:
   def get_next_action (self, charac):
     # Function controls computer-controlled characters by providing their next command for console input
     
-    # Aggressive thief behavior ########################################
     # steal gold from player if on same tile, otherwise roam the grass
     if charac.get_name() == "Thief" and charac.get_state() =="aggressive":
       next_command = npc_behaviors.thief_aggressive(self,charac)
         
-    # Aggressive wolf behavior ################################################
     # kill chicken/cow if there is chicken/cow on same tile, otherwise it just moves randomly on grass
     elif charac.get_name() == "Wolf" and charac.get_state() =="aggressive":
       next_command = npc_behaviors.wolf_aggressive(self,charac)
 
-    # Wild cow behavior ###########################################################
     # cow is slower moving compared to chicken, it only moves once every 3 turns, roams grass
     elif charac.get_name() == "cow" and charac.get_state()=="wild":
       next_command=npc_behaviors.cow_wild(self,charac)
-    
-    # Wild chicken behavior ######################################################
+
     elif charac.get_name() == "chicken" and charac.get_state()=="wild":
       next_command=npc_behaviors.check_graze(self,charac)
     
-    # All other characters' behavior ######################################################
     else:
       # default do nothing if no behavior defined for character
       return None
     
-    # print(f"{charac.get_name()} submitted {next_command}")
     return next_command
   
   def cheat_mode(self, command,charac):
@@ -401,11 +395,11 @@ class World_State:
         self.spawn_character(new_charac)
         print("Spawned character")
       elif command == "graze":
-        if self.get_graze() == 'Y':
-          self.set_graze('N')
+        if self.get_graze():
+          self.set_graze(False)
           print("All monster graze movement paused.")
-        elif self.get_graze() == 'N':
-          self.set_graze('Y')
+        else:
+          self.set_graze(True)
           print("All monster graze movement resumed.")
       elif words[0] == "get_desc":
         charac_coord = words[1]

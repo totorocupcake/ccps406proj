@@ -90,14 +90,14 @@ def wolf_aggressive(world_state,charac):
     return check_graze(world_state,charac)
     
 def cow_wild(world_state,charac):
-    if world_state.get_graze() == 'Y':
+    if world_state.get_graze():
         if (world_state.get_turn_number() % 3) == 0:
           next_command = graze(world_state,charac)
           return next_command
     return None
 
 def check_graze(world_state,charac):
-    if world_state.get_graze() =="Y":
+    if world_state.get_graze():
         if (world_state.get_turn_number() % 2) == 0:
             next_command = graze(world_state,charac)
             return next_command
