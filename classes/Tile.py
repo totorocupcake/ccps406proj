@@ -11,7 +11,7 @@ class Tile(Turn_Based_Entity.Turn_Based_Entity):
 
     # Tile-specific properties:
     self.__movable = False
-    self.__block = "N"
+    self.__block = False
     self.__tile_id = "00"
     self._general_type = Enum.general_type.TILE
     self._turn_counter = 0
@@ -53,7 +53,7 @@ class Tile(Turn_Based_Entity.Turn_Based_Entity):
     
   def set_block(self, flag):
     
-    if not isinstance(flag, str):
+    if not isinstance(flag, bool):
       sys.stderr.write("Error: Block value is invalid\n")
       sys.exit(1)
   

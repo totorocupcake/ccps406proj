@@ -64,7 +64,7 @@ def print_tile (tile,characters):
     if tile.get_type() == "building":
         return " B "
     
-    if tile.get_type() == "blocked":
+    if tile.get_block():
         return " X "
     
     if characters != []:
