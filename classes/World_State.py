@@ -260,7 +260,7 @@ class World_State:
       desc_list.append(current_tl.get_desc(True,self))
 
     # add each character:
-    if current_npc_char_list is not None and current_tl.get_movable() == 'Y':
+    if current_npc_char_list is not None and current_tl.get_movable():
       for char_elem in current_npc_char_list:
         char_tuple = (char_elem.get_general_type(), char_elem.get_name(), \
                       char_elem.get_state() )
@@ -272,7 +272,7 @@ class World_State:
         
 
     # add each object in the tile's inventory:
-    if current_tl.get_movable() == "Y":
+    if current_tl.get_movable():
       if current_tl_inv_list is not None:
         for tl_inv_elem in current_tl_inv_list:
           inv_tuple = (tl_inv_elem.get_general_type(), tl_inv_elem.get_name(), \

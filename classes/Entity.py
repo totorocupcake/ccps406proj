@@ -4,8 +4,7 @@ import sys
 
 class Entity:
   def __init__(self):
-
-    # properties:
+    
     self._name = ""
     self._general_type = ""
     self._type = ""
@@ -13,7 +12,6 @@ class Entity:
     self._co_ord_x = 0
     self._co_ord_y = 0
     self._inventory = []
-     
      
   # getter methods (Common):
 
@@ -36,8 +34,8 @@ class Entity:
     # returns a list of 'object' objects
     return self._inventory
 
-  def get_desc(self, long_short,world_state):
-    return Data.Data().lookup_desc(long_short, self._general_type, self._name, self.__state,world_state)
+  def get_desc(self, long,world_state):
+    return Data.Data().lookup_desc(long, self._general_type, self._name, self.__state,world_state)
 
 
   # setter methods (Common):
