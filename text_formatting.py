@@ -140,15 +140,17 @@ def dynamic_variable_processor(world_state,get_desc_string):
 def dynamic_variable_logic(world_state,keyword):
     # Given the keyword string, replace it with a value and return that value back
         
+        player = world_state.get_active_char()
+        
         if keyword == "player_name":
-            for charac in world_state.get_characters():
-                if charac.get_type() == Enum.character_type.player:
-                    return charac.get_name()
+            return player.get_name()
         elif keyword == "rent_amount":
             return str(world_state.get_rent_amount())
         elif keyword == "rent_due_days_away":
             return str(world_state.get_rent_due_date())
         elif keyword=="gold":
-            for charac in world_state.get_characters():
-                if charac.get_type() == Enum.character_type.player:
-                    return str(charac.get_current_gold())
+            return str(player.get_current_gold())
+        elif keyword == "hp":
+            return str(player.get_current_hp())
+        elif keyword == "max_hp":
+            return str(player.get_max_hp())

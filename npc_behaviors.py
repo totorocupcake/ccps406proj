@@ -68,7 +68,7 @@ def wolf_aggressive(world_state,charac):
         for char in char_list:
             if char.get_type() == Enum.character_type.player:
                 if char.get_active_player():
-                    print(f"The wolf hit {char.get_name()} for 2 hp.")
+                    print(f"You got hit by the wolf for 2 hp. Your hp is now {char.get_current_hp()-2}/{char.get_max_hp()}.")
                 return "hit " +char.get_name()
             
             if char.get_name() == "chicken":
