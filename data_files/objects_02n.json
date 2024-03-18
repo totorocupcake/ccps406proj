@@ -803,8 +803,8 @@
     "state": "null",
     "gold_amt": 4,
     "description": {
-      "long_desc": "an incomplete axe that is missing a branch and a flint waiting to be forged",
-      "short_desc": "an incomplete axe"
+      "long_desc": "an anvil where an axe can be forged with a flint and a branch",
+      "short_desc": "an anvil where an axe can be forged"
     },
     "interactions":  [
       {
@@ -847,7 +847,50 @@
           "qty": 1
         }
       ]
+      },
+      {
+        "name": "forge",
+
+        "success_desc": "The merchant takes your flint and branches and forges the incomplete axe into a sharp axe that could be used for clearing trees.",
+        "fail_desc": "You do not have the necessary items to make an axe, you need a branch and a flint to complete it!",
+        "change_state_to": "delete",
+        "requirement": [
+          {
+            "type": "Character",
+            "name": "Tool Merchant",
+            "state": "null",
+            "qty": null,
+            "remove_obj": "N"
+          }, 
+
+          {
+            "type": "object",
+            "name": "flint",
+            "state": "null",
+            "qty": 1,
+            "remove_obj": "Y"
+          }, 
+
+          {
+            "type": "object",
+            "name": "branch",
+            "state": "null",
+            "qty": 1,
+            "remove_obj": "Y"
+          }          
+
+
+        ],
+        "obtain": [{
+          "type": "Item",
+          "name": "axe",
+          "state": "null",
+          "qty": 1
+        }
+      ]
       }
+
+
     ]
     },
 
