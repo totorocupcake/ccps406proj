@@ -966,7 +966,7 @@
       {
         "name": "hit",
    
-        "success_desc": "You hit %player_name% for 2 hp.",
+        "success_desc": "You hit %player_name% for 2 hp, they now have %hp% / %max_hp%.",
         "fail_desc": "You failed to hit %player_name%.",
         "change_state_to": "CHANGE_HP -2",
         "requirement": null
