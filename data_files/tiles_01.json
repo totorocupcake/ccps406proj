@@ -538,7 +538,7 @@
       "name": "harvest",
 
       "success_desc": "You harvest a large amount of honey that can be sold at the merchant for gold.",
-      "fail_desc": "You cannot harvest the honey right now.",
+      "fail_desc": "The bees are too dangerous, you need some equipment to get close!",
       "change_state_to": "not_ready",
       "requirement": [
         {
@@ -593,7 +593,18 @@
 
         ],
         "obtain": null
+      },
+      [{
+        "name": "harvest",
+  
+        "success_desc": "The bee hive is not ready to be harvested yet",
+        "fail_desc": "You cannot harvest the honey right now.",
+        "change_state_to": "not_ready",
+        "requirement": null,
+        "obtain": null
       }]
+    
+    ]
   },
 
 
@@ -611,7 +622,7 @@
       "name": "harvest",
       
       "success_desc": "You harvest a bale of grass that can be fed to your domesticated animals.",
-      "fail_desc": "You cannot harvest the grass right now.",
+      "fail_desc": "You need a scythe to harvest the grass field.",
       "change_state_to": "not_ready",
       "requirement": [
         {
@@ -658,7 +669,18 @@
           }
         ],
         "obtain": null
-      }]
+      },
+      {
+        "name": "harvest",
+        
+        "success_desc": "The grass field is not ready to be harvested yet.",
+        "fail_desc": "The grass field is not ready to be harvested yet.",
+        "change_state_to": "not_ready",
+        "requirement": null,
+        "obtain": null
+      }
+    
+    ]
 
   },
 
@@ -678,7 +700,7 @@
         "name": "harvest",
         
         "success_desc": "You harvest a bushel of wheat that can be sold at the merchant for gold.",
-        "fail_desc": "You cannot harvest the wheat right now.",
+        "fail_desc": "You need a scythe to harvest the wheat field.",
         "change_state_to": "not_ready",
         "requirement": [
           {
@@ -725,7 +747,20 @@
           }
         ],
         "obtain": null
-      }]
+      },
+      {
+        "name": "harvest",
+        
+        "success_desc": "The wheat field is not ready to be harvested yet.",
+        "fail_desc": "The wheat field is not ready to be harvested yet.",
+        "change_state_to": "not_ready",
+        "requirement": null,
+        "obtain": null
+
+  }
+    
+    
+    ]
 
   },
 
@@ -1147,7 +1182,7 @@
     "block" : false,
     "description": {
       "long_desc": "You step into a shop that smells of polished wood and metal. Tools line the walls around you.",
-      "short_desc": "You step into the tool shop."
+      "short_desc": "You are currently standing in the tool shop."
     },
     "interactions": null
 
@@ -1161,7 +1196,7 @@
     "block" : false,
     "description": {
       "long_desc": "You step into a shop that smells of ripe produce. Wooden crates overflow with a colorful assortment of plant products, from vibrant berries to golden wheat.",
-      "short_desc": "You enter the plant products shop."
+      "short_desc": "You are currently standing in the plant products shop."
     },
     "interactions": null
   },
@@ -1174,7 +1209,7 @@
     "block" : false,
     "description": {
       "long_desc": "You step into a shop with walls lined with shelves laden with jars of honey, baskets of fresh eggs, and wheels of cheese.",
-      "short_desc": "You enter the animal products shop."
+      "short_desc": "You are currently standing in the animal products shop."
     },
     "interactions": null
   },
@@ -1243,7 +1278,28 @@
       "long_desc": "You see an empty field, it is a perfect location to plant some trees.",
       "short_desc": "You stand in an empty field."
     },
-    "interactions": null
+    "interactions": [
+      {
+        "name": "harvest",
+        "success_desc": "There is no apple tree here to harvest.",
+        "fail_desc": "There is no apple tree here to harvest.",
+        "change_state_to": "empty",
+        "requirement": null,
+        "obtain": null
+      },
+
+      {
+        "name": "water",
+        "success_desc": "There is no apple tree to water here.",
+        "fail_desc": "There is no apple tree to water here.",
+        "change_state_to": "empty",
+        "requirement": null,
+        "obtain": null
+      }
+
+
+
+    ]
 
   },
 
@@ -1288,7 +1344,18 @@
             "qty": 1
           }
         ]
+      },
+
+      {
+        "name": "harvest",
+        "success_desc": "The apple tree needs more time to be harvested.",
+        "fail_desc": "The apple tree needs more time to be harvested.",
+        "change_state_to": "growing_notready",
+        "requirement": null,
+        "obtain": null
       }
+
+
     ]
   },
 
@@ -1324,7 +1391,17 @@
             "qty": 1
           }
         ]
+      },
+      {
+        "name": "water",
+        "success_desc": "The apple tree doesn't need watering.",
+        "fail_desc": "The apple tree doesn't need watering.",
+        "change_state_to": "growing_ready",
+        "requirement": null,
+        "obtain": null
       }
+
+
     ]
   },
   {

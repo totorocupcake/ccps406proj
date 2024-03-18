@@ -76,7 +76,19 @@
           }
         ],
         "obtain": null
+      },
+      {
+        "name": "fill",
+
+
+        "success_desc": "The watering can is already full.",
+        "fail_desc": "The watering can is already full.",
+        "change_state_to": "full",
+        "requirement": null,
+        "obtain": null
       }
+
+
     ]
    
   },
@@ -1043,7 +1055,32 @@
           "qty": 1
         }
       ]
+      },
+      {
+        "name": "put",
+        
+        "success_desc": "You place the fluffy chicken in the chicken coop. It pecks around and settles in nicely. It looks at you for some food.",
+        "fail_desc": "You cannot place the chicken down here.",
+        "change_state_to": "delete",
+        "requirement":  [
+          {
+            "type": "tile",
+            "name": "chicken coop",
+            "state": "open",
+            "qty": null,
+            "remove_obj": "N"
+          }
+        ],
+        "obtain": [{
+          "type": "Character",
+          "name": "chicken",
+          "state": "tamed_hungry",
+          "qty": 1
+        }
+      ]
       }
+
+
     ]
     
   },
@@ -1060,6 +1097,29 @@
     "interactions": [
       {
         "name": "place",
+        
+        "success_desc": "You place the cow in the barn. It looks at you for some food.",
+        "fail_desc": "You cannot leave the cow here.",
+        "change_state_to": "delete",
+        "requirement":  [
+          {
+            "type": "tile",
+            "name": "barn",
+            "state": "open",
+            "qty": null,
+            "remove_obj": "N"
+          }
+        ],
+        "obtain": [{
+          "type": "Character",
+          "name": "cow",
+          "state": "tamed_hungry",
+          "qty": 1
+        }
+      ]
+      },
+      {
+        "name": "put",
         
         "success_desc": "You place the cow in the barn. It looks at you for some food.",
         "fail_desc": "You cannot leave the cow here.",
