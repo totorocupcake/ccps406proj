@@ -134,7 +134,7 @@
 
   {
     "name": "branch",
-    "type": "tool",
+    "type": "misc",
     "state": "null",
     "gold_amt": 5,
     "description": {
@@ -294,7 +294,7 @@
 
   {
     "name": "grass",
-    "type": "tool",
+    "type": "farm_prod",
     "state": "null",
     "gold_amt": 2,
     "description": {
@@ -312,7 +312,7 @@
 
   {
     "name": "medkit",
-    "type": "tool",
+    "type": "consumable",
     "state": "null",
     "gold_amt": 8,
     "description": {
@@ -377,7 +377,7 @@
 
   {
     "name": "flint",
-    "type": "tool",
+    "type": "misc",
     "state": "null",
     "gold_amt": 2,
     "description": {
@@ -473,7 +473,7 @@
 
   {
     "name": "letter",
-    "type": "tool",
+    "type": "misc",
     "state": "null",
     "gold_amt": 0,
     "description": {
@@ -511,7 +511,7 @@
 
   {
     "name": "letter from landlord",
-    "type": "tool",
+    "type": "misc",
     "state": "null",
     "gold_amt": 0,
     "description": {
@@ -713,7 +713,7 @@
 
   {
     "name": "apple seeds",
-    "type": "tool",
+    "type": "farm_prod",
     "state": "null",
     "gold_amt": 2,
     "description": {
@@ -842,7 +842,7 @@
 
     {
       "name": "meat",
-      "type": "farming_prod",
+      "type": "farm_prod",
       "state": "null",
       "gold_amt": 6,
       "description": {
@@ -894,7 +894,7 @@
   },
   {
     "name": "meat",
-    "type": "farming_prod",
+    "type": "farm_prod",
     "state": "cooked",
     "gold_amt": 7,
     "description": {
@@ -1013,7 +1013,7 @@
 
   {
     "name": "chicken",
-    "type": "tool",
+    "type": "farm_prod",
     "state": "tamed",
     "gold_amt": 2,
     "description": {
@@ -1050,7 +1050,7 @@
 
   {
     "name": "cow",
-    "type": "tool",
+    "type": "farm_prod",
     "state": "tamed",
     "gold_amt": 2,
     "description": {

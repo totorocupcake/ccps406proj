@@ -92,7 +92,7 @@ def serialize_object(item):
         inventory_serialized =None
 
     return {
-        "type": item.get_type(),
+        "type": item.get_type().name,
         "name": item.get_name(),  
         "state": item.get_state(),
         "quantity": item.get_quantity(),  

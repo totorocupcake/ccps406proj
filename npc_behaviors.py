@@ -32,8 +32,8 @@ def thief_aggressive(world_state,charac):
             player = element
             break
 
-    if player.get_coords() == charac.get_coords():
-    # steal gold from player if on same tile
+    if player.get_coords() == charac.get_coords() and player.get_current_gold() > 0 :
+    # steal gold from player if on same tile and they have gold
         player_name = player.get_name()
         next_command="steal "+ player_name
         if player.get_active_player():

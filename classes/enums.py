@@ -21,4 +21,9 @@ class tile_type(Enum):
     non_building = 2
     road = 3
     blocked = 4
-    
+
+class obj_type(Enum):
+    tool = 1
+    farm_prod = 2
+    misc = 3
+    consumable = 4

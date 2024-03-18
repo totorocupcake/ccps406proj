@@ -1,6 +1,6 @@
 [
     {
-        "type": "tool",
+        "type": "misc",
         "name": "branch",
         "state": "null",
         "quantity": 1,
@@ -46,15 +46,6 @@
     },
     {
         "type": "tool",
-        "name": "medkit",
-        "state": "null",
-        "quantity": 1,
-        "co_ord_x": 6,
-        "co_ord_y": 11,
-        "inventory": null
-    },
-    {
-        "type": "tool",
         "name": "garage key",
         "state": "null",
         "quantity": 1,
@@ -72,7 +63,7 @@
         "inventory": null
     },
     {
-        "type": "tool",
+        "type": "misc",
         "name": "letter",
         "state": "null",
         "quantity": 1,
@@ -108,7 +99,7 @@
         "inventory": null
     },
     {
-        "type": "tool",
+        "type": "misc",
         "name": "flint",
         "state": "null",
         "quantity": 1,

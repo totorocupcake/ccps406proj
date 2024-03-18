@@ -30,15 +30,14 @@ class Character(Turn_Based_Entity.Turn_Based_Entity):
                     self.set_current_hp(element["current_hp"])
                     self.set_current_gold(element["current_gold"])
                     self.update_turn_counter(element["turn_counter"][0],element["turn_counter"][1])
+                    
                     if element["inventory"] is not None:
                         inv_list_of_obj = []
                         for inv_elem in element["inventory"]:
-                            inv_obj = Object.Object()
-                            inv_obj.set_name(inv_elem["name"])
-                            inv_obj.update_qty(inv_elem["quantity"])
-                            inv_obj.set_state(inv_elem["state"])
+                            inv_obj = Object.Object(inv_elem["name"],inv_elem["state"],inv_elem["quantity"])
                             inv_list_of_obj.append(inv_obj)
                         self.update_inventory("add", inv_list_of_obj)
+                        
                     if coords is None:
                         self.update_coords((element["co_ord_x"],element["co_ord_y"]))
                     else:

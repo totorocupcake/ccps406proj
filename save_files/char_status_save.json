@@ -1,13 +1,18 @@
 [
     {
         "type": "player",
-        "name": "%player_name%",
+        "name": "totoro",
         "co_ord_x": 6,
         "co_ord_y": 12,
         "state": "null",
         "inventory": [
             {
                 "name": "house key",
+                "quantity": 1,
+                "state": "null"
+            },
+            {
+                "name": "medkit",
                 "quantity": 1,
                 "state": "null"
             },
@@ -19,16 +24,51 @@
         ],
         "current_hp": 10,
         "max_hp": 10,
-        "current_gold": 0,
+        "current_gold": 10,
         "visited": [
+            {
+                "type": "Tile",
+                "name": "kitchen",
+                "state": "closed"
+            },
+            {
+                "type": "Tile",
+                "name": "grasslands",
+                "state": "null"
+            },
             {
                 "type": "Character",
                 "name": "Thief",
                 "state": "aggressive"
             },
             {
+                "type": "Object",
+                "name": "garage key",
+                "state": "null"
+            },
+            {
                 "type": "Tile",
                 "name": "kitchen",
+                "state": "open"
+            },
+            {
+                "type": "Object",
+                "name": "medkit",
+                "state": "null"
+            },
+            {
+                "type": "Object",
+                "name": "farm key",
+                "state": "null"
+            },
+            {
+                "type": "Tile",
+                "name": "bedroom",
+                "state": "closed"
+            },
+            {
+                "type": "Tile",
+                "name": "bedroom",
                 "state": "open"
             }
         ],
@@ -72,17 +112,17 @@
         "visited": [
             {
                 "type": "Object",
+                "name": "gun",
+                "state": "null"
+            },
+            {
+                "type": "Object",
                 "name": "axe",
                 "state": "null"
             },
             {
                 "type": "Tile",
                 "name": "tool shop",
-                "state": "null"
-            },
-            {
-                "type": "Object",
-                "name": "gun",
                 "state": "null"
             }
         ],
@@ -226,8 +266,8 @@
     {
         "type": "monster",
         "name": "Thief",
-        "co_ord_x": 12,
-        "co_ord_y": 6,
+        "co_ord_x": 10,
+        "co_ord_y": 3,
         "state": "aggressive",
         "inventory": null,
         "current_hp": 10,
@@ -248,8 +288,8 @@
     {
         "type": "monster",
         "name": "Wolf",
-        "co_ord_x": 10,
-        "co_ord_y": 18,
+        "co_ord_x": 9,
+        "co_ord_y": 16,
         "state": "aggressive",
         "inventory": [
             {
@@ -277,7 +317,7 @@
         "type": "animal",
         "name": "chicken",
         "co_ord_x": 3,
-        "co_ord_y": 15,
+        "co_ord_y": 16,
         "state": "wild",
         "inventory": [
             {
@@ -304,8 +344,8 @@
     {
         "type": "animal",
         "name": "cow",
-        "co_ord_x": 3,
-        "co_ord_y": 8,
+        "co_ord_x": 2,
+        "co_ord_y": 7,
         "state": "wild",
         "inventory": [
             {

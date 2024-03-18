@@ -14,7 +14,7 @@ def print_minimap(world_state,coords,active_char):
     if not world_state.get_cheat_mode():
         # print only 1 tile around active player with no cheat mode
         
-        # first row ######################################################################################################
+        # first row 
         if y-1 >=0:
             if x-1 >=0:
                 print(print_tile (world_state.get_tiles()[x-1][y-1],world_state.get_npc_chars_at_tile((x-1,y-1))),end="")
@@ -24,7 +24,7 @@ def print_minimap(world_state,coords,active_char):
             else:
                 print("") # reached end of row, prints new line
         
-        # second row ######################################################################################################
+        # second row
         if x-1 >=0:
             print(print_tile (world_state.get_tiles()[x-1][y],world_state.get_npc_chars_at_tile((x-1,y))),end="")
         # active player is represented as a green X on the minimap:
@@ -34,7 +34,7 @@ def print_minimap(world_state,coords,active_char):
         else:
             print("") # reached end of row, prints new line
             
-        # third row ######################################################################################################
+        # third row
         if y+1 <= max_cols:
             if x-1 >=0:
                 print(print_tile (world_state.get_tiles()[x-1][y+1],world_state.get_npc_chars_at_tile((x-1,y+1))),end="")
