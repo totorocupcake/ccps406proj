@@ -1,4 +1,5 @@
 import re
+import classes.enums as Enum
 
 CONSOLE_OUTPUT_CHAR_WIDTH = 100
 
@@ -10,9 +11,10 @@ def print_minimap(world_state,coords,active_char):
     max_cols = len(world_state.get_tiles()[0])-1
     max_rows = len(world_state.get_tiles())-1
    
-    if world_state.get_cheat_mode() == 'N':
+    if not world_state.get_cheat_mode():
         # print only 1 tile around active player with no cheat mode
-        # first row ######################################################################################################
+        
+        # first row 
         if y-1 >=0:
             if x-1 >=0:
                 print(print_tile (world_state.get_tiles()[x-1][y-1],world_state.get_npc_chars_at_tile((x-1,y-1))),end="")
@@ -22,7 +24,7 @@ def print_minimap(world_state,coords,active_char):
             else:
                 print("") # reached end of row, prints new line
         
-        # second row ######################################################################################################
+        # second row
         if x-1 >=0:
             print(print_tile (world_state.get_tiles()[x-1][y],world_state.get_npc_chars_at_tile((x-1,y))),end="")
         # active player is represented as a green X on the minimap:
@@ -32,7 +34,7 @@ def print_minimap(world_state,coords,active_char):
         else:
             print("") # reached end of row, prints new line
             
-        # third row ######################################################################################################
+        # third row
         if y+1 <= max_cols:
             if x-1 >=0:
                 print(print_tile (world_state.get_tiles()[x-1][y+1],world_state.get_npc_chars_at_tile((x-1,y+1))),end="")
@@ -59,25 +61,26 @@ def print_minimap(world_state,coords,active_char):
                 
 def print_tile (tile,characters):
     # given a provided tile or char, provide the character string to represent it as on mini-map
-    if tile.get_type() == "building":
+    
+    if tile.get_type() == Enum.tile_type.building:
         return " B "
     
-    if tile.get_type() == "blocked":
+    if tile.get_block():
         return " X "
     
     if characters != []:
-        # print C if theres any other char other than the player
         for character in characters:
-            if character.get_type().lower() == "monster" or character.get_type().lower()=="animal":
+            if character.get_type() == Enum.character_type.monster or character.get_type() ==Enum.character_type.animal:
                 return " M "
         return " C "
-    if tile.get_type() == "road":
+    
+    if tile.get_type() == Enum.tile_type.road:
         return " - "
     
-    if tile.get_type() == "non-building" and tile.get_name() != "grasslands":
+    if tile.get_type() == Enum.tile_type.non_building and tile.get_name() != "grasslands":
         return " ? "
     
-    if tile.get_type() == "non-building":
+    if tile.get_type() == Enum.tile_type.non_building:
         return " _ "
 
 def justify(text):
@@ -85,7 +88,7 @@ def justify(text):
     This function fully justify aligns a given text string, width determined by CONSOLE_OUTPUT_CHAR_WIDTH.
     Returns back justified string.
     """
-    words = text.split() # split input text into a list of words
+    words = text.split()
 
     lines = []
     current_line = []
@@ -139,7 +142,7 @@ def dynamic_variable_logic(world_state,keyword):
         
         if keyword == "player_name":
             for charac in world_state.get_characters():
-                if charac.get_type() == "player":
+                if charac.get_type() == Enum.character_type.player:
                     return charac.get_name()
         elif keyword == "rent_amount":
             return str(world_state.get_rent_amount())
@@ -147,6 +150,5 @@ def dynamic_variable_logic(world_state,keyword):
             return str(world_state.get_rent_due_date())
         elif keyword=="gold":
             for charac in world_state.get_characters():
-                if charac.get_type() == "player":
-                    # return charac.get_current_gold()
+                if charac.get_type() == Enum.character_type.player:
                     return str(charac.get_current_gold())

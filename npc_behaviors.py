@@ -1,7 +1,8 @@
 import random
+import classes.enums as Enum
 
 def graze(world_state,charac):
-      # get_next_action sub function to define a generic "Grazing" behavior for wild cow/chicken
+      # get_next_action sub function to define a generic "Grazing" behavior for monsters/animals
       # should move randomly n,w,e,w if there is grassland available for them
     random.seed(42)
     
@@ -12,9 +13,9 @@ def graze(world_state,charac):
     max_rows = len(world_state.get_tiles())-1
         
     # check if n,s,e,w is available to move to and is a grassland
-    if current_y+1 >= 0 and current_y+1 <= max_cols and world_state.get_tiles()[current_x][current_y+1].get_name() == "grasslands":
-        available_directions.append("n")
     if current_y-1 >= 0 and current_y-1 <= max_cols and world_state.get_tiles()[current_x][current_y-1].get_name() == "grasslands":
+        available_directions.append("n")
+    if current_y+1 >= 0 and current_y+1 <= max_cols and world_state.get_tiles()[current_x][current_y+1].get_name() == "grasslands":
         available_directions.append("s")
     if current_x+1 >= 0 and current_x+1 <= max_rows and world_state.get_tiles()[current_x+1][current_y].get_name() == "grasslands":
         available_directions.append("e")
@@ -27,16 +28,15 @@ def graze(world_state,charac):
 
 def thief_aggressive(world_state,charac):
     for element in world_state.get_characters():
-        # find the player character (note may not be the active player)
-        if element.get_type() == "player":
+        if element.get_type() == Enum.character_type.player:
             player = element
             break
 
-    if player.get_coords() == charac.get_coords():
-    # steal gold from player if on same tile
+    if player.get_coords() == charac.get_coords() and player.get_current_gold() > 0 :
+    # steal gold from player if on same tile and they have gold
         player_name = player.get_name()
         next_command="steal "+ player_name
-        if player.get_active_player()=='Y':
+        if player.get_active_player():
             print("The thief stole gold from ",player_name)
         return next_command
     
@@ -64,19 +64,17 @@ def wolf_aggressive(world_state,charac):
     x,y = current_coord
     current_tl = world_state.get_tiles()[x][y]
     
-    if current_tl.get_movable()=='Y':
+    if current_tl.get_movable():
         for char in char_list:
-            if char.get_type() == "player":
-                if char.get_active_player()=='Y':
+            if char.get_type() == Enum.character_type.player:
+                if char.get_active_player():
                     print(f"The wolf hit {char.get_name()} for 2 hp.")
                 return "hit " +char.get_name()
             
             if char.get_name() == "chicken":
-                #print("Wolf submitted command to kill chicken")
                 return "kill chicken"
             
             elif char.get_name() == "cow":
-                #print("Wolf submitted command to kill cow")
                 return "kill cow"
         
     for row in world_state.get_tiles():
@@ -93,15 +91,14 @@ def wolf_aggressive(world_state,charac):
     return check_graze(world_state,charac)
     
 def cow_wild(world_state,charac):
-    if world_state.get_graze() == 'Y':
+    if world_state.get_graze():
         if (world_state.get_turn_number() % 3) == 0:
           next_command = graze(world_state,charac)
           return next_command
     return None
 
 def check_graze(world_state,charac):
-    # graze as default if no other action for thief,chicken,wolf
-    if world_state.get_graze() =="Y":
+    if world_state.get_graze():
         if (world_state.get_turn_number() % 2) == 0:
             next_command = graze(world_state,charac)
             return next_command

@@ -2,6 +2,7 @@ import state_updates
 import save_game
 import text_formatting
 import classes.Data as Data
+import classes.enums as Enum
 
 def play_game(world_state):
     # MAIN FUNCTION within this module, that calls all other game_loop methods.
@@ -10,10 +11,9 @@ def play_game(world_state):
     exit_state=False
     command = "None"
     
-    # exit game conditions in the while loop
-    while (world_state.get_game_won() == 'N') and (exit_state==False):
+    while not world_state.get_game_won() and not exit_state:
         
-        # prints description to console for active_player=Y
+        # prints description to console for active_player
         console_output(world_state)
         
         for charac in world_state.get_characters():
@@ -22,18 +22,16 @@ def play_game(world_state):
             command, command_type = command_input(world_state, charac)
             
             if command == "exit":
-                # exit game condition, so break out of game loop
                 exit_state=True
                 break
                  
             # make updates to game based off validated command
             world_state=state_updates.state_update(world_state,charac,command,command_type)
             
-            # check if game ended after making state update
-            if world_state.get_game_won()=='Y':
+            if world_state.get_game_won():
                 break
             
-        world_state = world_state.increment_turn() # all characters played their turn, next turn time
+        world_state = world_state.increment_turn()
     
     return world_state
 
@@ -43,17 +41,16 @@ def console_output(world_state):
     print("-" * 30)
     print("\033[1mTurn Number: \033[0m",world_state.get_turn_number())
     
-    #find active char based on active player flag = Y then find their coordinate
     active_char = world_state.get_active_char()
     current_coord =  active_char.get_coords()
+    
     print("")
     text_formatting.print_minimap(world_state,current_coord,active_char)
     print("")
+    
     # get description based on coordinate of active player and parse it for dynamic text variables within string
     output=world_state.get_description(current_coord,active_char.get_visited())
-    output = text_formatting.dynamic_variable_processor(world_state,output) # formats dynamic variables in string
-    
-    #print(text_formatting.wrap_text(output))
+    output = text_formatting.dynamic_variable_processor(world_state,output) 
     print(text_formatting.justify(output))
     print("")
     
@@ -68,32 +65,27 @@ def command_input(world_state,charac):
     while valid_command == False:
         # keep prompting for a command until command is valid
         
-        # gets next command either from console or Character's method
-        if charac.get_active_player() =='Y':
+        if charac.get_active_player():
             command = input("Please enter your next action: ")
         else:
             command = world_state.get_next_action(charac)
         
-        # do some command formatting cleansing here
         if command:
             command = command.strip().lower()
             
         # Command processor checks, validates, formats the command. 
-        # If the command is not valid, will keep getting new command until valid
         valid_command,command,command_type = command_processor(world_state,command,charac)
-        #print(f"{charac.get_name()} submitted {command}")
         
     # command was validated by command processor, so return formatted command for state update
     return (command, command_type) 
 
 
 def command_processor(world_state,command,charac):
-
     # Based on the passed through string command and Character that submitted that command,
     # do any formatting for the command. So that we can pass formatted command to state_update function.
     # Function returns back a tuple containing:
     # 1. boolean, true=command is valid for state update, false=command not valid, need to ask for another command
-    # 2. string, command formatted for state update (not sure if this is the only output)
+    # 2. string, command formatted for state update
     # 3. command_type, which tells state_update what type of command it is (basic, normal, advanced)
     
     basic_commands = {"n","s","e","w","inventory","store gold","take gold","exit"}
@@ -103,7 +95,9 @@ def command_processor(world_state,command,charac):
         "north":"n",
         "south":"s",
         "east":"e",
-        "west":"w"
+        "west":"w",
+        "take eggs": "harvest chicken",
+        "harvest eggs": "harvest chicken"
     }
     
     command = replacement_dict.get(command, command) 
@@ -115,41 +109,39 @@ def command_processor(world_state,command,charac):
         verb=""
         noun=""
     
-    # validate the command, check for what kind of command it is, basic, common, advanced
     if command in basic_commands:
-        # check if command is a basic command, based off basic_commands set
-        return (True, command,"basic") 
+        return (True, command,Enum.command_type.BASIC) 
     
     elif command == "save" or command == "save game":
         save_game.save_game(world_state)
-        return (False, command, "basic")
+        return (False, command, Enum.command_type.BASIC)
     
     elif command == "cheat":
         # cheat mode command recognition
-        if world_state.get_cheat_mode() == 'Y':
-            world_state.set_cheat_mode('N')
+        if world_state.get_cheat_mode():
+            world_state.set_cheat_mode(False)
             print("Cheat mode turned off")
-        elif world_state.get_cheat_mode() == 'N':
-            world_state.set_cheat_mode('Y')
+        else:
+            world_state.set_cheat_mode(True)
             print("Cheat mode turned on")
-        return (False, command, "basic")
+        return (False, command, Enum.command_type.BASIC)
     
     elif command is not None and command.startswith("cheat "):
-        if world_state.get_cheat_mode() == 'Y':
-            return (True, noun, "cheat")
+        if world_state.get_cheat_mode():
+            return (True, noun, Enum.command_type.CHEAT)
         else:
             print("You're not allowed to do that, cheat mode is not activated.")
-            return (False, command, "basic")
+            return (False, command, Enum.command_type.CHEAT)
 
     elif noun in {text_formatting.dynamic_variable_processor(world_state,name).lower() for name in Data.Data().get_unique_names()} and verb in Data.Data().get_unique_interactions():
-        return (True, command,"normal") 
+        return (True, command,Enum.command_type.NORMAL) 
     
-    elif command is None and charac.get_active_player()=='N':
-        return (True, command, "basic")
+    elif command is None and not charac.get_active_player():
+        return (True, command, Enum.command_type.BASIC)
         
     else:
         print("Command not recognized. Please try again.")
-        return (False,command,"")
+        return (False,command,Enum.command_type.BASIC)
     
 
 

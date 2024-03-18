@@ -1,33 +1,25 @@
-# import Entity
 import classes.Turn_Based_Entity as Turn_Based_Entity
 import classes.Data as Data
-import classes.Character as Character
-import classes.Object as Object
+import sys
+import classes.enums as Enum
 
-# Implement the interface in a class
 class Tile(Turn_Based_Entity.Turn_Based_Entity):
   
-  # class constructor:
   def __init__(self):
     super().__init__()
-    # # properties from Entity:
-     # NOTE: must declare the inventory property again, else get weird error
     self._inventory = []
 
     # Tile-specific properties:
-    self.__movable = "N"
-    self.__block = "N"
-    
-    # for tile_id: use string instead of int (can still code it in hex though)
+    self.__movable = False
+    self.__block = False
     self.__tile_id = "00"
-    self._general_type = "Tile"
+    self._general_type = Enum.general_type.TILE
     self._turn_counter = 0
     self._turn_state = ""
-    self.__current_gold = 0 # added for mechanic to store gold in home
+    self.__current_gold = 0
     
 
   # getter methods (tile specific):
-  # --------------
   
   def get_tile_id(self):
     return self.__tile_id
@@ -42,20 +34,46 @@ class Tile(Turn_Based_Entity.Turn_Based_Entity):
         return self.__current_gold
 
   # setter methods (tile specific):
-  # --------------
-
+  
   def set_tile_id(self, new_id):
+    
+    if not isinstance(new_id, str):
+      sys.stderr.write("Error: Tile ID value is invalid\n")
+      sys.exit(1)
+            
     self.__tile_id = new_id
 
   def set_movable(self, flag):
+    
+    if not isinstance(flag, bool):
+      sys.stderr.write("Error: Movable value is invalid\n")
+      sys.exit(1)
+    
     self.__movable = flag
     
   def set_block(self, flag):
+    
+    if not isinstance(flag, bool):
+      sys.stderr.write("Error: Block value is invalid\n")
+      sys.exit(1)
+  
     self.__block = flag
+    
+  def set_type(self, new_type):
+    
+    if new_type is not None and not isinstance(new_type,Enum.tile_type):
+      sys.stderr.write("Error: Tile type value is invalid\n")
+      sys.exit(1)
+    
+    self._type = new_type
 
   def update_tile_by_id(self, new_tile_id):
     # update tile_id to new tile_id. 
     # other tile's fields (name, type, state, movable) will be synced to new tile_id provided 
+    
+    if not isinstance(new_tile_id, str):
+      sys.stderr.write("Error: Tile ID value is invalid\n")
+      sys.exit(1)
     
     self.__tile_id = new_tile_id
     
@@ -63,8 +81,6 @@ class Tile(Turn_Based_Entity.Turn_Based_Entity):
     tileIDMapping_data = Data.Data().get_tile_id_mapping()
 
     for tile_elem in tileIDMapping_data:
-
-    # if matching tile_id is found
       if tile_elem["tile_id"] == self.__tile_id :
         # set new state and name based on tile id mapping file
         self.set_state(tile_elem["state"])
@@ -73,11 +89,15 @@ class Tile(Turn_Based_Entity.Turn_Based_Entity):
         # update other fields based on text parser lookup functions (from tile in-game text files)
         self.set_movable(Data.Data().lookup_movable(self.get_name(),self.get_state()))
         self.set_block(Data.Data().lookup_block(self.get_name(),self.get_state()))
-        self.set_type(Data.Data().lookup_tile_type(self.get_name(),self.get_state()))
+        self.set_type(Enum.tile_type[Data.Data().lookup_tile_type(self.get_name(),self.get_state())])
 
     
   def update_tile_by_state(self, new_state):
     # update tile to new state and also update tile_id and movable fields to account for new state
+    
+    if not isinstance(new_state, str):
+      sys.stderr.write("Error: State value is invalid\n")
+      sys.exit(1)
     
     self.set_state(new_state)
     
@@ -93,7 +113,7 @@ class Tile(Turn_Based_Entity.Turn_Based_Entity):
     for tile_elem in tile_json:
     # if match tile name and state within tile id mapping file
       if tile_elem["name"] == self.get_name() and tile_elem["state"] == self.get_state():
-        self.set_type(tile_elem["type"])
+        self.set_type(Enum.tile_type[tile_elem["type"]])
         self.set_movable(tile_elem["movable"])
         self.set_block(tile_elem["block"])
       
@@ -103,5 +123,10 @@ class Tile(Turn_Based_Entity.Turn_Based_Entity):
     self.update_turn_counter (0, "")
 
   def increment_current_gold(self, increment_gold_amount):
-        # increment amount can be positive or negative
-        self.__current_gold += increment_gold_amount
+    # increment amount can be positive or negative
+    
+    if not isinstance(increment_gold_amount, int):
+      sys.stderr.write("Error: Gold value is invalid\n")
+      sys.exit(1)
+    
+    self.__current_gold += increment_gold_amount

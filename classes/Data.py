@@ -1,5 +1,6 @@
 import text_file_processor
 import text_formatting
+import classes.enums as Enum
 
 class Data():
     _instance = None
@@ -42,7 +43,7 @@ class Data():
         return self._unique_interactions
     
     def lookup_tileID_by_name_state(self, tile_name,state):
-    # given a tile name and state, find corresponding tile ID:
+    # given a tile name and state, returns corresponding tile ID
 
         parsed_tile_data = self.get_tile_id_mapping()
 
@@ -51,15 +52,15 @@ class Data():
                 return tile["tile_id"]
         return "Not Found"
     
-    def lookup_desc (self, long_short, type, name, state, world_state):
+    def lookup_desc (self, long, type, name, state, world_state):
     # Given arguments find, return the matching description from in-game text files
     # Returns None if not match
-    # long_short determines whether to return long_desc vs short_desc
-    # type determines if lookup is tile , character, object
+    # long determines whether to return long_desc vs short_desc
+    # type determines if lookup is tile, character, object
 
-        if type == "Object":
+        if type == Enum.general_type.OBJECT:
             parsed_data = self.get_objects_data()
-        elif type == "Character":
+        elif type == Enum.general_type.CHARACTER:
             parsed_data = self.get_char_data()
         else:
             parsed_data = self.get_tile_data()
@@ -67,7 +68,7 @@ class Data():
         for element in parsed_data:
             name_formatted = text_formatting.dynamic_variable_processor(world_state,element["name"])
             if (name_formatted.lower() == name.lower()) and (element["state"].lower() == state.lower()):
-                if long_short == "long":
+                if long:
                     return element["description"]["long_desc"]
                 else:
                     return element["description"]["short_desc"]
@@ -77,9 +78,9 @@ class Data():
     # Given the name of a noun and its state, and its interaction word (verb) return it's interaction data
     # Return None if not match
 
-        if type == "Object":
+        if type == Enum.general_type.OBJECT:
             parsed_data = self.get_objects_data()
-        elif type == "Character":
+        elif type == Enum.general_type.CHARACTER:
             parsed_data = self.get_char_data()
         else:
             parsed_data = self.get_tile_data()
@@ -104,7 +105,7 @@ class Data():
         return None
     
     def lookup_block (self, tile_name, state):
-    # Given a tile name and state, return the matching movable flag.
+    # Given a tile name and state, return the matching block flag.
     # Return None if not match
 
         parsed_tile_data = self.get_tile_data()
@@ -143,7 +144,7 @@ class Data():
                 return char["current_gold"]  
             
     def lookup_tile_type (self,tile_name,state):
-    # Given a tile name and state, return the matching movable flag.
+    # Given a tile name and state, return the matching tile type.
     # Return None if not match
 
         parsed_tile_data = self.get_tile_data()
@@ -168,9 +169,9 @@ class Data():
     def lookup_type (self,general_type,name, state):
     # returns the type value given a name and state and general type matched from JSON 
     
-        if general_type == "Object":
+        if general_type == Enum.general_type.OBJECT:
                 parsed_data = self.get_objects_data()
-        elif general_type == "Character":
+        elif general_type == Enum.general_type.CHARACTER:
                 parsed_data = self.get_char_data()
         else:
                 parsed_data = self.get_tile_data()
@@ -181,6 +182,8 @@ class Data():
         return None
 
     def get_unique_keywords(self):
+        # This function returns a set of all possible verbs and noun from all JSON data files
+        
         unique_names = set()
         unique_interaction = set()
         

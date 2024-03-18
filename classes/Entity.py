@@ -1,23 +1,20 @@
 import classes.Data as Data
+import classes.enums as Enum
+import sys
 
 class Entity:
-  # class constructor:
   def __init__(self):
-
-    # properties:
+    
     self._name = ""
     self._general_type = ""
     self._type = ""
     self.__state = ""
     self._co_ord_x = 0
     self._co_ord_y = 0
-    # # self.__inventory = []
     self._inventory = []
      
-
-
   # getter methods (Common):
-  # --------------
+
   def get_name(self):
     return self._name
 
@@ -37,36 +34,68 @@ class Entity:
     # returns a list of 'object' objects
     return self._inventory
 
-  def get_desc(self, long_short,world_state):
-    # use __general_type (Object/Character/Tile) for lookup:
-    return Data.Data().lookup_desc(long_short, self._general_type, self._name, self.__state,world_state)
+  def get_desc(self, long,world_state):
+    return Data.Data().lookup_desc(long, self._general_type, self._name, self.__state,world_state)
 
 
   # setter methods (Common):
-  # --------------
 
   def update_coords(self, new_coords):
+    
+    if not isinstance(new_coords,tuple):
+      sys.stderr.write("Error: Coordinate value is invalid\n")
+      sys.exit(1)
+      
     x_coord, y_coord = new_coords
+    
+    if not isinstance(x_coord,int) and not isinstance(y_coord,int):
+      sys.stderr.write("Error: Coordinate value is invalid\n")
+      sys.exit(1)
+    
     self._co_ord_x = x_coord
     self._co_ord_y = y_coord
 
   def set_name(self, new_name):
+    
+    if new_name is not None and not isinstance(new_name,str):
+      sys.stderr.write(f"Error: Name value {new_name} is invalid\n")
+      sys.exit(1)
+      
     self._name = new_name  
 
   def set_general_type(self, new_general_type):
+    
+    if not isinstance(new_general_type,Enum.general_type):
+      sys.stderr.write("Error: General type value is invalid\n")
+      sys.exit(1)
+    
     self._general_type = new_general_type
 
   def set_type(self, new_type):
+    
+    if new_type is not None and not isinstance(new_type,str):
+      sys.stderr.write("Error: Type value is invalid\n")
+      sys.exit(1)
+  
     self._type = new_type
 
   def set_state(self, new_state):
+    
+    if new_state is not None and not isinstance(new_state,str):
+      sys.stderr.write("Error: State value is invalid\n")
+      sys.exit(1)
+    
     self.__state = new_state
 
   def update_inventory(self, add_remove, list_of_objects):
     # adds/removes 'objects' from the __inventory list, given a list
-    #   of 'object' objects
+    # of 'object' objects
     # add_remove should = "add" for add case
 
+    if not isinstance(list_of_objects,list):
+      sys.stderr.write("Error: Inventory value is invalid\n")
+      sys.exit(1)
+    
     if list_of_objects is not None:
       
       if add_remove == "add":
@@ -105,22 +134,4 @@ class Entity:
                   self._inventory.remove(obj_elem)
         
 
-
-
-
-
-
-
-
-
-
-
-
-
-if __name__ == "__main__":
-
-  
-
-
-  pass
 

@@ -1,10 +1,10 @@
 [
   {
     "name": "town square",
-    "type": "non-building",
+    "type": "non_building",
     "state": "null",
-    "movable":"Y",
-    "block" : "N",
+    "movable":true,
+    "block" : false,
     "description": {
       "long_desc": "You stand amidst a cluster of charming shops with colourful facades arranged around a cobbled square. Residents and vendors engage in friendly banter, exchanging stories amidst the vibrant displays. A well-maintained town hall stands proudly to the south, its facade adorned with a bell tower that chimes the hours.",
       "short_desc": "You stand in the town square."
@@ -16,8 +16,8 @@
     "name": "road",
     "type": "road",
     "state": "null",
-    "movable":"Y",
-    "block" : "N",
+    "movable":true,
+    "block" : false,
     "description": {
       "long_desc": "You stand on a gravel road leading to a farmhouse. The worn surface stretches into the embrace of rolling fields to the east and west. To the south lies a forest, its thick canopy casting a shadow that seems to swallow the sunlight.",
       "short_desc": "You stand in the road in front of your farmhouse."
@@ -28,8 +28,8 @@
     "name": "gravel road",
     "type": "road",
     "state": "null",
-    "movable":"Y",
-    "block" : "N",
+    "movable":true,
+    "block" : false,
     "description": {
       "long_desc": "You stand on a gravel road. The worn surface stretches into the embrace of rolling fields to the east and west.",
       "short_desc": "The road stretches to the east and west."
@@ -42,8 +42,8 @@
     "name": "road by neighbours houses",
     "type": "road",
     "state": "null",
-    "movable":"Y",
-    "block" : "N",
+    "movable":true,
+    "block" : false,
     "description": {
       "long_desc": "You stand in a road surrounded by a number of small houses, each a blend of rustic charm and practicality.",
       "short_desc": "You stand in the road in front of your neighbour's houses."
@@ -53,10 +53,10 @@
 
   {
     "name": "mail box",
-    "type": "non-building",
+    "type": "non_building",
     "state": "null",
-    "movable":"Y",
-    "block" : "N",
+    "movable":true,
+    "block" : false,
     "description": {
       "long_desc": "You stand in the front yard of a charming farmhouse, nestled amidst the rolling hills of a rural landscape. The white-painted exterior gleams in the sunlight, adorned with green shutters that complement the rural setting. To your south lies a road that stretches both east and west as far as the eye can see. There is a mail box standing beside the road.",
       "short_desc": "You stand in your front yard where there is a mail box."
@@ -69,8 +69,8 @@
     "name": "garage",
     "type": "building",
     "state": "closed",
-    "movable":"N",
-    "block" : "N",
+    "movable":false,
+    "block" : false,
     "description": {
       "long_desc": "You stand outside the farmhouse's garage, there is little activity in the area.",
       "short_desc": "You stand ouside the garage."
@@ -133,8 +133,8 @@
     "name": "garage",
     "type": "building",
     "state": "open",
-    "movable":"Y",
-    "block" : "N",
+    "movable":true,
+    "block" : false,
     "description": {
       "long_desc": "You stand in the sparsely decorated garage. The air carries a faint scent of motor oil and metal.",
       "short_desc": "You stand in the garage."
@@ -200,8 +200,8 @@
     "name": "kitchen",
     "type": "building",
     "state": "open",
-    "movable":"Y",
-    "block" : "N",
+    "movable":true,
+    "block" : false,
     "description": {
       "long_desc": "The kitchen is bathed in warm light with a sparse countertop. A slightly battered dining table stands near a window with faded curtains.",
       "short_desc": "You stand in the kitchen."
@@ -277,10 +277,10 @@
     "name": "kitchen",
     "type": "building",
     "state": "closed",
-    "movable":"N",
-    "block" : "N",
+    "movable":false,
+    "block" : false,
     "description": {
-      "long_desc": "You stand outside a grass field, your farmhouse sits on alonside a road with a locked kitchen door flickering in the light.",
+      "long_desc": "You stand outside a grass field, your farmhouse sits alongside a road with a locked kitchen door flickering in the light.",
       "short_desc": "You stand outside a grass field, there is a building with a locked kitchen."
     },
     "interactions": [
@@ -353,10 +353,10 @@
 
   {
     "name": "water well",
-    "type": "non-building",
+    "type": "non_building",
     "state": "null",
-    "movable":"Y",
-    "block" : "N",
+    "movable":true,
+    "block" : false,
     "description": {
       "long_desc": "You stand in a yard to the side of the farmhouse. Next to you is a rustic water well, its wooden structure showing signs of age.",
       "short_desc": "You stand next to a water well."
@@ -368,8 +368,8 @@
     "name": "bedroom",
     "type": "building",
     "state": "closed",
-    "movable":"N",
-    "block" : "N", 
+    "movable":false,
+    "block" : false, 
     "description": {
       "long_desc": "You stand just outside the back door to the farmhouse which leads directly to your bedroom.",
       "short_desc": "You stand just outside the locked door of your bedroom."
@@ -445,8 +445,8 @@
     "name": "bedroom",
     "type": "building",
     "state": "open",
-    "movable":"Y",
-    "block" : "N",
+    "movable":true,
+    "block" : false,
     "description": {
       "long_desc": "The dimly lit bedroom is adorned with faded floral wallpaper and a worn-out rug. The only furniture in the small space is a creaky bed and desk in mismatched woods with a battered chest where you can store your gold.",
       "short_desc": "You stand in the bedroom, there is a chest where you can store gold here."
@@ -526,10 +526,10 @@
 
   {
     "name": "bee hive",
-    "type": "non-building",
+    "type": "non_building",
     "state": "ready",
-    "movable":"Y",
-    "block" : "N",
+    "movable":true,
+    "block" : false,
     "description": {
       "long_desc": "Nestled within the forest clearing is a carefully crafted bee hive oozing with honey. Although the bees appear to be diligently at work, the surroundings offer no sign of beekeeping tools.",
       "short_desc": "You stand in front of a bee hive oozing with honey filled with honey bees."
@@ -538,7 +538,7 @@
       "name": "harvest",
 
       "success_desc": "You harvest a large amount of honey that can be sold at the merchant for gold.",
-      "fail_desc": "You cannot harvest the honey right now.",
+      "fail_desc": "The bees are too dangerous, you need some equipment to get close!",
       "change_state_to": "not_ready",
       "requirement": [
         {
@@ -568,10 +568,10 @@
 
   {
     "name": "bee hive",
-    "type": "non-building",
+    "type": "non_building",
     "state": "not_ready",
-    "movable":"Y",
-    "block" : "N",
+    "movable":true,
+    "block" : false,
     "description": {
       "long_desc": "Nestled within the forest clearing is a carefully crafted bee hive. Although the bees appear to be diligently at work, the surroundings offer no sign of beekeeping tools.",
       "short_desc": "You stand in front of a bee hive filled with honey bees."
@@ -593,16 +593,27 @@
 
         ],
         "obtain": null
+      },
+      [{
+        "name": "harvest",
+  
+        "success_desc": "The bee hive is not ready to be harvested yet",
+        "fail_desc": "You cannot harvest the honey right now.",
+        "change_state_to": "not_ready",
+        "requirement": null,
+        "obtain": null
       }]
+    
+    ]
   },
 
 
   {
     "name": "grass field",
-    "type": "non-building",
+    "type": "non_building",
     "state": "ready",
-    "movable":"Y",
-    "block" : "N",
+    "movable":true,
+    "block" : false,
     "description": {
       "long_desc": "Stepping into the grass field, you find yourself surrounded by blades of grass that tower above you. To the west lies a path surrounded by thick forrest. To the north is a number of trees, these ones much smaller than those of the forest that surrounds the property. To the east is another field, this one of wheat. To the south is the back of the farm house's garage.",
       "short_desc": "You stand in a field of grass with blades of grass towering over you."
@@ -611,7 +622,7 @@
       "name": "harvest",
       
       "success_desc": "You harvest a bale of grass that can be fed to your domesticated animals.",
-      "fail_desc": "You cannot harvest the grass right now.",
+      "fail_desc": "You need a scythe to harvest the grass field.",
       "change_state_to": "not_ready",
       "requirement": [
         {
@@ -634,10 +645,10 @@
   },
   {
     "name": "grass field",
-    "type": "non-building",
+    "type": "non_building",
     "state": "not_ready",
-    "movable":"Y",
-    "block" : "N",
+    "movable":true,
+    "block" : false,
     "description": {
       "long_desc": "Stepping into the grass field, you find yourself on a recently harvested patch of grass. To the west lies a path surrounded by thick forrest. To the north is a number of trees, these ones much smaller than those of the forest that surrounds the property. To the east is another field, this one of wheat. To the south is the back of the farm house's garage.",
       "short_desc": "You stand in a field of grass, it has recently been harvested."
@@ -658,17 +669,28 @@
           }
         ],
         "obtain": null
-      }]
+      },
+      {
+        "name": "harvest",
+        
+        "success_desc": "The grass field is not ready to be harvested yet.",
+        "fail_desc": "The grass field is not ready to be harvested yet.",
+        "change_state_to": "not_ready",
+        "requirement": null,
+        "obtain": null
+      }
+    
+    ]
 
   },
 
 
   {
     "name": "wheat field",
-    "type": "non-building",
+    "type": "non_building",
     "state": "ready",
-    "movable":"Y",
-    "block" : "N",
+    "movable":true,
+    "block" : false,
     "description": {
       "long_desc": "Before you stretches a vast golden wheat field, swaying gently in the breeze. To the north is a weathered barn, its red exterior faded and peeling beneath the touch of time. To the east is a tool shed with a moss-covered roof that exudes a rustic charm. To the west stretches out another field.",
       "short_desc": "You stand in a wheat field, with lots of wheat swaying in the breeze."
@@ -678,7 +700,7 @@
         "name": "harvest",
         
         "success_desc": "You harvest a bushel of wheat that can be sold at the merchant for gold.",
-        "fail_desc": "You cannot harvest the wheat right now.",
+        "fail_desc": "You need a scythe to harvest the wheat field.",
         "change_state_to": "not_ready",
         "requirement": [
           {
@@ -701,10 +723,10 @@
 
   {
     "name": "wheat field",
-    "type": "non-building",
+    "type": "non_building",
     "state": "not_ready",
-    "movable":"Y",
-    "block" : "N",
+    "movable":true,
+    "block" : false,
     "description": {
       "long_desc": "Before you stretches a vast golden wheat field, it was recently harvested and needs some time to regrow. To the north is a weathered barn, its red exterior faded and peeling beneath the touch of time. To the east is a tool shed with a moss-covered roof that exudes a rustic charm. To the west stretches out another field.",
       "short_desc": "You stand in a wheat field that has been recently harvested."
@@ -725,7 +747,20 @@
           }
         ],
         "obtain": null
-      }]
+      },
+      {
+        "name": "harvest",
+        
+        "success_desc": "The wheat field is not ready to be harvested yet.",
+        "fail_desc": "The wheat field is not ready to be harvested yet.",
+        "change_state_to": "not_ready",
+        "requirement": null,
+        "obtain": null
+
+  }
+    
+    
+    ]
 
   },
 
@@ -733,8 +768,8 @@
     "name": "tool shed",
     "type": "building",
     "state": "closed",
-    "movable":"N",
-    "block" : "N",
+    "movable":false,
+    "block" : false,
     "description": {
       "long_desc": "You stand before a weathered tool shed. Its door is painted a peeling green.",
       "short_desc": "You stand outside the tool shed."
@@ -795,8 +830,8 @@
     "name": "tool shed",
     "type": "building",
     "state": "open",
-    "movable":"Y",
-    "block" : "N",
+    "movable":true,
+    "block" : false,
     "description": {
       "long_desc": "Inside the tool shed is dimly lit and musty. It appears the last owner took most of the tools with them, as the shelves and tool racks are barren.",
       "short_desc": "You stand in the tool shed."
@@ -854,10 +889,10 @@
 
   {
     "name": "trees",
-    "type": "non-building",
+    "type": "non_building",
     "state": "blocked",
-    "movable":"N",
-    "block" : "N",
+    "movable":false,
+    "block" : false,
     "description": {
       "long_desc": "The trees in front of you are too thick to travel through. However, they appear young enough that, with the right tools, you might be able to clear a path...",
       "short_desc": "You stand in front of a section of young trees."
@@ -885,8 +920,8 @@
     "name": "chicken coop",
     "type": "building",
     "state": "closed",
-    "movable":"N",
-    "block" : "N",
+    "movable":false,
+    "block" : false,
     "description": {
       "long_desc": "You stand outside the chicken coop which was hidden by the tall trees, its doors locked tight.",
       "short_desc": "You stand outside the chicken coop with a locked door."
@@ -950,8 +985,8 @@
     "name": "chicken coop",
     "type": "building",
     "state": "open",
-    "movable":"Y",
-    "block" : "N",
+    "movable":true,
+    "block" : false,
     "description": {
       "long_desc": "Within the chicken coop the air is permeated with a mixture of earthy straw. Along the walls are rows of empty nesting boxes and roosts.",
       "short_desc": "You stand inside the chicken coop."
@@ -1017,8 +1052,8 @@
     "name": "barn",
     "type": "building",
     "state": "closed",
-    "movable":"N",
-    "block" : "N",
+    "movable":false,
+    "block" : false,
     "description": {
       "long_desc": "You stand outside the barn, its large, once-white doors firmly shut.",
       "short_desc": "You stand outside the barn."
@@ -1079,8 +1114,8 @@
     "name": "barn",
     "type": "building",
     "state": "open",
-    "movable":"Y",
-    "block" : "N",
+    "movable":true,
+    "block" : false,
     "description": {
       "long_desc": "Inside the barn, the scent of hay and aged wood mingles with the faint echoes of barnyard life. Empty animal pens line the weathered walls, each one bearing traces of past occupants.",
       "short_desc": "You stand inside the barn."
@@ -1143,11 +1178,11 @@
     "name": "tool shop",
     "type": "building",
     "state": "null",
-    "movable":"Y",
-    "block" : "N",
+    "movable":true,
+    "block" : false,
     "description": {
       "long_desc": "You step into a shop that smells of polished wood and metal. Tools line the walls around you.",
-      "short_desc": "You step into the tool shop."
+      "short_desc": "You are currently standing in the tool shop."
     },
     "interactions": null
 
@@ -1157,11 +1192,11 @@
     "name": "plant products shop",
     "type": "building",
     "state": "null",
-    "movable":"Y",
-    "block" : "N",
+    "movable":true,
+    "block" : false,
     "description": {
       "long_desc": "You step into a shop that smells of ripe produce. Wooden crates overflow with a colorful assortment of plant products, from vibrant berries to golden wheat.",
-      "short_desc": "You enter the plant products shop."
+      "short_desc": "You are currently standing in the plant products shop."
     },
     "interactions": null
   },
@@ -1170,11 +1205,11 @@
     "name": "animal products shop",
     "type": "building",
     "state": "null",
-    "movable":"Y",
-    "block" : "N",
+    "movable":true,
+    "block" : false,
     "description": {
       "long_desc": "You step into a shop with walls lined with shelves laden with jars of honey, baskets of fresh eggs, and wheels of cheese.",
-      "short_desc": "You enter the animal products shop."
+      "short_desc": "You are currently standing in the animal products shop."
     },
     "interactions": null
   },
@@ -1184,8 +1219,8 @@
     "name": "town hall",
     "type": "building",
     "state": "null",
-    "movable":"Y",
-    "block" : "N",
+    "movable":true,
+    "block" : false,
     "description": {
       "long_desc": "Polished wooden floors stretch beneath your feet, leading toward a spacious main hall adorned with rows of sturdy wooden benches. Sunlight streams through tall, arched windows, casting a warm glow on the vintage portraits that line the walls.",
       "short_desc": "You enter the town hall."
@@ -1197,8 +1232,8 @@
     "name": "Pennys house",
     "type": "building",
     "state": "null",
-    "movable":"Y",
-    "block" : "N",
+    "movable":true,
+    "block" : false,
     "description": {
       "long_desc": "You stand on the porch of a light blue house. Around you is an asortment of pots containing a variety of colourful plants.",
       "short_desc": "You stand outside Penny's house."
@@ -1210,8 +1245,8 @@
     "name": "Jimmys house",
     "type": "building",
     "state": "null",
-    "movable":"Y",
-    "block" : "N",
+    "movable":true,
+    "block" : false,
     "description": {
       "long_desc": "You traverse a long stone path, eventually reaching a house made of dark wood.",
       "short_desc": "You stand outside Jimmy's house."
@@ -1223,8 +1258,8 @@
     "name": "Claires house",
     "type": "building",
     "state": "null",
-    "movable":"Y",
-    "block" : "N",
+    "movable":true,
+    "block" : false,
     "description": {
       "long_desc": "You stand on the small porch of a brick house adorned with climbing ivy.",
       "short_desc": "You stand outside Claire's house."
@@ -1235,24 +1270,45 @@
 
   {
     "name": "apple tree",
-    "type": "non-building",
+    "type": "non_building",
     "state": "empty",
-    "movable":"Y",
-    "block" : "N",
+    "movable":true,
+    "block" : false,
     "description": {
       "long_desc": "You see an empty field, it is a perfect location to plant some trees.",
       "short_desc": "You stand in an empty field."
     },
-    "interactions": null
+    "interactions": [
+      {
+        "name": "harvest",
+        "success_desc": "There is no apple tree here to harvest.",
+        "fail_desc": "There is no apple tree here to harvest.",
+        "change_state_to": "empty",
+        "requirement": null,
+        "obtain": null
+      },
+
+      {
+        "name": "water",
+        "success_desc": "There is no apple tree to water here.",
+        "fail_desc": "There is no apple tree to water here.",
+        "change_state_to": "empty",
+        "requirement": null,
+        "obtain": null
+      }
+
+
+
+    ]
 
   },
 
   {
     "name": "apple tree",
-    "type": "non-building",
+    "type": "non_building",
     "state": "growing_notready",
-    "movable":"Y",
-    "block" : "N",
+    "movable":true,
+    "block" : false,
     "description": {
       "long_desc": "There is an apple tree sapling growing here.",
       "short_desc": "There is an apple tree sapling growing here."
@@ -1288,16 +1344,27 @@
             "qty": 1
           }
         ]
+      },
+
+      {
+        "name": "harvest",
+        "success_desc": "The apple tree needs more time to be harvested.",
+        "fail_desc": "The apple tree needs more time to be harvested.",
+        "change_state_to": "growing_notready",
+        "requirement": null,
+        "obtain": null
       }
+
+
     ]
   },
 
   {
     "name": "apple tree",
-    "type": "non-building",
+    "type": "non_building",
     "state": "growing_ready",
-    "movable":"Y",
-    "block" : "N",
+    "movable":true,
+    "block" : false,
     "description": {
       "long_desc": "There is an apple tree here, its sweet fragrance fills the air.",
       "short_desc": "The apple tree is ready for harvest here."
@@ -1324,15 +1391,25 @@
             "qty": 1
           }
         ]
+      },
+      {
+        "name": "water",
+        "success_desc": "The apple tree doesn't need watering.",
+        "fail_desc": "The apple tree doesn't need watering.",
+        "change_state_to": "growing_ready",
+        "requirement": null,
+        "obtain": null
       }
+
+
     ]
   },
   {
     "name": "grasslands",
-    "type": "non-building",
+    "type": "non_building",
     "state": "null",
-    "movable":"Y",
-    "block" : "N",
+    "movable":true,
+    "block" : false,
     "description": {
       "long_desc": "You see an empty grasslands.",
       "short_desc": "You see an empty grasslands."
@@ -1344,8 +1421,8 @@
     "name": "lake",
     "type": "blocked",
     "state": "null",
-    "movable":"Y",
-    "block" : "Y",
+    "movable":true,
+    "block" : true,
     "description": {
       "long_desc": "You are blocked by a large lake before you, its waters tranquil and glittering in the sun's rays.",
       "short_desc": "You are blocked by a large lake before you, its waters tranquil and glittering in the sun's rays."
@@ -1357,8 +1434,8 @@
     "name": "mountain",
     "type": "blocked",
     "state": "null",
-    "movable":"Y",
-    "block" : "Y",
+    "movable":true,
+    "block" : true,
     "description": {
       "long_desc": "Before you lies a giant mountain, its cliffs inpassable to any human.",
       "short_desc": "Before you lies a giant mountain, its cliffs inpassable to any human."

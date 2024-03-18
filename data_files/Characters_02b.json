@@ -575,7 +575,18 @@
           }          
         ],
         "obtain":  null
+      },
+
+      {
+        "name": "harvest",
+   
+        "success_desc": "The chicken has not laid any eggs yet to be harvested.",
+        "fail_desc": "The chicken has not laid any eggs yet to be harvested.",
+        "change_state_to": "tamed_hungry",
+        "requirement": null,
+        "obtain":  null
       }
+
     ]
   },
 
@@ -622,7 +633,18 @@
           }          
         ],
         "obtain":  null
+      },
+
+      {
+        "name": "harvest",
+   
+        "success_desc": "The chicken has not laid any eggs yet to be harvested.",
+        "fail_desc": "The chicken has not laid any eggs yet to be harvested.",
+        "change_state_to": "tamed_not_hungry",
+        "requirement": null,
+        "obtain":  null
       }
+
     ]
   },
 
@@ -776,6 +798,14 @@
           }          
         ],
         "obtain":  null
+      },
+      {
+        "name": "milk",
+        "success_desc": "The cow is not ready to be milked yet.",
+        "fail_desc": "The cow is not ready to be milked yet.",
+        "change_state_to": "tamed_hungry",
+        "requirement": null,
+        "obtain":  null
       }
     ]
   },
@@ -823,7 +853,17 @@
           }          
         ],
         "obtain":  null
+      },
+      {
+        "name": "milk",
+        "success_desc": "The cow is not ready to be milked yet.",
+        "fail_desc": "The cow is not ready to be milked yet.",
+        "change_state_to": "tamed_not_hungry",
+        "requirement": null,
+        "obtain":  null
       }
+
+
     ]
   },
 

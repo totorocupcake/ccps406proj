@@ -76,7 +76,19 @@
           }
         ],
         "obtain": null
+      },
+      {
+        "name": "fill",
+
+
+        "success_desc": "The watering can is already full.",
+        "fail_desc": "The watering can is already full.",
+        "change_state_to": "full",
+        "requirement": null,
+        "obtain": null
       }
+
+
     ]
    
   },
@@ -134,7 +146,7 @@
 
   {
     "name": "branch",
-    "type": "tool",
+    "type": "misc",
     "state": "null",
     "gold_amt": 5,
     "description": {
@@ -294,7 +306,7 @@
 
   {
     "name": "grass",
-    "type": "tool",
+    "type": "farm_prod",
     "state": "null",
     "gold_amt": 2,
     "description": {
@@ -312,7 +324,7 @@
 
   {
     "name": "medkit",
-    "type": "tool",
+    "type": "consumable",
     "state": "null",
     "gold_amt": 8,
     "description": {
@@ -377,7 +389,7 @@
 
   {
     "name": "flint",
-    "type": "tool",
+    "type": "misc",
     "state": "null",
     "gold_amt": 2,
     "description": {
@@ -473,7 +485,7 @@
 
   {
     "name": "letter",
-    "type": "tool",
+    "type": "misc",
     "state": "null",
     "gold_amt": 0,
     "description": {
@@ -511,7 +523,7 @@
 
   {
     "name": "letter from landlord",
-    "type": "tool",
+    "type": "misc",
     "state": "null",
     "gold_amt": 0,
     "description": {
@@ -713,7 +725,7 @@
 
   {
     "name": "apple seeds",
-    "type": "tool",
+    "type": "farm_prod",
     "state": "null",
     "gold_amt": 2,
     "description": {
@@ -842,7 +854,7 @@
 
     {
       "name": "meat",
-      "type": "farming_prod",
+      "type": "farm_prod",
       "state": "null",
       "gold_amt": 6,
       "description": {
@@ -894,7 +906,7 @@
   },
   {
     "name": "meat",
-    "type": "farming_prod",
+    "type": "farm_prod",
     "state": "cooked",
     "gold_amt": 7,
     "description": {
@@ -1013,7 +1025,7 @@
 
   {
     "name": "chicken",
-    "type": "tool",
+    "type": "farm_prod",
     "state": "tamed",
     "gold_amt": 2,
     "description": {
@@ -1043,14 +1055,39 @@
           "qty": 1
         }
       ]
+      },
+      {
+        "name": "put",
+        
+        "success_desc": "You place the fluffy chicken in the chicken coop. It pecks around and settles in nicely. It looks at you for some food.",
+        "fail_desc": "You cannot place the chicken down here.",
+        "change_state_to": "delete",
+        "requirement":  [
+          {
+            "type": "tile",
+            "name": "chicken coop",
+            "state": "open",
+            "qty": null,
+            "remove_obj": "N"
+          }
+        ],
+        "obtain": [{
+          "type": "Character",
+          "name": "chicken",
+          "state": "tamed_hungry",
+          "qty": 1
+        }
+      ]
       }
+
+
     ]
     
   },
 
   {
     "name": "cow",
-    "type": "tool",
+    "type": "farm_prod",
     "state": "tamed",
     "gold_amt": 2,
     "description": {
@@ -1060,6 +1097,29 @@
     "interactions": [
       {
         "name": "place",
+        
+        "success_desc": "You place the cow in the barn. It looks at you for some food.",
+        "fail_desc": "You cannot leave the cow here.",
+        "change_state_to": "delete",
+        "requirement":  [
+          {
+            "type": "tile",
+            "name": "barn",
+            "state": "open",
+            "qty": null,
+            "remove_obj": "N"
+          }
+        ],
+        "obtain": [{
+          "type": "Character",
+          "name": "cow",
+          "state": "tamed_hungry",
+          "qty": 1
+        }
+      ]
+      },
+      {
+        "name": "put",
         
         "success_desc": "You place the cow in the barn. It looks at you for some food.",
         "fail_desc": "You cannot leave the cow here.",

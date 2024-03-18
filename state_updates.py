@@ -1,5 +1,6 @@
 import text_formatting
-import test
+import interaction_processing
+import classes.enums as Enum
 
 def state_update(world_state,charac,command,command_type):
     # Make the updates to world_state (and any other updates required) to process the command.
@@ -11,22 +12,21 @@ def state_update(world_state,charac,command,command_type):
     world_state=visited_updates(world_state,charac,current_x,current_y)
     
     # parse command and make updates
-    if command_type == "basic":
+    if command_type == Enum.command_type.BASIC:
         return basic_commands(world_state,charac,command)
-    elif command_type == "normal":
-        # to be done, these are normal interactions based off the JSON interaction array data.
-        world_state = test.interaction_commands(world_state, charac, command)
+    elif command_type == Enum.command_type.NORMAL:
+        world_state = interaction_processing.interaction_commands(world_state, charac, command)
         
         for char in world_state.get_characters():
         # check after state updates if game is won, update flag if so in world state
             if char.get_name() == 'landlord':
                 if char.get_state() == 'happy':
-                    world_state.set_game_won('Y')
+                    world_state.set_game_won(True)
                 break
         
         return world_state
                 
-    elif command_type == "cheat":
+    elif command_type == Enum.command_type.CHEAT:
         world_state = world_state.cheat_mode(command,charac)
         return world_state
     else:
@@ -34,11 +34,10 @@ def state_update(world_state,charac,command,command_type):
         return world_state
 
 def basic_commands(world_state,charac,command):
-    #added:
     directions_set = {"n","s","w","e"}
     
     if command=="inventory":
-        print_inventory(charac) # prints character's inventory
+        print_inventory(charac) 
         
     elif command in directions_set:
         world_state=process_movement(world_state,charac,command) # moves character based on n,s,e,w input
@@ -74,19 +73,15 @@ def print_inventory(charac):
     object_string="Inventory: "
         
     for obj in charac.get_inventory():
-        # loop through each item in character's inventory
-            
         object_string+=obj.get_name()
         
         if obj.get_state() != "null":
-            # append obj state if not null
             object_string+=" ("+ obj.get_state() + ")"
         
         # append x[quantity] after each item
         object_string+=" x"
         object_string+=str(obj.get_quantity())
             
-        # append comma between items
         object_string+=", "
         
     # remove dangling comma added at end of last item
@@ -118,17 +113,16 @@ def process_movement(world_state,charac,command):
         # if coord is valid, move character to new coord
         new_tile = world_state.get_tiles()[x][y]
 
-        if new_tile.get_block() == "N":
+        if not new_tile.get_block():
             # check if tile is not a 'blocked tile'
-            # print(f"{charac.get_name()} moved to {x} {y}")
             charac.update_coords((x,y))
         else:
             # tile is a blocked tile so cannot moved onto it
-            if charac.get_active_player() == "Y":
-                print(text_formatting.justify(new_tile.get_desc("long",world_state)))
+            if charac.get_active_player():
+                print(text_formatting.justify(new_tile.get_desc(True,world_state)))
     else:
         # only print to console if its the active player turn
-        if charac.get_active_player()=='Y':
+        if charac.get_active_player():
             print("You cannot go there.") 
     return world_state
 
@@ -139,7 +133,7 @@ def process_store_gold(world_state,charac,command):
     current_tile = world_state.get_tiles()[x][y]
     words=command.split()
         
-    if current_tile.get_name() == "bedroom" and current_tile.get_state() == "open" and (charac.get_type() == "player" or \
+    if current_tile.get_name() == "bedroom" and current_tile.get_state() == "open" and (charac.get_type() == Enum.character_type.player or \
     charac.get_name() == "Thief"):
     # can only store gold if they are located at an open bedroom and the character is the player or thief 
     # (other npcs cannot store/take gold into the player's house as the house doesnt belong to them)
@@ -154,16 +148,14 @@ def process_store_gold(world_state,charac,command):
         gold_to_take = take_gold_entity.get_current_gold()
         
         if gold_to_take > 0:    # check if there is gold to take first
-            # swaps gold between take and e
-            # receiving entity
             take_gold_entity.increment_current_gold(gold_to_take*-1)
             receive_gold_entity.increment_current_gold(gold_to_take)
             
-            if charac.get_active_player()=='Y':
+            if charac.get_active_player():
                 print(f"You {words[0]} {gold_to_take} gold {'from' if words[0] == 'take' else 'into'} your bedroom's chest. Remember to lock your house to keep your gold safe!")   
        
-        else:   # no gold to take, so no need to process command further
-            if charac.get_active_player()=='Y':
+        else: 
+            if charac.get_active_player():
                 print(f"You don't have any gold to {words[0]}.")
     else:
         # not currently in open bedroom or not the player or thief so they shouldnt be able to do this

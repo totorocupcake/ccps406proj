@@ -1,49 +1,50 @@
 import classes.World_State as World_State
 import classes.Object as Object
 import classes.Tile as Tile
+import classes.enums as Enum
 import text_file_processor
 import classes.Character as Character
 import classes.Data as Data
+import sys
 
 WORLD_MAP_NUM_ROWS = text_file_processor.WORLD_MAP_STATUS_ROWS
 WORLD_MAP_NUM_COLUMNS = text_file_processor.WORLD_MAP_STATUS_COLUMNS
 
 def initialize(starting_rent_amount, starting_rent_due_date):
-    # Needs to return 1 world state object instance
-    # Instantiate all neccessary classes so we have a complete world state object to return for game loop
-
-    # NOTE: we don't really need the above function parameters, only need:
     
     load_game=input("Would you like to load game, or create a new game? ")
     
     load_game=load_game.strip()
     
     if load_game =="load" or load_game == "load game":
-        load_game = 'Y'  
+        load_game = True 
     else:
-        load_game= 'N'
+        load_game= False
     
     
     world_state = load_World_State(starting_rent_amount, starting_rent_due_date,load_game)
 
-    if load_game == 'N':
+    check_status = check_world_state(world_state)
+    
+    if check_status == False:
+      sys.stderr.write("Error: Files used to create the game is invalid.\n")
+      sys.exit(1)
+    
+    if not load_game:
         # prompt for player name and display welcome message if new game
         world_state = initial_game_prompt(world_state)
     
     return world_state
 
 def initial_game_prompt(world_state):
-    # Any initial game prompts, or initial game updates need to be defined here before we enter main game loop
-    
-    # ****************************************************
-    
+
     print("Welcome to Farm Quest!")
     player_name=input("Please enter the name of your character: ")
     player_name = player_name.strip()
     
     for charac in world_state.get_characters():
         # Find the player and update their name
-        if charac.get_type()=="player":
+        if charac.get_type()==Enum.character_type.player:
             charac.set_name(player_name)
             break
         
@@ -71,14 +72,14 @@ def load_World_State(rent_amount, rent_due_date,load_game):
   # set turn to 1 to start (initialized to 0 in World_State constructor)
   
   
-  if load_game == 'Y':
+  if load_game:
     data = text_file_processor.load_rent_data()
     ws.set_game_won(data["game_won"])
     ws.set_turn_number(data["turn_number"])
     ws.update_rent_amount(data["rent_amount"])
     ws.update_rent_turn_due(data["rent_due_date"])
   else:
-    ws.set_game_won("N")
+    ws.set_game_won(False)
     ws.update_rent_amount(rent_amount)
     ws.update_rent_turn_due(rent_due_date)
     ws.increment_turn(1)
@@ -106,7 +107,6 @@ def get_object_list_by_tile_location(x_coord, y_coord,load_game):
 
 def get_tile_by_name_and_state(name, state):
   # creates and returns a tile object from load_tile_JSON_data_file() based on a given tile 'name' and 'state'
-  # NOTE: refactored to be shorter by utilizing class methods of tile class
 
   tl = Tile.Tile()
   tl.set_name(name)
@@ -115,7 +115,6 @@ def get_tile_by_name_and_state(name, state):
 
 def lookup_tile_Mapping_by_ID(tile_id):
   # returns a tile object from load_tile_JSON_data_file() based on a given tile_id
-  # NOTE: refactored to be shorter by utilizing class methods of tile class
 
   tl = Tile.Tile()
   tl.update_tile_by_id(tile_id)
@@ -123,7 +122,7 @@ def lookup_tile_Mapping_by_ID(tile_id):
 
 def load_tile_2D_array_from_file(load_game):
   # returns a 2D array/list of tile objects
-
+  
   # get 2D array of tile ID's from world_map_status_00.csv
   world_map_status_array = text_file_processor.load_world_map_status_csv(load_game)
 
@@ -165,125 +164,76 @@ def load_objects_list_from_file(load_game):
   # returns a list of 'object' objects that have been populated with 
   # data from the objects status JSON file via text_file_processor.py
 
-
-  # get JSON object status data from file via text_file_processor.py
   object_status_data = text_file_processor.load_object_status_file(load_game)
-  
-  # Create an empty list to store objects
   objects = []
   
   # iterate through object status JSON data and create/populate a 'Object' 
-  #    object for each one, then append each to the list 'objects'
+  # object for each one, then append each to the list 'objects'
   
   for obj_elem in object_status_data:
-    obj = Object.Object()
-
-    # set all 'Object' object attributes
-    obj.set_name(obj_elem["name"])
-
-    # need a general_type for looking up descriptions in text_file_processor.py
-    obj.set_general_type("Object")
-
-    obj.set_type(obj_elem["type"])
-    obj.set_state(obj_elem["state"])
-
-
-    # *********
-    #   All other attributes of the 'Object' class
-    #   from object_status_data (JSON data):
-    # *********
-
-    obj.update_qty(obj_elem["quantity"])
+    obj = Object.Object(obj_elem["name"],obj_elem["state"],obj_elem["quantity"])
     obj.update_coords((obj_elem["co_ord_x"], obj_elem["co_ord_y"]))
     
-    # need to add gold_amt, look-up from 'objects_02n.json' via 'text_file_processor'
-    obj.set_gold_amt = Data.Data().lookup_gold_amt(obj.get_name(), obj.get_state())
-
     # for each item in 'inventory' create an 'Object' object, and add it to inventory:
     if obj_elem["inventory"] is not None:
 
       # update_inventory, if its not empty
       for inv_elem in obj_elem["inventory"]:
 
-        inv_obj = Object.Object()
-        inv_obj.set_name = inv_elem["name"]
-        inv_obj.update_qty(inv_elem["quantity"])
-        inv_obj.set_state(inv_elem["state"])
-
+        inv_obj = Object.Object(inv_elem["name"],inv_elem["state"],inv_elem["quantity"])
         obj.update_inventory("add", inv_obj)
 
-
-    # append the 'Object' object to the 'objects' list of objects
     objects.append(obj)
 
-  # return objects list
   return objects
 
 def load_characters_list_from_file(load_game):
   # returns a list of character objects that have been populated with 
   # data from the character status JSON file via text_file_processor.py
 
-
-  # get JSON characters status data from file via text_file_processor.py
   character_status_data = text_file_processor.load_character_status_file(load_game)
-
-  # Create an empty list to store characters
   characters = []
   
-  # iterate through chacter status JSON data and create/populate a Character 
-  #    object for each one, then append each to the list 'characters'
+  # iterate through character status JSON data and create/populate a Character 
+  # object for each one, then append each to the list 'characters'
   for char_elem in character_status_data:
     charac = Character.Character()
 
     # set all character object attributes
     charac.set_name(char_elem["name"])
-
-    charac.set_general_type("Character")
-
-    charac.set_type(char_elem["type"])
+    charac.set_general_type(Enum.general_type.CHARACTER)
+    charac.set_type(Enum.character_type[char_elem["type"]])
     charac.set_state(char_elem["state"])
 
     # if player type is "player", set to active player:
-    if char_elem["type"] == "player":
+    if charac.get_type() == Enum.character_type.player:
       charac.set_active_player(True)
     else:
       charac.set_active_player(False)
 
-
     charac.update_coords((char_elem["co_ord_x"] , char_elem["co_ord_y"]))
 
-    # update_inventory, if its not empty
     if char_elem["inventory"] is not None:
       inv_list_of_ojb = []
       for inv_elem in char_elem["inventory"]:
-
-        inv_obj = Object.Object()
-
-        inv_obj.set_name(inv_elem["name"])
-
-        inv_obj.update_qty(inv_elem["quantity"])
-        inv_obj.set_state(inv_elem["state"])
-
+        inv_obj = Object.Object(inv_elem["name"],inv_elem["state"],inv_elem["quantity"])
         inv_list_of_ojb.append(inv_obj)
-       
       charac.update_inventory("add", inv_list_of_ojb)
       
     charac.set_max_hp(char_elem["max_hp"])
     charac.set_current_hp(char_elem["current_hp"])
-    
     charac.set_current_gold(char_elem["current_gold"])
 
-    # add to visited, if any:
     if char_elem["visited"] is not None:
       for visit_elem in char_elem["visited"]:
         charac.update_visited(visit_elem["type"], visit_elem["name"], visit_elem["state"])
 
-    # set/update the turn counter:
     charac.update_turn_counter( char_elem["turn_counter"][0], char_elem["turn_counter"][1] )
-
-    # append the character object to the 'characters' list of objects
     characters.append(charac)
-
-  # return characters list
+    
   return characters
 
+def check_world_state(world_state):
+  if world_state.get_active_char() is None:
+    return False
+  

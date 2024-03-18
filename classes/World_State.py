@@ -1,10 +1,11 @@
 import classes.Character as Character
-import classes.Tile as Tile
 import classes.Object as Object
+import classes.Tile as Tile
+import classes.enums as Enum
 import text_file_processor
 import random
 import npc_behaviors
-
+import sys
 
 # constants: (make sure they match values in load_status_data.py)
 
@@ -12,48 +13,37 @@ WORLD_MAP_NUM_ROWS = text_file_processor.WORLD_MAP_STATUS_ROWS
 WORLD_MAP_NUM_COLUMNS = text_file_processor.WORLD_MAP_STATUS_COLUMNS
 INTEREST_RATE = 0.15
 TURN_INCREMENT = 20
-class World_State:
 
-  # constructor:
+class World_State:
 
   def __init__(self):
     
     random.seed(42) # select seed for reproducible random results for testing
-    # Private properties (with default starting values)
+
     self.__turn_number = 0  
-    self.__game_won = 'N'
+    self.__game_won = False
     self.__rent_amount = 0
     self.__rent_due_date = 0
     self.__characters = []  # array/list of character objects
     self.__tiles = [[None] * WORLD_MAP_NUM_COLUMNS for _ in range(WORLD_MAP_NUM_ROWS)]
-
-    self.__saved_tiles = []
-    self.__cheat_mode = 'N'
-    self.__graze = 'Y'
-
-  # needed for lock/open
-  def update_saved_tiles(self, add_remove, tile):
-      # adds/removes 'tiles' from the .__saved_tiles list, given a 'tile' object
-      # add_remove should = "add" for add case
-
-      if add_remove == "add":
-        self.__saved_tiles.append(tile)
-
-      else:
-        self.__saved_tiles.remove(tile)
-
-  # needed for lock/open
-  def get_saved_tile_by_name(self, tile_name):
-    for tile_elem in self.__saved_tiles:
-      if tile_elem.get_name() == tile_name:
-        return tile_elem
-    # else
-    return None
+    self.__cheat_mode = False
+    self.__graze = True
+    
 
   def set_turn_number (self, num):
+    
+    if not isinstance(num, int):
+      sys.stderr.write("Error: Turn number value is invalid\n")
+      sys.exit(1)
+    
     self.__turn_number = num
     
   def increment_turn(self,amount=1):
+    
+    if not isinstance(amount, int):
+      sys.stderr.write("Error: Turn number value is invalid\n")
+      sys.exit(1)
+    
     self.__turn_number += amount
     
     # check if player is late to pay rent, if so, add letter in their mailbox
@@ -68,63 +58,119 @@ class World_State:
       for tiles in row:
         tiles.decrement_turn_count()
     
-    # monster/animal respawning checks
     self = spawn_monster_checks(self)
     
     return self
   
   def set_game_won(self, flag):
+    
+    if not isinstance(flag, bool):
+      sys.stderr.write("Error: Game won value is invalid\n")
+      sys.exit(1)
+      
     self.__game_won = flag
 
   def update_rent_turn_due(self, increment):
+    
+    if not isinstance(increment, int):
+      sys.stderr.write("Error: Rent due value is invalid\n")
+      sys.exit(1)
+      
     self.__rent_due_date += increment
     
   def set_rent_turn_due(self,new_rent_turn_due):
+    
+    if not isinstance(new_rent_turn_due, int):
+      sys.stderr.write("Error: Rent due value is invalid\n")
+      sys.exit(1)
+    
     self.__rent_due_date = new_rent_turn_due
 
   def update_rent_amount(self, increment):
+    
+    if not isinstance(increment, int):
+      sys.stderr.write("Error: Rent value is invalid\n")
+      sys.exit(1)
+    
     self.__rent_amount += increment
     
   def set_rent_amount(self,new_rent_amount):
+    
+    if not isinstance(new_rent_amount, int):
+      sys.stderr.write("Error: Rent value is invalid\n")
+      sys.exit(1)
+      
     self.__rent_amount = new_rent_amount
 
   def spawn_character(self, new_character):
+    
+    if not isinstance(new_character, Character.Character):
+      sys.stderr.write("Error: Spawn character value is invalid\n")
+      sys.exit(1)
+      
     if new_character not in self.__characters:
       self.__characters.append(new_character)
 
   def remove_character(self, character):
+    
+    if not isinstance(character, Character.Character):
+      sys.stderr.write("Error: Remove character value is invalid\n")
+      sys.exit(1)
+
     # check to make sure inputted character is in the __characters list
     if character in self.__characters:
-      if character.get_active_player() == 'Y':
+      if character.get_active_player():
         print(f"The controlled character was killed. Switching back to original player's perspective.")
         
         for charac in self.get_characters():
-          if charac.get_type() == "player":
+          if charac.get_type() == Enum.character_type.player:
             charac.set_active_player(True)
             
       self.__characters.remove(character)
     return self
 
   def update_tile(self, coords, new_tile):
+    
+    if not isinstance(new_tile, Tile.Tile) and not isinstance(coords, tuple):
+      sys.stderr.write("Error: Update tile value is invalid\n")
+      sys.exit(1)
+    
     x_coord, y_coord = coords
+    
+    if not isinstance(x_coord, int) and not isinstance(y_coord, int):
+      sys.stderr.write("Error: Update tile value is invalid\n")
+      sys.exit(1)
+    
     self.__tiles[x_coord][y_coord] = new_tile
 
   def load_2D_Tiles_array(self, Tile_2D_array):
     self.__tiles = Tile_2D_array
 
   def get_tile_at_coords(self, coords):
+    
+    if not isinstance(coords, tuple):
+      sys.stderr.write("Error: Coordinate value is invalid\n")
+      sys.exit(1)
+    
     x_coord, y_coord = coords
+    
+    if not isinstance(x_coord, int) and not isinstance(y_coord, int):
+      sys.stderr.write("Error: Coordinate value is invalid\n")
+      sys.exit(1)
+    
     return self.__tiles[x_coord][y_coord]
 
   def get_tile_by_name(self, tile_name):
 
+    if not isinstance(tile_name, str):
+      sys.stderr.write("Error: Tile name value is invalid\n")
+      sys.exit(1)
+    
     num_rows = WORLD_MAP_NUM_ROWS
     num_cols = WORLD_MAP_NUM_COLUMNS
 
     for i in range(num_cols):
-      inner_array = []
       for j in range(num_rows):
-        # if tile_name == self.__tiles[j][i].get_name():
         if tile_name == self.__tiles[i][j].get_name():
           return self.__tiles[i][j]
     return None
@@ -132,15 +178,17 @@ class World_State:
   def get_npc_chars_at_tile(self, coords):
   # return a list of npc characters for a given tile, based on its coords
 
+    if not isinstance(coords, tuple):
+      sys.stderr.write("Error: Coordinate value is invalid\n")
+      sys.exit(1)
+    
     # get all characters as a list
     npc_char_list = self.get_chars_at_tile(coords)
 
     # remove the player character from the list
     if npc_char_list is not None:
       for npc_elem in npc_char_list:
-        # remove the 'player' character from the list
-        #if npc_elem.get_type() == "player":
-        if npc_elem.get_active_player()=='Y':
+        if npc_elem.get_active_player():
           npc_char_list.remove(npc_elem)
           break
 
@@ -149,7 +197,16 @@ class World_State:
   def get_chars_at_tile(self, coords):
   # return the character list for a given tile, based on its coords
 
+    if not isinstance(coords, tuple):
+      sys.stderr.write("Error: Coordinate value is invalid\n")
+      sys.exit(1)
+    
     x_coord, y_coord = coords
+    
+    if not isinstance(x_coord, int) and not isinstance(y_coord, int):
+      sys.stderr.write("Error: Coordinate value is invalid\n")
+      sys.exit(1)
+    
 
     char_list = self.__characters
 
@@ -164,16 +221,18 @@ class World_State:
     return current_char_list
 
   def get_active_char(self):
-    # Returns the Character with active player flaf set to Y
+    # Returns the Character with active player flag set to Y
+    
     for char in self.__characters:
-      if char.get_active_player() == 'Y':
+      if char.get_active_player():
         return char
 
     return None
 
   def get_description(self, coords, visited):
   # returns a list/array of description strings for a given coords and 
-  #   visited set (of tuples of (type, name, state))
+  # visited set (of tuples of (type, name, state))
+  
     x_coord, y_coord = coords
 
     # get the tile at coords
@@ -198,32 +257,32 @@ class World_State:
     tile_tuple = (current_tl.get_general_type(), current_tl.get_name(), current_tl.get_state())
 
     if tile_tuple in visited:
-      desc_list.append(current_tl.get_desc("short",self))
+      desc_list.append(current_tl.get_desc(False,self))
     else:
-      desc_list.append(current_tl.get_desc("long",self))
+      desc_list.append(current_tl.get_desc(True,self))
 
     # add each character:
-    if current_npc_char_list is not None and current_tl.get_movable() == 'Y':
+    if current_npc_char_list is not None and current_tl.get_movable():
       for char_elem in current_npc_char_list:
         char_tuple = (char_elem.get_general_type(), char_elem.get_name(), \
                       char_elem.get_state() )
 
         if char_tuple in visited:
-          desc_list.append(char_elem.get_desc("short",self))
+          desc_list.append(char_elem.get_desc(False,self))
         else:
-          desc_list.append(char_elem.get_desc("long",self))
+          desc_list.append(char_elem.get_desc(True,self))
         
 
     # add each object in the tile's inventory:
-    if current_tl.get_movable() == "Y":
+    if current_tl.get_movable():
       if current_tl_inv_list is not None:
         for tl_inv_elem in current_tl_inv_list:
           inv_tuple = (tl_inv_elem.get_general_type(), tl_inv_elem.get_name(), \
                         tl_inv_elem.get_state() )
           if inv_tuple in visited:
-            desc_list.append(tl_inv_elem.get_desc("short",self))
+            desc_list.append(tl_inv_elem.get_desc(False,self))
           else:
-            desc_list.append(tl_inv_elem.get_desc("long",self))
+            desc_list.append(tl_inv_elem.get_desc(True,self))
 
 
     # ------------------------------------------------------
@@ -234,7 +293,7 @@ class World_State:
     desc_count = 0
 
     for desc_elem in desc_list:
-      # print("desc((", x_coord, ",", y_coord, ")) = ", desc_elem)
+      
       if desc_count == 0:  
         desc_detail = desc_detail + desc_elem 
       elif desc_count == 1:
@@ -252,12 +311,22 @@ class World_State:
     return desc_detail
 
   def set_graze (self,flag):
+    
+    if not isinstance(flag, bool):
+      sys.stderr.write("Error: Graze value is invalid\n")
+      sys.exit(1)
+    
     self.__graze=flag
     
   def get_graze(self):
     return self.__graze
   
   def set_cheat_mode(self,flag):
+    
+    if not isinstance(flag, bool):
+      sys.stderr.write("Error: Cheat mode value is invalid\n")
+      sys.exit(1)
+      
     self.__cheat_mode = flag
 
   def get_cheat_mode(self):
@@ -284,26 +353,21 @@ class World_State:
   def get_next_action (self, charac):
     # Function controls computer-controlled characters by providing their next command for console input
     
-    # Aggressive thief behavior ########################################
     # steal gold from player if on same tile, otherwise roam the grass
     if charac.get_name() == "Thief" and charac.get_state() =="aggressive":
       next_command = npc_behaviors.thief_aggressive(self,charac)
         
-    # Aggressive wolf behavior ################################################
     # kill chicken/cow if there is chicken/cow on same tile, otherwise it just moves randomly on grass
     elif charac.get_name() == "Wolf" and charac.get_state() =="aggressive":
       next_command = npc_behaviors.wolf_aggressive(self,charac)
 
-    # Wild cow behavior ###########################################################
-    # cow is slower moving compared to chicken, it only moves once every 2 turns, roams grass
+    # cow is slower moving compared to chicken, it only moves once every 3 turns, roams grass
     elif charac.get_name() == "cow" and charac.get_state()=="wild":
       next_command=npc_behaviors.cow_wild(self,charac)
-    
-    # Wild chicken behavior ######################################################
+
     elif charac.get_name() == "chicken" and charac.get_state()=="wild":
       next_command=npc_behaviors.check_graze(self,charac)
     
-    # All other characters' behavior ######################################################
     else:
       # default do nothing if no behavior defined for character
       return None
@@ -332,11 +396,11 @@ class World_State:
         self.spawn_character(new_charac)
         print("Spawned character")
       elif command == "graze":
-        if self.get_graze() == 'Y':
-          self.set_graze('N')
+        if self.get_graze():
+          self.set_graze(False)
           print("All monster graze movement paused.")
-        elif self.get_graze() == 'N':
-          self.set_graze('Y')
+        else:
+          self.set_graze(True)
           print("All monster graze movement resumed.")
       elif words[0] == "get_desc":
         charac_coord = words[1]
@@ -371,12 +435,7 @@ class World_State:
             charac.set_active_player(True)
       elif words[0] == "create": #cheat create state gun
         name = " ".join(words[2:])
-        obj = Object.Object()
-        obj.set_state(words[1])
-        obj.set_name(name)
-        obj.update_qty(1)
-        obj.set_type(Data.Data().lookup_type("Object",name,words[1]))
-        obj.set_gold_amt(Data.Data().lookup_gold_amt(name,words[1]))
+        obj = Object.Object(name,words[1],1)
         charac.update_inventory("add",[obj])
         print(f"Added {name} into your inventory.")
       elif words[0] == "gold": #cheat gold 500
@@ -396,6 +455,7 @@ class World_State:
       return self
     except (ValueError,IndexError): 
       print("Invalid cheat mode command format.")
+      
       return self
 
 def spawn_monster_checks(world_state):
@@ -449,12 +509,7 @@ def late_rent_checks(world_state):
           if tile.get_name() == "mail box":
             # find mail box on map and add a new letter from landlord to it
             x,y = tile.get_coords()
-            interest_letter = Object.Object()
-            interest_letter.set_name("letter from landlord")
-            interest_letter.set_type("tool")
-            interest_letter.set_state("null")
-            interest_letter.set_gold_amt(0)
-            interest_letter.update_qty(1)
+            interest_letter = Object.Object("letter from landlord","null",1)
             interest_letter.update_coords((x,y))
             tile.update_inventory("add",[interest_letter])
             break
