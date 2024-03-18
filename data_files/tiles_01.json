@@ -594,7 +594,7 @@
         ],
         "obtain": null
       },
-      [{
+      {
         "name": "harvest",
   
         "success_desc": "The bee hive is not ready to be harvested yet",
@@ -602,7 +602,7 @@
         "change_state_to": "not_ready",
         "requirement": null,
         "obtain": null
-      }]
+      }
     
     ]
   },
