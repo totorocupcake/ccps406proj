@@ -284,12 +284,7 @@ def process_change_state_to(world_state,charac,int_JSON_obj,noun_entity):
 def obtain_item(world_state,charac,obtain_elem):
     # this is a helper function for process_obtain function that creates object (item) as specified by the obtain field in JSON
 
-    new_obj = Object.Object()
-    new_obj.set_general_type(Enum.general_type.OBJECT)
-    new_obj.set_type(obtain_elem["type"])
-    new_obj.set_name(obtain_elem["name"])
-    new_obj.set_state(obtain_elem["state"])
-    new_obj.update_qty(obtain_elem["qty"])
+    new_obj = Object.Object(obtain_elem["name"],obtain_elem["state"],obtain_elem["qty"])
     charac.update_inventory("add", [new_obj])
     return world_state
         

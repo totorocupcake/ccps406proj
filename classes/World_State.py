@@ -293,7 +293,7 @@ class World_State:
     desc_count = 0
 
     for desc_elem in desc_list:
-      # print("desc((", x_coord, ",", y_coord, ")) = ", desc_elem)
+      
       if desc_count == 0:  
         desc_detail = desc_detail + desc_elem 
       elif desc_count == 1:
@@ -435,12 +435,7 @@ class World_State:
             charac.set_active_player(True)
       elif words[0] == "create": #cheat create state gun
         name = " ".join(words[2:])
-        obj = Object.Object()
-        obj.set_state(words[1])
-        obj.set_name(name)
-        obj.update_qty(1)
-        obj.set_type(Data.Data().lookup_type("Object",name,words[1]))
-        obj.set_gold_amt(Data.Data().lookup_gold_amt(name,words[1]))
+        obj = Object.Object(name,words[1],1)
         charac.update_inventory("add",[obj])
         print(f"Added {name} into your inventory.")
       elif words[0] == "gold": #cheat gold 500
@@ -514,12 +509,7 @@ def late_rent_checks(world_state):
           if tile.get_name() == "mail box":
             # find mail box on map and add a new letter from landlord to it
             x,y = tile.get_coords()
-            interest_letter = Object.Object()
-            interest_letter.set_name("letter from landlord")
-            interest_letter.set_type("tool")
-            interest_letter.set_state("null")
-            interest_letter.set_gold_amt(0)
-            interest_letter.update_qty(1)
+            interest_letter = Object.Object("letter from landlord","null",1)
             interest_letter.update_coords((x,y))
             tile.update_inventory("add",[interest_letter])
             break

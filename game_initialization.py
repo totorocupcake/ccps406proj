@@ -171,37 +171,16 @@ def load_objects_list_from_file(load_game):
   # object for each one, then append each to the list 'objects'
   
   for obj_elem in object_status_data:
-    obj = Object.Object()
-
-    # set all 'Object' object attributes
-    obj.set_name(obj_elem["name"])
-    obj.set_general_type(Enum.general_type.OBJECT)
-    obj.set_type(obj_elem["type"])
-    obj.set_state(obj_elem["state"])
-
-
-    # *********
-    #   All other attributes of the 'Object' class
-    #   from object_status_data (JSON data):
-    # *********
-
-    obj.update_qty(obj_elem["quantity"])
+    obj = Object.Object(obj_elem["name"],obj_elem["state"],obj_elem["quantity"])
     obj.update_coords((obj_elem["co_ord_x"], obj_elem["co_ord_y"]))
     
-    # need to add gold_amt, look-up from 'objects_02n.json' via 'text_file_processor'
-    obj.set_gold_amt = Data.Data().lookup_gold_amt(obj.get_name(), obj.get_state())
-
     # for each item in 'inventory' create an 'Object' object, and add it to inventory:
     if obj_elem["inventory"] is not None:
 
       # update_inventory, if its not empty
       for inv_elem in obj_elem["inventory"]:
 
-        inv_obj = Object.Object()
-        inv_obj.set_name = inv_elem["name"]
-        inv_obj.update_qty(inv_elem["quantity"])
-        inv_obj.set_state(inv_elem["state"])
-
+        inv_obj = Object.Object(inv_elem["name"],inv_elem["state"],inv_elem["quantity"])
         obj.update_inventory("add", inv_obj)
 
     objects.append(obj)
@@ -237,17 +216,13 @@ def load_characters_list_from_file(load_game):
     if char_elem["inventory"] is not None:
       inv_list_of_ojb = []
       for inv_elem in char_elem["inventory"]:
-        inv_obj = Object.Object()
-        inv_obj.set_name(inv_elem["name"])
-        inv_obj.update_qty(inv_elem["quantity"])
-        inv_obj.set_state(inv_elem["state"])
+        inv_obj = Object.Object(inv_elem["name"],inv_elem["state"],inv_elem["quantity"])
         inv_list_of_ojb.append(inv_obj)
       charac.update_inventory("add", inv_list_of_ojb)
       
     charac.set_max_hp(char_elem["max_hp"])
     charac.set_current_hp(char_elem["current_hp"])
     charac.set_current_gold(char_elem["current_gold"])
-
 
     if char_elem["visited"] is not None:
       for visit_elem in char_elem["visited"]:
