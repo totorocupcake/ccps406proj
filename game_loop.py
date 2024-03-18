@@ -95,7 +95,9 @@ def command_processor(world_state,command,charac):
         "north":"n",
         "south":"s",
         "east":"e",
-        "west":"w"
+        "west":"w",
+        "take eggs": "harvest chicken",
+        "harvest eggs": "harvest chicken"
     }
     
     command = replacement_dict.get(command, command) 
