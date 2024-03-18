@@ -638,7 +638,7 @@
     "name": "gun",
     "type": "tool",
     "state": "null",
-    "gold_amt": 10,
+    "gold_amt": 8,
     "description": {
       "long_desc": "a gun on the shelf for purchase that can provide protection against thieves or wild animals",
       "short_desc": "a gun on the shelf"
