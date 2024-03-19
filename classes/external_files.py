@@ -2,12 +2,12 @@ import text_file_processor
 import text_formatting
 import classes.enums as Enum
 
-class Data():
+class read_external_files():
     _instance = None
     
     def __new__(cls, *args, **kwargs):
         if not cls._instance:
-            cls._instance = super(Data, cls).__new__(cls)
+            cls._instance = super(read_external_files, cls).__new__(cls)
         return cls._instance
     
     def __init__(self):

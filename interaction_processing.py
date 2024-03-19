@@ -2,7 +2,7 @@ import classes.Object as Object
 import classes.enums as Enum
 import text_formatting
 import classes.Character as Character
-import classes.Data as Data
+import classes.external_files as external_files
 
 def interaction_commands (world_state,charac,command):
     # main function to process interactions, directs the overall flow and logic of entire module
@@ -174,7 +174,7 @@ def check_requirements(world_state,charac,noun_entity,interac_verb):
         interac_name = noun_entity.get_name()
 
     # lookup the interaction data from our JSON file
-    int_JSON_obj =Data.Data().lookup_interaction(noun_entity.get_general_type(), \
+    int_JSON_obj =external_files.read_external_files().lookup_interaction(noun_entity.get_general_type(), \
             interac_name, noun_entity.get_state(), interac_verb)
     
     

@@ -1,5 +1,5 @@
 import classes.Turn_Based_Entity as Turn_Based_Entity
-import classes.Data as Data
+import classes.external_files as external_files
 import sys
 import classes.enums as Enum
 
@@ -78,7 +78,7 @@ class Tile(Turn_Based_Entity.Turn_Based_Entity):
     self.__tile_id = new_tile_id
     
     # update rest of tile fields to account for new tile_id
-    tileIDMapping_data = Data.Data().get_tile_id_mapping()
+    tileIDMapping_data = external_files.read_external_files().get_tile_id_mapping()
 
     for tile_elem in tileIDMapping_data:
       if tile_elem["tile_id"] == self.__tile_id :
@@ -87,9 +87,9 @@ class Tile(Turn_Based_Entity.Turn_Based_Entity):
         self.set_name(tile_elem["name"])
   
         # update other fields based on text parser lookup functions (from tile in-game text files)
-        self.set_movable(Data.Data().lookup_movable(self.get_name(),self.get_state()))
-        self.set_block(Data.Data().lookup_block(self.get_name(),self.get_state()))
-        self.set_type(Enum.tile_type[Data.Data().lookup_tile_type(self.get_name(),self.get_state())])
+        self.set_movable(external_files.read_external_files().lookup_movable(self.get_name(),self.get_state()))
+        self.set_block(external_files.read_external_files().lookup_block(self.get_name(),self.get_state()))
+        self.set_type(Enum.tile_type[external_files.read_external_files().lookup_tile_type(self.get_name(),self.get_state())])
 
     
   def update_tile_by_state(self, new_state):
@@ -102,8 +102,8 @@ class Tile(Turn_Based_Entity.Turn_Based_Entity):
     self.set_state(new_state)
     
     # update rest of tile fields to account for new tile_id
-    tileIDMapping_data =  Data.Data().get_tile_id_mapping()
-    tile_json = Data.Data().get_tile_data()
+    tileIDMapping_data =  external_files.read_external_files().get_tile_id_mapping()
+    tile_json = external_files.read_external_files().get_tile_data()
 
     for tile_elem in tileIDMapping_data:
       if tile_elem["name"] == self.get_name() and tile_elem["state"] == self.get_state():

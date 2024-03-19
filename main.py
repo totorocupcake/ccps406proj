@@ -1,6 +1,6 @@
 import game_initialization
 import game_loop
-import classes.Data as Data
+import classes.external_files as external_files
 
 STARTING_RENT_AMOUNT = 20
 STARTING_RENT_DUE_DATE = 100
@@ -8,7 +8,7 @@ STARTING_RENT_DUE_DATE = 100
 if __name__ == "__main__":
     
     # Initialize read-only files into data object which is a Singleton class.
-    data = Data.Data()
+    data = external_files.read_external_files()
 
     world_state = game_initialization.initialize(STARTING_RENT_AMOUNT, STARTING_RENT_DUE_DATE)
 
