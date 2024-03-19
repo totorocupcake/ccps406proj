@@ -16,6 +16,12 @@ TURN_INCREMENT = 20
 
 class World_State:
 
+  _instance = None
+  def __new__(cls):
+    if cls._instance is None:
+      cls._instance = super(World_State, cls).__new__(cls)
+    return cls._instance
+
   def __init__(self):
     
     random.seed(42) # select seed for reproducible random results for testing
