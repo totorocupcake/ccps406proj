@@ -101,7 +101,7 @@
     {
         "type": "tool",
         "name": "letter",
-        "state": "null",
+        "state": "in_mailbox",
         "quantity": 1,
         "co_ord_x": 6,
         "co_ord_y": 13,

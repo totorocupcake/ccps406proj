@@ -486,7 +486,7 @@
   {
     "name": "letter",
     "type": "misc",
-    "state": "null",
+    "state": "in_mailbox",
     "gold_amt": 0,
     "description": {
       "long_desc": "a letter",
@@ -498,7 +498,7 @@
 
         "success_desc": "You read the letter from your landlord saying that you owe %rent_amount% in gold that is due in %rent_due_days_away% days.",
         "fail_desc": "You cannot read the letter right now.",
-        "change_state_to": "null",
+        "change_state_to": "in_mailbox",
         "requirement": null,
         "obtain": null
       },
@@ -520,6 +520,39 @@
     ]
     
   },
+
+  {
+    "name": "letter",
+    "type": "misc",
+    "state": "null",
+    "gold_amt": 0,
+    "description": {
+      "long_desc": "a letter",
+      "short_desc": "a letter"
+    },
+    "interactions": [
+      {
+        "name": "read",
+
+        "success_desc": "You read the letter from your landlord saying that you owe %rent_amount% in gold that is due in %rent_due_days_away% days.",
+        "fail_desc": "You cannot read the letter right now.",
+        "change_state_to": "null",
+        "requirement": null,
+        "obtain": null
+      },
+      {
+        "name": "take",
+
+        "success_desc": "There is no letter to take here.",
+        "fail_desc": "There is no letter to take here.",
+        "change_state_to": "null",
+        "requirement": null,
+        "obtain": null
+      }
+    ]
+    
+  },
+
 
   {
     "name": "letter from landlord",
