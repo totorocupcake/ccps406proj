@@ -260,7 +260,7 @@ class World_State:
     #   if yes, use "short" desc
 
     # start with Tile object:
-    tile_tuple = (current_tl.get_general_type(), current_tl.get_name(), current_tl.get_state())
+    tile_tuple = (current_tl.get_general_type().name.title(), current_tl.get_name(), current_tl.get_state())
 
     if tile_tuple in visited:
       desc_list.append(current_tl.get_desc(False,self))
@@ -270,7 +270,7 @@ class World_State:
     # add each character:
     if current_npc_char_list is not None and current_tl.get_movable():
       for char_elem in current_npc_char_list:
-        char_tuple = (char_elem.get_general_type(), char_elem.get_name(), \
+        char_tuple = (char_elem.get_general_type().name.title(), char_elem.get_name(), \
                       char_elem.get_state() )
 
         if char_tuple in visited:
@@ -283,7 +283,7 @@ class World_State:
     if current_tl.get_movable():
       if current_tl_inv_list is not None:
         for tl_inv_elem in current_tl_inv_list:
-          inv_tuple = (tl_inv_elem.get_general_type(), tl_inv_elem.get_name(), \
+          inv_tuple = (tl_inv_elem.get_general_type().name.title(), tl_inv_elem.get_name(), \
                         tl_inv_elem.get_state() )
           if inv_tuple in visited:
             desc_list.append(tl_inv_elem.get_desc(False,self))
