@@ -375,7 +375,6 @@ class World_State:
     return next_command
   
   def cheat_mode(self, command,charac):
-    import classes.Data as Data
     
     command = command.strip()
     words = command.split()

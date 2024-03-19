@@ -1,4 +1,4 @@
-import classes.Data as Data
+import classes.external_files as external_files
 import classes.enums as Enum
 import sys
 
@@ -35,7 +35,7 @@ class Entity:
     return self._inventory
 
   def get_desc(self, long,world_state):
-    return Data.Data().lookup_desc(long, self._general_type, self._name, self.__state,world_state)
+    return external_files.read_external_files().lookup_desc(long, self._general_type, self._name, self.__state,world_state)
 
 
   # setter methods (Common):

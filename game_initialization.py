@@ -4,7 +4,6 @@ import classes.Tile as Tile
 import classes.enums as Enum
 import text_file_processor
 import classes.Character as Character
-import classes.Data as Data
 import sys
 
 WORLD_MAP_NUM_ROWS = text_file_processor.WORLD_MAP_STATUS_ROWS
