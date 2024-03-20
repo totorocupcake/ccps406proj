@@ -441,8 +441,11 @@ class World_State:
       elif words[0] == "create": #cheat create state gun
         name = " ".join(words[2:])
         obj = Object.Object(name,words[1],1)
-        charac.update_inventory("add",[obj])
-        print(f"Added {name} into your inventory.")
+        if obj is None:
+          print("Cannot create object as that object is not defined.")
+        else:
+          charac.update_inventory("add",[obj])
+          print(f"Added {name} into your inventory.")
       elif words[0] == "gold": #cheat gold 500
         new_gold = int(words[1])
         charac.set_current_gold(new_gold)
