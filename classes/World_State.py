@@ -524,7 +524,7 @@ def late_rent_checks(world_state):
           if tile.get_name() == "mail box":
             # find mail box on map and add a new letter from landlord to it
             x,y = tile.get_coords()
-            interest_letter = Object.Object("letter from landlord","null",1)
+            interest_letter = Object.Object("letter from landlord","in_mailbox",1)
             interest_letter.update_coords((x,y))
             tile.update_inventory("add",[interest_letter])
             break

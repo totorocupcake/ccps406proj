@@ -2,6 +2,37 @@
   {
     "name": "watering can",
     "type": "tool",
+    "state": "on_tile",
+    "gold_amt": 5,
+    "description": {
+      "long_desc": "a metal watering can with rusty handles",
+      "short_desc": "a watering can"
+    },
+    "interactions":  [
+
+      {
+        "name": "take",
+
+        "success_desc": "You take a metal watering can with rusty handles.",
+        "fail_desc": "There is no watering can to take here.",
+        "change_state_to": "delete",
+        "requirement": null,
+        "obtain": [ {
+          "type": "Item",
+          "name": "watering can",
+          "state": "empty",
+          "qty": 1
+        }
+      ]
+      }
+    ]
+   
+  },
+
+
+  {
+    "name": "watering can",
+    "type": "tool",
     "state": "empty",
     "gold_amt": 5,
     "description": {
@@ -26,23 +57,6 @@
           }
         ],
         "obtain": null
-      }, 
-
-
-      {
-        "name": "take",
-
-        "success_desc": "You take a metal watering can with rusty handles.",
-        "fail_desc": "There is no watering can to take here.",
-        "change_state_to": "delete",
-        "requirement": null,
-        "obtain": [ {
-          "type": "Item",
-          "name": "watering can",
-          "state": "empty",
-          "qty": 1
-        }
-      ]
       }
     ]
    
@@ -147,7 +161,7 @@
   {
     "name": "branch",
     "type": "misc",
-    "state": "null",
+    "state": "on_tile",
     "gold_amt": 5,
     "description": {
       "long_desc": "a sturdy looking branch that might make a good ax handle",
@@ -173,14 +187,25 @@
     
   },
 
-
+  {
+    "name": "branch",
+    "type": "misc",
+    "state": "null",
+    "gold_amt": 5,
+    "description": {
+      "long_desc": "a sturdy looking branch that might make a good ax handle",
+      "short_desc": "a sturdy branch"
+    },
+    "interactions": null
+    
+  },
 
 
 
   {
     "name": "scythe",
     "type": "tool",
-    "state": "null",
+    "state": "on_tile",
     "gold_amt": 5,
     "description": {
       "long_desc": "a scythe with a sharp blade that could be used to harvest wheat or grass",
@@ -206,7 +231,18 @@
     ]
     
   },
-
+  {
+    "name": "scythe",
+    "type": "tool",
+    "state": "null",
+    "gold_amt": 5,
+    "description": {
+      "long_desc": "a scythe with a sharp blade that could be used to harvest wheat or grass",
+      "short_desc": "a sharp scythe"
+    },
+    "interactions": null
+    
+  },
 
 
 
@@ -214,7 +250,7 @@
   {
     "name": "milk bucket",
     "type": "tool",
-    "state": "null",
+    "state": "on_tile",
     "gold_amt": 5,
     "description": {
       "long_desc": "an empty tin milk bucket that could be used for milking a cow",
@@ -240,6 +276,18 @@
     
   },
 
+  {
+    "name": "milk bucket",
+    "type": "tool",
+    "state": "null",
+    "gold_amt": 5,
+    "description": {
+      "long_desc": "an empty tin milk bucket that could be used for milking a cow",
+      "short_desc": "an empty milk bucket"
+    },
+    "interactions": null
+    
+  },
 
 
 
@@ -325,7 +373,7 @@
   {
     "name": "medkit",
     "type": "consumable",
-    "state": "null",
+    "state": "on_tile",
     "gold_amt": 8,
     "description": {
       "long_desc": "a medical kit (medkit) that can be used to heal an injured character",
@@ -350,14 +398,25 @@
     ]
     
   },
-
+  {
+    "name": "medkit",
+    "type": "consumable",
+    "state": "null",
+    "gold_amt": 8,
+    "description": {
+      "long_desc": "a medical kit (medkit) that can be used to heal an injured character",
+      "short_desc": "a medical kit (medkit)"
+    },
+    "interactions":  null
+    
+  },
 
 
 
   {
     "name": "farm key",
     "type": "tool",
-    "state": "null",
+    "state": "on_tile",
     "gold_amt": 2,
     "description": {
       "long_desc": "a farm key to unlock and lock the chicken coop, barn and tool shed",
@@ -383,14 +442,25 @@
     
   },
 
-
+  {
+    "name": "farm key",
+    "type": "tool",
+    "state": "null",
+    "gold_amt": 2,
+    "description": {
+      "long_desc": "a farm key to unlock and lock the chicken coop, barn and tool shed",
+      "short_desc": "a farm key for various farm buildings"
+    },
+    "interactions": null
+    
+  },
 
 
 
   {
     "name": "flint",
     "type": "misc",
-    "state": "null",
+    "state": "on_tile",
     "gold_amt": 2,
     "description": {
       "long_desc": "a sharp piece of flint that might make a good ax blade",
@@ -415,7 +485,18 @@
     ]
     
   },
-
+  {
+    "name": "flint",
+    "type": "misc",
+    "state": "null",
+    "gold_amt": 2,
+    "description": {
+      "long_desc": "a sharp piece of flint that might make a good ax blade",
+      "short_desc": "a sharp piece of flint"
+    },
+    "interactions": null
+    
+  },
 
 
 
@@ -423,7 +504,7 @@
   {
     "name": "bee smoker",
     "type": "tool",
-    "state": "null",
+    "state": "on_tile",
     "gold_amt": 6,
     "description": {
       "long_desc": "a bee smoker that can be used to harvest honey from a honey bee hive",
@@ -449,12 +530,23 @@
     
   },
 
-
+  {
+    "name": "bee smoker",
+    "type": "tool",
+    "state": "null",
+    "gold_amt": 6,
+    "description": {
+      "long_desc": "a bee smoker that can be used to harvest honey from a honey bee hive",
+      "short_desc": "a bee smoker"
+    },
+    "interactions": null
+    
+  },
 
   {
     "name": "beekeeping suit",
     "type": "tool",
-    "state": "null",
+    "state": "on_tile",
     "gold_amt": 6,
     "description": {
       "long_desc": "a beekeeping suit that can be used to harvest honey from a honey bee hive",
@@ -479,7 +571,18 @@
     ]
     
   },
-
+  {
+    "name": "beekeeping suit",
+    "type": "tool",
+    "state": "null",
+    "gold_amt": 6,
+    "description": {
+      "long_desc": "a beekeeping suit that can be used to harvest honey from a honey bee hive",
+      "short_desc": "a beekeeping suit"
+    },
+    "interactions": null
+    
+  },
 
 
 
@@ -557,7 +660,7 @@
   {
     "name": "letter from landlord",
     "type": "misc",
-    "state": "null",
+    "state": "in_mailbox",
     "gold_amt": 0,
     "description": {
       "long_desc": "a letter from landlord",
@@ -591,7 +694,28 @@
     ]
     
   },
+  {
+    "name": "letter from landlord",
+    "type": "misc",
+    "state": "null",
+    "gold_amt": 0,
+    "description": {
+      "long_desc": "a letter from landlord",
+      "short_desc": "a letter from landlord"
+    },
+    "interactions": [
+      {
+        "name": "read",
 
+        "success_desc": "You read an angry letter from your landlord saying that as you were late to pay the rent, the rent is now increased to %rent_amount%. You better pay this by turn number %rent_due_days_away%!",
+        "fail_desc": "You cannot read the letter right now.",
+        "change_state_to": "null",
+        "requirement": null,
+        "obtain": null
+      }
+    ]
+    
+  },
 
 
   {
@@ -638,7 +762,7 @@
   {
     "name": "ladder",
     "type": "tool",
-    "state": "null",
+    "state": "on_tile",
     "gold_amt": 3,
     "description": {
       "long_desc": "a long ladder that could be used for picking apples from the apple tree",
@@ -664,17 +788,28 @@
     
   },
 
-
+  {
+    "name": "ladder",
+    "type": "tool",
+    "state": "null",
+    "gold_amt": 3,
+    "description": {
+      "long_desc": "a long ladder that could be used for picking apples from the apple tree",
+      "short_desc": "a long ladder"
+    },
+    "interactions": null
+    
+  },
 
 
   {
     "name": "gun",
     "type": "tool",
-    "state": "null",
+    "state": "for_sale",
     "gold_amt": 8,
     "description": {
-      "long_desc": "a gun on the shelf for purchase that can provide protection against thieves or wild animals",
-      "short_desc": "a gun on the shelf"
+      "long_desc": "a gun on the shelf for purchase (8 gold) that can provide protection against thieves or wild animals",
+      "short_desc": "a gun on the shelf for sale (8 gold)"
     },
     "interactions":  [
       {
@@ -714,7 +849,18 @@
     ]
     
   },
-
+  {
+    "name": "gun",
+    "type": "tool",
+    "state": "null",
+    "gold_amt": 8,
+    "description": {
+      "long_desc": "a gun that can provide protection against thieves or wild animals",
+      "short_desc": "a gun"
+    },
+    "interactions": null
+    
+  },
 
 
   {
@@ -833,7 +979,7 @@
   {
     "name": "axe",
     "type": "tool",
-    "state": "null",
+    "state": "broken",
     "gold_amt": 4,
     "description": {
       "long_desc": "an anvil where an axe can be forged with a flint and a branch",
@@ -926,7 +1072,17 @@
 
     ]
     },
-
+    {
+      "name": "axe",
+      "type": "tool",
+      "state": "null",
+      "gold_amt": 4,
+      "description": {
+        "long_desc": "an axe that can chop trees",
+        "short_desc": "an axe"
+      },
+      "interactions":  null
+      },
 
     {
       "name": "meat",
@@ -1041,39 +1197,15 @@
       "long_desc": "a house key to unlock and lock the house",
       "short_desc": "a house key"
     },
-    "interactions": [
-      {
-        "name": "take",
-        
-        "success_desc": "You take a small key to unlock and lock the house.",
-        "fail_desc": "There is no house key to take here.",
-        "change_state_to": "delete",
-        "requirement": [
-          {
-            "type": "tile",
-            "name": "bedroom",
-            "state": "null",
-            "qty": null,
-            "remove_obj": "N"
-          }
-        ],
-        "obtain": [{
-          "type": "Item",
-          "name": "house key",
-          "state": "null",
-          "qty": 1
-        }
-      ]
-      }
-    ]
+    "interactions": null
     
-  }
-  
-  ,
+  },
+
+
   {
     "name": "garage key",
-    "type": "tool",
-    "state": "null",
+    "type": "misc",
+    "state": "on_tile",
     "gold_amt": 2,
     "description": {
       "long_desc": "a garage key to unlock and lock the garage",
@@ -1096,6 +1228,19 @@
       ]
       }
     ]
+    
+  },
+
+  {
+    "name": "garage key",
+    "type": "misc",
+    "state": "null",
+    "gold_amt": 2,
+    "description": {
+      "long_desc": "a garage key to unlock and lock the garage",
+      "short_desc": "a garage key"
+    },
+    "interactions": null
     
   },
 

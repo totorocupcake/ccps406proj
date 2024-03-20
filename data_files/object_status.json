@@ -2,7 +2,7 @@
     {
         "type": "tool",
         "name": "scythe",
-        "state": "null",
+        "state": "on_tile",
         "quantity": 1,
         "co_ord_x": 8,
         "co_ord_y": 7,
@@ -11,7 +11,7 @@
     {
         "type": "tool",
         "name": "milk bucket",
-        "state": "null",
+        "state": "on_tile",
         "quantity": 1,
         "co_ord_x": 8,
         "co_ord_y": 7,
@@ -20,7 +20,7 @@
     {
         "type": "tool",
         "name": "watering can",
-        "state": "empty",
+        "state": "on_tile",
         "quantity": 1,
         "co_ord_x": 8,
         "co_ord_y": 7,
@@ -29,7 +29,7 @@
     {
         "type": "tool",
         "name": "medkit",
-        "state": "null",
+        "state": "on_tile",
         "quantity": 1,
         "co_ord_x": 6,
         "co_ord_y": 11,
@@ -38,7 +38,7 @@
     {
         "type": "tool",
         "name": "garage key",
-        "state": "null",
+        "state": "on_tile",
         "quantity": 1,
         "co_ord_x": 6,
         "co_ord_y": 11,
@@ -47,7 +47,7 @@
     {
         "type": "tool",
         "name": "farm key",
-        "state": "null",
+        "state": "on_tile",
         "quantity": 1,
         "co_ord_x": 6,
         "co_ord_y": 11,
@@ -56,7 +56,7 @@
     {
         "type": "tool",
         "name": "flint",
-        "state": "null",
+        "state": "on_tile",
         "quantity": 1,
         "co_ord_x": 8,
         "co_ord_y": 12,
@@ -65,7 +65,7 @@
     {
         "type": "tool",
         "name": "bee smoker",
-        "state": "null",
+        "state": "on_tile",
         "quantity": 1,
         "co_ord_x": 8,
         "co_ord_y": 12,
@@ -74,7 +74,7 @@
     {
         "type": "tool",
         "name": "beekeeping suit",
-        "state": "null",
+        "state": "on_tile",
         "quantity": 1,
         "co_ord_x": 4,
         "co_ord_y": 12,
@@ -83,7 +83,7 @@
     {
         "type": "tool",
         "name": "branch",
-        "state": "null",
+        "state": "on_tile",
         "quantity": 1,
         "co_ord_x": 1,
         "co_ord_y": 4,
@@ -92,7 +92,7 @@
     {
         "type": "tool",
         "name": "ladder",
-        "state": "null",
+        "state": "on_tile",
         "quantity": 1,
         "co_ord_x": 4,
         "co_ord_y": 12,
@@ -110,7 +110,7 @@
     {
         "type": "tool",
         "name": "gun",
-        "state": "null",
+        "state": "for_sale",
         "quantity": 1,
         "co_ord_x": 2,
         "co_ord_y": 13,
@@ -119,7 +119,7 @@
     {
         "type": "tool",
         "name": "axe",
-        "state": "null",
+        "state": "broken",
         "quantity": 1,
         "co_ord_x": 2,
         "co_ord_y": 13,
