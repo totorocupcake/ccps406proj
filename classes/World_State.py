@@ -452,8 +452,11 @@ class World_State:
           print(f"Added {name} into your inventory.")
       elif words[0] == "gold": #cheat gold 500
         new_gold = int(words[1])
-        charac.set_current_gold(new_gold)
-        print(f"Gold updated to {new_gold}")
+        if new_gold >=0:
+          charac.set_current_gold(new_gold)
+          print(f"Gold updated to {new_gold}")
+        else:
+          print("Cannot update gold to negative number.")
       elif words[0] == "rent_amount": #cheat rent_amount 500
         new_rent_amount = int(words[1])
         self.set_rent_amount(new_rent_amount)
