@@ -12,7 +12,9 @@ class Object(Entity.Entity):
             state = args[1] 
             quantity = args[2]
         else:
-            name,state,quantity = None
+            name= None
+            state= None
+            quantity = None
       
         if name is not None and state is not None and quantity is not None \
         and not external_files.read_external_files().check_exists(Enum.general_type.OBJECT,name,state):
