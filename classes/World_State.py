@@ -398,8 +398,12 @@ class World_State:
           charac_name = charac_name[0].upper() + charac_name[1:]
 
         new_charac = Character.Character(charac_name,charac_state,(x,y))
-        self.spawn_character(new_charac)
-        print("Spawned character")
+        
+        if new_charac is not None:
+          self.spawn_character(new_charac)
+          print("Spawned character")
+        else:
+          print("Cannot spawn that character as that character is not defined.")
       elif command == "graze":
         if self.get_graze():
           self.set_graze(False)
