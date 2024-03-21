@@ -397,13 +397,16 @@ class World_State:
         if charac_name in ("thief", "penny","jimmy","claire","wolf"):
           charac_name = charac_name[0].upper() + charac_name[1:]
 
-        new_charac = Character.Character(charac_name,charac_state,(x,y))
+        if x>=0 and y>=0 and x<=(WORLD_MAP_NUM_COLUMNS-1) and y<= (WORLD_MAP_NUM_ROWS-1):
+          new_charac = Character.Character(charac_name,charac_state,(x,y))
+        else:
+          new_charac = None
         
         if new_charac is not None:
           self.spawn_character(new_charac)
           print("Spawned character")
         else:
-          print("Cannot spawn that character as that character is not defined.")
+          print("Cannot spawn that character.")
       elif command == "graze":
         if self.get_graze():
           self.set_graze(False)
@@ -416,14 +419,24 @@ class World_State:
         charac_coord = charac_coord.split(',')
         x = int(charac_coord[0])
         y = int(charac_coord[1])
-        print (self.get_description((x,y),{}))
+        
+        if x>=0 and y>=0 and x<=(WORLD_MAP_NUM_COLUMNS-1) and y<= (WORLD_MAP_NUM_ROWS-1):
+          print (self.get_description((x,y),{}))
+        else:
+          print("Invalid coordinate.")
+          
       elif words[0] == "teleport":
         charac_coord = words[1]
         charac_coord = charac_coord.split(',')
         x = int(charac_coord[0])
         y = int(charac_coord[1])
-        charac.update_coords((x,y))
-        print (f"Teleported to {x},{y}.")
+        
+        if x>=0 and y>=0 and x<=(WORLD_MAP_NUM_COLUMNS-1) and y<= (WORLD_MAP_NUM_ROWS-1):
+          charac.update_coords((x,y))
+          print (f"Teleported to {x},{y}.")
+        else:
+          print("Cannot teleport there.")
+          
       elif words[0] == "kill": #cheat kill thief 6,12
         charac_name_to_kill=words[1]
         charac_coord = words[2]
@@ -442,6 +455,9 @@ class World_State:
             current_active_char = self.get_active_char()
             current_active_char.set_active_player(False)
             charac.set_active_player(True)
+            print(f"Swapped with {charac.get_name()}.")
+            
+            
       elif words[0] == "create": #cheat create state gun
         name = " ".join(words[2:])
         obj = Object.Object(name,words[1],1)
@@ -457,13 +473,25 @@ class World_State:
           print(f"Gold updated to {new_gold}")
         else:
           print("Cannot update gold to negative number.")
+          
       elif words[0] == "rent_amount": #cheat rent_amount 500
         new_rent_amount = int(words[1])
-        self.set_rent_amount(new_rent_amount)
+        
+        if new_rent_amount >=0:
+          self.set_rent_amount(new_rent_amount)
+          print(f"Updated rent amount to {new_rent_amount}")
+        else:
+          print("Invalid rent amount.")
+          
       elif words[0]=="rent_due": #cheat rent_due 50
         new_turn_due = int(words[1])
-        self.set_rent_turn_due(new_turn_due)
-    
+        
+        if new_turn_due>= self.get_turn_number():
+          self.set_rent_turn_due(new_turn_due)
+          print(f"Updated rent due turn number to {new_turn_due}.")
+        else:
+          print("Invalid new rent due turn number.")
+
       else:
         print("Cheat command not recognized.")
       

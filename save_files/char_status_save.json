@@ -2,8 +2,8 @@
     {
         "type": "player",
         "name": "totoro",
-        "co_ord_x": 6,
-        "co_ord_y": 13,
+        "co_ord_x": 9,
+        "co_ord_y": 15,
         "state": "null",
         "inventory": [
             {
@@ -12,24 +12,29 @@
                 "state": "null"
             },
             {
-                "name": "meat",
+                "name": "ladder",
                 "quantity": 1,
-                "state": "cooked"
-            }
-        ],
-        "current_hp": 10,
-        "max_hp": 10,
-        "current_gold": 6,
-        "visited": [
-            {
-                "type": "Tile",
-                "name": "gravel road",
                 "state": "null"
             },
             {
+                "name": "watering can",
+                "quantity": 1,
+                "state": "empty"
+            },
+            {
+                "name": "apples",
+                "quantity": 1,
+                "state": "null"
+            }
+        ],
+        "current_hp": 8,
+        "max_hp": 10,
+        "current_gold": 0,
+        "visited": [
+            {
                 "type": "Object",
-                "name": "letter",
-                "state": "in_mailbox"
+                "name": "medkit",
+                "state": "on_tile"
             },
             {
                 "type": "Object",
@@ -38,13 +43,43 @@
             },
             {
                 "type": "Tile",
-                "name": "animal products shop",
+                "name": "bedroom",
+                "state": "open"
+            },
+            {
+                "type": "Tile",
+                "name": "road by neighbours houses",
+                "state": "null"
+            },
+            {
+                "type": "Object",
+                "name": "watering can",
+                "state": "on_tile"
+            },
+            {
+                "type": "Tile",
+                "name": "Claires house",
                 "state": "null"
             },
             {
                 "type": "Tile",
-                "name": "plant products shop",
-                "state": "null"
+                "name": "apple tree",
+                "state": "growing_notready"
+            },
+            {
+                "type": "Tile",
+                "name": "tool shed",
+                "state": "closed"
+            },
+            {
+                "type": "Object",
+                "name": "scythe",
+                "state": "on_tile"
+            },
+            {
+                "type": "Tile",
+                "name": "apple tree",
+                "state": "growing_ready"
             },
             {
                 "type": "Tile",
@@ -52,39 +87,9 @@
                 "state": "open"
             },
             {
-                "type": "Tile",
-                "name": "town square",
-                "state": "null"
-            },
-            {
-                "type": "Tile",
-                "name": "bedroom",
-                "state": "open"
-            },
-            {
-                "type": "Tile",
-                "name": "Jimmys house",
-                "state": "null"
-            },
-            {
-                "type": "Character",
-                "name": "Jimmy",
-                "state": "null"
-            },
-            {
-                "type": "Tile",
-                "name": "road",
-                "state": "null"
-            },
-            {
                 "type": "Object",
-                "name": "medkit",
+                "name": "garage key",
                 "state": "on_tile"
-            },
-            {
-                "type": "Tile",
-                "name": "mail box",
-                "state": "null"
             },
             {
                 "type": "Tile",
@@ -93,23 +98,23 @@
             },
             {
                 "type": "Character",
-                "name": "Merchant 2",
+                "name": "Claire",
                 "state": "null"
             },
             {
-                "type": "Character",
-                "name": "Merchant 3",
+                "type": "Tile",
+                "name": "gravel road",
                 "state": "null"
             },
             {
                 "type": "Object",
-                "name": "garage key",
+                "name": "milk bucket",
                 "state": "on_tile"
             },
             {
-                "type": "Character",
-                "name": "Wolf",
-                "state": "aggressive"
+                "type": "Tile",
+                "name": "apple tree",
+                "state": "empty"
             }
         ],
         "turn_counter": [
@@ -151,6 +156,11 @@
         "current_gold": 0,
         "visited": [
             {
+                "type": "Tile",
+                "name": "tool shop",
+                "state": "null"
+            },
+            {
                 "type": "Object",
                 "name": "axe",
                 "state": "broken"
@@ -159,11 +169,6 @@
                 "type": "Object",
                 "name": "gun",
                 "state": "for_sale"
-            },
-            {
-                "type": "Tile",
-                "name": "tool shop",
-                "state": "null"
             }
         ],
         "turn_counter": [
@@ -182,11 +187,6 @@
         "max_hp": 10,
         "current_gold": 0,
         "visited": [
-            {
-                "type": "Character",
-                "name": "totoro",
-                "state": "null"
-            },
             {
                 "type": "Tile",
                 "name": "animal products shop",
@@ -209,11 +209,6 @@
         "max_hp": 10,
         "current_gold": 0,
         "visited": [
-            {
-                "type": "Character",
-                "name": "totoro",
-                "state": "null"
-            },
             {
                 "type": "Tile",
                 "name": "plant products shop",
@@ -284,11 +279,6 @@
                 "type": "Tile",
                 "name": "Jimmys house",
                 "state": "null"
-            },
-            {
-                "type": "Character",
-                "name": "totoro",
-                "state": "null"
             }
         ],
         "turn_counter": [
@@ -311,6 +301,11 @@
                 "type": "Tile",
                 "name": "Claires house",
                 "state": "null"
+            },
+            {
+                "type": "Character",
+                "name": "totoro",
+                "state": "null"
             }
         ],
         "turn_counter": [
@@ -330,6 +325,11 @@
         "current_gold": 5,
         "visited": [
             {
+                "type": "Character",
+                "name": "totoro",
+                "state": "null"
+            },
+            {
                 "type": "Tile",
                 "name": "grasslands",
                 "state": "null"
@@ -344,7 +344,7 @@
         "type": "monster",
         "name": "Wolf",
         "co_ord_x": 9,
-        "co_ord_y": 16,
+        "co_ord_y": 15,
         "state": "aggressive",
         "inventory": [
             {
@@ -358,13 +358,13 @@
         "current_gold": 0,
         "visited": [
             {
-                "type": "Tile",
-                "name": "grasslands",
+                "type": "Character",
+                "name": "totoro",
                 "state": "null"
             },
             {
-                "type": "Character",
-                "name": "totoro",
+                "type": "Tile",
+                "name": "grasslands",
                 "state": "null"
             }
         ],
@@ -404,7 +404,7 @@
     {
         "type": "animal",
         "name": "cow",
-        "co_ord_x": 2,
+        "co_ord_x": 3,
         "co_ord_y": 7,
         "state": "wild",
         "inventory": [
