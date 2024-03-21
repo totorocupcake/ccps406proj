@@ -1,6 +1,6 @@
 {
-    "rent_amount": 212,
-    "rent_due_date": 440,
-    "turn_number": 429,
+    "rent_amount": 20,
+    "rent_due_date": 100,
+    "turn_number": 16,
     "game_won": false
 }
