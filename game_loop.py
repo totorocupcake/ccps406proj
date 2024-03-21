@@ -31,6 +31,10 @@ def play_game(world_state):
             if world_state.get_game_won():
                 break
             
+            if command is not None and command.lower().startswith("swap"):
+                # print console output again if player swapped to another character
+                console_output(world_state)
+            
         world_state = world_state.increment_turn()
     
     return world_state
