@@ -3,32 +3,77 @@
         "type": "player",
         "name": "totoro",
         "co_ord_x": 6,
-        "co_ord_y": 11,
+        "co_ord_y": 13,
         "state": "null",
         "inventory": [
             {
                 "name": "house key",
                 "quantity": 1,
                 "state": "null"
+            },
+            {
+                "name": "meat",
+                "quantity": 1,
+                "state": "cooked"
             }
         ],
         "current_hp": 10,
         "max_hp": 10,
-        "current_gold": 0,
+        "current_gold": 6,
         "visited": [
+            {
+                "type": "Tile",
+                "name": "gravel road",
+                "state": "null"
+            },
+            {
+                "type": "Object",
+                "name": "letter",
+                "state": "in_mailbox"
+            },
+            {
+                "type": "Object",
+                "name": "farm key",
+                "state": "on_tile"
+            },
+            {
+                "type": "Tile",
+                "name": "animal products shop",
+                "state": "null"
+            },
+            {
+                "type": "Tile",
+                "name": "plant products shop",
+                "state": "null"
+            },
+            {
+                "type": "Tile",
+                "name": "kitchen",
+                "state": "open"
+            },
+            {
+                "type": "Tile",
+                "name": "town square",
+                "state": "null"
+            },
             {
                 "type": "Tile",
                 "name": "bedroom",
                 "state": "open"
             },
             {
-                "type": "Object",
-                "name": "garage key",
-                "state": "on_tile"
+                "type": "Tile",
+                "name": "Jimmys house",
+                "state": "null"
+            },
+            {
+                "type": "Character",
+                "name": "Jimmy",
+                "state": "null"
             },
             {
                 "type": "Tile",
-                "name": "grasslands",
+                "name": "road",
                 "state": "null"
             },
             {
@@ -38,13 +83,33 @@
             },
             {
                 "type": "Tile",
-                "name": "kitchen",
-                "state": "open"
+                "name": "mail box",
+                "state": "null"
+            },
+            {
+                "type": "Tile",
+                "name": "grasslands",
+                "state": "null"
+            },
+            {
+                "type": "Character",
+                "name": "Merchant 2",
+                "state": "null"
+            },
+            {
+                "type": "Character",
+                "name": "Merchant 3",
+                "state": "null"
             },
             {
                 "type": "Object",
-                "name": "farm key",
+                "name": "garage key",
                 "state": "on_tile"
+            },
+            {
+                "type": "Character",
+                "name": "Wolf",
+                "state": "aggressive"
             }
         ],
         "turn_counter": [
@@ -86,11 +151,6 @@
         "current_gold": 0,
         "visited": [
             {
-                "type": "Tile",
-                "name": "tool shop",
-                "state": "null"
-            },
-            {
                 "type": "Object",
                 "name": "axe",
                 "state": "broken"
@@ -99,6 +159,11 @@
                 "type": "Object",
                 "name": "gun",
                 "state": "for_sale"
+            },
+            {
+                "type": "Tile",
+                "name": "tool shop",
+                "state": "null"
             }
         ],
         "turn_counter": [
@@ -117,6 +182,11 @@
         "max_hp": 10,
         "current_gold": 0,
         "visited": [
+            {
+                "type": "Character",
+                "name": "totoro",
+                "state": "null"
+            },
             {
                 "type": "Tile",
                 "name": "animal products shop",
@@ -139,6 +209,11 @@
         "max_hp": 10,
         "current_gold": 0,
         "visited": [
+            {
+                "type": "Character",
+                "name": "totoro",
+                "state": "null"
+            },
             {
                 "type": "Tile",
                 "name": "plant products shop",
@@ -165,11 +240,6 @@
                 "type": "Tile",
                 "name": "grasslands",
                 "state": "null"
-            },
-            {
-                "type": "Character",
-                "name": "Thief",
-                "state": "aggressive"
             }
         ],
         "turn_counter": [
@@ -214,6 +284,11 @@
                 "type": "Tile",
                 "name": "Jimmys house",
                 "state": "null"
+            },
+            {
+                "type": "Character",
+                "name": "totoro",
+                "state": "null"
             }
         ],
         "turn_counter": [
@@ -246,43 +321,18 @@
     {
         "type": "monster",
         "name": "Thief",
-        "co_ord_x": 7,
-        "co_ord_y": 10,
+        "co_ord_x": 4,
+        "co_ord_y": 1,
         "state": "aggressive",
         "inventory": null,
         "current_hp": 10,
         "max_hp": 10,
-        "current_gold": 10,
+        "current_gold": 5,
         "visited": [
             {
                 "type": "Tile",
                 "name": "grasslands",
                 "state": "null"
-            },
-            {
-                "type": "Object",
-                "name": "garage key",
-                "state": "on_tile"
-            },
-            {
-                "type": "Tile",
-                "name": "bedroom",
-                "state": "open"
-            },
-            {
-                "type": "Object",
-                "name": "medkit",
-                "state": "on_tile"
-            },
-            {
-                "type": "Character",
-                "name": "farmhand",
-                "state": "injured"
-            },
-            {
-                "type": "Object",
-                "name": "farm key",
-                "state": "on_tile"
             }
         ],
         "turn_counter": [
@@ -293,8 +343,8 @@
     {
         "type": "monster",
         "name": "Wolf",
-        "co_ord_x": 11,
-        "co_ord_y": 18,
+        "co_ord_x": 9,
+        "co_ord_y": 16,
         "state": "aggressive",
         "inventory": [
             {
@@ -311,6 +361,11 @@
                 "type": "Tile",
                 "name": "grasslands",
                 "state": "null"
+            },
+            {
+                "type": "Character",
+                "name": "totoro",
+                "state": "null"
             }
         ],
         "turn_counter": [
@@ -321,8 +376,8 @@
     {
         "type": "animal",
         "name": "chicken",
-        "co_ord_x": 5,
-        "co_ord_y": 18,
+        "co_ord_x": 3,
+        "co_ord_y": 16,
         "state": "wild",
         "inventory": [
             {
@@ -349,8 +404,8 @@
     {
         "type": "animal",
         "name": "cow",
-        "co_ord_x": 3,
-        "co_ord_y": 8,
+        "co_ord_x": 2,
+        "co_ord_y": 7,
         "state": "wild",
         "inventory": [
             {
