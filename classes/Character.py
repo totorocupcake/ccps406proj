@@ -4,9 +4,23 @@ import classes.Object as Object
 import text_formatting
 import sys
 import classes.enums as Enum
+import classes.external_files as external_files
 
 class Character(Turn_Based_Entity.Turn_Based_Entity):
 
+    def __new__(cls, *args, **kwargs):
+        if args:
+            name = args[0] 
+            state = args[1] 
+        else:
+            name,state=None,None
+       
+        if name is not None and state is not None and not external_files.read_external_files().check_exists(Enum.general_type.CHARACTER,name,state):
+            # invalid character, so do not instantiate
+            return None
+        else:
+            return super().__new__(cls)
+    
     def __init__(self, name = None, state = None, coords = None): 
         super().__init__()
 
@@ -154,6 +168,9 @@ def process_dead_char(charac,world_state):
         for row in world_state.get_tiles():
             for tile in row:
                 if tile.get_name().lower() == "bedroom":
+                    if tile.get_state() != "open":
+                        print("got to here")
+                        tile.update_tile_by_state("open")
                     x,y = tile.get_coords()
                     charac.update_coords((x,y))
                     break

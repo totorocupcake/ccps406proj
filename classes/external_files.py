@@ -2,12 +2,12 @@ import text_file_processor
 import text_formatting
 import classes.enums as Enum
 
-class Data():
+class read_external_files():
     _instance = None
     
     def __new__(cls, *args, **kwargs):
         if not cls._instance:
-            cls._instance = super(Data, cls).__new__(cls)
+            cls._instance = super(read_external_files, cls).__new__(cls)
         return cls._instance
     
     def __init__(self):
@@ -164,7 +164,7 @@ class Data():
         for obj in parsed_object_data:
             if (obj["name"].lower() == name.lower()) and (obj["state"].lower() == state.lower()):
                 return obj["gold_amt"]        
-        return None
+        return 0
     
     def lookup_type (self,general_type,name, state):
     # returns the type value given a name and state and general type matched from JSON 
@@ -179,7 +179,7 @@ class Data():
         for obj in parsed_data:
             if (obj["name"].lower() == name.lower()) and (obj["state"].lower() == state.lower()):
                 return obj["type"]
-        return None
+        return "NONE"
 
     def get_unique_keywords(self):
         # This function returns a set of all possible verbs and noun from all JSON data files
@@ -206,3 +206,18 @@ class Data():
                     unique_interaction.add(interaction["name"].lower())
                 
         return unique_names, unique_interaction
+    
+    def check_exists(self, general_type,name,state):
+        
+        if general_type == Enum.general_type.OBJECT:
+            parsed_data = self.get_objects_data()
+        elif general_type == Enum.general_type.CHARACTER:
+            parsed_data = self.get_char_data()
+        else:
+            parsed_data = self.get_tile_data()
+        
+        for obj in parsed_data:
+            if (obj["name"].lower() == name.lower()) and (obj["state"].lower() == state.lower()):
+                return True
+            
+        return False

@@ -1,7 +1,7 @@
 import state_updates
 import save_game
 import text_formatting
-import classes.Data as Data
+import classes.external_files as external_files
 import classes.enums as Enum
 
 def play_game(world_state):
@@ -30,6 +30,10 @@ def play_game(world_state):
             
             if world_state.get_game_won():
                 break
+            
+            if command is not None and command.lower().startswith("swap"):
+                # print console output again if player swapped to another character
+                console_output(world_state)
             
         world_state = world_state.increment_turn()
     
@@ -97,7 +101,9 @@ def command_processor(world_state,command,charac):
         "east":"e",
         "west":"w",
         "take eggs": "harvest chicken",
-        "harvest eggs": "harvest chicken"
+        "take egg": "harvest chicken",
+        "harvest eggs": "harvest chicken",
+        "harvest egg": "harvest chicken"
     }
     
     command = replacement_dict.get(command, command) 
@@ -133,7 +139,8 @@ def command_processor(world_state,command,charac):
             print("You're not allowed to do that, cheat mode is not activated.")
             return (False, command, Enum.command_type.CHEAT)
 
-    elif noun in {text_formatting.dynamic_variable_processor(world_state,name).lower() for name in Data.Data().get_unique_names()} and verb in Data.Data().get_unique_interactions():
+    elif noun in {text_formatting.dynamic_variable_processor(world_state,name).lower() for name in \
+        external_files.read_external_files().get_unique_names()} and verb in external_files.read_external_files().get_unique_interactions():
         return (True, command,Enum.command_type.NORMAL) 
     
     elif command is None and not charac.get_active_player():

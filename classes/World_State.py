@@ -16,6 +16,12 @@ TURN_INCREMENT = 20
 
 class World_State:
 
+  _instance = None
+  def __new__(cls):
+    if cls._instance is None:
+      cls._instance = super(World_State, cls).__new__(cls)
+    return cls._instance
+
   def __init__(self):
     
     random.seed(42) # select seed for reproducible random results for testing
@@ -254,7 +260,7 @@ class World_State:
     #   if yes, use "short" desc
 
     # start with Tile object:
-    tile_tuple = (current_tl.get_general_type(), current_tl.get_name(), current_tl.get_state())
+    tile_tuple = (current_tl.get_general_type().name.title(), current_tl.get_name(), current_tl.get_state())
 
     if tile_tuple in visited:
       desc_list.append(current_tl.get_desc(False,self))
@@ -264,7 +270,7 @@ class World_State:
     # add each character:
     if current_npc_char_list is not None and current_tl.get_movable():
       for char_elem in current_npc_char_list:
-        char_tuple = (char_elem.get_general_type(), char_elem.get_name(), \
+        char_tuple = (char_elem.get_general_type().name.title(), char_elem.get_name(), \
                       char_elem.get_state() )
 
         if char_tuple in visited:
@@ -277,7 +283,7 @@ class World_State:
     if current_tl.get_movable():
       if current_tl_inv_list is not None:
         for tl_inv_elem in current_tl_inv_list:
-          inv_tuple = (tl_inv_elem.get_general_type(), tl_inv_elem.get_name(), \
+          inv_tuple = (tl_inv_elem.get_general_type().name.title(), tl_inv_elem.get_name(), \
                         tl_inv_elem.get_state() )
           if inv_tuple in visited:
             desc_list.append(tl_inv_elem.get_desc(False,self))
@@ -375,7 +381,6 @@ class World_State:
     return next_command
   
   def cheat_mode(self, command,charac):
-    import classes.Data as Data
     
     command = command.strip()
     words = command.split()
@@ -392,9 +397,16 @@ class World_State:
         if charac_name in ("thief", "penny","jimmy","claire","wolf"):
           charac_name = charac_name[0].upper() + charac_name[1:]
 
-        new_charac = Character.Character(charac_name,charac_state,(x,y))
-        self.spawn_character(new_charac)
-        print("Spawned character")
+        if x>=0 and y>=0 and x<=(WORLD_MAP_NUM_COLUMNS-1) and y<= (WORLD_MAP_NUM_ROWS-1):
+          new_charac = Character.Character(charac_name,charac_state,(x,y))
+        else:
+          new_charac = None
+        
+        if new_charac is not None:
+          self.spawn_character(new_charac)
+          print("Spawned character")
+        else:
+          print("Cannot spawn that character.")
       elif command == "graze":
         if self.get_graze():
           self.set_graze(False)
@@ -407,14 +419,24 @@ class World_State:
         charac_coord = charac_coord.split(',')
         x = int(charac_coord[0])
         y = int(charac_coord[1])
-        print (self.get_description((x,y),{}))
+        
+        if x>=0 and y>=0 and x<=(WORLD_MAP_NUM_COLUMNS-1) and y<= (WORLD_MAP_NUM_ROWS-1):
+          print (self.get_description((x,y),{}))
+        else:
+          print("Invalid coordinate.")
+          
       elif words[0] == "teleport":
         charac_coord = words[1]
         charac_coord = charac_coord.split(',')
         x = int(charac_coord[0])
         y = int(charac_coord[1])
-        charac.update_coords((x,y))
-        print (f"Teleported to {x},{y}.")
+        
+        if x>=0 and y>=0 and x<=(WORLD_MAP_NUM_COLUMNS-1) and y<= (WORLD_MAP_NUM_ROWS-1):
+          charac.update_coords((x,y))
+          print (f"Teleported to {x},{y}.")
+        else:
+          print("Cannot teleport there.")
+          
       elif words[0] == "kill": #cheat kill thief 6,12
         charac_name_to_kill=words[1]
         charac_coord = words[2]
@@ -433,22 +455,43 @@ class World_State:
             current_active_char = self.get_active_char()
             current_active_char.set_active_player(False)
             charac.set_active_player(True)
+            print(f"Swapped with {charac.get_name()}.")
+            
+            
       elif words[0] == "create": #cheat create state gun
         name = " ".join(words[2:])
         obj = Object.Object(name,words[1],1)
-        charac.update_inventory("add",[obj])
-        print(f"Added {name} into your inventory.")
+        if obj is None:
+          print("Cannot create object as that object is not defined.")
+        else:
+          charac.update_inventory("add",[obj])
+          print(f"Added {name} into your inventory.")
       elif words[0] == "gold": #cheat gold 500
         new_gold = int(words[1])
-        charac.set_current_gold(new_gold)
-        print(f"Gold updated to {new_gold}")
+        if new_gold >=0:
+          charac.set_current_gold(new_gold)
+          print(f"Gold updated to {new_gold}")
+        else:
+          print("Cannot update gold to negative number.")
+          
       elif words[0] == "rent_amount": #cheat rent_amount 500
         new_rent_amount = int(words[1])
-        self.set_rent_amount(new_rent_amount)
+        
+        if new_rent_amount >=0:
+          self.set_rent_amount(new_rent_amount)
+          print(f"Updated rent amount to {new_rent_amount}")
+        else:
+          print("Invalid rent amount.")
+          
       elif words[0]=="rent_due": #cheat rent_due 50
         new_turn_due = int(words[1])
-        self.set_rent_turn_due(new_turn_due)
-    
+        
+        if new_turn_due>= self.get_turn_number():
+          self.set_rent_turn_due(new_turn_due)
+          print(f"Updated rent due turn number to {new_turn_due}.")
+        else:
+          print("Invalid new rent due turn number.")
+
       else:
         print("Cheat command not recognized.")
       
@@ -464,34 +507,29 @@ def spawn_monster_checks(world_state):
   in the provided world state. If there is not at least one of each character, it will spawn one
   respective character back into the world state. The spawned character is based off character_template.json
   """
-  characters_to_find = ["wolf", "thief", "chicken","cow"]
+  characters_to_find = ["Wolf", "Thief", "chicken","cow"]
+  chracters_status = ["aggressive","aggressive","wild","wild"]
   found_status = [0,0,0,0]
   
   # find all characters in world state, and update found_status. 
   # 0 = not found, 1= found
   for char in world_state.get_characters():
     for i in range(len(characters_to_find)):
-      if char.get_name().lower() == characters_to_find[i]:
+      if char.get_name() == characters_to_find[i]:
         found_status[i]=1
         
   for item in world_state.get_active_char().get_inventory():
     for i in range(len(characters_to_find)):
-      if item.get_name().lower()== characters_to_find[i]:
+      if item.get_name()== characters_to_find[i]:
         found_status[i]=1
-  
-          
-  template_char = text_file_processor.load_char_template_file()
   
   # for all characters not found (not_found=0), we find the template char status with matching name
   # And spawn that character from template into the world_state
   for i in range(len(characters_to_find)):
     if found_status[i]==0:
-      for element in template_char:
-        if element["name"].lower() == characters_to_find[i].lower():
-          # we found the character in the template JSON. Time to spawn it.
-          new_charac = Character.Character(element["name"],element["state"])   
-          world_state.spawn_character(new_charac)
-          #print(f"Spawned {new_charac.get_name()}.")
+      new_charac = Character.Character(characters_to_find[i],chracters_status[i])   
+      world_state.spawn_character(new_charac)
+      #print(f"Spawned {new_charac.get_name()}.")
           
   return world_state
 
@@ -508,9 +546,19 @@ def late_rent_checks(world_state):
         for tile in row:
           if tile.get_name() == "mail box":
             # find mail box on map and add a new letter from landlord to it
-            x,y = tile.get_coords()
-            interest_letter = Object.Object("letter from landlord","null",1)
-            interest_letter.update_coords((x,y))
-            tile.update_inventory("add",[interest_letter])
-            break
+            mailbox_inv = tile.get_inventory()
+            found=False
+            if mailbox_inv is not None:
+              for obj in mailbox_inv:
+                if obj.get_name()=="letter from landlord":
+                  found=True
+                  break
+                
+            if not found:
+              x,y = tile.get_coords()
+              interest_letter = Object.Object("letter from landlord","in_mailbox",1)
+              interest_letter.update_coords((x,y))
+              tile.update_inventory("add",[interest_letter])
+              break
+            
   return world_state

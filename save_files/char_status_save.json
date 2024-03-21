@@ -2,8 +2,8 @@
     {
         "type": "player",
         "name": "totoro",
-        "co_ord_x": 6,
-        "co_ord_y": 12,
+        "co_ord_x": 9,
+        "co_ord_y": 15,
         "state": "null",
         "inventory": [
             {
@@ -12,24 +12,84 @@
                 "state": "null"
             },
             {
-                "name": "medkit",
+                "name": "ladder",
                 "quantity": 1,
                 "state": "null"
             },
             {
-                "name": "gun",
+                "name": "watering can",
+                "quantity": 1,
+                "state": "empty"
+            },
+            {
+                "name": "apples",
                 "quantity": 1,
                 "state": "null"
             }
         ],
-        "current_hp": 10,
+        "current_hp": 8,
         "max_hp": 10,
-        "current_gold": 10,
+        "current_gold": 0,
         "visited": [
+            {
+                "type": "Object",
+                "name": "medkit",
+                "state": "on_tile"
+            },
+            {
+                "type": "Object",
+                "name": "farm key",
+                "state": "on_tile"
+            },
+            {
+                "type": "Tile",
+                "name": "bedroom",
+                "state": "open"
+            },
+            {
+                "type": "Tile",
+                "name": "road by neighbours houses",
+                "state": "null"
+            },
+            {
+                "type": "Object",
+                "name": "watering can",
+                "state": "on_tile"
+            },
+            {
+                "type": "Tile",
+                "name": "Claires house",
+                "state": "null"
+            },
+            {
+                "type": "Tile",
+                "name": "apple tree",
+                "state": "growing_notready"
+            },
+            {
+                "type": "Tile",
+                "name": "tool shed",
+                "state": "closed"
+            },
+            {
+                "type": "Object",
+                "name": "scythe",
+                "state": "on_tile"
+            },
+            {
+                "type": "Tile",
+                "name": "apple tree",
+                "state": "growing_ready"
+            },
             {
                 "type": "Tile",
                 "name": "kitchen",
-                "state": "closed"
+                "state": "open"
+            },
+            {
+                "type": "Object",
+                "name": "garage key",
+                "state": "on_tile"
             },
             {
                 "type": "Tile",
@@ -38,38 +98,23 @@
             },
             {
                 "type": "Character",
-                "name": "Thief",
-                "state": "aggressive"
-            },
-            {
-                "type": "Object",
-                "name": "garage key",
+                "name": "Claire",
                 "state": "null"
             },
             {
                 "type": "Tile",
-                "name": "kitchen",
-                "state": "open"
-            },
-            {
-                "type": "Object",
-                "name": "medkit",
+                "name": "gravel road",
                 "state": "null"
             },
             {
                 "type": "Object",
-                "name": "farm key",
-                "state": "null"
+                "name": "milk bucket",
+                "state": "on_tile"
             },
             {
                 "type": "Tile",
-                "name": "bedroom",
-                "state": "closed"
-            },
-            {
-                "type": "Tile",
-                "name": "bedroom",
-                "state": "open"
+                "name": "apple tree",
+                "state": "empty"
             }
         ],
         "turn_counter": [
@@ -111,19 +156,19 @@
         "current_gold": 0,
         "visited": [
             {
-                "type": "Object",
-                "name": "gun",
+                "type": "Tile",
+                "name": "tool shop",
                 "state": "null"
             },
             {
                 "type": "Object",
                 "name": "axe",
-                "state": "null"
+                "state": "broken"
             },
             {
-                "type": "Tile",
-                "name": "tool shop",
-                "state": "null"
+                "type": "Object",
+                "name": "gun",
+                "state": "for_sale"
             }
         ],
         "turn_counter": [
@@ -256,6 +301,11 @@
                 "type": "Tile",
                 "name": "Claires house",
                 "state": "null"
+            },
+            {
+                "type": "Character",
+                "name": "totoro",
+                "state": "null"
             }
         ],
         "turn_counter": [
@@ -266,14 +316,19 @@
     {
         "type": "monster",
         "name": "Thief",
-        "co_ord_x": 10,
-        "co_ord_y": 3,
+        "co_ord_x": 4,
+        "co_ord_y": 1,
         "state": "aggressive",
         "inventory": null,
         "current_hp": 10,
         "max_hp": 10,
         "current_gold": 5,
         "visited": [
+            {
+                "type": "Character",
+                "name": "totoro",
+                "state": "null"
+            },
             {
                 "type": "Tile",
                 "name": "grasslands",
@@ -289,7 +344,7 @@
         "type": "monster",
         "name": "Wolf",
         "co_ord_x": 9,
-        "co_ord_y": 16,
+        "co_ord_y": 15,
         "state": "aggressive",
         "inventory": [
             {
@@ -302,6 +357,11 @@
         "max_hp": 10,
         "current_gold": 0,
         "visited": [
+            {
+                "type": "Character",
+                "name": "totoro",
+                "state": "null"
+            },
             {
                 "type": "Tile",
                 "name": "grasslands",
@@ -344,7 +404,7 @@
     {
         "type": "animal",
         "name": "cow",
-        "co_ord_x": 2,
+        "co_ord_x": 3,
         "co_ord_y": 7,
         "state": "wild",
         "inventory": [
