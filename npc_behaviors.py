@@ -49,7 +49,7 @@ def thief_aggressive(world_state,charac):
                     current_coord = charac.get_coords()
                     
                     if bedroom_coord != current_coord:
-                        return navigate_to_coord(bedroom_coord,current_coord)
+                        return navigate_to_coord(bedroom_coord,current_coord,world_state,charac)
                     else:
                         print("A wild roaming thief stole gold from your unlocked house!")
                         return "take gold"
@@ -82,11 +82,11 @@ def wolf_aggressive(world_state,charac):
             if tile.get_name() == "barn" and tile.get_state()=="open":
                 for char in world_state.get_chars_at_tile(tile.get_coords()):
                     if char.get_name()=="cow":
-                        return navigate_to_coord(tile.get_coords(),charac.get_coords())
+                        return navigate_to_coord(tile.get_coords(),charac.get_coords(),world_state,charac)
             if tile.get_name() == "chicken coop" and tile.get_state()=="open":
                 for char in world_state.get_chars_at_tile(tile.get_coords()):
                     if char.get_name()=="chicken":
-                        return navigate_to_coord(tile.get_coords(),charac.get_coords())
+                        return navigate_to_coord(tile.get_coords(),charac.get_coords(),world_state,charac)
 
     return check_graze(world_state,charac)
     
@@ -107,12 +107,29 @@ def check_graze(world_state,charac):
     else:
       return None
 
-def navigate_to_coord (target_coord,current_coord):
+def navigate_to_coord (target_coord,current_coord,world_state,charac):
     if target_coord[0]>current_coord[0]:
-        return "e"
+        if check_block(current_coord[0]+1,current_coord[1],world_state):
+            return "e"
     elif target_coord[0]<current_coord[0]:
-        return "w"
+        if check_block(current_coord[0]-1,current_coord[1],world_state):
+            return "w"
     elif target_coord[1]>current_coord[1]:
-        return "s"
+        if check_block(current_coord[0],current_coord[1]+1,world_state,):
+            return "s"
     else:
-        return "n"
+        if check_block(current_coord[0],current_coord[1]-1,world_state):
+            return "n"
+    
+    return graze(world_state,charac)
+
+def check_block(x,y,world_state):
+    
+    new_tile = world_state.get_tiles()[x][y]
+    
+    if new_tile.get_block():
+        return False 
+    
+    return True
+    
+    

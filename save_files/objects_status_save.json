@@ -1,11 +1,128 @@
 [
     {
         "type": "misc",
-        "name": "letter from landlord",
+        "name": "branch",
+        "state": "on_tile",
+        "quantity": 1,
+        "co_ord_x": 1,
+        "co_ord_y": 4,
+        "inventory": null
+    },
+    {
+        "type": "tool",
+        "name": "gun",
+        "state": "for_sale",
+        "quantity": 1,
+        "co_ord_x": 2,
+        "co_ord_y": 13,
+        "inventory": null
+    },
+    {
+        "type": "tool",
+        "name": "axe",
+        "state": "broken",
+        "quantity": 1,
+        "co_ord_x": 2,
+        "co_ord_y": 13,
+        "inventory": null
+    },
+    {
+        "type": "tool",
+        "name": "beekeeping suit",
+        "state": "on_tile",
+        "quantity": 1,
+        "co_ord_x": 4,
+        "co_ord_y": 12,
+        "inventory": null
+    },
+    {
+        "type": "tool",
+        "name": "ladder",
+        "state": "on_tile",
+        "quantity": 1,
+        "co_ord_x": 4,
+        "co_ord_y": 12,
+        "inventory": null
+    },
+    {
+        "type": "consumable",
+        "name": "medkit",
+        "state": "on_tile",
+        "quantity": 1,
+        "co_ord_x": 6,
+        "co_ord_y": 11,
+        "inventory": null
+    },
+    {
+        "type": "misc",
+        "name": "garage key",
+        "state": "on_tile",
+        "quantity": 1,
+        "co_ord_x": 6,
+        "co_ord_y": 11,
+        "inventory": null
+    },
+    {
+        "type": "tool",
+        "name": "farm key",
+        "state": "on_tile",
+        "quantity": 1,
+        "co_ord_x": 6,
+        "co_ord_y": 11,
+        "inventory": null
+    },
+    {
+        "type": "misc",
+        "name": "letter",
         "state": "in_mailbox",
-        "quantity": 5,
+        "quantity": 1,
         "co_ord_x": 6,
         "co_ord_y": 13,
+        "inventory": null
+    },
+    {
+        "type": "tool",
+        "name": "scythe",
+        "state": "on_tile",
+        "quantity": 1,
+        "co_ord_x": 8,
+        "co_ord_y": 7,
+        "inventory": null
+    },
+    {
+        "type": "tool",
+        "name": "milk bucket",
+        "state": "on_tile",
+        "quantity": 1,
+        "co_ord_x": 8,
+        "co_ord_y": 7,
+        "inventory": null
+    },
+    {
+        "type": "tool",
+        "name": "watering can",
+        "state": "on_tile",
+        "quantity": 1,
+        "co_ord_x": 8,
+        "co_ord_y": 7,
+        "inventory": null
+    },
+    {
+        "type": "misc",
+        "name": "flint",
+        "state": "on_tile",
+        "quantity": 1,
+        "co_ord_x": 8,
+        "co_ord_y": 12,
+        "inventory": null
+    },
+    {
+        "type": "tool",
+        "name": "bee smoker",
+        "state": "on_tile",
+        "quantity": 1,
+        "co_ord_x": 8,
+        "co_ord_y": 12,
         "inventory": null
     }
 ]
