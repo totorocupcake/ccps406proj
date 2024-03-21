@@ -479,34 +479,29 @@ def spawn_monster_checks(world_state):
   in the provided world state. If there is not at least one of each character, it will spawn one
   respective character back into the world state. The spawned character is based off character_template.json
   """
-  characters_to_find = ["wolf", "thief", "chicken","cow"]
+  characters_to_find = ["Wolf", "Thief", "chicken","cow"]
+  chracters_status = ["aggressive","aggressive","wild","wild"]
   found_status = [0,0,0,0]
   
   # find all characters in world state, and update found_status. 
   # 0 = not found, 1= found
   for char in world_state.get_characters():
     for i in range(len(characters_to_find)):
-      if char.get_name().lower() == characters_to_find[i]:
+      if char.get_name() == characters_to_find[i]:
         found_status[i]=1
         
   for item in world_state.get_active_char().get_inventory():
     for i in range(len(characters_to_find)):
-      if item.get_name().lower()== characters_to_find[i]:
+      if item.get_name()== characters_to_find[i]:
         found_status[i]=1
-  
-          
-  template_char = text_file_processor.load_char_template_file()
   
   # for all characters not found (not_found=0), we find the template char status with matching name
   # And spawn that character from template into the world_state
   for i in range(len(characters_to_find)):
     if found_status[i]==0:
-      for element in template_char:
-        if element["name"].lower() == characters_to_find[i].lower():
-          # we found the character in the template JSON. Time to spawn it.
-          new_charac = Character.Character(element["name"],element["state"])   
-          world_state.spawn_character(new_charac)
-          #print(f"Spawned {new_charac.get_name()}.")
+      new_charac = Character.Character(characters_to_find[i],chracters_status[i])   
+      world_state.spawn_character(new_charac)
+      #print(f"Spawned {new_charac.get_name()}.")
           
   return world_state
 
@@ -523,9 +518,19 @@ def late_rent_checks(world_state):
         for tile in row:
           if tile.get_name() == "mail box":
             # find mail box on map and add a new letter from landlord to it
-            x,y = tile.get_coords()
-            interest_letter = Object.Object("letter from landlord","in_mailbox",1)
-            interest_letter.update_coords((x,y))
-            tile.update_inventory("add",[interest_letter])
-            break
+            mailbox_inv = tile.get_inventory()
+            found=False
+            if mailbox_inv is not None:
+              for obj in mailbox_inv:
+                if obj.get_name()=="letter from landlord":
+                  found=True
+                  break
+                
+            if not found:
+              x,y = tile.get_coords()
+              interest_letter = Object.Object("letter from landlord","in_mailbox",1)
+              interest_letter.update_coords((x,y))
+              tile.update_inventory("add",[interest_letter])
+              break
+            
   return world_state
