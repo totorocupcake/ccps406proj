@@ -842,7 +842,8 @@
         "success_desc": "The tool shed is already opened.",
         "fail_desc": "The tool shed is already opened.",
         "change_state_to": "open",
-        "requirement": null
+        "requirement": null,
+        "obtain": null
       },
       {
         "name": "lock",
@@ -865,7 +866,8 @@
         "success_desc": "The tool shed is already opened.",
         "fail_desc": "The tool shed is already opened.",
         "change_state_to": "open",
-        "requirement": null
+        "requirement": null,
+        "obtain": null
       },
       {
         "name": "close",

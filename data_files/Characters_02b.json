@@ -142,7 +142,7 @@
             "name": "medkit",
             "state": "null",
             "qty": 1,
-            "remove_obj": "N"
+            "remove_obj": "Y"
           }
         ],
         "obtain":  [{

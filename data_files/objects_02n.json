@@ -672,7 +672,7 @@
 
         "success_desc": "You read an angry letter from your landlord saying that as you were late to pay the rent, the rent is now increased to %rent_amount%. You better pay this by turn number %rent_due_days_away%!",
         "fail_desc": "You cannot read the letter right now.",
-        "change_state_to": "null",
+        "change_state_to": "in_mailbox",
         "requirement": null,
         "obtain": null
       },
