@@ -90,6 +90,9 @@ def print_inventory(charac):
     # Append character's gold amount to end of string:
     object_string += ". Gold: "
     object_string += str(charac.get_current_gold()) +"."
+    object_string += " HP: "
+    object_string += str(charac.get_current_hp()) +"/"
+    object_string += str(charac.get_max_hp()) +"."
     print("")
     print(text_formatting.justify(object_string))
 
