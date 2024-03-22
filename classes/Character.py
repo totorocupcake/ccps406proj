@@ -169,7 +169,6 @@ def process_dead_char(charac,world_state):
             for tile in row:
                 if tile.get_name().lower() == "bedroom":
                     if tile.get_state() != "open":
-                        print("got to here")
                         tile.update_tile_by_state("open")
                     x,y = tile.get_coords()
                     charac.update_coords((x,y))
