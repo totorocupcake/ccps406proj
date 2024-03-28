@@ -140,7 +140,10 @@ def dynamic_variable_processor(world_state,get_desc_string):
 def dynamic_variable_logic(world_state,keyword):
     # Given the keyword string, replace it with a value and return that value back
         
-        player = world_state.get_active_char()
+        for char in world_state.get_characters():
+            if char.get_type() == Enum.character_type.player:
+                player = char
+                break
         
         if keyword == "player_name":
             return player.get_name()
